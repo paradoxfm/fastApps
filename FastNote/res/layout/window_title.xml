@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/custom_title_1" xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="match_parent" android:padding="0dip">
+
+	<ImageView android:id="@+id/protocol" android:src="@drawable/notepad" android:layout_width="35dip"
+		android:layout_height="35dip" android:padding="1dip" android:layout_alignParentLeft="true" />
+
+	<ImageView android:id="@+id/newnote" android:src="@drawable/plus_64" android:layout_width="30dip"
+		android:layout_height="30dip" android:layout_alignParentRight="true" android:padding="3dip"
+		android:layout_centerVertical="true" />
+
+	<TextView android:id="@id/title" android:layout_width="match_parent" android:layout_height="wrap_content"
+		android:textSize="16dip" android:textStyle="bold" android:textColor="#ffffffff" android:layout_toRightOf="@id/protocol"
+		android:layout_toLeftOf="@id/newnote" android:layout_centerVertical="true" android:singleLine="true" />
+
+</RelativeLayout>
