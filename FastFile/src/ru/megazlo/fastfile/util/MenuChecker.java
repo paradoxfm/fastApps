@@ -4,6 +4,7 @@ import ru.megazlo.fastfile.R;
 import ru.megazlo.fastfile.fmMain;
 import ru.megazlo.fastfile.fmSettings;
 import ru.megazlo.fastfile.components.RowDataFTP;
+import ru.megazlo.fastfile.components.RowDataLAN;
 import ru.megazlo.fastfile.components.RowDataSD;
 import ru.megazlo.fastfile.components.filerow.FileList;
 import ru.megazlo.fastfile.engine.BaseEngine;
@@ -48,7 +49,9 @@ public class MenuChecker {
 
 		case R.id.samba:
 			if (NetChecker.isOnline(act))
-				Toast.makeText(act, R.string.future, Toast.LENGTH_SHORT).show();
+				insertListLAN(act);
+			else
+				Toast.makeText(act, R.string.n_act_con, Toast.LENGTH_SHORT).show();
 			return true;
 
 		default:
@@ -86,6 +89,14 @@ public class MenuChecker {
 		Sets.dat.add(sd);
 		setNewList(act, lsd);
 		lsd.getEngine().exec(BaseEngine.CMD_CON);
+	}
+
+	public static void insertListLAN(fmMain act) {
+		RowDataLAN sd = new RowDataLAN();
+		FileList lsd = new FileList(act, sd, false);
+		Sets.dat.add(sd);
+		setNewList(act, lsd);
+		// lsd.getEngine().exec(BaseEngine.CMD_CON);
 	}
 
 	private static void setNewList(fmMain act, View lst) {
