@@ -1,7 +1,6 @@
 package ru.megazlo.fastfile.engine;
 
 import java.io.File;
-import java.util.Collections;
 
 import ru.megazlo.fastfile.R;
 import ru.megazlo.fastfile.fmMain;
@@ -19,9 +18,7 @@ public class EngineSDC extends BaseEngine {
 	public EngineSDC(RowData data, FileList list, boolean rest) {
 		super(list);
 		isPreview = isSearsh = true;
-		isRestore = rest;
 		dat = data;
-		isRestore = false;
 	}
 
 	@Override
@@ -59,24 +56,18 @@ public class EngineSDC extends BaseEngine {
 			tmbl.cancel = true;
 			tmbl = null;
 		}
-		if (!isRestore) {
-			dat.dir.clear();
-			dat.fil.clear();
-			File[] files = (File[]) filar;
-			for (int i = 0; i < files.length; i++) {
-				if (!Sets.SHOW_HIDDEN && files[i].isHidden())
-					continue;
-				if (files[i].isDirectory())
-					dat.dir.add(new FileRowData(files[i], Sets.I_FOLD));
-				else
-					dat.fil.add(new FileRowData(files[i], getIconByFile(files[i].getName())));
-			}
-			Collections.sort(dat.dir);
-			Collections.sort(dat.fil);
-			dat.dir.addAll(dat.fil);
+		dat.dir.clear();
+		dat.fil.clear();
+		File[] files = (File[]) filar;
+		for (int i = 0; i < files.length; i++) {
+			if (!Sets.SHOW_HIDDEN && files[i].isHidden())
+				continue;
+			if (files[i].isDirectory())
+				dat.dir.add(new FileRowData(files[i], Sets.I_FOLD));
+			else
+				dat.fil.add(new FileRowData(files[i], getIconByFile(files[i].getName())));
 		}
-		if (finisher != null)
-			finisher.onFinish();
+		super.fill(filar);
 	}
 
 	@Override

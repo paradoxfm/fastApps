@@ -1,5 +1,7 @@
 package ru.megazlo.fastfile.engine;
 
+import java.util.Collections;
+
 import ru.megazlo.fastfile.components.RowData;
 import ru.megazlo.fastfile.components.filerow.FileList;
 import ru.megazlo.fastfile.util.MenuChecker;
@@ -21,8 +23,8 @@ public abstract class BaseEngine implements IEngine {
 
 	protected boolean isSearsh = false;
 	protected boolean isPreview = false;
-	protected boolean isRestore = false;
-	private int engType = SDC;
+	// protected boolean isRestore = false;
+	protected int engType = SDC;
 	protected String mTitle;
 	protected OnLoadFinish finisher;
 	protected OnDataChanged changer;
@@ -147,5 +149,14 @@ public abstract class BaseEngine implements IEngine {
 	@Override
 	public boolean isAllowSearsh() {
 		return isSearsh;
+	}
+
+	@Override
+	public void fill(Object filar) {
+		Collections.sort(dat.dir);
+		Collections.sort(dat.fil);
+		dat.dir.addAll(dat.fil);
+		if (finisher != null)
+			finisher.onFinish();
 	}
 }
