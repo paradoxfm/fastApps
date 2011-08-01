@@ -2,6 +2,7 @@ package ru.megazlo.fastfile.engine;
 
 import java.net.MalformedURLException;
 
+import jcifs.smb.NtlmPasswordAuthentication;
 import jcifs.smb.SmbFile;
 import ru.megazlo.fastfile.R;
 import ru.megazlo.fastfile.components.RowData;
@@ -45,15 +46,22 @@ public class EngineLAN extends BaseEngine {
 
 	@Override
 	public void browseCatalog(Object cat) {
-		SmbFile dir = (SmbFile) cat;
 		try {
+
+			String url = "smb://192.168.0.102/";
+			NtlmPasswordAuthentication auth = new NtlmPasswordAuthentication("workgroup", "Администратор", "qwepoi");
+			SmbFile dir = new SmbFile(url, auth);
+
+			// (SmbFile) cat;
+			getDat().PATH = dir;
 			if (!dir.canRead()) {
 				Toast.makeText(getList().getContext(), R.string.read_only, Toast.LENGTH_SHORT).show();
 				return;
 			}
 			getDat().PATH = dir;
 			mTitle = getDat().PATH.getCanonicalPath();
-			this.fill(getDat().PATH.listFiles());
+			SmbFile[] arr = dir.listFiles();
+			this.fill(arr);
 		} catch (Exception e) {
 		}
 	}

@@ -58,17 +58,15 @@ public class FileRowData implements Comparable<FileRowData> {
 				return getSize(m_file_ftp.getSize());
 			else
 				return "dir";
+		} else if (m_file_smb != null) {
+			try {
+				if (m_file_smb.isDirectory())
+					return m_file_smb.canRead() ? Integer.toString(m_file_smb.listFiles().length) + " items" : "n/a";
+				else
+					return getSize(m_file_smb.length());
+			} catch (SmbException e) {
+			}
 		}
-		// else if (m_file_smb != null) {
-		// try {
-		// if (m_file_smb.isDirectory())
-		// return m_file_smb.canRead() ?
-		// Integer.toString(m_file_smb.listFiles().length) + " items" : "n/a";
-		// else
-		// return getSize(m_file_smb.length());
-		// } catch (SmbException e) {
-		// }
-		// }
 		return "";
 	}
 
