@@ -71,8 +71,6 @@ public class EngineSDC extends BaseEngine {
 				else
 					dat.fil.add(new FileRowData(files[i], getIconByFile(files[i].getName())));
 			}
-		}
-		if (!isRestore) {
 			Collections.sort(dat.dir);
 			Collections.sort(dat.fil);
 			dat.dir.addAll(dat.fil);
@@ -126,13 +124,7 @@ public class EngineSDC extends BaseEngine {
 	}
 
 	@Override
-	public boolean isAllowSearsh() {
-		return isSearsh;
-	}
-
-	@Override
 	public Object exec(int cmd) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

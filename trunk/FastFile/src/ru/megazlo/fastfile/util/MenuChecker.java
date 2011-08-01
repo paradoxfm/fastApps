@@ -85,7 +85,7 @@ public class MenuChecker {
 		FileList lsd = new FileList(act, sd, false);
 		Sets.dat.add(sd);
 		setNewList(act, lsd);
-		lsd.getEngine().exec(BaseEngine.CONNECT);
+		lsd.getEngine().exec(BaseEngine.CMD_CON);
 	}
 
 	private static void setNewList(fmMain act, View lst) {
