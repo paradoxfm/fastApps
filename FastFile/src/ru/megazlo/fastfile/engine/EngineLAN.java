@@ -3,9 +3,9 @@ package ru.megazlo.fastfile.engine;
 import ru.megazlo.fastfile.components.RowData;
 import ru.megazlo.fastfile.components.filerow.FileList;
 
-public class EngineFTP extends BaseEngine {
+public class EngineLAN extends BaseEngine {
 
-	public EngineFTP(FileList list) {
+	public EngineLAN(FileList list) {
 		super(list);
 		// TODO Auto-generated constructor stub
 	}
