@@ -59,12 +59,6 @@ public class EngineLAN extends BaseEngine {
 	}
 
 	@Override
-	public boolean isAllowSearsh() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public void fill(Object filar) {
 		// TODO Auto-generated method stub
 

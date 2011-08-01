@@ -2,9 +2,11 @@ package ru.megazlo.fastfile.engine;
 
 import ru.megazlo.fastfile.components.RowData;
 import ru.megazlo.fastfile.components.filerow.FileList;
+import ru.megazlo.fastfile.util.MenuChecker;
 import ru.megazlo.fastfile.util.Sets;
 import ru.megazlo.fastfile.util.ThumbnailLoader;
 import ru.megazlo.fastfile.util.file.MimeTypes;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
@@ -15,7 +17,7 @@ public abstract class BaseEngine implements IEngine {
 	public static final int FTP = 1;
 	public static final int NET = 2;
 
-	public static final int CONNECT = 100;
+	public static final int CMD_CON = 100;
 
 	protected boolean isSearsh = false;
 	protected boolean isPreview = false;
@@ -29,6 +31,19 @@ public abstract class BaseEngine implements IEngine {
 	private Handler currentHandler;
 	private static MimeTypes mimetypes = new MimeTypes();
 	private FileList parent;
+
+	protected DialogInterface.OnClickListener cansl = new DialogInterface.OnClickListener() {
+		@Override
+		public void onClick(DialogInterface dlg, int which) {
+			MenuChecker.remList(getList());
+		}
+	};
+	protected DialogInterface.OnCancelListener back = new DialogInterface.OnCancelListener() {
+		@Override
+		public void onCancel(DialogInterface dialog) {
+			MenuChecker.remList(getList());
+		}
+	};
 
 	public interface OnLoadFinish {
 		void onFinish();
@@ -127,5 +142,10 @@ public abstract class BaseEngine implements IEngine {
 
 	public FileList getList() {
 		return parent;
+	}
+
+	@Override
+	public boolean isAllowSearsh() {
+		return isSearsh;
 	}
 }
