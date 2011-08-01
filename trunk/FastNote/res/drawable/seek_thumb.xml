@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-	<corners android:radius="15dip" />
-	<size android:width="29dip" android:height="29dip" />
-	<stroke android:width="1px" android:color="@color/widgetBorder" />
-	<gradient android:gradientRadius="49" android:endColor="@color/widgetBorder"
-		android:startColor="@color/gradientWidgetStartColor" android:type="radial" />
-</shape>

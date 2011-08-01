@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/edit_text" android:icon="@drawable/ic_menu_edit" android:title="@string/editor_edit" />
-	<item android:id="@+id/save_text" android:icon="@drawable/ic_menu_save" android:title="@string/editor_save" />
-</menu>

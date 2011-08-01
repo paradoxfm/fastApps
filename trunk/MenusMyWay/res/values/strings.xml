@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="hello">My custom menu class!\n\n
-    					 1) Press the menu key.\n
-    					 2) Touch any menu item.\n
-    					 3) Enjoy!</string>
-    <string name="app_name">MenusMyWay</string>
-</resources>
