@@ -17,7 +17,7 @@ public abstract class BaseEngine implements IEngine {
 
 	public static final int SDC = 0;
 	public static final int FTP = 1;
-	public static final int NET = 2;
+	public static final int LAN = 2;
 
 	public static final int CMD_CON = 100;
 
@@ -135,7 +135,7 @@ public abstract class BaseEngine implements IEngine {
 			return Sets.P_PDA;
 		case FTP:
 			return Sets.P_FTP;
-		case NET:
+		case LAN:
 			return Sets.P_SMB;
 		default:
 			return Sets.P_PDA;

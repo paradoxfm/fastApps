@@ -5,7 +5,7 @@ import java.io.File;
 import ru.megazlo.fastfile.fmMain;
 import ru.megazlo.fastfile.components.RowData;
 import ru.megazlo.fastfile.components.RowDataFTP;
-import ru.megazlo.fastfile.components.RowDataSMB;
+import ru.megazlo.fastfile.components.RowDataLAN;
 import ru.megazlo.fastfile.engine.BaseEngine;
 import ru.megazlo.fastfile.engine.EngineFTP;
 import ru.megazlo.fastfile.engine.EngineSDC;
@@ -88,7 +88,7 @@ public class FileList extends ListView {
 	private BaseEngine choiceEngine(RowData dat, boolean restore) {
 		if (dat.getClass() == RowDataFTP.class)
 			return new EngineFTP(dat, this, restore);
-		else if (dat.getClass() == RowDataSMB.class)
+		else if (dat.getClass() == RowDataLAN.class)
 			return null;
 		return new EngineSDC(dat, this, restore);
 	}

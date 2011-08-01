@@ -90,8 +90,7 @@ public class MenuChecker {
 
 	private static void setNewList(fmMain act, View lst) {
 		act.scrv.addView(lst);
-		act.scrv.setCurrentScreen(act.scrv.getChildCount() - 1);
-		// .scrollToScreen(act.scrv.getChildCount() - 1);
+		act.scrv.scrollToScreen(act.scrv.getChildCount() - 1);
 	}
 
 	public static void remList(FileList lst) {
