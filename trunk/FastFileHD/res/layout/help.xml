@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:fillViewport="true"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<LinearLayout android:padding="5dip" android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:orientation="vertical" android:fitsSystemWindows="true">
+
+		<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:gravity="center_vertical">
+			<ImageView android:layout_width="40dip" android:layout_height="40dip" android:src="@drawable/t_ico_cont" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/t_con_mnu"
+				android:textSize="16dip" android:gravity="center_vertical" android:paddingLeft="10dip" />
+		</LinearLayout>
+		<ImageView android:src="@android:drawable/divider_horizontal_dim_dark" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:scaleType="fitXY" android:layout_gravity="center_horizontal"
+			android:paddingTop="5dip" android:paddingBottom="5dip" />
+
+		<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:gravity="center_vertical">
+			<ImageView android:layout_width="40dip" android:layout_height="40dip" android:src="@drawable/t_title_cont" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/t_con_mnu_root"
+				android:textSize="16dip" android:gravity="center_vertical" android:paddingLeft="10dip" />
+		</LinearLayout>
+		<ImageView android:src="@android:drawable/divider_horizontal_dim_dark" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:scaleType="fitXY" android:layout_gravity="center_horizontal"
+			android:paddingTop="5dip" android:paddingBottom="5dip" />
+
+		<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:gravity="center_vertical">
+			<ImageView android:layout_width="40dip" android:layout_height="40dip" android:src="@drawable/t_chk_sel" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/t_sel_one"
+				android:textSize="16dip" android:gravity="center_vertical" android:paddingLeft="10dip" />
+		</LinearLayout>
+		<ImageView android:src="@android:drawable/divider_horizontal_dim_dark" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:scaleType="fitXY" android:layout_gravity="center_horizontal"
+			android:paddingTop="5dip" android:paddingBottom="5dip" />
+
+		<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:gravity="center_vertical">
+			<ImageView android:layout_width="40dip" android:layout_height="40dip" android:src="@drawable/t_hold_m_sel" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/t_mil_sel"
+				android:textSize="16dip" android:gravity="center_vertical" android:paddingLeft="10dip" />
+		</LinearLayout>
+		<ImageView android:src="@android:drawable/divider_horizontal_dim_dark" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:scaleType="fitXY" android:layout_gravity="center_horizontal"
+			android:paddingTop="5dip" android:paddingBottom="5dip" />
+
+		<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:gravity="center_vertical">
+			<ImageView android:layout_width="40dip" android:layout_height="40dip" android:src="@drawable/t_close_tab_prog" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/t_ext_prog"
+				android:textSize="16dip" android:gravity="center_vertical" android:paddingLeft="10dip" />
+		</LinearLayout>
+		<ImageView android:src="@android:drawable/divider_horizontal_dim_dark" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:scaleType="fitXY" android:layout_gravity="center_horizontal"
+			android:paddingTop="5dip" android:paddingBottom="5dip" />
+
+		<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:gravity="center_vertical">
+			<ImageView android:layout_width="40dip" android:layout_height="40dip" android:src="@drawable/qa_copy" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/copy"
+				android:textSize="16dip" android:gravity="center_vertical" android:paddingLeft="10dip" />
+		</LinearLayout>
+		<ImageView android:src="@android:drawable/divider_horizontal_dim_dark" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:scaleType="fitXY" android:layout_gravity="center_horizontal"
+			android:paddingTop="5dip" android:paddingBottom="5dip" />
+
+		<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:gravity="center_vertical">
+			<ImageView android:layout_width="40dip" android:layout_height="40dip" android:src="@drawable/qa_cut" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cut"
+				android:textSize="16dip" android:gravity="center_vertical" android:paddingLeft="10dip" />
+		</LinearLayout>
+		<ImageView android:src="@android:drawable/divider_horizontal_dim_dark" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:scaleType="fitXY" android:layout_gravity="center_horizontal"
+			android:paddingTop="5dip" android:paddingBottom="5dip" />
+
+		<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:gravity="center_vertical">
+			<ImageView android:layout_width="40dip" android:layout_height="40dip" android:src="@drawable/qa_paste" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/paste"
+				android:textSize="16dip" android:gravity="center_vertical" android:paddingLeft="10dip" />
+		</LinearLayout>
+		<ImageView android:src="@android:drawable/divider_horizontal_dim_dark" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:scaleType="fitXY" android:layout_gravity="center_horizontal"
+			android:paddingTop="5dip" android:paddingBottom="5dip" />
+
+		<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:gravity="center_vertical">
+			<ImageView android:layout_width="40dip" android:layout_height="40dip" android:src="@drawable/qa_delete" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/delete"
+				android:textSize="16dip" android:gravity="center_vertical" android:paddingLeft="10dip" />
+		</LinearLayout>
+		<ImageView android:src="@android:drawable/divider_horizontal_dim_dark" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:scaleType="fitXY" android:layout_gravity="center_horizontal"
+			android:paddingTop="5dip" android:paddingBottom="5dip" />
+
+		<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:gravity="center_vertical">
+			<ImageView android:layout_width="40dip" android:layout_height="40dip" android:src="@drawable/qa_new_file" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/new_file"
+				android:textSize="16dip" android:gravity="center_vertical" android:paddingLeft="10dip" />
+		</LinearLayout>
+		<ImageView android:src="@android:drawable/divider_horizontal_dim_dark" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:scaleType="fitXY" android:layout_gravity="center_horizontal"
+			android:paddingTop="5dip" android:paddingBottom="5dip" />
+
+		<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:gravity="center_vertical">
+			<ImageView android:layout_width="40dip" android:layout_height="40dip" android:src="@drawable/qa_new_folder" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/new_folder"
+				android:textSize="16dip" android:gravity="center_vertical" android:paddingLeft="10dip" />
+		</LinearLayout>
+		<ImageView android:src="@android:drawable/divider_horizontal_dim_dark" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:scaleType="fitXY" android:layout_gravity="center_horizontal"
+			android:paddingTop="5dip" android:paddingBottom="5dip" />
+
+		<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:gravity="center_vertical">
+			<ImageView android:layout_width="40dip" android:layout_height="40dip" android:src="@drawable/qa_rename" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/rename"
+				android:textSize="16dip" android:gravity="center_vertical" android:paddingLeft="10dip" />
+		</LinearLayout>
+		<ImageView android:src="@android:drawable/divider_horizontal_dim_dark" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:scaleType="fitXY" android:layout_gravity="center_horizontal"
+			android:paddingTop="5dip" android:paddingBottom="5dip" />
+
+		<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:gravity="center_vertical">
+			<ImageView android:layout_width="40dip" android:layout_height="40dip" android:src="@drawable/qa_searsh" />
+			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/serach"
+				android:textSize="16dip" android:gravity="center_vertical" android:paddingLeft="10dip" />
+		</LinearLayout>
+
+	</LinearLayout>
+</ScrollView>

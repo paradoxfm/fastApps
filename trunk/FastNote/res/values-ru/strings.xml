@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="app_name">FastNote</string>
+    <string name="cansel">Отмена</string>
+    <string name="ok">OK</string>
+    <string name="settings">Настройки</string>
+    <string name="quit">Выход</string>
+    <string name="tutor">Справка</string>
+    <!-- настройки -->
+    <string name="mainset">Основные</string>
+    <string name="full_scr">Полный экран</string>
+    <string name="full_scr_smr">Скрвать статусную строку и часы</string>
+    <string name="orien">Ориентация</string>
+    <string name="orien_smr">Ориентация экрана(Не сохранять, Портретная, Ландшафтная)</string>
+    <string name="pref_edit">Редактор</string>
+    <string name="edit_color_text">Цвет текста</string>
+    <string name="color_text_smr">Цвет текста в редакторе/просмотрщике</string>
+    <string name="edit_size_text">Размер текста</string>
+    <string name="size_text_smr">Размер текста в редакторе/просмотрщике</string>
+    <string name="line_color">Цвет линий</string>
+    <string name="line_color_smr">Цвет горизонтальных линий в редакторе</string>
+    <string name="pref_sys">Системные</string>
+    <string-array name="orient">
+        <item>Не сохранять</item>
+        <item>Портретная</item>
+        <item>Ландшафтная</item>
+    </string-array>
+    <string name="text_size">Размер текста: </string>
+    <string name="set_back">Копия</string>
+    <string name="search">Поиск</string>
+    <string name="set_back_smr">Сохранить копию на карту памяти</string>
+    <string name="about_smr">О программе Fast Notes</string>
+    <string name="about">О программе</string>
+    <string name="about_txt">Автор: Гуркин Иван aka paradoxfm\nCopyright © 2011 <a href="http://megazlo.net/">megazlo.net</a>\nEmail: <a href="mailto:dev@megazlo.net">dev@megazlo.net</a></string>
+    <string name="saved">Сохранено</string>
+    <string name="del_q">Удалить?</string>
+    <string name="del_ing">Удаление</string>
+    <string name="del_ok">Удалено</string>
+    <string name="save_base">Файл сохранен в базе</string>
+    <string name="com_son">Скоро ожидается</string>
+    <string name="fdc">Файл не изменялся</string>
+    <string name="f_svd">Файл сохранен</string>
+    <string name="ischng">В файле есть изменения!\nВы хотите его сохранить?</string>
+    <string name="t_del_itm">Удалить заметку</string>
+    <string name="t_csm_itm">Отправить заметку через...</string>
+    <string name="t_sms_itm">Отправить заметку по смс</string>
+</resources>
