@@ -2,7 +2,6 @@ package ru.megazlo.fastfile.engine;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import ru.megazlo.fastfile.R;
 import ru.megazlo.fastfile.components.RowData;
@@ -21,15 +20,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 public class EngineFTP extends BaseEngine {
+
+	// private FtpBrowse brows = new FtpBrowse();
 
 	private DialogInterface.OnClickListener editdom = new DialogInterface.OnClickListener() {
 		@Override
@@ -43,13 +44,13 @@ public class EngineFTP extends BaseEngine {
 			ed = (EditText) alr.findViewById(R.id.ed_ftp_pwd);
 			String pwd = ed.getEditableText().toString();
 			Sets.insertFtpRec(hst, usr, cb.isChecked());
-			new FtpConnect().execute(hst, Boolean.toString(cb.isChecked()), usr, pwd, getList());
+			new FtpConnect().execute(hst, Boolean.toString(cb.isChecked()), usr, pwd, EngineFTP.this);
 		}
 	};
 
 	public EngineFTP(RowData data, FileList list, boolean rest) {
 		super(list);
-		isRestore = rest;
+		engType = BaseEngine.FTP;
 		dat = data;
 	}
 
@@ -87,7 +88,8 @@ public class EngineFTP extends BaseEngine {
 
 	@Override
 	public void update() {
-		new FtpBrowse().execute("", this);
+		if (getDat().CUR_DIR != null)
+			new FtpBrowse().execute("", this);
 	}
 
 	@Override
@@ -112,27 +114,20 @@ public class EngineFTP extends BaseEngine {
 
 	@Override
 	public void fill(Object filar) {
-		if (!isRestore) {
-			dat.dir.clear();
-			dat.fil.clear();
-			FTPFile[] files = (FTPFile[]) filar;
-			try {
-				mTitle = '/' + getDat().FTP_CLIENT.getRemoteAddress().getHostName()
-						+ getDat().FTP_CLIENT.printWorkingDirectory();
-			} catch (IOException e) {
-			}
-			for (int i = 0; i < files.length; i++) {
-				if (files[i].isDirectory())
-					dat.dir.add(new FileRowData(files[i], Sets.I_FOLD));
-				else
-					dat.fil.add(new FileRowData(files[i], getIconByFile(files[i].getName())));
-			}
-			Collections.sort(dat.dir);
-			Collections.sort(dat.fil);
-			dat.dir.addAll(dat.fil);
+		dat.dir.clear();
+		dat.fil.clear();
+		FTPFile[] files = (FTPFile[]) filar;
+		try {
+			mTitle = '/' + getDat().FTP_CLIENT.getRemoteAddress().getHostName() + getDat().FTP_CLIENT.printWorkingDirectory();
+		} catch (IOException e) {
 		}
-		if (finisher != null)
-			finisher.onFinish();
+		for (int i = 0; i < files.length; i++) {
+			if (files[i].isDirectory())
+				dat.dir.add(new FileRowData(files[i], Sets.I_FOLD));
+			else
+				dat.fil.add(new FileRowData(files[i], getIconByFile(files[i].getName())));
+		}
+		super.fill(filar);
 	}
 
 	@Override

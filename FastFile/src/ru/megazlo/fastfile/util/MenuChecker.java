@@ -90,7 +90,8 @@ public class MenuChecker {
 
 	private static void setNewList(fmMain act, View lst) {
 		act.scrv.addView(lst);
-		act.scrv.setDisplayedChild(act.scrv.getDisplayedChild());
+		act.scrv.setCurrentScreen(act.scrv.getChildCount() - 1);
+		// .scrollToScreen(act.scrv.getChildCount() - 1);
 	}
 
 	public static void remList(FileList lst) {
@@ -102,6 +103,8 @@ public class MenuChecker {
 
 	private static void removeList(fmMain act, FileList lst) {
 		act.scrv.setCurrentScreen(act.scrv.getDisplayedChild() - 2);
+		// short chld = (short) act.scrv.getChildCount();
+		// act.scrv.scrollToScreen(act.scrv.getChildCount() - 2);
 		act.scrv.removeView(lst);
 	}
 

@@ -4,8 +4,7 @@ import java.io.IOException;
 
 import ru.megazlo.fastfile.R;
 import ru.megazlo.fastfile.fmMain;
-import ru.megazlo.fastfile.components.RowDataFTP;
-import ru.megazlo.fastfile.components.filerow.FileList;
+import ru.megazlo.fastfile.engine.EngineFTP;
 import ru.megazlo.ftplib.ftp.FTPClient;
 import ru.megazlo.ftplib.ftp.FTPFile;
 import android.app.ProgressDialog;
@@ -17,14 +16,14 @@ public class FtpBrowse extends AsyncTask<Object, Void, Object[]> {
 
 	@Override
 	protected Object[] doInBackground(Object... params) {
-		FileList ftp = (FileList) params[1];
-		FTPClient client = ((RowDataFTP) ftp.getEngine().getDat()).FTP_CLIENT;
+		EngineFTP eng = (EngineFTP) params[1];
+		FTPClient client = eng.getDat().FTP_CLIENT;
 		try {
 			if (params.length > 2)
 				client.changeToParentDirectory();
 			else
 				client.changeWorkingDirectory((String) params[0]);
-			return new Object[] { ftp, client.listFiles() };
+			return new Object[] { eng, client.listFiles() };
 		} catch (IOException e) {
 		}
 		return null;
@@ -34,9 +33,9 @@ public class FtpBrowse extends AsyncTask<Object, Void, Object[]> {
 	protected void onPostExecute(Object[] fil) {
 		super.onPostExecute(fil);
 		if (fil != null) {
-			FileList ftp = (FileList) fil[0];
+			EngineFTP eng = (EngineFTP) fil[0];
 			FTPFile[] files = (FTPFile[]) fil[1];
-			ftp.getEngine().fill(files);
+			eng.fill(files);
 		}
 		this.dialog.dismiss();
 	}

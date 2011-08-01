@@ -7,9 +7,11 @@ import ru.megazlo.fastfile.components.RowData;
 import ru.megazlo.fastfile.components.RowDataFTP;
 import ru.megazlo.fastfile.components.RowDataSMB;
 import ru.megazlo.fastfile.engine.BaseEngine;
+import ru.megazlo.fastfile.engine.EngineFTP;
 import ru.megazlo.fastfile.engine.EngineSDC;
 import ru.megazlo.fastfile.util.Sets;
 import ru.megazlo.fastfile.util.file.FileTools;
+import ru.megazlo.ftplib.ftp.FTPFile;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.BaseAdapter;
@@ -50,26 +52,42 @@ public class FileList extends ListView {
 				((BaseAdapter) FileList.this.getAdapter()).notifyDataSetChanged();
 			}
 		});
+
 		eng.update();
 	}
 
 	@Override
 	public boolean performItemClick(View view, int position, long id) {
-		super.performItemClick(view, position, id);
-		File curFile = eng.getDat().dir.get(position).getFile();
-		if (curFile.isDirectory()) {
-			eng.browseCatalog(curFile);
-		} else if (Sets.OPEN_THIS) {
-			FileTools.openFileThis(this.getContext(), curFile);
-		} else if (!Sets.OPEN_THIS) {
-			FileTools.openFileExt(this.getContext(), curFile);
+		switch (eng.getType()) {
+		case BaseEngine.SDC:
+			localClick(position);
+			break;
+		case BaseEngine.FTP:
+			ftpClick(position);
+			break;
 		}
-		return false;
+		return super.performItemClick(view, position, id);
+	}
+
+	private void localClick(int pos) {
+		File curFile = eng.getDat().dir.get(pos).getFile();
+		if (curFile.isDirectory())
+			eng.browseCatalog(curFile);
+		else if (Sets.OPEN_THIS)
+			FileTools.openFileThis(this.getContext(), curFile);
+		else if (!Sets.OPEN_THIS)
+			FileTools.openFileExt(this.getContext(), curFile);
+	}
+
+	private void ftpClick(int pos) {
+		FTPFile curFile = eng.getDat().dir.get(pos).getFile();
+		if (curFile.isDirectory() || curFile.isSymbolicLink())
+			eng.browseCatalog(curFile);
 	}
 
 	private BaseEngine choiceEngine(RowData dat, boolean restore) {
 		if (dat.getClass() == RowDataFTP.class)
-			return null;
+			return new EngineFTP(dat, this, restore);
 		else if (dat.getClass() == RowDataSMB.class)
 			return null;
 		return new EngineSDC(dat, this, restore);
