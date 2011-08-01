@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class EngineSDC extends BaseEngine {
 
-	public EngineSDC(RowData data, FileList list, boolean rest) {
+	public EngineSDC(RowData data, FileList list) {
 		super(list);
 		isPreview = isSearsh = true;
 		dat = data;
