@@ -30,8 +30,6 @@ import android.widget.Toast;
 
 public class EngineFTP extends BaseEngine {
 
-	// private FtpBrowse brows = new FtpBrowse();
-
 	private DialogInterface.OnClickListener editdom = new DialogInterface.OnClickListener() {
 		@Override
 		public void onClick(DialogInterface dlg, int which) {
