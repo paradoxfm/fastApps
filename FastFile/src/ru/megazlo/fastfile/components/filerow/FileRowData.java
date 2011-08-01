@@ -16,7 +16,6 @@ public class FileRowData implements Comparable<FileRowData> {
 	private SmbFile m_file_smb;
 	private String m_itm_txt, m_dat_txt, m_dir_txt;
 	private Drawable m_icon;
-	// private FileRow m_file_row;
 	private boolean m_Selectable = true;
 	private boolean m_Checked = false;
 
@@ -159,15 +158,15 @@ public class FileRowData implements Comparable<FileRowData> {
 			rez += m_file_ftp.hasPermission(FTPFile.USER_ACCESS, FTPFile.WRITE_PERMISSION) ? "w" : "-";
 			rez += m_file_ftp.isSymbolicLink() ? "l" : "-";
 		}
-		// if (m_file_smb != null) {
-		// try {
-		// rez += m_file_smb.isDirectory() ? "d" : "-";
-		// rez += m_file_smb.canRead() ? "r" : "-";
-		// rez += m_file_smb.canWrite() ? "w" : "-";
-		// rez += m_file_smb.isHidden() ? "h" : "-";
-		// } catch (SmbException e) {
-		// }
-		// }
+		if (m_file_smb != null) {
+			try {
+				rez += m_file_smb.isDirectory() ? "d" : "-";
+				rez += m_file_smb.canRead() ? "r" : "-";
+				rez += m_file_smb.canWrite() ? "w" : "-";
+				rez += m_file_smb.isHidden() ? "h" : "-";
+			} catch (SmbException e) {
+			}
+		}
 
 		return rez;
 	}
@@ -198,9 +197,5 @@ public class FileRowData implements Comparable<FileRowData> {
 	public Drawable getIconCheck() {
 		return m_Checked ? Sets.I_CHK : Sets.I_UNCHK;
 	}
-
-	// public void setFileRow(FileRow fileRow) {
-	// m_file_row = fileRow;
-	// }
 
 }
