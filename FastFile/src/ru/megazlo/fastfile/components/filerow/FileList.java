@@ -8,6 +8,7 @@ import ru.megazlo.fastfile.components.RowDataFTP;
 import ru.megazlo.fastfile.components.RowDataLAN;
 import ru.megazlo.fastfile.engine.BaseEngine;
 import ru.megazlo.fastfile.engine.EngineFTP;
+import ru.megazlo.fastfile.engine.EngineLAN;
 import ru.megazlo.fastfile.engine.EngineSDC;
 import ru.megazlo.fastfile.util.Sets;
 import ru.megazlo.fastfile.util.file.FileTools;
@@ -29,7 +30,7 @@ public class FileList extends ListView {
 		this.setPadding(0, 10, 0, 0);
 		itla = new FileRowAdapter(FileList.this.getContext());
 		setAdapter(itla);
-		eng = choiceEngine(dat, restore);
+		eng = choiceEngine(dat);
 
 		eng.setOnScrollFinish(new BaseEngine.OnLoadFinish() {
 			@Override
@@ -85,12 +86,12 @@ public class FileList extends ListView {
 			eng.browseCatalog(curFile);
 	}
 
-	private BaseEngine choiceEngine(RowData dat, boolean restore) {
+	private BaseEngine choiceEngine(RowData dat) {
 		if (dat.getClass() == RowDataFTP.class)
-			return new EngineFTP(dat, this, restore);
+			return new EngineFTP(dat, this);
 		else if (dat.getClass() == RowDataLAN.class)
-			return null;
-		return new EngineSDC(dat, this, restore);
+			return new EngineLAN(dat, this);
+		return new EngineSDC(dat, this);
 	}
 
 	public BaseEngine getEngine() {

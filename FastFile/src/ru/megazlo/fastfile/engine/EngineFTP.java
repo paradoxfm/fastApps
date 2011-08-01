@@ -46,7 +46,7 @@ public class EngineFTP extends BaseEngine {
 		}
 	};
 
-	public EngineFTP(RowData data, FileList list, boolean rest) {
+	public EngineFTP(RowData data, FileList list) {
 		super(list);
 		engType = BaseEngine.FTP;
 		dat = data;

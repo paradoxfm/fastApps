@@ -96,14 +96,14 @@ public class MenuChecker {
 	public static void remList(FileList lst) {
 		if (fmMain.CONTEXT.scrv.getChildCount() == 1)
 			exitApp(fmMain.CONTEXT);
-		Sets.dat.remove(lst.getEngine());
+		Sets.dat.remove(lst.getEngine().getDat());
 		removeList(fmMain.CONTEXT, lst);
 	}
 
 	private static void removeList(fmMain act, FileList lst) {
-		act.scrv.setCurrentScreen(act.scrv.getDisplayedChild() - 2);
-		// short chld = (short) act.scrv.getChildCount();
-		// act.scrv.scrollToScreen(act.scrv.getChildCount() - 2);
+		int dsp = fmMain.CONTEXT.scrv.getDisplayedChild();
+		if (dsp != 0)
+			act.scrv.setCurrentScreen(dsp - 1);
 		act.scrv.removeView(lst);
 	}
 

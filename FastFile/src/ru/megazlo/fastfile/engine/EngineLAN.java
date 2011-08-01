@@ -2,17 +2,18 @@ package ru.megazlo.fastfile.engine;
 
 import java.net.MalformedURLException;
 
-import android.widget.Toast;
-
 import jcifs.smb.SmbFile;
 import ru.megazlo.fastfile.R;
 import ru.megazlo.fastfile.components.RowData;
 import ru.megazlo.fastfile.components.RowDataLAN;
 import ru.megazlo.fastfile.components.filerow.FileList;
+import ru.megazlo.fastfile.components.filerow.FileRowData;
+import ru.megazlo.fastfile.util.Sets;
+import android.widget.Toast;
 
 public class EngineLAN extends BaseEngine {
 
-	public EngineLAN(RowData data, FileList list, boolean rest) {
+	public EngineLAN(RowData data, FileList list) {
 		super(list);
 		engType = BaseEngine.LAN;
 		dat = data;
@@ -75,14 +76,12 @@ public class EngineLAN extends BaseEngine {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-
+		browseCatalog(getDat().PATH);
 	}
 
 	@Override
 	public void browseRoot() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -93,20 +92,31 @@ public class EngineLAN extends BaseEngine {
 
 	@Override
 	public RowDataLAN getDat() {
-		// TODO Auto-generated method stub
-		return null;
+		return (RowDataLAN) dat;
 	}
 
 	@Override
 	public Object getCurrentDir() {
-		// TODO Auto-generated method stub
-		return null;
+		return getDat().PATH;
 	}
 
 	@Override
 	public void fill(Object filar) {
-		// TODO Auto-generated method stub
-
+		dat.dir.clear();
+		dat.fil.clear();
+		SmbFile[] files = (SmbFile[]) filar;
+		for (int i = 0; i < files.length; i++) {
+			try {
+				if (!Sets.SHOW_HIDDEN && files[i].isHidden())
+					continue;
+				if (files[i].isDirectory())
+					dat.dir.add(new FileRowData(files[i], Sets.I_FOLD));
+				else
+					dat.fil.add(new FileRowData(files[i], getIconByFile(files[i].getName())));
+			} catch (Exception e) {
+			}
+		}
+		super.fill(filar);
 	}
 
 	@Override
