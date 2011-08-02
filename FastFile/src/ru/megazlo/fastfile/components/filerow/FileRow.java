@@ -23,8 +23,7 @@ public class FileRow extends RelativeLayout {
 	public FileRow(Context context, FileRowData data) {
 		super(context);
 		dat = data;
-		// dat.setFileRow(this);
-		this.setMinimumHeight(px(46.6));
+		setMinimumHeight(px(46.6));
 		initChild(context, data);
 	}
 
