@@ -17,7 +17,7 @@ public class NoteEdit extends EditText {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-		int count = getLineCount();
+		final int count = getLineCount();
 		for (int i = 0; i < count; i++) {
 			int baseline = getLineBounds(i, mRect);
 			canvas.drawLine(mRect.left, baseline + 1, mRect.right, baseline + 1, mPaint);
