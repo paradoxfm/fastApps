@@ -2,16 +2,14 @@ package ru.megazlo.fastnote.component;
 
 import java.util.Date;
 
+import ru.megazlo.fastnote.R;
 import ru.megazlo.fastnote.util.FileUtil;
 import ru.megazlo.fastnote.util.Sets;
 import ru.megazlo.fastnote.util.SqlBase;
-import ru.megazlo.fastnote.R;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,17 +21,15 @@ public class NoteEditor extends LinearLayout {
 	private NoteEdit nedit;
 	private TextWatcher wach;
 	private NoteData curDat;
-	ScrollView scrv;
+	private ScrollView scrv;
+	private LayoutParams lp1 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
 	public NoteEditor(Context context) {
 		super(context);
-		this.setOrientation(VERTICAL);
+		setOrientation(VERTICAL);
 		initChild(context);
-		nedit.addTextChangedListener(wach);
-		ViewGroup.LayoutParams lparam = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
-				ViewGroup.LayoutParams.FILL_PARENT);
-		this.setLayoutParams(lparam);
-		this.setBackgroundColor(Color.WHITE);
+		setLayoutParams(lp1);
+		setBackgroundColor(Color.WHITE);
 	}
 
 	private void initChild(Context context) {
@@ -55,22 +51,20 @@ public class NoteEditor extends LinearLayout {
 
 		ImageView ribb = new ImageView(context);
 		ribb.setBackgroundResource(R.drawable.note_top);
-		LayoutParams lparam = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-		this.addView(ribb, lparam);
+		this.addView(ribb, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
 		scrv = new ScrollView(context);
-		lparam = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-		this.addView(scrv, lparam);
+		addView(scrv, lp1);
 
 		nedit = new NoteEdit(context);
 		nedit.setFocusable(false);
-		nedit.setGravity(Gravity.TOP);
+		// nedit.setGravity(Gravity.TOP);
 		nedit.setBackgroundColor(Color.TRANSPARENT);
-		nedit.setVerticalFadingEdgeEnabled(true);
-		nedit.setPadding(3, 3, 3, 3);
+		// nedit.setVerticalFadingEdgeEnabled(true);
+		// nedit.setPadding(3, 3, 3, 3);
+		nedit.addTextChangedListener(wach);
 		applyEditorSet();
-		lparam = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-		scrv.addView(nedit, lparam);
+		scrv.addView(nedit);
 	}
 
 	public void applyEditorSet() {

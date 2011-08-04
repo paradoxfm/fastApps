@@ -8,9 +8,8 @@ import ru.megazlo.fastnote.util.FileUtil;
 import ru.megazlo.fastnote.util.MenuChecker;
 import ru.megazlo.fastnote.util.Sets;
 import ru.megazlo.fastnote.util.SqlBase;
-import ru.megazlo.fastnote.R;
-import ru.megazlo.pager.HorizontalPager;
-import ru.megazlo.pager.PagerControl;
+import ru.megazlo.scrollerview.OnScrollFinish;
+import ru.megazlo.scrollerview.ScrollerView;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.SearchManager;
@@ -30,8 +29,7 @@ public class fmMain extends Activity {
 	public static fmMain CONTEXT;
 	private TextView title;
 	private ImageView newnote, logo;
-	public HorizontalPager pager;
-	public PagerControl control;
+	public ScrollerView scrv;
 	public NoteList nlist;
 	public NoteEditor nedit;
 	private NoteData noteDel;
@@ -79,19 +77,19 @@ public class fmMain extends Activity {
 		super.onCreate(savedInstanceState);
 		Sets.load(getPreferences(0), this);
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-		setContentView(R.layout.main);
+		setContentView(scrv = new ScrollerView(this));
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
 		initChild();
 		CONTEXT = this;
-		if (fromFile || FileUtil.openText(getIntent())) {
-			setEditorText(null);
-			fromFile = true;
-		} else {
-			insertList();
-			NoteData dt = nlist.getCheckedItem();
-			if (dt != null)
-				setEditorText(dt);
-		}
+		// if (!(fromFile || FileUtil.openText(getIntent()))) {
+		// insertList();
+		// NoteData dt = nlist.getCheckedItem();
+		// if (dt != null)
+		// setEditorText(dt);
+		// } else {
+		// setEditorText(null);
+		// fromFile = true;
+		// }
 	}
 
 	@Override
@@ -102,9 +100,8 @@ public class fmMain extends Activity {
 			setEditorText(null);
 			fromFile = true;
 			if (pagerContainsView(nlist)) {
-				control.setNumPages(pager.getChildCount() - 1);
-				pager.removeView(nlist);
-				pager.setCurrentPage(pager.getChildCount() - 1);
+				scrv.setCurrentScreen(0);
+				scrv.removeView(nlist);
 			}
 		}
 		super.onNewIntent(intent);
@@ -119,18 +116,15 @@ public class fmMain extends Activity {
 		newnote = (ImageView) findViewById(R.id.newnote);
 		newnote.setOnClickListener(newNote);
 		logo = (ImageView) findViewById(R.id.protocol);
-		control = (PagerControl) findViewById(R.id.pageind);
-		pager = (HorizontalPager) findViewById(R.id.pager);
 		nlist = new NoteList(this);
+		nlist.loadData(getExternalFilesDir(null));
+		scrv.addView(nlist);
 		nedit = new NoteEditor(this);
-		pager.addOnScrollListener(new HorizontalPager.OnScrollListener() {
-			public void onScroll(int scrollX) {
-				float scale = (float) (pager.getPageWidth() * pager.getChildCount()) / (float) control.getWidth();
-				control.setPosition((int) (scrollX / scale));
-			}
-
-			public void onViewScrollFinished(int currentPage) {
-				scrollFinish(currentPage);
+		scrv.addView(nedit);
+		scrv.setOnScrollFinish(new OnScrollFinish() {
+			@Override
+			public void onFinish() {
+				scrollFinish();
 			}
 		});
 	}
@@ -141,15 +135,15 @@ public class fmMain extends Activity {
 			new AlertDialog.Builder(this).setPositiveButton(R.string.ok, savefile).setNegativeButton(R.string.cansel, null)
 					.setMessage(R.string.ischng).create().show();
 		}
-		if (pager.getChildCount() > 1 && control.getCurrentPage() == 1)
-			pager.scrollLeft();
+		if (scrv.getChildCount() > 1 && scrv.getDisplayedChild() == 1)
+			scrv.scrollToScreen(0);
 		else
 			super.onBackPressed();
 	}
 
-	private void scrollFinish(int page) {
-		control.setCurrentPage(page);
-		if (pager.getChildAt(control.getCurrentPage()) == nlist) {
+	private void scrollFinish() {
+		View vc = scrv.getChildAt(scrv.getDisplayedChild());
+		if (vc == nlist) {
 			if (nedit.isEdited() && nedit.isFromBase()) {
 				nedit.saveText();
 				NoteAdapter adp = (NoteAdapter) nlist.getAdapter();
@@ -162,7 +156,7 @@ public class fmMain extends Activity {
 			newnote.setOnClickListener(newNote);
 			title.setText(R.string.app_name);
 			// --------------- значки события заголовок
-		} else if (pager.getChildAt(control.getCurrentPage()) == nedit) {
+		} else if (vc == nedit) {
 			if (nedit.isFromBase()) {
 				logo.setImageResource(R.drawable.notepad);
 				logo.setOnClickListener(null);
@@ -254,26 +248,26 @@ public class fmMain extends Activity {
 	}
 
 	private boolean pagerContainsView(View v) {
-		for (int i = 0; i < pager.getChildCount(); i++)
-			if (pager.getChildAt(i) == v)
+		for (int i = 0; i < scrv.getChildCount(); i++)
+			if (scrv.getChildAt(i) == v)
 				return true;
 		return false;
 	}
 
 	private void insertEditor() {
-		pager.addView(nedit);
-		control.setNumPages(pager.getChildCount());
+		//scrv.addView(nedit);
+		nedit.setVisibility(View.VISIBLE);
+		scrv.scrollToScreen(scrv.getChildCount() - 1);
 	}
 
 	private void insertList() {
 		nlist.loadData(getExternalFilesDir(null)); // загрузка
-		pager.addView(nlist, 0);
-		control.setNumPages(pager.getChildCount());
+		//scrv.addView(nlist, 0);
+		nlist.setVisibility(View.VISIBLE);
 	}
 
 	public void scrollRigth() {
-		pager.snapToPage(pager.getChildCount() - 1);
-		pager.setCurrentPage(1);
+		scrv.scrollToScreen(scrv.getChildCount() - 1);
 	}
 
 	@Override
