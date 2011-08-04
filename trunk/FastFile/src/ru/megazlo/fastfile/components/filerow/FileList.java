@@ -1,8 +1,5 @@
 package ru.megazlo.fastfile.components.filerow;
 
-import java.io.File;
-
-import ru.megazlo.fastfile.fmMain;
 import ru.megazlo.fastfile.components.RowData;
 import ru.megazlo.fastfile.components.RowDataFTP;
 import ru.megazlo.fastfile.components.RowDataLAN;
@@ -11,8 +8,7 @@ import ru.megazlo.fastfile.engine.EngineFTP;
 import ru.megazlo.fastfile.engine.EngineLAN;
 import ru.megazlo.fastfile.engine.EngineSDC;
 import ru.megazlo.fastfile.util.Sets;
-import ru.megazlo.fastfile.util.file.FileTools;
-import ru.megazlo.ftplib.ftp.FTPFile;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.BaseAdapter;
@@ -22,12 +18,12 @@ public class FileList extends ListView {
 
 	protected Drawable mIcoProtocol;
 	private BaseEngine eng;
-	FileRowAdapter itla;
+	private FileRowAdapter itla;
 
-	public FileList(fmMain context, RowData dat, boolean restore) {
+	public FileList(Context context, RowData dat, boolean restore) {
 		super(context);
 		setScrollingCacheEnabled(false);
-		itla = new FileRowAdapter(FileList.this.getContext());
+		itla = new FileRowAdapter(context);
 		setAdapter(itla);
 		eng = choiceEngine(dat);
 
@@ -58,31 +54,8 @@ public class FileList extends ListView {
 
 	@Override
 	public boolean performItemClick(View view, int position, long id) {
-		switch (eng.getType()) {
-		case BaseEngine.SDC:
-			localClick(position);
-			break;
-		case BaseEngine.FTP:
-			ftpClick(position);
-			break;
-		}
+		ItemClicker.click(eng, position);
 		return super.performItemClick(view, position, id);
-	}
-
-	private void localClick(int pos) {
-		File curFile = eng.getDat().dir.get(pos).getFile();
-		if (curFile.isDirectory())
-			eng.browseCatalog(curFile);
-		else if (Sets.OPEN_THIS)
-			FileTools.openFileThis(this.getContext(), curFile);
-		else if (!Sets.OPEN_THIS)
-			FileTools.openFileExt(this.getContext(), curFile);
-	}
-
-	private void ftpClick(int pos) {
-		FTPFile curFile = eng.getDat().dir.get(pos).getFile();
-		if (curFile.isDirectory() || curFile.isSymbolicLink())
-			eng.browseCatalog(curFile);
 	}
 
 	private BaseEngine choiceEngine(RowData dat) {
