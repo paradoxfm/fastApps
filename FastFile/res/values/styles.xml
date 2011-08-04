@@ -21,7 +21,7 @@
 		<item name="android:cacheColorHint">@android:color/transparent</item>
 	</style>
 
-	<style name="dialogAlertTheme" parent="@android:style/Theme.Dialog.Alert">
+	<style name="dialogAlertTheme" parent="@android:style/Theme.Dialog">
 
 		<item name="android:bottomDark">@drawable/box2_bottom_</item>
 		<!--<item name="android:bottomBright">@drawable/box2_bottom_</item> -->

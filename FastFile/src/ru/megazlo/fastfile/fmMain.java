@@ -34,8 +34,7 @@ public class fmMain extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-		scrv = new ScrollerView(this, null);
-		setContentView(scrv);
+		setContentView(scrv = new ScrollerView(this));
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
 		initChild();
 		Sets.load(getPreferences(0), this);

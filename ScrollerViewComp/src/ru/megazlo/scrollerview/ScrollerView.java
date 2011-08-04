@@ -8,7 +8,6 @@ import android.graphics.RectF;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -43,7 +42,6 @@ public class ScrollerView extends ViewGroup {
 	private int nextScreen = INVALID_SCREEN;
 
 	private Paint paint;
-	private static final int TAB_INDICATOR_HEIGHT_PCT = 2;
 	private RectF selectedTab;
 
 	// The scroller which scroll each view
@@ -99,6 +97,19 @@ public class ScrollerView extends ViewGroup {
 			t -= 1.0f;
 			return t * t * ((mTension + 1) * t + mTension) + 1.0f;
 		}
+	}
+
+	/**
+	 * Used to inflate the Workspace from XML.
+	 * 
+	 * @param context
+	 *          The application's context.
+	 * @param attrs
+	 *          The attribtues set containing the Workspace's customization
+	 *          values.
+	 */
+	public ScrollerView(Context context) {
+		this(context, null, 0);
 	}
 
 	/**
@@ -282,10 +293,10 @@ public class ScrollerView extends ViewGroup {
 		// The children are given the same width and height as the workspace
 		final int count = getChildCount();
 		for (int i = 0; i < count; i++)
-			getChildAt(i).measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(height, MeasureSpec.AT_MOST));
+			getChildAt(i).measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
 
 		// updateTabIndicator();
-		// TODO: в случае пролем индикатора включить
+		// TODO: в случае проблем индикатора включить
 		invalidate();
 	}
 
@@ -293,15 +304,14 @@ public class ScrollerView extends ViewGroup {
 
 	private void updateTabIndicator() {
 		int width = getMeasuredWidth();
-		int height = getMeasuredHeight();
-
+		final int indH = Math.max(width, getMeasuredHeight()) / 100;
 		// For drawing in its own bitmap:
-		bar = new RectF(0, 0, width, (TAB_INDICATOR_HEIGHT_PCT * height / 200));
+		bar = new RectF(0, 0, width, indH);
 
-		int startPos = getScrollX() / (getChildCount());
-		selectedTab = new RectF(startPos, 0, startPos + width / getChildCount(), (TAB_INDICATOR_HEIGHT_PCT * height / 200));
+		int startPos = getScrollX() / getChildCount();
+		selectedTab = new RectF(startPos, 0, startPos + width / getChildCount(), indH);
 
-		screenIndicator = Bitmap.createBitmap(width, (TAB_INDICATOR_HEIGHT_PCT * height / 200), Bitmap.Config.ARGB_8888);
+		screenIndicator = Bitmap.createBitmap(width, indH, Bitmap.Config.ARGB_8888);
 		canvas = new Canvas(screenIndicator);
 		canvas.drawRoundRect(bar, 3, 3, tabIndicatorBackgroundPaint);
 		canvas.drawRoundRect(selectedTab, 3, 3, selectedTabPaint);
@@ -314,11 +324,12 @@ public class ScrollerView extends ViewGroup {
 	protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 		int childLeft = 0;
 		final int count = getChildCount();
+		final int indH = 3 * Math.max(getMeasuredWidth(), getMeasuredHeight()) / 200;
 		for (int i = 0; i < count; i++) {
 			final View child = getChildAt(i);
 			if (child.getVisibility() != View.GONE) {
 				final int childWidth = child.getMeasuredWidth();
-				child.layout(childLeft, 0, childLeft + childWidth, child.getMeasuredHeight());
+				child.layout(childLeft, indH, childLeft + childWidth, child.getMeasuredHeight());
 				childLeft += childWidth;
 			}
 		}
@@ -464,10 +475,8 @@ public class ScrollerView extends ViewGroup {
 	 */
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
-		// Log.d("workspace","caught a touch event");
-		if (locked) {
+		if (locked)
 			return true;
-		}
 		if (mVelocityTracker == null)
 			mVelocityTracker = VelocityTracker.obtain();
 		mVelocityTracker.addMovement(ev);
@@ -510,7 +519,7 @@ public class ScrollerView extends ViewGroup {
 				// intercept the move
 				// on children who don't scroll.
 
-				Log.d("workspace", "handling move from onTouch");
+				// Log.d("workspace", "handling move from onTouch");
 
 				if (onInterceptTouchEvent(ev) && touchState == TOUCH_STATE_SCROLLING)
 					handleScrollMove(ev);
@@ -543,12 +552,12 @@ public class ScrollerView extends ViewGroup {
 			mActivePointerId = INVALID_POINTER;
 			break;
 		case MotionEvent.ACTION_CANCEL:
-			Log.d("workspace", "caught a cancel touch event");
+			// Log.d("workspace", "caught a cancel touch event");
 			touchState = TOUCH_STATE_REST;
 			mActivePointerId = INVALID_POINTER;
 			break;
 		case MotionEvent.ACTION_POINTER_UP:
-			Log.d("workspace", "caught a pointer up touch event");
+			// Log.d("workspace", "caught a pointer up touch event");
 			onSecondaryPointerUp(ev);
 			break;
 		}

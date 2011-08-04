@@ -27,7 +27,6 @@ public class FileList extends ListView {
 	public FileList(fmMain context, RowData dat, boolean restore) {
 		super(context);
 		setScrollingCacheEnabled(false);
-		this.setPadding(0, 10, 0, 0);
 		itla = new FileRowAdapter(FileList.this.getContext());
 		setAdapter(itla);
 		eng = choiceEngine(dat);
