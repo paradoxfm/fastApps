@@ -37,7 +37,7 @@ public class ScrollerView extends ViewGroup {
 	// the default screen index
 	private int defaultScreen;
 	// The current screen index
-	private int currentScreen;
+	public int currentScreen;
 	// The next screen index
 	private int nextScreen = INVALID_SCREEN;
 
