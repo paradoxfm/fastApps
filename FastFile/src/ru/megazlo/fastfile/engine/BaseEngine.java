@@ -159,4 +159,12 @@ public abstract class BaseEngine implements IEngine {
 		if (finisher != null)
 			finisher.onFinish();
 	}
+
+	@Override
+	public void stopThreads() {
+		if (tmbl != null) {
+			tmbl.cancel = true;
+			tmbl = null;
+		}
+	}
 }

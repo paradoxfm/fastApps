@@ -49,7 +49,37 @@ public class fmMain extends Activity {
 	protected void onPause() {
 		if (FileTools.M_PLAYER != null && FileTools.M_PLAYER.isPlaying())
 			FileTools.M_PLAYER.stop();
+		for (int i = 0; i < scrv.getChildCount(); i++)
+			((FileList) scrv.getChildAt(i)).getEngine().stopThreads();
 		super.onPause();
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putInt("currView", scrv.getDisplayedChild());
+		int[] poss = new int[scrv.getChildCount()];
+		int[] ofss = new int[scrv.getChildCount()];
+		for (int i = 0; i < ofss.length; i++) {
+			FileList fl = (FileList) scrv.getChildAt(0);
+			if (fl.getChildCount() > 0) {
+				poss[i] = fl.getFirstVisiblePosition();
+				ofss[i] = fl.getChildAt(0).getTop();
+			} else
+				poss[i] = -1;
+		}
+		outState.putIntArray("poss", poss);
+		outState.putIntArray("ofss", ofss);
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle state) {
+		super.onRestoreInstanceState(state);
+		int[] poss = state.getIntArray("poss");
+		int[] ofss = state.getIntArray("ofss");
+		for (int i = 0; i < ofss.length; i++)
+			if (poss[i] != -1)
+				((FileList) scrv.getChildAt(0)).setSelectionFromTop(poss[i], ofss[i]);
 	}
 
 	private void initChild() {

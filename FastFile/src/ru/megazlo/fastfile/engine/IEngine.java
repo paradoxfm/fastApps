@@ -31,4 +31,6 @@ public interface IEngine {
 	public Object exec(int cmd);
 
 	public void selectAll();
+
+	public void stopThreads();
 }

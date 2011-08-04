@@ -16,6 +16,7 @@ import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -90,6 +91,13 @@ public class fmMain extends Activity {
 		// setEditorText(null);
 		// fromFile = true;
 		// }
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		Log.d("RocketLaunch", "onRestoreInstanceState()");
+		savedInstanceState.toString();
 	}
 
 	@Override
@@ -255,14 +263,14 @@ public class fmMain extends Activity {
 	}
 
 	private void insertEditor() {
-		//scrv.addView(nedit);
+		// scrv.addView(nedit);
 		nedit.setVisibility(View.VISIBLE);
 		scrv.scrollToScreen(scrv.getChildCount() - 1);
 	}
 
 	private void insertList() {
 		nlist.loadData(getExternalFilesDir(null)); // загрузка
-		//scrv.addView(nlist, 0);
+		// scrv.addView(nlist, 0);
 		nlist.setVisibility(View.VISIBLE);
 	}
 

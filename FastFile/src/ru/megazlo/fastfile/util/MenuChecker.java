@@ -101,7 +101,7 @@ public class MenuChecker {
 
 	private static void setNewList(fmMain act, View lst) {
 		act.scrv.addView(lst);
-		act.scrv.scrollToScreen(act.scrv.getChildCount() - 1);
+		act.scrv.scrollRight();
 	}
 
 	public static void remList(FileList lst) {
@@ -112,7 +112,7 @@ public class MenuChecker {
 	}
 
 	private static void removeList(fmMain act, FileList lst) {
-		int dsp = fmMain.CONTEXT.scrv.getDisplayedChild();
+		int dsp = act.scrv.getDisplayedChild();
 		if (dsp != 0)
 			act.scrv.setCurrentScreen(dsp - 1);
 		act.scrv.removeView(lst);
