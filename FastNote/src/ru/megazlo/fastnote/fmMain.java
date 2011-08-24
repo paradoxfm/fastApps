@@ -16,7 +16,6 @@ import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -82,22 +81,22 @@ public class fmMain extends Activity {
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
 		initChild();
 		CONTEXT = this;
-		// if (!(fromFile || FileUtil.openText(getIntent()))) {
-		// insertList();
-		// NoteData dt = nlist.getCheckedItem();
-		// if (dt != null)
-		// setEditorText(dt);
-		// } else {
-		// setEditorText(null);
-		// fromFile = true;
-		// }
+		if (!(fromFile || FileUtil.openText(getIntent()))) {
+			insertList();
+			NoteData dt = nlist.getCheckedItem();
+			if (dt != null)
+				setEditorText(dt);
+			scrv.removeView(nedit);
+		} else {
+			setEditorText(null);
+			scrv.removeView(nlist);
+			fromFile = true;
+		}
 	}
 
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
-		Log.d("RocketLaunch", "onRestoreInstanceState()");
-		savedInstanceState.toString();
 	}
 
 	@Override
@@ -238,10 +237,11 @@ public class fmMain extends Activity {
 
 	private void newNote() {
 		NoteData dat = new NoteData();
+		nlist.unsheckAll();
 		SqlBase.insertNote(dat);
 		NoteAdapter adp = (NoteAdapter) nlist.getAdapter();
 		adp.add(dat);
-		adp.notifyDataSetChanged();
+		//adp.notifyDataSetChanged();
 		setEditorText(dat);
 	}
 
@@ -263,14 +263,15 @@ public class fmMain extends Activity {
 	}
 
 	private void insertEditor() {
-		// scrv.addView(nedit);
-		nedit.setVisibility(View.VISIBLE);
+		scrv.addView(nedit);
+		// nedit.setVisibility(View.VISIBLE);
 		scrv.scrollToScreen(scrv.getChildCount() - 1);
 	}
 
 	private void insertList() {
 		nlist.loadData(getExternalFilesDir(null)); // загрузка
-		// scrv.addView(nlist, 0);
+		if (scrv.getChildAt(0) != nlist)
+			scrv.addView(nlist, 0);
 		nlist.setVisibility(View.VISIBLE);
 	}
 
