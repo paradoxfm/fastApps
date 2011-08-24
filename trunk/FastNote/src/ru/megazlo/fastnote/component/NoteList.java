@@ -32,9 +32,8 @@ public class NoteList extends ListView {
 			unsheckAll();
 			edited.setChecked(true);
 			frm.setEditorText(edited.getData());
-		} else {
+		} else
 			frm.scrollRigth();
-		}
 		return super.performItemClick(view, position, id);
 	}
 
@@ -48,14 +47,11 @@ public class NoteList extends ListView {
 			}
 	}
 
-	private void unsheckAll() {
-		for (int i = 0; i < this.getChildCount(); i++) {
-			NoteRow row = (NoteRow) this.getChildAt(i);
-			row.setChecked(false);
-		}
+	public void unsheckAll() {
 		NoteAdapter adp = (NoteAdapter) this.getAdapter();
 		for (int i = 0; i < adp.getCount(); i++)
 			adp.getItem(i).setChecked(false);
+		adp.notifyDataSetChanged();
 	}
 
 	public NoteData getCheckedItem() {
