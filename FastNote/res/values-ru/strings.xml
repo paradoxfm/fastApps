@@ -31,7 +31,7 @@
     <string name="set_back_smr">Сохранить копию на карту памяти</string>
     <string name="about_smr">О программе Fast Notes</string>
     <string name="about">О программе</string>
-    <string name="about_txt">Автор: Гуркин Иван aka paradoxfm\nCopyright © 2011 <a href="http://megazlo.net/">megazlo.net</a>\nEmail: <a href="mailto:dev@megazlo.net">dev@megazlo.net</a></string>
+    <string name="about_txt">Автор: Гуркин Иван aka paradoxfm\nCopyright © 2011 <a href="http://code.google.com/p/fastapps/">megazlo.net</a>\nEmail: <a href="mailto:megazlonet@gmail.com">megazlonet@gmail.com</a></string>
     <string name="saved">Сохранено</string>
     <string name="del_q">Удалить?</string>
     <string name="del_ing">Удаление</string>

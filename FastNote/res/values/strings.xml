@@ -31,7 +31,7 @@
     <string name="set_back_smr">Save backup notes to sd card</string>
     <string name="about_smr">About programm Fast Notes</string>
     <string name="about">About</string>
-    <string name="about_txt">Autor: Gurkin Ivan aka paradoxfm\nCopyright © 2011 megazlo.net\nEmail:<a href="mailto:dev@megazlo.net">dev@megazlo.net</a></string>
+    <string name="about_txt">Autor: Gurkin Ivan aka paradoxfm\nCopyright © 2011 megazlo.net\nEmail:<a href="mailto:megazlonet@gmail.com">megazlonet@gmail.com</a></string>
     <string name="saved">Saved</string>
     <string name="del_q">Delete?</string>
     <string name="del_ing">Delete</string>
