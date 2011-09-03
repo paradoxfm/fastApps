@@ -48,10 +48,11 @@ public class MenuChecker {
 			// return true;
 
 		case R.id.samba:
-			if (NetChecker.isOnline(act))
-				insertListLAN(act);
-			else
-				Toast.makeText(act, R.string.n_act_con, Toast.LENGTH_SHORT).show();
+			Toast.makeText(act, R.string.future, Toast.LENGTH_SHORT).show();
+			// if (NetChecker.isOnline(act))
+			// insertListLAN(act);
+			// else
+			// Toast.makeText(act, R.string.n_act_con, Toast.LENGTH_SHORT).show();
 			return true;
 
 		default:

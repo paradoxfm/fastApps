@@ -2,6 +2,7 @@ package ru.megazlo.fastnote.component;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.widget.EditText;
@@ -13,6 +14,11 @@ public class NoteEdit extends EditText {
 	public NoteEdit(Context context) {
 		super(context);
 		mPaint.setStyle(Paint.Style.STROKE);
+		setBackgroundColor(Color.TRANSPARENT);
+		setFocusable(false);
+		// nedit.setGravity(Gravity.TOP);
+		// nedit.setVerticalFadingEdgeEnabled(true);
+		// nedit.setPadding(3, 3, 3, 3);
 	}
 
 	@Override

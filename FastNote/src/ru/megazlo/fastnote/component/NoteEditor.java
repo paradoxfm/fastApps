@@ -57,11 +57,6 @@ public class NoteEditor extends LinearLayout {
 		addView(scrv, lp1);
 
 		nedit = new NoteEdit(context);
-		nedit.setFocusable(false);
-		// nedit.setGravity(Gravity.TOP);
-		nedit.setBackgroundColor(Color.TRANSPARENT);
-		// nedit.setVerticalFadingEdgeEnabled(true);
-		// nedit.setPadding(3, 3, 3, 3);
 		nedit.addTextChangedListener(wach);
 		applyEditorSet();
 		scrv.addView(nedit);
@@ -86,6 +81,8 @@ public class NoteEditor extends LinearLayout {
 	}
 
 	private void setText() {
+		nedit.setSelection(0);
+		scrv.scrollTo(0, nedit.getTop());
 		setLocked(true);
 		mEdited = false;
 	}
