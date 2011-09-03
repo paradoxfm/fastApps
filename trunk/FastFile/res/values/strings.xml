@@ -34,7 +34,7 @@
     <string name="err_run">There is no associated program</string>
     <string name="about">About</string>
     <string name="about_smr">About the program FastFile</string>
-    <string name="about_txt">Autor: Gurkin Ivan aka paradoxfm\nCopyright © 2011 megazlo.net\nEmail:<a href="mailto:megazlonet@gmail.com">megazlonet@gmail.com</a></string>
+    <string name="about_txt">Autor: Gurkin Ivan aka paradoxfm\nCopyright © 2011 megazlonet\nEmail:<a href="mailto:megazlonet@gmail.com">megazlonet@gmail.com</a></string>
     <string name="future">Coming soon ;)</string>
     <string name="search_rez">Search results</string>
     <string name="mn_tutor">Help</string>

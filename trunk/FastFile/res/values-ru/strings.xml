@@ -34,7 +34,7 @@
     <string name="err_run">Нет ассоциированного приложения</string>
     <string name="about">О программе</string>
     <string name="about_smr">О программе FastFile</string>
-    <string name="about_txt">Автор: Гуркин Иван aka paradoxfm\nCopyright © 2011 <a href="http://code.google.com/p/fastapps/">megazlo.net</a>\nEmail: <a href="mailto:megazlonet@gmail.com">megazlonet@gmail.com</a></string>
+    <string name="about_txt">Автор: Гуркин Иван aka paradoxfm\nCopyright © 2011 <a href="http://code.google.com/p/fastapps/">megazlonet</a>\nEmail: <a href="mailto:megazlonet@gmail.com">megazlonet@gmail.com</a></string>
     <string name="future">Скоро ожидается ;)</string>
     <string name="search_rez">Результаты поиска</string>
     <string name="mn_tutor">Справка</string>
