@@ -17,7 +17,7 @@ public class EngineSDC extends BaseEngine {
 
 	public EngineSDC(RowData data, FileList list) {
 		super(list);
-		isPreview = isSearsh = true;
+		isPreview = isAllowSearsh = true;
 		dat = data;
 	}
 
