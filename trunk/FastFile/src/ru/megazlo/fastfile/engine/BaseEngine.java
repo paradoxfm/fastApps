@@ -22,6 +22,7 @@ public abstract class BaseEngine implements IEngine {
 	public static final int CMD_CON = 100;
 
 	protected boolean isSearsh = false;
+	protected boolean isAllowSearsh = false;
 	protected boolean isPreview = false;
 	// protected boolean isRestore = false;
 	protected int engType = SDC;
@@ -148,7 +149,7 @@ public abstract class BaseEngine implements IEngine {
 
 	@Override
 	public boolean isAllowSearsh() {
-		return isSearsh;
+		return isAllowSearsh;
 	}
 
 	@Override

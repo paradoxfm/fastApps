@@ -28,12 +28,10 @@ public class NoteList extends ListView {
 	public boolean performItemClick(View view, int position, long id) {
 		edited = (NoteRow) view;
 		fmMain frm = (fmMain) this.getContext();
-		if (!edited.isChecked()) {
-			unsheckAll();
-			edited.setChecked(true);
-			frm.setEditorText(edited.getData());
-		} else
-			frm.scrollRigth();
+		unsheckAll();
+		edited.setChecked(true);
+		frm.setEditorText(edited.getData());
+		frm.scrollRigth();
 		return super.performItemClick(view, position, id);
 	}
 
