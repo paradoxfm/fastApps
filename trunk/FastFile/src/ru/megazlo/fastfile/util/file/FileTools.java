@@ -9,6 +9,7 @@ import ru.megazlo.fastfile.fmImages;
 import ru.megazlo.fastfile.fmMain;
 import ru.megazlo.fastfile.fmNotes;
 import ru.megazlo.fastfile.components.RowDataFTP;
+import ru.megazlo.fastfile.components.filerow.qweq;
 import ru.megazlo.fastfile.engine.BaseEngine;
 import ru.megazlo.ftplib.ftp.FTPClient;
 import ru.megazlo.ftplib.ftp.FTPFile;
@@ -32,6 +33,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -213,6 +216,29 @@ public class FileTools {
 		final View formcon = factory.inflate(R.layout.plmusic, null);
 		TextView tx = (TextView) formcon.findViewById(R.id.mp3info);
 		ImageView img = (ImageView) formcon.findViewById(R.id.mp3cover);
+		final SeekBar bar = (SeekBar) formcon.findViewById(R.id.mSeek);
+
+		bar.setMax(M_PLAYER.getDuration());
+
+		bar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+			}
+
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+			}
+
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+				if (fromUser)
+					M_PLAYER.seekTo(progress);
+			}
+		});
+
+		//qweq asdf = new qweq(bar, M_PLAYER);
+
 		Bitmap cov = getArtworkQuick(fmMain.CONTEXT, albumId, 200, 200);
 		if (cov != null)
 			img.setImageBitmap(cov);
@@ -220,7 +246,31 @@ public class FileTools {
 		tx.setText(String.format(med, artist, title, album));
 		new AlertDialog.Builder(fmMain.CONTEXT).setOnCancelListener(cans).setTitle(R.string.mus_preview)
 				.setIcon(R.drawable.file_mus).setView(formcon).create().show();
+		
+		Runnable qww = new Runnable() {
+			
+			@Override
+			public void run() {
+				int currentPosition = 0;
+				int total = M_PLAYER.getDuration();
+				bar.setMax(total);
+				while (M_PLAYER != null && currentPosition < total) {
+					try {
+						Thread.sleep(1000);
+						currentPosition = M_PLAYER.getCurrentPosition();
+					} catch (InterruptedException e) {
+						return;
+					} catch (Exception e) {
+						return;
+					}
+					bar.setProgress(currentPosition);
+				}
+			}
+		};
+		
 		M_PLAYER.start();
+		Thread thr = new Thread(qww);
+		thr.start();
 	}
 
 	public static Bitmap getArtworkQuick(Context context, long album_id, int w, int h) {
