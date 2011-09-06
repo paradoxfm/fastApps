@@ -5,11 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import ru.megazlo.fastfile.R;
-import ru.megazlo.fastfile.fmImages;
 import ru.megazlo.fastfile.fmMain;
 import ru.megazlo.fastfile.fmNotes;
 import ru.megazlo.fastfile.components.RowDataFTP;
-import ru.megazlo.fastfile.components.filerow.qweq;
 import ru.megazlo.fastfile.engine.BaseEngine;
 import ru.megazlo.ftplib.ftp.FTPClient;
 import ru.megazlo.ftplib.ftp.FTPFile;
@@ -29,6 +27,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -172,10 +171,7 @@ public class FileTools {
 		} else if (path.endsWith(".mp3")) {
 			playMusic(c, file);
 		} else if (path.endsWith(".jpg") || path.endsWith(".png")) {
-			Intent intn = new Intent();
-			intn.setClass(c, fmImages.class);
-			intn.putExtra(KEY, file.getPath());
-			c.startActivity(intn);
+			veiwImage(c, file);
 		} else if (path.endsWith(".txt") || path.endsWith(".log")) {
 			if (file.length() > 1024 * 1024 * 100) {
 				Toast.makeText(c, R.string.txt_preview_err, Toast.LENGTH_SHORT).show();
@@ -185,6 +181,30 @@ public class FileTools {
 			intn.setClass(fmMain.CONTEXT, fmNotes.class);
 			intn.putExtra(KEY, file.getPath());
 			c.startActivity(intn);
+		}
+	}
+
+	private static void veiwImage(Context cont, File file) {
+		DisplayMetrics dm = new DisplayMetrics();
+		fmMain.CONTEXT.getWindowManager().getDefaultDisplay().getMetrics(dm);
+		final int minrez = Math.min(dm.widthPixels, dm.heightPixels);
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;
+		options.outHeight = options.outWidth = 0;
+		options.inSampleSize = 1;
+		String path = file.getAbsolutePath();
+		BitmapFactory.decodeFile(path, options);
+		if (options.outWidth > 0 && options.outHeight > 0) {
+			// Now see how much we need to scale it down.
+			int widthFactor = (options.outWidth + minrez - 1) / minrez;
+			widthFactor = Math.max(widthFactor, (options.outHeight + minrez - 1) / minrez);
+			widthFactor = Math.max(widthFactor, 1);
+			options.inSampleSize = widthFactor;
+			options.inJustDecodeBounds = false;
+			ImageView img = new ImageView(cont);
+			img.setImageBitmap(BitmapFactory.decodeFile(path, options));
+			new AlertDialog.Builder(cont).setTitle(R.string.mus_preview).setIcon(R.drawable.file_img).setView(img).create()
+					.show();
 		}
 	}
 
@@ -237,8 +257,6 @@ public class FileTools {
 			}
 		});
 
-		//qweq asdf = new qweq(bar, M_PLAYER);
-
 		Bitmap cov = getArtworkQuick(fmMain.CONTEXT, albumId, 200, 200);
 		if (cov != null)
 			img.setImageBitmap(cov);
@@ -246,9 +264,8 @@ public class FileTools {
 		tx.setText(String.format(med, artist, title, album));
 		new AlertDialog.Builder(fmMain.CONTEXT).setOnCancelListener(cans).setTitle(R.string.mus_preview)
 				.setIcon(R.drawable.file_mus).setView(formcon).create().show();
-		
+
 		Runnable qww = new Runnable() {
-			
 			@Override
 			public void run() {
 				int currentPosition = 0;
@@ -258,8 +275,6 @@ public class FileTools {
 					try {
 						Thread.sleep(1000);
 						currentPosition = M_PLAYER.getCurrentPosition();
-					} catch (InterruptedException e) {
-						return;
 					} catch (Exception e) {
 						return;
 					}
@@ -267,7 +282,7 @@ public class FileTools {
 				}
 			}
 		};
-		
+
 		M_PLAYER.start();
 		Thread thr = new Thread(qww);
 		thr.start();
