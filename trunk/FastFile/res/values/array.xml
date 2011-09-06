@@ -24,6 +24,7 @@
 	<string-array name="vids">
 		<item>avi</item>
 		<item>3gp</item>
+		<item>mp4</item>
 	</string-array>
 
 	<string-array name="docs">
