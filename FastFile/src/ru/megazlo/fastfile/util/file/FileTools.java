@@ -168,7 +168,7 @@ public class FileTools {
 		String path = file.getPath().toLowerCase();
 		if (path.endsWith(".apk")) {
 			openFileExt(c, file);
-		} else if (path.endsWith(".mp3")) {
+		} else if (path.endsWith(".mp3") || path.endsWith(".flac")) {
 			playMusic(c, file);
 		} else if (path.endsWith(".jpg") || path.endsWith(".png")) {
 			veiwImage(c, file);
