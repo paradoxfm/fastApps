@@ -70,8 +70,6 @@ public class FileUtil {
 		String path = intent.getData() != null ? intent.getData().getPath() : null;
 		intent.setData(null);
 		if (path != null) {
-			if (file != null && file.getPath().equals(path))
-				return false;
 			file = new File(path);
 			file_text = FileUtil.loadFromFile();
 		}
