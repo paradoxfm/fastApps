@@ -8,6 +8,7 @@ import ru.megazlo.fastfile.R;
 import ru.megazlo.fastfile.fmMain;
 import ru.megazlo.fastfile.fmNotes;
 import ru.megazlo.fastfile.components.RowDataFTP;
+import ru.megazlo.fastfile.components.filerow.FileRowData;
 import ru.megazlo.fastfile.engine.BaseEngine;
 import ru.megazlo.ftplib.ftp.FTPClient;
 import ru.megazlo.ftplib.ftp.FTPFile;
@@ -166,13 +167,12 @@ public class FileTools {
 
 	public static void openFileThis(Context c, File file) {
 		String path = file.getPath().toLowerCase();
-		if (path.endsWith(".apk")) {
-			openFileExt(c, file);
-		} else if (path.endsWith(".mp3") || path.endsWith(".flac")) {
+		final int tp = BaseEngine.getType(path.toLowerCase());
+		if (tp == FileRowData.TP_MUSIC)
 			playMusic(c, file);
-		} else if (path.endsWith(".jpg") || path.endsWith(".png")) {
+		else if (tp == FileRowData.TP_BITMAP)
 			veiwImage(c, file);
-		} else if (path.endsWith(".txt") || path.endsWith(".log")) {
+		else if (path.endsWith(".txt") || path.endsWith(".log")) {
 			if (file.length() > 1024 * 1024 * 100) {
 				Toast.makeText(c, R.string.txt_preview_err, Toast.LENGTH_SHORT).show();
 				return;
@@ -181,7 +181,8 @@ public class FileTools {
 			intn.setClass(fmMain.CONTEXT, fmNotes.class);
 			intn.putExtra(KEY, file.getPath());
 			c.startActivity(intn);
-		}
+		} else
+			openFileExt(c, file);
 	}
 
 	private static void veiwImage(Context cont, File file) {

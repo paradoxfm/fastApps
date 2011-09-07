@@ -23,7 +23,7 @@ public class FileList extends ListView {
 	public FileList(Context context, RowData dat, boolean restore) {
 		super(context);
 		setScrollingCacheEnabled(false);
-		itla = new FileRowAdapter(context);
+		itla = new FileRowAdapter();
 		setAdapter(itla);
 		eng = choiceEngine(dat);
 
