@@ -4,5 +4,5 @@
 	<TextView android:id="@+id/font_pre_size" android:layout_width="wrap_content" android:layout_height="70dip"
 		android:layout_gravity="center" />
 	<SeekBar android:id="@+id/font_seek" android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:paddingLeft="8px" android:paddingRight="8px" android:max="16" />
+		android:paddingLeft="15dip" android:paddingRight="15dip" android:max="16" />
 </LinearLayout>
