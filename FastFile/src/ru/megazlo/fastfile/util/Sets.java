@@ -45,6 +45,7 @@ public class Sets {
 	public static Boolean FULL_SCR;// fullscr
 	public static Boolean ANIMATE;// animate
 	public static Integer ORIENT_TYPE;// orientype
+	public static Integer TXT_CLR;// text color
 
 	// -------------------------------------------
 	public static LayoutAnimationController LIST_ANIM;
@@ -83,6 +84,7 @@ public class Sets {
 		FULL_SCR = prf.getBoolean("FULL_SCR", false);
 		ANIMATE = prf.getBoolean("ANIMATE", false);
 		ORIENT_TYPE = prf.getInt("ORIENT_TYPE", ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+		TXT_CLR = prf.getInt("TXT_CLR", -4276546);
 		loadRes(res);
 		applySets(res);
 		File fl = res.getExternalFilesDir(null);
@@ -115,6 +117,7 @@ public class Sets {
 		edit.putBoolean("FULL_SCR", FULL_SCR);
 		edit.putBoolean("ANIMATE", ANIMATE);
 		edit.putInt("ORIENT_TYPE", ORIENT_TYPE);
+		edit.putInt("TXT_CLR", TXT_CLR);
 		edit.commit();
 	}
 

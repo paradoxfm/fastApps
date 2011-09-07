@@ -4,6 +4,7 @@ import java.io.File;
 
 import ru.megazlo.fastfile.fmMain;
 import ru.megazlo.fastfile.util.ActionFactory;
+import ru.megazlo.fastfile.util.Sets;
 import ru.megazlo.ftplib.ftp.FTPFile;
 import android.content.Context;
 import android.graphics.Typeface;
@@ -53,9 +54,11 @@ public class FileRow extends BaseCellRow {
 		m_txt_dir.setMaxHeight(px(24.6));
 		m_txt_dir.setTypeface(null, Typeface.BOLD);
 		m_txt_dir.setText(dat.getName());
+		m_txt_dir.setTextColor(Sets.TXT_CLR);
 		LayoutParams m_txt_dir_lp = new LayoutParams(fl, wc);
 		m_txt_dir_lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
 		m_txt_dir.setPadding(px(46.6), 0, 0, 0);
+
 		this.addView(m_txt_dir, m_txt_dir_lp);
 
 		m_txt_items = new TextView(getContext());
@@ -63,6 +66,7 @@ public class FileRow extends BaseCellRow {
 		m_txt_items.setMinimumHeight(px(16.6));
 		m_txt_items.setMaxHeight(px(16.6));
 		m_txt_items.setTextSize(12);
+		m_txt_items.setTextColor(Sets.TXT_CLR);
 		LayoutParams m_txt_items_lp = new LayoutParams(fl, wc);
 		m_txt_items_lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 		m_txt_items.setPadding(px(46.6), 0, 0, 0);
@@ -74,6 +78,7 @@ public class FileRow extends BaseCellRow {
 		m_txt_date.setMinimumHeight(px(16.6));
 		m_txt_date.setMaxHeight(px(16.6));
 		m_txt_date.setTextSize(12);
+		m_txt_date.setTextColor(Sets.TXT_CLR);
 		m_txt_date.setPadding(0, 0, px(5.3), 0);
 		LayoutParams m_txt_date_lp = new LayoutParams(fl, wc);
 		m_txt_date_lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
