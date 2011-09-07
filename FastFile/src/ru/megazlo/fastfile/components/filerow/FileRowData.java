@@ -11,6 +11,12 @@ import android.graphics.drawable.Drawable;
 
 public class FileRowData implements Comparable<FileRowData> {
 
+	public final static byte TP_BITMAP = 0;
+	public final static byte TP_MUSIC = 1;
+	public final static byte TP_VIDEO = 2;
+	public final static byte TP_TEXT = 3;
+	public final static byte TP_OTHER = 4;
+
 	private File m_file_sdc;
 	private FTPFile m_file_ftp;
 	private SmbFile m_file_smb;

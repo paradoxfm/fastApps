@@ -4,6 +4,7 @@ import java.util.Collections;
 
 import ru.megazlo.fastfile.components.RowData;
 import ru.megazlo.fastfile.components.filerow.FileList;
+import ru.megazlo.fastfile.components.filerow.FileRowData;
 import ru.megazlo.fastfile.util.MenuChecker;
 import ru.megazlo.fastfile.util.Sets;
 import ru.megazlo.fastfile.util.ThumbnailLoader;
@@ -102,6 +103,18 @@ public abstract class BaseEngine implements IEngine {
 		return Sets.I_FILE_NON;
 	}
 
+	public static int getType(String lowerCase) {
+		String tmp = getExtension(lowerCase).toLowerCase().intern();
+		short i;
+		for (i = 0; i < Sets.FILE_MUS.length; i++)
+			if (tmp == Sets.FILE_MUS[i])
+				return FileRowData.TP_MUSIC;
+		for (i = 0; i < Sets.FILE_IMG.length; i++)
+			if (tmp == Sets.FILE_IMG[i])
+				return FileRowData.TP_BITMAP;
+		return FileRowData.TP_OTHER;
+	}
+
 	private static String getExtension(String uri) {
 		if (uri == null)
 			return null;
@@ -168,4 +181,5 @@ public abstract class BaseEngine implements IEngine {
 			tmbl = null;
 		}
 	}
+
 }

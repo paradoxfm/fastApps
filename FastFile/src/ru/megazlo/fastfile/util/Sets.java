@@ -34,6 +34,7 @@ public class Sets {
 	public static final String dbPath = "dbase.db";
 	public static final String dbPathBak = "fastfileftp.bak";
 
+	public static Boolean ISGRID;
 	public static Boolean OPEN_THIS;// open ext
 	public static Boolean SHOW_HIDDEN;// hidden
 	public static Boolean SHOW_IMG;// show images preview
@@ -68,6 +69,7 @@ public class Sets {
 		}
 		F_DATE = DateFormat.getDateFormat(res);
 		F_TIME = DateFormat.getTimeFormat(res);
+		ISGRID = prf.getBoolean("ISGRID", false);
 		OPEN_THIS = prf.getBoolean("OPEN_THIS", false);
 		HOME_PATH = new File(prf.getString("HOME_PATH", "/"));
 		if (!HOME_PATH.exists() || !HOME_PATH.canRead())
@@ -103,6 +105,7 @@ public class Sets {
 
 	public static void save(SharedPreferences prf) {
 		SharedPreferences.Editor edit = prf.edit();
+		edit.putBoolean("ISGRID", ISGRID);
 		edit.putBoolean("OPEN_THIS", OPEN_THIS);
 		edit.putString("HOME_PATH", HOME_PATH.getPath());
 		edit.putBoolean("SHOW_HIDDEN", SHOW_HIDDEN);
