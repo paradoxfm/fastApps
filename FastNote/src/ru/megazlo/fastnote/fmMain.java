@@ -1,5 +1,7 @@
 package ru.megazlo.fastnote;
 
+import java.io.File;
+
 import ru.megazlo.fastnote.component.NoteAdapter;
 import ru.megazlo.fastnote.component.NoteData;
 import ru.megazlo.fastnote.component.NoteEditor;
@@ -26,6 +28,7 @@ import android.widget.Toast;
 
 public class fmMain extends Activity {
 	private static boolean fromFile = false;
+	private static boolean isSearch = false;
 	public static fmMain CONTEXT;
 	private TextView title;
 	private ImageView newnote, logo;
@@ -33,6 +36,7 @@ public class fmMain extends Activity {
 	public NoteList nlist;
 	public NoteEditor nedit;
 	private NoteData noteDel;
+	private File dirDB;
 
 	private View.OnClickListener lockNote = new View.OnClickListener() {
 		@Override
@@ -79,6 +83,7 @@ public class fmMain extends Activity {
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(scrv = new ScrollerView(this));
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
+		dirDB = getExternalFilesDir(null);
 		initChild();
 		CONTEXT = this;
 		if (!(fromFile || FileUtil.openText(getIntent()))) {
@@ -115,7 +120,8 @@ public class fmMain extends Activity {
 	}
 
 	private void doSearchQuery(Intent intent, String stringExtra) {
-		Toast.makeText(this, R.string.com_son, Toast.LENGTH_SHORT).show();
+		nlist.loadData(dirDB, stringExtra); // загрузка
+		isSearch = true;
 	}
 
 	private void initChild() {
@@ -124,7 +130,7 @@ public class fmMain extends Activity {
 		newnote.setOnClickListener(newNote);
 		logo = (ImageView) findViewById(R.id.protocol);
 		nlist = new NoteList(this);
-		nlist.loadData(getExternalFilesDir(null));
+		// nlist.loadData(dirDB, null);
 		scrv.addView(nlist);
 		nedit = new NoteEditor(this);
 		scrv.addView(nedit);
@@ -144,7 +150,10 @@ public class fmMain extends Activity {
 		}
 		if (scrv.getChildCount() > 1 && scrv.getDisplayedChild() == 1)
 			scrv.scrollToScreen(0);
-		else
+		else if (isSearch) {
+			nlist.loadData(dirDB, null);
+			isSearch = false;
+		} else
 			super.onBackPressed();
 	}
 
@@ -217,15 +226,15 @@ public class fmMain extends Activity {
 		dat.setTitle(nedit.getTitle());
 		dat.setWordCount(nedit.getWordCount());
 		if (!SqlBase.isConnected())
-			Sets.DAT = SqlBase.getList(getExternalFilesDir(null));
+			Sets.DAT = SqlBase.getList(dirDB, null);
 		SqlBase.insertNote(dat);
 		SqlBase.updateData(nedit.getText(), dat);
 		fromFile = false;
 		setEditorText(dat);
 		insertList();
-		NoteAdapter adp = (NoteAdapter) nlist.getAdapter();
-		adp.add(dat);
-		adp.notifyDataSetChanged();
+		//NoteAdapter adp = (NoteAdapter) nlist.getAdapter();
+		//adp.add(dat);
+		//adp.notifyDataSetChanged();
 		nlist.checkByID(dat.getID());
 		nedit.setLocked(true);
 		logo.setImageResource(R.drawable.notepad);
@@ -241,7 +250,7 @@ public class fmMain extends Activity {
 		SqlBase.insertNote(dat);
 		NoteAdapter adp = (NoteAdapter) nlist.getAdapter();
 		adp.add(dat);
-		//adp.notifyDataSetChanged();
+		// adp.notifyDataSetChanged();
 		setEditorText(dat);
 	}
 
@@ -269,7 +278,7 @@ public class fmMain extends Activity {
 	}
 
 	private void insertList() {
-		nlist.loadData(getExternalFilesDir(null)); // загрузка
+		nlist.loadData(dirDB, null); // загрузка
 		if (scrv.getChildAt(0) != nlist)
 			scrv.addView(nlist, 0);
 		nlist.setVisibility(View.VISIBLE);

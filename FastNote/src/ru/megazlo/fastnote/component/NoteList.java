@@ -17,9 +17,8 @@ public class NoteList extends ListView {
 		super(context);
 	}
 
-	public void loadData(File ext) {
-		if (Sets.DAT == null)
-			Sets.DAT = SqlBase.getList(ext);
+	public void loadData(File ext, String srhQuery) {
+		Sets.DAT = SqlBase.getList(ext, srhQuery);
 		NoteAdapter adp = new NoteAdapter(this.getContext(), Sets.DAT);
 		this.setAdapter(adp);
 	}

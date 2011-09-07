@@ -18,24 +18,30 @@ public class SqlBase {
 	private static String settab = "bksets";
 	private static SQLiteDatabase SQLITE;
 
-	public static ArrayList<NoteData> getList(File ext) {
-		ArrayList<NoteData> rez = new ArrayList<NoteData>();
+	public static ArrayList<NoteData> getList(File ext, String srhQuery) {
+		String req = srhQuery == null ? null : "Title LIKE '%" + srhQuery + "%' or Txt LIKE '%" + srhQuery + "%'";
 		if (ext != null && connectBase(ext)) {
-			Cursor cur = SQLITE.query(table, new String[] { "ID", "Ordr", "WCount", "Date", "Title" }, null, null, null,
-					null, null);
-			cur.moveToFirst();
-			while (cur.isAfterLast() == false) {
-				int id = cur.getInt(0);
-				int order = cur.getInt(1);
-				int wcnt = cur.getInt(2);
-				Date date = new Date(Date.parse(cur.getString(3)));
-				String title = cur.getString(4);
-				NoteData dat = new NoteData(id, order, wcnt, date, title);
-				rez.add(dat);
-				cur.moveToNext();
-			}
-			cur.close();
+			Cursor cur = SQLITE.query(table, new String[] { "ID", "Ordr", "WCount", "Date", "Title" }, req, null, null, null,
+					null);
+			return cursorReader(cur);
 		}
+		return new ArrayList<NoteData>();
+	}
+
+	private static ArrayList<NoteData> cursorReader(Cursor c) {
+		ArrayList<NoteData> rez = new ArrayList<NoteData>();
+		c.moveToFirst();
+		while (c.isAfterLast() == false) {
+			int id = c.getInt(0);
+			int order = c.getInt(1);
+			int wcnt = c.getInt(2);
+			Date date = new Date(Date.parse(c.getString(3)));
+			String title = c.getString(4);
+			NoteData dat = new NoteData(id, order, wcnt, date, title);
+			rez.add(dat);
+			c.moveToNext();
+		}
+		c.close();
 		return rez;
 	}
 
