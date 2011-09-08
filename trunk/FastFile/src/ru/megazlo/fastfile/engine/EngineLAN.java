@@ -1,16 +1,12 @@
 package ru.megazlo.fastfile.engine;
 
-import java.net.MalformedURLException;
-
-import jcifs.smb.NtlmPasswordAuthentication;
 import jcifs.smb.SmbFile;
-import ru.megazlo.fastfile.R;
 import ru.megazlo.fastfile.components.RowData;
 import ru.megazlo.fastfile.components.RowDataLAN;
 import ru.megazlo.fastfile.components.filerow.FileList;
 import ru.megazlo.fastfile.components.filerow.FileRowData;
 import ru.megazlo.fastfile.util.Sets;
-import android.widget.Toast;
+import ru.megazlo.fastfile.util.net.BrowseNet;
 
 public class EngineLAN extends BaseEngine {
 
@@ -22,10 +18,15 @@ public class EngineLAN extends BaseEngine {
 
 	@Override
 	public boolean browseUp() {
+
+		// getDat().CUR_DIR = new FTPFile();
+		// new BrowseNet().execute("up", this, "true");
+		// return true;
+
 		SmbFile fil = null;
 		try {
 			fil = new SmbFile(getDat().PATH.getParent());
-		} catch (MalformedURLException e) {
+		} catch (Exception e) {
 		}
 		// String from = getDat().PATH.getName();
 		if (fil != null) {
@@ -47,23 +48,33 @@ public class EngineLAN extends BaseEngine {
 	@Override
 	public void browseCatalog(Object cat) {
 		try {
-
-			String url = "smb://192.168.0.102/";
-			NtlmPasswordAuthentication auth = new NtlmPasswordAuthentication("workgroup", "Администратор", "qwepoi");
-			SmbFile dir = new SmbFile(url, auth);
-
-			// (SmbFile) cat;
-			getDat().PATH = dir;
-			if (!dir.canRead()) {
-				Toast.makeText(getList().getContext(), R.string.read_only, Toast.LENGTH_SHORT).show();
-				return;
-			}
-			getDat().PATH = dir;
-			mTitle = getDat().PATH.getCanonicalPath();
-			SmbFile[] arr = dir.listFiles();
-			this.fill(arr);
+			RowDataLAN dt = getDat();
+			dt.PATH = (SmbFile) cat;
+			if (dt.PATH.isDirectory())
+				new BrowseNet().execute(dt.PATH, this);
 		} catch (Exception e) {
 		}
+		// try {
+		//
+		// String url = "smb://172.30.9.17/";
+		// NtlmPasswordAuthentication auth = new
+		// NtlmPasswordAuthentication("regions.alfaintra.net", "u_06sqa",
+		// "Qwer1234");
+		// SmbFile dir = new SmbFile(url, auth);
+		//
+		// // (SmbFile) cat;
+		// getDat().PATH = dir;
+		// if (!dir.canRead()) {
+		// Toast.makeText(getList().getContext(), R.string.read_only,
+		// Toast.LENGTH_SHORT).show();
+		// return;
+		// }
+		// getDat().PATH = dir;
+		// mTitle = getDat().PATH.getCanonicalPath();
+		// SmbFile[] arr = dir.listFiles();
+		// this.fill(arr);
+		// } catch (Exception e) {
+		// }
 	}
 
 	@Override
@@ -84,7 +95,8 @@ public class EngineLAN extends BaseEngine {
 
 	@Override
 	public void update() {
-		browseCatalog(getDat().PATH);
+		if (getDat().PATH != null)
+			browseCatalog(getDat().PATH);
 	}
 
 	@Override
@@ -95,7 +107,6 @@ public class EngineLAN extends BaseEngine {
 	@Override
 	public void search(String search) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -113,6 +124,7 @@ public class EngineLAN extends BaseEngine {
 		dat.dir.clear();
 		dat.fil.clear();
 		SmbFile[] files = (SmbFile[]) filar;
+		mTitle = '/' + getDat().PATH.getCanonicalPath();
 		for (int i = 0; i < files.length; i++) {
 			try {
 				if (!Sets.SHOW_HIDDEN && files[i].isHidden())
@@ -125,12 +137,34 @@ public class EngineLAN extends BaseEngine {
 			}
 		}
 		super.fill(filar);
+
+		// dat.dir.clear();
+		// dat.fil.clear();
+		// FTPFile[] files = (FTPFile[]) filar;
+		// try {
+		// mTitle = '/' + getDat().FTP_CLIENT.getRemoteAddress().getHostName() +
+		// getDat().FTP_CLIENT.printWorkingDirectory();
+		// } catch (IOException e) {
+		// }
+		// for (int i = 0; i < files.length; i++) {
+		// if (files[i].isDirectory())
+		// dat.dir.add(new FileRowData(files[i], Sets.I_FOLD));
+		// else
+		// dat.fil.add(new FileRowData(files[i],
+		// getIconByFile(files[i].getName())));
+		// }
+		// super.fill(filar);
+
 	}
 
 	@Override
 	public Object exec(int cmd) {
-		// TODO Auto-generated method stub
-		return null;
+		switch (cmd) {
+		case BaseEngine.CMD_CON:
+			return execConnect(getList().getContext(), false);
+		default:
+			return null;
+		}
 	}
 
 }

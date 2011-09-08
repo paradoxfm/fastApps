@@ -14,8 +14,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
 public class SqlBase {
-	private static String table = "tb_notes";
-	private static String settab = "bksets";
+	private final static String table = "tb_notes";
+	private final static String settab = "bksets";
 	private static SQLiteDatabase SQLITE;
 
 	public static ArrayList<NoteData> getList(File ext, String srhQuery) {

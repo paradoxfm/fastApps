@@ -1,8 +1,9 @@
 package ru.megazlo.fastfile.util;
 
-public class FtpRecort {
+public class ConnectionRecort {
 	public Integer ID;
 	public Boolean anonim = true;
+	public Boolean isFTP = true;
 	public String user = "";
 	public String server = "";
 

@@ -86,7 +86,7 @@
     <string name="rooted">Root</string>
     <string name="setviewicon">Icons</string>
     <string name="setviewother">Other</string>
-    <string name="ftp_host">Host</string>
+    <string name="ftp_host">Domain:Host</string>
     <string name="ftp_anonym">Anonimus</string>
     <string name="ftp_user">User</string>
     <string name="ftp_pwd">Password</string>
