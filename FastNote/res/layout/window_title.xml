@@ -5,8 +5,8 @@
 	<ImageView android:id="@+id/protocol" android:src="@drawable/notepad" android:layout_width="35dip"
 		android:layout_height="35dip" android:padding="1dip" android:layout_alignParentLeft="true" />
 
-	<ImageView android:id="@+id/newnote" android:src="@drawable/plus_64" android:layout_width="30dip"
-		android:layout_height="30dip" android:layout_alignParentRight="true" android:padding="3dip"
+	<ImageView android:id="@+id/newnote" android:src="@drawable/plus_64" android:layout_width="35dip"
+		android:layout_height="35dip" android:layout_alignParentRight="true" android:padding="3dip"
 		android:layout_centerVertical="true" />
 
 	<TextView android:id="@id/title" android:layout_width="match_parent" android:layout_height="wrap_content"

@@ -95,11 +95,12 @@ public class NoteEditor extends LinearLayout {
 	public void setLocked(boolean locked) {
 		mLocked = locked;
 		nedit.setFocusable(!locked);
+		nedit.setFocusableInTouchMode(!locked);
+		InputMethodManager inMan = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 		if (locked)
-			((InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(
-					nedit.getWindowToken(), 0);
+			inMan.hideSoftInputFromWindow(nedit.getWindowToken(), 0);
 		else
-			nedit.setFocusableInTouchMode(true);
+			inMan.toggleSoftInput(0, 0);
 	}
 
 	public String getText() {

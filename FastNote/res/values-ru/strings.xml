@@ -44,4 +44,9 @@
     <string name="t_del_itm">Удалить заметку</string>
     <string name="t_csm_itm">Отправить заметку через...</string>
     <string name="t_sms_itm">Отправить заметку по смс</string>
+    <string name="t_filetobase">Добавить файл в заметки</string>
+    <string name="t_unlock_edit">Разблокировать для редактирования / показать клавиатуру</string>
+    <string name="t_lock_edit">Заблокировать текст / скрыть клавиатуру</string>
+    <string name="t_save_file_sd">Сохранить отредактированный файл</string>
+    <string name="t_new_note">Добавить новую заметку</string>
 </resources>

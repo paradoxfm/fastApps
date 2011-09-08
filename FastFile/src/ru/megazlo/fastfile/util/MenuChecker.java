@@ -3,6 +3,7 @@ package ru.megazlo.fastfile.util;
 import ru.megazlo.fastfile.R;
 import ru.megazlo.fastfile.fmMain;
 import ru.megazlo.fastfile.fmSettings;
+import ru.megazlo.fastfile.components.RowData;
 import ru.megazlo.fastfile.components.RowDataFTP;
 import ru.megazlo.fastfile.components.RowDataLAN;
 import ru.megazlo.fastfile.components.RowDataSD;
@@ -10,6 +11,7 @@ import ru.megazlo.fastfile.components.filerow.FileList;
 import ru.megazlo.fastfile.engine.BaseEngine;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,12 +31,12 @@ public class MenuChecker {
 			return true;
 		case R.id.ftp:
 			if (NetChecker.isOnline(act))
-				insertListFTP(act);
+				insertList(act, new RowDataFTP());
 			else
 				Toast.makeText(act, R.string.n_act_con, Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.sdcard:
-			insertListSD(act);
+			insertList(act, new RowDataSD());
 			return true;
 		case R.id.quit:
 			exitApp(act);
@@ -48,11 +50,11 @@ public class MenuChecker {
 			// return true;
 
 		case R.id.samba:
-			Toast.makeText(act, R.string.future, Toast.LENGTH_SHORT).show();
-			// if (NetChecker.isOnline(act))
-			// insertListLAN(act);
-			// else
-			// Toast.makeText(act, R.string.n_act_con, Toast.LENGTH_SHORT).show();
+			// Toast.makeText(act, R.string.future, Toast.LENGTH_SHORT).show();
+			if (NetChecker.isOnline(act))
+				insertList(act, new RowDataLAN());
+			else
+				Toast.makeText(act, R.string.n_act_con, Toast.LENGTH_SHORT).show();
 			return true;
 
 		default:
@@ -75,29 +77,11 @@ public class MenuChecker {
 		System.exit(0);
 	}
 
-	public static void insertListSD(fmMain act) {
-		RowDataSD sd = new RowDataSD();
-		if (Sets.dat.size() > 0)
-			sd.PATH = ((RowDataSD) Sets.dat.get(0)).PATH;
-		FileList lsd = new FileList(act, sd, false);
+	public static void insertList(Context c, RowData sd) {
+		FileList lsd = new FileList(c, sd, false);
 		Sets.dat.add(sd);
-		setNewList(act, lsd);
-	}
-
-	public static void insertListFTP(fmMain act) {
-		RowDataFTP sd = new RowDataFTP();
-		FileList lsd = new FileList(act, sd, false);
-		Sets.dat.add(sd);
-		setNewList(act, lsd);
+		setNewList((fmMain) c, lsd);
 		lsd.getEngine().exec(BaseEngine.CMD_CON);
-	}
-
-	public static void insertListLAN(fmMain act) {
-		RowDataLAN sd = new RowDataLAN();
-		FileList lsd = new FileList(act, sd, false);
-		Sets.dat.add(sd);
-		setNewList(act, lsd);
-		// lsd.getEngine().exec(BaseEngine.CMD_CON);
 	}
 
 	private static void setNewList(fmMain act, View lst) {

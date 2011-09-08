@@ -53,7 +53,7 @@ public class Sets {
 	public static Drawable I_FILE_DOC, I_FILE_IMG, I_FILE_MOV, I_FILE_MUS, I_FILE_NON, I_FILE_BIN;
 	public static String[] FILE_DOC, FILE_IMG, FILE_MOV, FILE_MUS, FILE_BIN;
 	public static Drawable P_FTP, P_PDA, P_SMB, P_SRH;
-	public static ArrayList<FtpRecort> FTPS = new ArrayList<FtpRecort>();
+	public static ArrayList<ConnectionRecort> FTPS = new ArrayList<ConnectionRecort>();
 	public static SQLiteDatabase SQLITE;
 	public static java.text.DateFormat F_TIME;
 	public static java.text.DateFormat F_DATE;
@@ -192,7 +192,7 @@ public class Sets {
 		Cursor cur = SQLITE.query("ftp_con", null, null, null, null, null, null);
 		cur.moveToFirst();
 		while (cur.isAfterLast() == false) {
-			FtpRecort rec = new FtpRecort();
+			ConnectionRecort rec = new ConnectionRecort();
 			rec.ID = Integer.parseInt(cur.getString(0));
 			rec.server = cur.getString(1);
 			rec.anonim = Boolean.parseBoolean(cur.getString(2));
@@ -203,13 +203,13 @@ public class Sets {
 		cur.close();
 	}
 
-	public static void deleteFtpRec(FtpRecort rec) {
+	public static void deleteFtpRec(ConnectionRecort rec) {
 		SQLITE.delete("ftp_con", "id=?", new String[] { Integer.toString(rec.ID) });
 		FTPS.remove(rec);
 	}
 
 	public static void insertFtpRec(String hst, String usr, boolean checked) {
-		FtpRecort rec = new FtpRecort();
+		ConnectionRecort rec = new ConnectionRecort();
 		rec.server = hst;
 		rec.user = usr;
 		rec.anonim = checked;

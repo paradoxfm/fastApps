@@ -44,4 +44,9 @@
     <string name="t_del_itm">Delete note</string>
     <string name="t_csm_itm">Send note via...</string>
     <string name="t_sms_itm">Send note via sms</string>
+    <string name="t_filetobase">Add file to notes</string>
+    <string name="t_unlock_edit">Unlock and edit / show keyboard</string>
+    <string name="t_lock_edit">Lock text note / hide keyboard</string>
+    <string name="t_save_file_sd">Save edited file</string>
+    <string name="t_new_note">Add new note</string>
 </resources>

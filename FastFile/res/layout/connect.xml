@@ -14,7 +14,7 @@
 		<EditText android:id="@+id/ed_ftp_host" android:layout_width="match_parent" android:layout_height="wrap_content" />
 		<CheckBox android:id="@+id/ed_ftp_anm" android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:text="@string/ftp_anonym" android:checked="true" />
-		<LinearLayout android:id="@+id/ed_ftp_userinf" android:layout_width="match_parent"
+		<LinearLayout android:id="@+id/ed_ftp_userinf" android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
 			<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/ftp_user"
 				android:textColor="@android:color/white" android:textSize="16dip" />
@@ -23,6 +23,6 @@
 				android:textColor="@android:color/white" android:textSize="16dip" />
 			<EditText android:id="@+id/ed_ftp_pwd" android:layout_width="match_parent" android:layout_height="wrap_content"
 				android:password="true" />
-		</LinearLayout>
+		</LinearLayout> 
 	</LinearLayout>
 </ScrollView>

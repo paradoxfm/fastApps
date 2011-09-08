@@ -2,6 +2,7 @@ package ru.megazlo.fastfile.components.filerow;
 
 import java.io.File;
 
+import jcifs.smb.SmbFile;
 import ru.megazlo.fastfile.engine.BaseEngine;
 import ru.megazlo.fastfile.util.Sets;
 import ru.megazlo.fastfile.util.file.FileTools;
@@ -39,8 +40,13 @@ public abstract class ItemClicker {
 			eng.browseCatalog(curFile);
 	}
 
-	private static void lanClick(BaseEngine eng, int position) {
-		// TODO Auto-generated method stub
+	private static void lanClick(BaseEngine eng, int pos) {
+		try {
+			SmbFile curFile = eng.getDat().dir.get(pos).getFile();
+			if (curFile.isDirectory())
+				eng.browseCatalog(eng.getDat().dir.get(pos).getFile());
+		} catch (Exception e) {
+		}
 	}
 
 }

@@ -1,5 +1,6 @@
 package ru.megazlo.fastfile;
 
+import ru.megazlo.fastfile.components.RowDataSD;
 import ru.megazlo.fastfile.components.filerow.FileList;
 import ru.megazlo.fastfile.engine.BaseEngine;
 import ru.megazlo.fastfile.util.ActionFactory;
@@ -41,7 +42,7 @@ public class fmMain extends Activity {
 		if (Sets.dat != null && Sets.dat.size() > 0)
 			Sets.restoreLists(this);
 		else
-			MenuChecker.insertListSD(this);
+			MenuChecker.insertList(this, new RowDataSD());
 		CONTEXT = this;
 	}
 
