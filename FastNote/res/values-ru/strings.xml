@@ -9,7 +9,7 @@
     <!-- настройки -->
     <string name="mainset">Основные</string>
     <string name="full_scr">Полный экран</string>
-    <string name="full_scr_smr">Скрвать статусную строку и часы</string>
+    <string name="full_scr_smr">Скрывать статусную строку и часы</string>
     <string name="orien">Ориентация</string>
     <string name="orien_smr">Ориентация экрана(Не сохранять, Портретная, Ландшафтная)</string>
     <string name="pref_edit">Редактор</string>
@@ -49,4 +49,5 @@
     <string name="t_lock_edit">Заблокировать текст / скрыть клавиатуру</string>
     <string name="t_save_file_sd">Сохранить отредактированный файл</string>
     <string name="t_new_note">Добавить новую заметку</string>
+    <string name="db_broken">База не доступна</string>
 </resources>

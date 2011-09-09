@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import ru.megazlo.fastnote.R;
 import ru.megazlo.fastnote.fmMain;
 import ru.megazlo.fastnote.component.NoteData;
 import android.app.Activity;
@@ -25,6 +26,7 @@ public class SqlBase {
 					null);
 			return cursorReader(cur);
 		}
+		Toast.makeText(fmMain.CONTEXT, R.string.db_broken, Toast.LENGTH_SHORT).show();	
 		return new ArrayList<NoteData>();
 	}
 
@@ -65,18 +67,17 @@ public class SqlBase {
 	}
 
 	public static void insertNote(NoteData dat) {
-		ContentValues val = new ContentValues();
-		val.put("Ordr", dat.getOrder());
-		val.put("WCount", dat.getWordCount());
-		val.put("Date", dat.getDateNorm().toString());
-		val.put("Title", dat.getTitle());
-		val.put("Txt", "");
 		if (SQLITE != null) {
+			ContentValues val = new ContentValues();
+			val.put("Ordr", dat.getOrder());
+			val.put("WCount", dat.getWordCount());
+			val.put("Date", dat.getDateNorm().toString());
+			val.put("Title", dat.getTitle());
+			val.put("Txt", "");
 			SQLITE.insert(table, "", val);
 			dat.setID(selectID());
-		} else {
-			Toast.makeText(fmMain.CONTEXT, "qwfasdf asdfasd", Toast.LENGTH_SHORT).show();
-		}
+		} else
+			Toast.makeText(fmMain.CONTEXT, R.string.db_broken, Toast.LENGTH_SHORT).show();		
 	}
 
 	private static int selectID() {
