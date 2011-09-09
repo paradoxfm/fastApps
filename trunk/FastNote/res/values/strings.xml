@@ -49,4 +49,5 @@
     <string name="t_lock_edit">Lock text note / hide keyboard</string>
     <string name="t_save_file_sd">Save edited file</string>
     <string name="t_new_note">Add new note</string>
+    <string name="db_broken">Base not accessible</string>
 </resources>

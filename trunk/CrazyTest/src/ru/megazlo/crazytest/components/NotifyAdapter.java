@@ -2,7 +2,7 @@ package ru.megazlo.crazytest.components;
 
 import java.util.ArrayList;
 
-import ru.megazlo.crazytest.classes.NoteData;
+import ru.megazlo.crazytest.utils.NoteData;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +39,14 @@ public class NotifyAdapter extends BaseAdapter {
 		if (convertView != null)
 			row.setData(dat.get(position));
 		return row;
+	}
+
+	public void add(NoteData _dat) {
+		dat.add(_dat);
+	}
+
+	public void remove(NoteData _dat) {
+		dat.remove(_dat);
 	}
 
 }
