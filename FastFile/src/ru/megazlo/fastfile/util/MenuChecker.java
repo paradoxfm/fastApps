@@ -41,19 +41,18 @@ public class MenuChecker {
 		case R.id.quit:
 			exitApp(act);
 			return true;
-
 			// case R.id.getroot:
 			// try {
 			// Runtime.getRuntime().exec("su");
 			// } catch (IOException e) {
 			// }
 			// return true;
-
 		case R.id.samba:
 			// Toast.makeText(act, R.string.future, Toast.LENGTH_SHORT).show();
-			if (NetChecker.isOnline(act))
+			if (NetChecker.isOnline(act)) {
 				insertList(act, new RowDataLAN());
-			else
+				Toast.makeText(act, R.string.a_opt, Toast.LENGTH_SHORT).show();
+			} else
 				Toast.makeText(act, R.string.n_act_con, Toast.LENGTH_SHORT).show();
 			return true;
 

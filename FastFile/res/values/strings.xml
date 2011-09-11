@@ -90,4 +90,5 @@
     <string name="ftp_anonym">Anonimus</string>
     <string name="ftp_user">User</string>
     <string name="ftp_pwd">Password</string>
+    <string name="a_opt">Attention! It is the test option which work isnt guaranteed and most likely there will be an error.</string>
 </resources>
