@@ -90,4 +90,5 @@
     <string name="ftp_anonym">Анонимно</string>
     <string name="ftp_user">Пользователь</string>
     <string name="ftp_pwd">Пароль</string>
+    <string name="a_opt">Внимание! Это тестовая опция, работа которой не гарантируется и скорее всего будет ошибка.</string>
 </resources>
