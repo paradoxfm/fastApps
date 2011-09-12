@@ -18,4 +18,5 @@
     <string name="hahaha">This event yet wasnt</string>
     <string name="tt_del">Delete?</string>
     <string name="are_want">You really want to remove this event?</string>
+    <string name="tt_edi">Edit event:</string>
 </resources>
