@@ -100,27 +100,27 @@ public final class Parcer {
 		return year;
 	}
 
-	public static String createMessage(TimeSpan set, Context c) {
-		String rez = c.getResources().getString(R.string.after) + "\n";
+	public static String createMessage(Context c, TimeSpan set, String title) {
+		String dat = "";
 		if (set.year != 0)
-			rez += set.year + getFormattedStr(c, R.string.lb_yr, getTypeLast(set.year)) + " ";
+			dat += set.year + getFStr(c, R.string.lb_yr, getTp(set.year)) + " ";
 		if (set.month != 0)
-			rez += set.month + getFormattedStr(c, R.string.lb_mn, getTypeLast(set.month)) + " ";
+			dat += set.month + getFStr(c, R.string.lb_mn, getTp(set.month)) + " ";
 		if (set.day != 0)
-			rez += set.day + getFormattedStr(c, R.string.lb_dy, getTypeLast(set.day)) + " ";
+			dat += set.day + getFStr(c, R.string.lb_dy, getTp(set.day)) + " ";
 		if (set.hour != 0)
-			rez += set.hour + getFormattedStr(c, R.string.lb_hr, getTypeLast(set.hour)) + " ";
+			dat += set.hour + getFStr(c, R.string.lb_hr, getTp(set.hour)) + " ";
 		if (set.minutes != 0)
-			rez += set.minutes + getFormattedStr(c, R.string.lb_mi, getTypeLast(set.minutes));
-		return rez;
+			dat += set.minutes + getFStr(c, R.string.lb_mi, getTp(set.minutes));
+		return String.format(c.getResources().getString(R.string.after), title, dat);
 	}
 
-	private static String getFormattedStr(Context c, int res, int typ) {
+	private static String getFStr(Context c, int res, int typ) {
 		String resstr = c.getResources().getString(res);
 		return resstr.split(";")[typ];
 	}
 
-	private static int getTypeLast(int num) {
+	private static int getTp(int num) {
 		if (num > 10 && num < 20)
 			return 2;
 		String str = "" + num;

@@ -14,6 +14,8 @@
     <string name="lb_mn">месяц;месяца;месяцев</string>
     <string name="lb_yr">год;года;лет</string>
     <string name="lb_mi">минуту;минуты;минут</string>
-    <string name="after">С этого расколбаса прошло:</string>
+    <string name="after">Последний раз %1$s:\n%2$s назад.</string>
     <string name="hahaha">Не гони, паря, этой тусы еще на было</string>
+    <string name="tt_del">Жахнуть?</string>
+    <string name="are_want">Чо в натуре удалить памятную тусу?</string>
 </resources>

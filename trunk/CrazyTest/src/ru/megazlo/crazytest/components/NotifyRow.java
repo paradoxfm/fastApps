@@ -3,7 +3,9 @@ package ru.megazlo.crazytest.components;
 import ru.megazlo.crazytest.R;
 import ru.megazlo.crazytest.utils.NoteData;
 import ru.megazlo.crazytest.utils.dbLay;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -18,6 +20,17 @@ public class NotifyRow extends RelativeLayout {
 	private NoteData dat;
 	private ImageView ico;
 	private TextView title, date;
+
+	protected DialogInterface.OnClickListener editdom = new DialogInterface.OnClickListener() {
+		@Override
+		public void onClick(DialogInterface dlg, int which) {
+			NotifyList lst = (NotifyList) NotifyRow.this.getParent();
+			NotifyAdapter adp = (NotifyAdapter) lst.getAdapter();
+			adp.remove(NotifyRow.this.dat);
+			dbLay.deleteNote(NotifyRow.this.dat.ID);
+			adp.notifyDataSetChanged();
+		}
+	};
 
 	public NotifyRow(Context c, NoteData noteData) {
 		super(c);
@@ -68,11 +81,10 @@ public class NotifyRow extends RelativeLayout {
 		del.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				NotifyList lst = (NotifyList) NotifyRow.this.getParent();
-				NotifyAdapter adp = (NotifyAdapter) lst.getAdapter();
-				adp.remove(NotifyRow.this.dat);
-				dbLay.deleteNote(NotifyRow.this.dat.ID);
-				adp.notifyDataSetChanged();
+				TextView vi = new TextView(getContext());
+				vi.setText(R.string.are_want);
+				new AlertDialog.Builder(getContext()).setTitle(R.string.tt_del).setIcon(R.drawable.qa_delete).setView(vi)
+						.setNegativeButton(R.string.bt_cansel, null).setPositiveButton(R.string.bt_ok, editdom).create().show();
 			}
 		});
 	}
