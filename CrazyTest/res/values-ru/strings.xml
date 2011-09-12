@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="app_name">Ништяки</string>
+    <string name="nn_tile">Чем меня прёт/ пёрло:</string>
+    <string name="nn_time">Время события:</string>
+    <string name="nn_date">Дата события:</string>
+    <string name="bt_cansel">Отбой</string>
+    <string name="bt_ok">Ништяк</string>
+    <string name="cb_now">Прям ща</string>
+    <string name="rembe">Припоминаю:</string>
+    <string name="new_n">Новый ништяк</string>
+    <string name="lb_hr">час;часа;часов</string>
+    <string name="lb_dy">день;дня;дней</string>
+    <string name="lb_mn">месяц;месяца;месяцев</string>
+    <string name="lb_yr">год;года;лет</string>
+    <string name="lb_mi">минуту;минуты;минут</string>
+    <string name="after">С этого расколбаса прошло:</string>
+    <string name="hahaha">Не гони, паря, этой тусы еще на было</string>
+</resources>
