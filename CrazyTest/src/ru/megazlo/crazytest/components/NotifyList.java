@@ -25,10 +25,9 @@ public class NotifyList extends ListView {
 		if (now.getTime() < datn.From.getTime()) {
 			Toast.makeText(getContext(), R.string.hahaha, Toast.LENGTH_SHORT).show();
 		} else {
-
 			TimeSpan rze = Parcer.parce(datn.From);
 
-			String msg = Parcer.createMessage(rze, getContext());
+			String msg = Parcer.createMessage(getContext(), rze, datn.Title);
 			// String msg = "y:" + rze.year + " m:" + rze.month + " d:\n" + rze.day +
 			// " h:" + rze.hour + " m:" + rze.minutes;
 

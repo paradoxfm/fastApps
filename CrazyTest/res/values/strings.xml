@@ -14,6 +14,8 @@
     <string name="lb_dy">day;days;days</string>
     <string name="lb_mn">month;months;months</string>
     <string name="lb_yr">year;years;years</string>
-    <string name="after">From this event has passed:</string>
+    <string name="after">Last time %1$s:\n%2$s back.</string>
     <string name="hahaha">This event yet wasnt</string>
+    <string name="tt_del">Delete?</string>
+    <string name="are_want">You really want to remove this event?</string>
 </resources>

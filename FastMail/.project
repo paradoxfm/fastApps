@@ -32,11 +32,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>pager_src</name>
-			<type>2</type>
-			<locationURI>_android_pager_657efc3/src</locationURI>
-		</link>
-		<link>
 			<name>quicker_src</name>
 			<type>2</type>
 			<locationURI>_android_quicker_273d6b5a/src</locationURI>
