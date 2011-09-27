@@ -3,24 +3,33 @@ package ru.megazlo.fastnote.component;
 import java.io.File;
 
 import ru.megazlo.fastnote.fmMain;
+import ru.megazlo.fastnote.util.NotesLoader;
 import ru.megazlo.fastnote.util.Sets;
-import ru.megazlo.fastnote.util.SqlBase;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.ListView;
 
 public class NoteList extends ListView {
 
 	private NoteRow edited;
+	private Handler handler;
+	private NotesLoader loader;
 
 	public NoteList(Context context) {
 		super(context);
-	}
-
-	public void loadData(File ext, String srhQuery) {
-		Sets.DAT = SqlBase.getList(ext, srhQuery);
 		NoteAdapter adp = new NoteAdapter(this.getContext(), Sets.DAT);
 		this.setAdapter(adp);
+		handler = new Handler() {
+			public void handleMessage(Message msg) {
+				if (msg.obj != null) {
+					NoteData dat = (NoteData) msg.obj;
+					Sets.DAT.add(dat);
+					((NoteAdapter) NoteList.this.getAdapter()).notifyDataSetChanged();
+				}
+			}
+		};
 	}
 
 	@Override
@@ -69,6 +78,12 @@ public class NoteList extends ListView {
 			}
 		dat.setTitle(title);
 		adp.notifyDataSetChanged();
+	}
+
+	public void startLoad(File dirDB, String query) {
+		Sets.DAT.clear();
+		loader = new NotesLoader(handler, dirDB, query);
+		loader.start();
 	}
 
 }

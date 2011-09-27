@@ -149,4 +149,13 @@ public class NoteEditor extends LinearLayout {
 		this.setLocked(true);
 		mEdited = false;
 	}
+
+	public void search(String query) {
+		String str = nedit.getEditableText().toString().toLowerCase();
+		if (str.contains(query)) {
+			int ind = str.indexOf(query);
+			nedit.requestFocus();
+			nedit.setSelection(ind, ind + query.length());
+		}
+	}
 }

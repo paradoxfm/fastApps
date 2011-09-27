@@ -45,7 +45,8 @@ public final class Sets {
 		if (DAT != null) {
 			applySets(frm);
 			return;
-		}
+		} else
+			DAT = new ArrayList<NoteData>();
 		F_DATE = DateFormat.getDateFormat(frm);
 		F_TIME = DateFormat.getTimeFormat(frm);
 		DIP_CONV = frm.getResources().getDisplayMetrics().densityDpi / (float) DisplayMetrics.DENSITY_DEFAULT;
