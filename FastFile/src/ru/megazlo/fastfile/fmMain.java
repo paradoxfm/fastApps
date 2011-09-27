@@ -28,7 +28,7 @@ public class fmMain extends Activity {
 	public FileList lsdc;
 	private TextView title;
 	private ImageView icon;
-	public ScrollerView scrv;
+	public ScrollerView scrv; 
 	private boolean isToRoot = false;
 
 	@Override

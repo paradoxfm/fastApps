@@ -100,11 +100,6 @@ public class fmMain extends Activity {
 	}
 
 	@Override
-	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		super.onRestoreInstanceState(savedInstanceState);
-	}
-
-	@Override
 	protected void onNewIntent(Intent intent) {
 		if (Intent.ACTION_SEARCH.equals(intent.getAction()))
 			doSearchQuery(intent, intent.getStringExtra(SearchManager.QUERY));
@@ -120,8 +115,17 @@ public class fmMain extends Activity {
 	}
 
 	private void doSearchQuery(Intent intent, String stringExtra) {
-		nlist.loadData(dirDB, stringExtra); // загрузка
-		isSearch = true;
+		View v = scrv.getChildAt(scrv.getDisplayedChild());
+		if (nlist == v) {
+			nlist.startLoad(dirDB, stringExtra); // загрузка
+			isSearch = true;
+		} else if (nedit == v) {
+			if (fromFile)
+				unlockFile();
+			else
+				unlockNote();
+			nedit.search(stringExtra.toLowerCase());
+		}
 	}
 
 	private void initChild() {
@@ -130,7 +134,6 @@ public class fmMain extends Activity {
 		newnote.setOnClickListener(newNote);
 		logo = (ImageView) findViewById(R.id.protocol);
 		nlist = new NoteList(this);
-		// nlist.loadData(dirDB, null);
 		scrv.addView(nlist);
 		nedit = new NoteEditor(this);
 		scrv.addView(nedit);
@@ -151,7 +154,7 @@ public class fmMain extends Activity {
 		if (scrv.getChildCount() > 1 && scrv.getDisplayedChild() == 1)
 			scrv.scrollToScreen(0);
 		else if (isSearch) {
-			nlist.loadData(dirDB, null);
+			nlist.startLoad(dirDB, null);
 			isSearch = false;
 		} else
 			super.onBackPressed();
@@ -232,9 +235,9 @@ public class fmMain extends Activity {
 		fromFile = false;
 		setEditorText(dat);
 		insertList();
-		//NoteAdapter adp = (NoteAdapter) nlist.getAdapter();
-		//adp.add(dat);
-		//adp.notifyDataSetChanged();
+		// NoteAdapter adp = (NoteAdapter) nlist.getAdapter();
+		// adp.add(dat);
+		// adp.notifyDataSetChanged();
 		nlist.checkByID(dat.getID());
 		nedit.setLocked(true);
 		logo.setImageResource(R.drawable.notepad);
@@ -278,7 +281,7 @@ public class fmMain extends Activity {
 	}
 
 	private void insertList() {
-		nlist.loadData(dirDB, null); // загрузка
+		nlist.startLoad(dirDB, null); // загрузка
 		if (scrv.getChildAt(0) != nlist)
 			scrv.addView(nlist, 0);
 		nlist.setVisibility(View.VISIBLE);
