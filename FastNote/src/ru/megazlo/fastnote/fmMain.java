@@ -100,6 +100,16 @@ public class fmMain extends Activity {
 	}
 
 	@Override
+	protected void onPause() {
+		super.onPause();
+		// Save a note for an incoming call
+		if (fromFile)
+			saveFile();
+		else
+			lockNote();
+	}
+
+	@Override
 	protected void onNewIntent(Intent intent) {
 		if (Intent.ACTION_SEARCH.equals(intent.getAction()))
 			doSearchQuery(intent, intent.getStringExtra(SearchManager.QUERY));
