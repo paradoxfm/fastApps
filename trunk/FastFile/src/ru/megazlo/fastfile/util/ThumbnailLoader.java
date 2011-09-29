@@ -1,13 +1,16 @@
 package ru.megazlo.fastfile.util;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import ru.megazlo.fastfile.R;
 import ru.megazlo.fastfile.fmMain;
 import ru.megazlo.fastfile.components.filerow.FileRowData;
-import ru.megazlo.fastfile.util.file.FileTools;
 import ru.megazlo.fastfile.util.file.MimeTypes;
+import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -16,8 +19,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 
 public class ThumbnailLoader extends Thread {
@@ -78,8 +83,61 @@ public class ThumbnailLoader extends Thread {
 		int albumId = -1;
 		if (cursor != null && cursor.moveToFirst())
 			albumId = Integer.parseInt(cursor.getString(0));
-		Bitmap cov = FileTools.getArtworkQuick(fmMain.CONTEXT, albumId, 200, 200);
+		Bitmap cov = getArtworkQuick(fmMain.CONTEXT, albumId, 200, 200);
 		return cov != null ? new BitmapDrawable(context.getResources(), cov) : null;
+	}
+
+	// TODO: не рефактить, в FileTools есть такой же метод, но почему-то вылетает
+	// (желательно разобраться с потоками)
+	public static Bitmap getArtworkQuick(Context context, long album_id, int w, int h) {
+		final Uri sArtworkUri = Uri.parse("content://media/external/audio/albumart");
+		final BitmapFactory.Options sBitmapOptionsCache = new BitmapFactory.Options();
+
+		w -= 1;
+		ContentResolver res = context.getContentResolver();
+		Uri uri = ContentUris.withAppendedId(sArtworkUri, album_id);
+		if (uri != null) {
+			ParcelFileDescriptor fd = null;
+			try {
+				fd = res.openFileDescriptor(uri, "r");
+				int sampleSize = 1;
+
+				sBitmapOptionsCache.inJustDecodeBounds = true;
+				BitmapFactory.decodeFileDescriptor(fd.getFileDescriptor(), null, sBitmapOptionsCache);
+				int nextWidth = sBitmapOptionsCache.outWidth >> 1;
+				int nextHeight = sBitmapOptionsCache.outHeight >> 1;
+				while (nextWidth > w && nextHeight > h) {
+					sampleSize <<= 1;
+					nextWidth >>= 1;
+					nextHeight >>= 1;
+				}
+
+				sBitmapOptionsCache.inSampleSize = sampleSize;
+				sBitmapOptionsCache.inJustDecodeBounds = false;
+				Bitmap b = BitmapFactory.decodeFileDescriptor(fd.getFileDescriptor(), null, sBitmapOptionsCache);
+
+				if (b != null) {
+					// finally rescale to exactly the size we need
+					if (sBitmapOptionsCache.outWidth != w || sBitmapOptionsCache.outHeight != h) {
+						Bitmap tmp = Bitmap.createScaledBitmap(b, w, h, true);
+						// Bitmap.createScaledBitmap() can return the same bitmap
+						if (tmp != b)
+							b.recycle();
+						b = tmp;
+					}
+				}
+
+				return b;
+			} catch (FileNotFoundException e) {
+			} finally {
+				try {
+					if (fd != null)
+						fd.close();
+				} catch (IOException e) {
+				}
+			}
+		}
+		return null;
 	}
 
 	private Drawable extractApk(String path) {
