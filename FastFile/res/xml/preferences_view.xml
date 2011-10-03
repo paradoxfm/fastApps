@@ -20,4 +20,11 @@
 			android:key="orientype" android:defaultValue="4" />
 	</PreferenceCategory>
 
+	<PreferenceCategory android:title="@string/backgr_prf">
+		<CheckBoxPreference android:title="@string/bckcolr" android:key="colored"
+			android:summary="@string/bckcolrsmr" />
+		<Preference android:key="bak_color" android:title="@string/set_back" android:summary="@string/set_back_smr"
+		android:dependency="colored" />
+	</PreferenceCategory>
+
 </PreferenceScreen>

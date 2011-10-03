@@ -59,7 +59,8 @@ public class ThumbnailLoader extends Thread {
 			String path = ((File) frdata.getFile()).getAbsolutePath();
 			try {
 				Drawable drw = Sets.SHOW_IMG ? extractImg(path) : null;
-				if (drw == null && Sets.SHOW_MP3 && path.toLowerCase().endsWith(".mp3"))
+				if (drw == null && Sets.SHOW_MP3
+						&& (path.toLowerCase().endsWith(".mp3") || path.toLowerCase().endsWith(".flac")))
 					drw = extractMp3(path);
 				if (drw == null && Sets.SHOW_APK && path.toLowerCase().endsWith(".apk"))
 					drw = extractApk(path);

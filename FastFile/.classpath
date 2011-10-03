@@ -6,7 +6,8 @@
 	<classpathentry kind="lib" path="D:/Projects/fastapps/myres/libs/ftplib.jar"/>
 	<classpathentry kind="lib" path="D:/Projects/fastapps/myres/libs/jcifs-1.3.16.jar"/>
 	<classpathentry kind="lib" path="D:/Projects/fastapps/myres/libs/raroscope-1.0.jar"/>
-	<classpathentry kind="src" path="quicker_src"/>
 	<classpathentry kind="src" path="ScrollerViewComp_src"/>
+	<classpathentry kind="src" path="quicker_src"/>
+	<classpathentry kind="src" path="ColorPicker_src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

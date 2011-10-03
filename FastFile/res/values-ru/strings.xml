@@ -91,4 +91,9 @@
     <string name="ftp_user">Пользователь</string>
     <string name="ftp_pwd">Пароль</string>
     <string name="a_opt">Внимание! Это тестовая опция, работа которой не гарантируется и скорее всего будет ошибка.</string>
+    <string name="backgr_prf">Фоновое изображение</string>
+    <string name="set_back">Установить фон</string>
+    <string name="set_back_smr">Установить в качестве фона цветную заливку</string>
+    <string name="bckcolrsmr">Залить фон сплошным цветом</string>
+    <string name="bckcolr">Сплошной цвет</string>
 </resources>

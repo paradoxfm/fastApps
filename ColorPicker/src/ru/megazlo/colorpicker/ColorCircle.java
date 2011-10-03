@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ru.megazlo.fastnote.color;
+package ru.megazlo.colorpicker;
 
 import android.content.Context;
 import android.graphics.Canvas;

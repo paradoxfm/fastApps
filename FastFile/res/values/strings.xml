@@ -91,4 +91,9 @@
     <string name="ftp_user">User</string>
     <string name="ftp_pwd">Password</string>
     <string name="a_opt">Attention! It is the test option which work isnt guaranteed and most likely there will be an error.</string>
+    <string name="backgr_prf">Background</string>
+    <string name="set_back">Set background</string>
+    <string name="set_back_smr">Set as the background color fills</string>
+    <string name="bckcolrsmr">Fill the background with a solid color</string>
+    <string name="bckcolr">Solid color</string>
 </resources>

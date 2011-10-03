@@ -12,6 +12,10 @@ import ru.megazlo.scrollerview.ScrollerView;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -28,7 +32,7 @@ public class fmMain extends Activity {
 	public FileList lsdc;
 	private TextView title;
 	private ImageView icon;
-	public ScrollerView scrv; 
+	public ScrollerView scrv;
 	private boolean isToRoot = false;
 
 	@Override
@@ -39,6 +43,11 @@ public class fmMain extends Activity {
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
 		initChild();
 		Sets.load(getPreferences(0), this);
+		if (Sets.IS_COLORED) {
+			Bitmap bmp = Bitmap.createBitmap(new int[] { Sets.BACK_COLOR }, 1, 1, Config.ARGB_8888);
+			Drawable drw = new BitmapDrawable(bmp);
+			getWindow().setBackgroundDrawable(drw);
+		}
 		if (Sets.dat != null && Sets.dat.size() > 0)
 			Sets.restoreLists(this);
 		else

@@ -18,6 +18,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.text.format.DateFormat;
@@ -37,6 +38,7 @@ public class Sets {
 	public static Boolean ISGRID;
 	public static Boolean OPEN_THIS;// open ext
 	public static Boolean SHOW_HIDDEN;// hidden
+	public static Boolean IS_COLORED;// hidden
 	public static Boolean SHOW_IMG;// show images preview
 	public static Boolean SHOW_MP3;// show mp3 cover preview
 	public static Boolean SHOW_APK;// show apk preview
@@ -46,6 +48,7 @@ public class Sets {
 	public static Boolean ANIMATE;// animate
 	public static Integer ORIENT_TYPE;// orientype
 	public static Integer TXT_CLR;// text color
+	public static Integer BACK_COLOR;// text color
 
 	// -------------------------------------------
 	public static LayoutAnimationController LIST_ANIM;
@@ -72,6 +75,7 @@ public class Sets {
 		F_TIME = DateFormat.getTimeFormat(res);
 		ISGRID = prf.getBoolean("ISGRID", false);
 		OPEN_THIS = prf.getBoolean("OPEN_THIS", false);
+		IS_COLORED = prf.getBoolean("IS_COLORED", true);
 		HOME_PATH = new File(prf.getString("HOME_PATH", "/"));
 		if (!HOME_PATH.exists() || !HOME_PATH.canRead())
 			HOME_PATH = new File("/");
@@ -84,6 +88,7 @@ public class Sets {
 		FULL_SCR = prf.getBoolean("FULL_SCR", false);
 		ANIMATE = prf.getBoolean("ANIMATE", false);
 		ORIENT_TYPE = prf.getInt("ORIENT_TYPE", ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+		BACK_COLOR = prf.getInt("BACK_COLOR", Color.BLACK);
 		TXT_CLR = prf.getInt("TXT_CLR", -4276546);
 		loadRes(res);
 		applySets(res);
@@ -111,12 +116,14 @@ public class Sets {
 		edit.putBoolean("OPEN_THIS", OPEN_THIS);
 		edit.putString("HOME_PATH", HOME_PATH.getPath());
 		edit.putBoolean("SHOW_HIDDEN", SHOW_HIDDEN);
+		edit.putBoolean("IS_COLORED", IS_COLORED);
 		edit.putBoolean("SHOW_IMG", SHOW_IMG);
 		edit.putBoolean("SHOW_MP3", SHOW_MP3);
 		edit.putBoolean("SHOW_APK", SHOW_APK);
 		edit.putBoolean("FULL_SCR", FULL_SCR);
 		edit.putBoolean("ANIMATE", ANIMATE);
 		edit.putInt("ORIENT_TYPE", ORIENT_TYPE);
+		edit.putInt("BACK_COLOR", BACK_COLOR);
 		edit.putInt("TXT_CLR", TXT_CLR);
 		edit.commit();
 	}
