@@ -4,6 +4,10 @@ import java.io.File;
 
 import ru.megazlo.fastfile.util.Sets;
 import android.app.AlertDialog;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -16,9 +20,17 @@ import android.widget.Toast;
 
 public class fmSettings extends PreferenceActivity implements Preference.OnPreferenceChangeListener {
 
+	public static fmSettings CONTEXT;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		CONTEXT = this;
+		if (Sets.IS_COLORED) {
+			Bitmap bmp = Bitmap.createBitmap(new int[] { Sets.BACK_COLOR }, 1, 1, Config.ARGB_8888);
+			Drawable drw = new BitmapDrawable(bmp);
+			getWindow().setBackgroundDrawable(drw);
+		}
 		addPreferencesFromResource(R.xml.preferences);
 		initPrefs();
 	}

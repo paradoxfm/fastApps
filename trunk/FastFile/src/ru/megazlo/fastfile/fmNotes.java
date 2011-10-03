@@ -13,10 +13,14 @@ import ru.megazlo.fastfile.util.Sets;
 import ru.megazlo.fastfile.util.file.FileTools;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Bitmap.Config;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.Menu;
@@ -62,6 +66,11 @@ public class fmNotes extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Sets.applySets(this);
+		if (Sets.IS_COLORED) {
+			Bitmap bmp = Bitmap.createBitmap(new int[] { Sets.BACK_COLOR }, 1, 1, Config.ARGB_8888);
+			Drawable drw = new BitmapDrawable(bmp);
+			getWindow().setBackgroundDrawable(drw);
+		}
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.note_editor);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>FastFile</name>
+	<name>ColorPicker</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -30,21 +30,4 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>ColorPicker_src</name>
-			<type>2</type>
-			<locationURI>_android_ColorPicker_983475b1/src</locationURI>
-		</link>
-		<link>
-			<name>ScrollerViewComp_src</name>
-			<type>2</type>
-			<locationURI>_android_ScrollerViewComp_a3b2c5ce/src</locationURI>
-		</link>
-		<link>
-			<name>quicker_src</name>
-			<type>2</type>
-			<locationURI>_android_quicker_273d6b5a/src</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>

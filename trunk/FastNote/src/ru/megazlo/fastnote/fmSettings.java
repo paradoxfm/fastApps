@@ -1,8 +1,8 @@
 package ru.megazlo.fastnote;
 
-import ru.megazlo.fastnote.color.ColorCircle;
-import ru.megazlo.fastnote.color.ColorSlider;
-import ru.megazlo.fastnote.color.OnColorChangedListener;
+import ru.megazlo.colorpicker.ColorCircle;
+import ru.megazlo.colorpicker.ColorSlider;
+import ru.megazlo.colorpicker.OnColorChangedListener;
 import ru.megazlo.fastnote.util.Sets;
 import ru.megazlo.fastnote.R;
 import android.app.AlertDialog;
@@ -51,7 +51,7 @@ public class fmSettings extends PreferenceActivity implements Preference.OnPrefe
 		this.findPreference("about").setOnPreferenceClickListener(this);
 	}
 
-	void initializeColor(View v, int color) {
+	private void initializeColor(View v, int color) {
 		mColorCircle = (ColorCircle) v.findViewById(R.id.colorcircle);
 		mColorCircle.setOnColorChangedListener(this);
 		mColorCircle.setColor(color);

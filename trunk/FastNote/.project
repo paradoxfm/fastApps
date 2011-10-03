@@ -32,6 +32,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>ColorPicker_src</name>
+			<type>2</type>
+			<locationURI>_android_ColorPicker_983475b1/src</locationURI>
+		</link>
+		<link>
 			<name>ScrollerViewComp_src</name>
 			<type>2</type>
 			<locationURI>_android_ScrollerViewComp_a3b2c5ce/src</locationURI>

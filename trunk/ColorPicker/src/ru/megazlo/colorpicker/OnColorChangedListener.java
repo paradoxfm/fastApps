@@ -1,4 +1,4 @@
-package ru.megazlo.fastnote.color;
+package ru.megazlo.colorpicker;
 
 import android.view.View;
 
