@@ -1,12 +1,5 @@
 package ru.megazlo.fastfile.engine;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Enumeration;
-
-import com.adarshr.raroscope.RAREntry;
-import com.adarshr.raroscope.RARFile;
-
 import ru.megazlo.fastfile.components.RowData;
 import ru.megazlo.fastfile.components.filerow.FileList;
 
@@ -14,16 +7,15 @@ public class EngineARC extends BaseEngine {
 
 	public EngineARC(FileList list) {
 		super(list);
-		RARFile fl = null;
-		try {
-			fl = new RARFile(new File("/"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Enumeration<RAREntry> ent = fl.entries();
+		// RARFile fl = null;
+		// try {
+		// fl = new RARFile(new File("/"));
+		// } catch (IOException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// Enumeration<RAREntry> ent = fl.entries();
 	}
-	
 
 	@Override
 	public boolean browseUp() {
