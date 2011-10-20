@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="hello">Hello World, Main!</string>
+    <string name="app_name">LEDX Remote</string>
+    <string-array name="loc">
+        <item>Кухня</item>
+        <item>Спальня</item>
+        <item>Гостиная</item>
+        <item>Туалет</item>
+        <item>Прихожая</item>
+    </string-array>
+    
+</resources>
