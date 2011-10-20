@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:layout_marginTop="10dip"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal" >
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.40"
+            android:entries="@array/loc" />
+
+        <ImageView
+            android:id="@+id/imgEnable"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_marginLeft="20dip"
+            android:src="@drawable/standby"
+            android:tag="on" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="5dip"
+        android:paddingTop="5dip"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/divider_horizontal_dim_dark" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:text="Программы анимации"
+        android:textSize="20dip" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:text="1" />
+
+        <Button
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:text="2" />
+
+        <Button
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:text="3" />
+
+        <Button
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:text="4" />
+
+        <Button
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:text="5" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:text="Скорость анимации"
+        android:textSize="20dip" />
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="4"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:progress="2" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="5dip"
+        android:paddingTop="5dip"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/divider_horizontal_dim_dark" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:text="Выбор цвета"
+        android:textSize="20dip" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_margin="2dip"
+            android:background="#ff0000" />
+
+        <Button
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_margin="2dip"
+            android:background="#91d050" />
+
+        <Button
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_margin="2dip"
+            android:background="#285ea6" />
+
+        <Button
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_margin="2dip"
+            android:background="#ffff00" />
+
+        <Button
+            android:id="@+id/btCustomColor"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_margin="2dip"
+            android:background="#fcca04" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:text="Яркость"
+        android:textSize="20dip" />
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="4"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:progress="4" />
+
+</LinearLayout>
