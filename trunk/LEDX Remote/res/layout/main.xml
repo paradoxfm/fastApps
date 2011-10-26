@@ -53,26 +53,31 @@
         android:orientation="horizontal" >
 
         <Button
+            android:id="@+id/btProgOne"
             android:layout_width="60dip"
             android:layout_height="60dip"
             android:text="1" />
 
         <Button
+            android:id="@+id/btProgTwo"
             android:layout_width="60dip"
             android:layout_height="60dip"
             android:text="2" />
 
         <Button
+            android:id="@+id/btProgThree"
             android:layout_width="60dip"
             android:layout_height="60dip"
             android:text="3" />
 
         <Button
+            android:id="@+id/btProgFour"
             android:layout_width="60dip"
             android:layout_height="60dip"
             android:text="4" />
 
         <Button
+            android:id="@+id/btProgFive"
             android:layout_width="60dip"
             android:layout_height="60dip"
             android:text="5" />
