@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings" >
+
+    <PreferenceCategory android:title="@string/mainset" >
+
+        <CheckBoxPreference
+            android:key="broadcast"
+            android:summary="@string/br_cast_smr"
+            android:title="@string/br_cast" />
+
+        <EditTextPreference
+            android:dependency="broadcast"
+            android:key="ipadr"
+            android:summary="@string/ip_adr_smr"
+            android:title="@string/ip_adr" />
+
+        <EditTextPreference
+            android:key="port"
+            android:summary="@string/port_adr_smr"
+            android:title="@string/port_adr" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sys" >
+
+        <Preference
+            android:key="about"
+            android:summary="@string/about_smr"
+            android:title="@string/about" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -9,5 +9,18 @@
         <item>Туалет</item>
         <item>Прихожая</item>
     </string-array>
-    
+    <string name="settings">Настройки</string>
+    <string name="quit">Выход</string>
+    <string name="tutor">Справка</string>
+    <string name="br_cast">По IP адресу</string>
+    <string name="br_cast_smr">Переключает между широковещательной передачей и одим IP адресом</string>
+    <string name="ip_adr">IP адрес</string>
+    <string name="ip_adr_smr">Настроеный IP адрес контроллера</string>
+    <string name="port_adr">Порт</string>
+    <string name="port_adr_smr">Порт для подключения к контроллеру</string>
+    <string name="about">О программе</string>
+    <string name="about_smr">Информация о программе и правообладателях</string>
+    <string name="mainset">Основные</string>
+    <string name="pref_sys">Программа</string>
+    <string name="about_txt">Автор: Гуркин Иван\nCopyright © 2011 <a href="http://led66.ru/">led66.ru</a>\nВсе права принадлежат led66.ru\nEmail: <a href="mailto:zakaz@led66.ru">zakaz@led66.ru</a></string>
 </resources>

@@ -1,24 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" android:title="@string/settings">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings" >
 
-	<PreferenceCategory android:title="@string/mainset">
-		<CheckBoxPreference android:key="fullscr" android:title="@string/full_scr"
-			android:summary="@string/full_scr_smr" />
-		<ListPreference android:key="orientype" android:title="@string/orien" android:summary="@string/orien_smr"
-			android:entries="@array/orient" android:entryValues="@array/orient_val" android:dialogTitle="@string/orien"
-			android:defaultValue="4" />
-	</PreferenceCategory>
+    <PreferenceCategory android:title="@string/mainset" >
 
-	<PreferenceCategory android:title="@string/pref_edit">
-		<Preference android:key="line_color" android:title="@string/line_color" android:summary="@string/line_color_smr" />
-		<Preference android:key="color_text" android:title="@string/edit_color_text" android:summary="@string/color_text_smr" />
-		<Preference android:key="size_text" android:title="@string/edit_size_text" android:summary="@string/size_text_smr" />
-	</PreferenceCategory>
+        <CheckBoxPreference
+            android:key="fullscr"
+            android:summary="@string/full_scr_smr"
+            android:title="@string/full_scr" />
 
-	<PreferenceCategory android:title="@string/pref_sys">
-		<Preference android:key="bakup" android:title="@string/set_back" android:summary="@string/set_back_smr" />
-		<Preference android:key="about" android:title="@string/about" android:summary="@string/about_smr" />
-	</PreferenceCategory>
-	
+        <ListPreference
+            android:defaultValue="4"
+            android:dialogTitle="@string/orien"
+            android:entries="@array/orient"
+            android:entryValues="@array/orient_val"
+            android:key="orientype"
+            android:summary="@string/orien_smr"
+            android:title="@string/orien" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_edit" >
+
+        <Preference
+            android:key="line_color"
+            android:summary="@string/line_color_smr"
+            android:title="@string/line_color" />
+
+        <Preference
+            android:key="color_text"
+            android:summary="@string/color_text_smr"
+            android:title="@string/edit_color_text" />
+
+        <Preference
+            android:key="size_text"
+            android:summary="@string/size_text_smr"
+            android:title="@string/edit_size_text" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sys" >
+
+        <Preference
+            android:key="bakup"
+            android:summary="@string/set_back_smr"
+            android:title="@string/set_back" />
+
+        <Preference
+            android:key="about"
+            android:summary="@string/about_smr"
+            android:title="@string/about" />
+    </PreferenceCategory>
 
 </PreferenceScreen>

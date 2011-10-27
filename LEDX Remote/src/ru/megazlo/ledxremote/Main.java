@@ -1,32 +1,23 @@
 package ru.megazlo.ledxremote;
 
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-
-import ru.megazlo.colorpicker.ColorCircle;
-import ru.megazlo.colorpicker.ColorSlider;
-import ru.megazlo.colorpicker.OnColorChangedListener;
+import ru.megazlo.ledxremote.components.ColorButton;
+import ru.megazlo.ledxremote.components.PlayTrack;
+import ru.megazlo.ledxremote.util.MenuCheck;
+import ru.megazlo.ledxremote.util.Sets;
 import ru.megazlo.ledxremote.util.Util;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.graphics.Color;
-import android.net.DhcpInfo;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 
-public class Main extends Activity implements OnColorChangedListener, View.OnClickListener {
-	private int clor = 0xfcca04;
-	private ColorCircle mColorCircle;
-	private ColorSlider mSaturation, mValue;
-	private AlertDialog dial;
+public class Main extends Activity {
+	private PlayTrack[] p_btns = new PlayTrack[5];
+	private ColorButton[] c_btns = new ColorButton[5];
+	private static Main inst_;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,124 +25,122 @@ public class Main extends Activity implements OnColorChangedListener, View.OnCli
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.main);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
+		inst_ = this;
+		Sets.load(getPreferences(0));
+		initChild();
 		initEvents();
+		this.onPause();
 	}
 
-	private InetAddress getBroadcastAddress() throws IOException {
-		WifiManager wifi = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
-		DhcpInfo dhcp = wifi.getDhcpInfo();
-		// handle null somehow
-
-		int broadcast = (dhcp.ipAddress & dhcp.netmask) | ~dhcp.netmask;
-		byte[] quads = new byte[4];
-		for (int k = 0; k < 4; k++)
-			quads[k] = (byte) ((broadcast >> k * 8) & 0xFF);
-		return InetAddress.getByAddress(quads);
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		this.getMenuInflater().inflate(R.menu.main_menu, menu);
+		return true;
 	}
 
-	// DatagramSocket socket;
-
-	private void sendPackage(byte[] data) throws IOException {
-		// UDP порт: 5378
-		// IP адрес 192.168.1.2
-		int PORT = 5378;
-		// InetAddress adr = InetAddress.getByAddress(new byte[] { (byte) 192,
-		// (byte) 168, 1, 2 });
-		InetAddress adr = getBroadcastAddress();
-
-		DatagramSocket socket = new DatagramSocket(PORT);
-		socket.setBroadcast(true);
-
-		DatagramPacket packet = new DatagramPacket(data, data.length, adr, PORT);
-		socket.send(packet);
-		socket.close();
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		return MenuCheck.itemClick(this, item.getItemId());
 	}
 
-	private void initializeColor(View v, int color) {
-		mColorCircle = (ColorCircle) v.findViewById(R.id.colorcircle);
-		mColorCircle.setOnColorChangedListener(this);
-		mColorCircle.setColor(color);
-		mSaturation = (ColorSlider) v.findViewById(R.id.saturation);
-		mSaturation.setOnColorChangedListener(this);
-		mSaturation.setColors(color, Color.BLACK);
-		mValue = (ColorSlider) v.findViewById(R.id.value);
-		mValue.setOnColorChangedListener(this);
-		mValue.setColors(Color.WHITE, color);
+	public void saveSets() {
+		Sets.CL_1 = c_btns[0].getCurrentColor();
+		Sets.CL_2 = c_btns[1].getCurrentColor();
+		Sets.CL_3 = c_btns[2].getCurrentColor();
+		Sets.CL_4 = c_btns[3].getCurrentColor();
+		Sets.CL_5 = c_btns[4].getCurrentColor();
+		Sets.save(getPreferences(0));
+	}
+
+	public static Main getInst() {
+		return inst_;
+	}
+
+	private void initChild() {
+		p_btns[0] = (PlayTrack) findViewById(R.id.btProgOne);
+		p_btns[1] = (PlayTrack) findViewById(R.id.btProgTwo);
+		p_btns[2] = (PlayTrack) findViewById(R.id.btProgThree);
+		p_btns[3] = (PlayTrack) findViewById(R.id.btProgFour);
+		p_btns[4] = (PlayTrack) findViewById(R.id.btProgFive);
+
+		c_btns[0] = (ColorButton) findViewById(R.id.btClOne);
+		c_btns[0].setBackgroundColor(Sets.CL_1);
+		c_btns[1] = (ColorButton) findViewById(R.id.btClTwo);
+		c_btns[1].setBackgroundColor(Sets.CL_2);
+		c_btns[2] = (ColorButton) findViewById(R.id.btClThree);
+		c_btns[2].setBackgroundColor(Sets.CL_3);
+		c_btns[3] = (ColorButton) findViewById(R.id.btClFour);
+		c_btns[3].setBackgroundColor(Sets.CL_4);
+		c_btns[4] = (ColorButton) findViewById(R.id.btClFive);
+		c_btns[4].setBackgroundColor(Sets.CL_5);
 	}
 
 	private void initEvents() {
-		findViewById(R.id.btProgOne).setOnClickListener(this);
-		findViewById(R.id.btProgTwo).setOnClickListener(this);
-		findViewById(R.id.btProgThree).setOnClickListener(this);
-		findViewById(R.id.btProgFour).setOnClickListener(this);
-		findViewById(R.id.btProgFive).setOnClickListener(this);
+		for (int i = 0; i < p_btns.length; i++)
+			p_btns[i].setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					clickProgram(v);
+				}
+			});
+		for (int i = 0; i < p_btns.length; i++)
+			c_btns[i].setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					ColorButton bt = (ColorButton) v;
+					int cl = bt.getCurrentColor();
+					Util.sendColor(cl);
+				}
+			});
 
 		findViewById(R.id.imgEnable).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				ImageView im = (ImageView) v;
-				if (im.getTag().equals("on")) {
-					im.setImageResource(R.drawable.shutdown);
-					im.setTag("off");
-				} else {
-					im.setImageResource(R.drawable.standby);
-					im.setTag("on");
-				}
-
+				Util.swapEnable();
 			}
 		});
-		findViewById(R.id.btCustomColor).setOnLongClickListener(new View.OnLongClickListener() {
+
+		SeekBar sk1 = (SeekBar) findViewById(R.id.sb_speed);
+		sk1.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			@Override
-			public boolean onLongClick(View v) {
-				final View formcon = LayoutInflater.from(Main.this).inflate(R.layout.color_dial, null);
-				initializeColor(formcon, clor);
-				dial = new AlertDialog.Builder(Main.this).setView(formcon).create();
-				dial.show();
-				return true;
+			public void onStopTrackingTouch(SeekBar seekBar) {
+			}
+
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+			}
+
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+				Util.sendSpeed(progress);
+			}
+		});
+
+		SeekBar sk2 = (SeekBar) findViewById(R.id.sb_speed);
+		sk2.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+			}
+
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+			}
+
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+				Util.sendBrightness(progress);
 			}
 		});
 	}
 
-	private void setProgram(byte id) {
-		byte[] data = new byte[8];
-		data[0] = (byte) 170;
-		data[1] = 82;
-		data[2] = 1;
-		data[3] = 2;
-		data[4] = 1;
-		data[5] = id;
-		data[6] = (byte) (86 + id);
-		data[7] = 85;
-		byte sum = Util.CheckSum(data);
-		try {
-			sendPackage(data);
-		} catch (IOException e) {
-		}
+	private void clickProgram(View v) {
+		PlayTrack tr = (PlayTrack) v;
+		for (int i = 0; i < p_btns.length; i++)
+			if (p_btns[i] != tr && p_btns[i].getStatePlay() != PlayTrack.INACTIVE)
+				p_btns[i].setStatePlay(PlayTrack.INACTIVE);
+		byte prg = Byte.parseByte(tr.getTag().toString());
+		Util.sendProgram(prg);
 	}
 
-	@Override
-	public void onColorChanged(View view, int newColor) {
-		if (view == mColorCircle) {
-			mValue.setColors(0xFFFFFFFF, newColor);
-			mSaturation.setColors(newColor, 0xff000000);
-		} else if (view == mSaturation) {
-			mColorCircle.setColor(newColor);
-			mValue.setColors(0xFFFFFFFF, newColor);
-		} else if (view == mValue) {
-			mColorCircle.setColor(newColor);
-		}
-	}
-
-	@Override
-	public void onColorPicked(View view, int newColor) {
-		findViewById(R.id.btCustomColor).setBackgroundColor(newColor);
-		clor = newColor;
-		dial.dismiss();
-	}
-
-	@Override
-	public void onClick(View v) {
-		byte prg = Byte.parseByte(((Button) v).getText().toString());
-		setProgram(prg);
-	}
 }

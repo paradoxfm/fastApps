@@ -1,30 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" android:title="@string/showng">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/showng" >
 
-	<PreferenceCategory android:title="@string/setviewicon">
-		<CheckBoxPreference android:title="@string/imgpew" android:key="imgpreview"
-			android:summary="@string/imgpewsmr" />
-		<CheckBoxPreference android:title="@string/apkpew" android:key="apkpreview"
-			android:summary="@string/apkpewsmr" />
-		<CheckBoxPreference android:title="@string/mp3pew" android:key="mp3preview"
-			android:summary="@string/mp3pewsmr" />
-	</PreferenceCategory>
+    <PreferenceCategory android:title="@string/setviewicon" >
 
-	<PreferenceCategory android:title="@string/setviewother">
-		<CheckBoxPreference android:title="@string/fulscr" android:key="fullscr" android:summary="@string/fulscrsmr" />
-		<CheckBoxPreference android:title="@string/hidden" android:key="hidden" android:summary="@string/hiddensmr" />
+        <CheckBoxPreference
+            android:key="imgpreview"
+            android:summary="@string/imgpewsmr"
+            android:title="@string/imgpew" />
 
-		<CheckBoxPreference android:title="@string/anim" android:key="animate" android:summary="@string/animsmr" />
-		<ListPreference android:title="@string/orien" android:summary="@string/oriensmr"
-			android:entries="@array/orient" android:entryValues="@array/orient_val" android:dialogTitle="@string/orien"
-			android:key="orientype" android:defaultValue="4" />
-	</PreferenceCategory>
+        <CheckBoxPreference
+            android:key="apkpreview"
+            android:summary="@string/apkpewsmr"
+            android:title="@string/apkpew" />
 
-	<PreferenceCategory android:title="@string/backgr_prf">
-		<CheckBoxPreference android:title="@string/bckcolr" android:key="colored"
-			android:summary="@string/bckcolrsmr" />
-		<Preference android:key="bak_color" android:title="@string/set_back" android:summary="@string/set_back_smr"
-		android:dependency="colored" />
-	</PreferenceCategory>
+        <CheckBoxPreference
+            android:key="mp3preview"
+            android:summary="@string/mp3pewsmr"
+            android:title="@string/mp3pew" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/setviewother" >
+
+        <CheckBoxPreference
+            android:key="fullscr"
+            android:summary="@string/fulscrsmr"
+            android:title="@string/fulscr" />
+
+        <CheckBoxPreference
+            android:key="hidden"
+            android:summary="@string/hiddensmr"
+            android:title="@string/hidden" />
+
+        <CheckBoxPreference
+            android:key="animate"
+            android:summary="@string/animsmr"
+            android:title="@string/anim" />
+
+        <ListPreference
+            android:defaultValue="4"
+            android:dialogTitle="@string/orien"
+            android:entries="@array/orient"
+            android:entryValues="@array/orient_val"
+            android:key="orientype"
+            android:summary="@string/oriensmr"
+            android:title="@string/orien" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/backgr_prf" >
+
+        <CheckBoxPreference
+            android:key="colored"
+            android:summary="@string/bckcolrsmr"
+            android:title="@string/bckcolr" />
+
+        <Preference
+            android:dependency="colored"
+            android:key="bak_color"
+            android:summary="@string/set_back_smr"
+            android:title="@string/set_back" />
+    </PreferenceCategory>
 
 </PreferenceScreen>
