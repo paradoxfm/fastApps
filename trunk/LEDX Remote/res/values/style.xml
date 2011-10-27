@@ -2,11 +2,6 @@
 <resources>
 
     <style name="app_theme" parent="android:Theme">
-        <!--
-        <item name="android:listViewStyle">@style/TransparentListView</item>
-        <item name="android:expandableListViewStyle">@style/TransparentExpandableListView</item>
-        <item name="android:alertDialogStyle">@style/dialogAlertTheme</item>
-        -->
         <item name="android:windowBackground">@drawable/app_background</item>
         <item name="android:windowTitleBackgroundStyle">@style/TitlebarBackgroundStyle</item>
         <item name="android:windowTitleSize">35dip</item>
@@ -14,7 +9,7 @@
     </style>
 
     <style name="TitlebarBackgroundStyle">
-        <item name="android:background">@drawable/title_bar_background</item>
+        <item name="android:background">@color/titlBack</item>
     </style>
 
     <style name="MySeekBar">
@@ -28,8 +23,9 @@
         <item name="android:focusable">true</item>
     </style>
 
+    <color name="titlBack">#0e0e0e</color>
     <color name="widgetBorder">#e6eff2</color>
-    <color name="gradientWidgetStartColor">#3798c8</color>
-    <color name="gradientWidgetEndColor">#2861a2</color>
+    <color name="gradientWidgetStartColor">#818181</color>
+    <color name="gradientWidgetEndColor">#aeaeae</color>
 
 </resources>

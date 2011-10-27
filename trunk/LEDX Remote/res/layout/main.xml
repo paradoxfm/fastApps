@@ -14,7 +14,7 @@
         android:orientation="horizontal" >
 
         <Spinner
-            android:id="@+id/spinner1"
+            android:id="@+id/spn_loc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.40"
@@ -25,7 +25,7 @@
             android:layout_width="60dip"
             android:layout_height="60dip"
             android:layout_marginLeft="20dip"
-            android:src="@drawable/standby"
+            android:src="@drawable/selector1"
             android:tag="on" />
     </LinearLayout>
 
@@ -52,35 +52,40 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal" >
 
-        <Button
+        <ru.megazlo.ledxremote.components.PlayTrack
             android:id="@+id/btProgOne"
             android:layout_width="60dip"
             android:layout_height="60dip"
-            android:text="1" />
+            android:src="@drawable/numbers1"
+            android:tag="1" />
 
-        <Button
+        <ru.megazlo.ledxremote.components.PlayTrack
             android:id="@+id/btProgTwo"
             android:layout_width="60dip"
             android:layout_height="60dip"
-            android:text="2" />
+            android:src="@drawable/numbers2"
+            android:tag="2" />
 
-        <Button
+        <ru.megazlo.ledxremote.components.PlayTrack
             android:id="@+id/btProgThree"
             android:layout_width="60dip"
             android:layout_height="60dip"
-            android:text="3" />
+            android:src="@drawable/numbers3"
+            android:tag="3" />
 
-        <Button
+        <ru.megazlo.ledxremote.components.PlayTrack
             android:id="@+id/btProgFour"
             android:layout_width="60dip"
             android:layout_height="60dip"
-            android:text="4" />
+            android:src="@drawable/numbers4"
+            android:tag="4" />
 
-        <Button
+        <ru.megazlo.ledxremote.components.PlayTrack
             android:id="@+id/btProgFive"
             android:layout_width="60dip"
             android:layout_height="60dip"
-            android:text="5" />
+            android:src="@drawable/numbers5"
+            android:tag="5" />
     </LinearLayout>
 
     <TextView
@@ -91,11 +96,12 @@
         android:textSize="20dip" />
 
     <SeekBar
+        android:id="@+id/sb_speed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="4"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip"
+        android:paddingLeft="17dip"
+        android:paddingRight="17dip"
         android:progress="2" />
 
     <ImageView
@@ -121,36 +127,35 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal" >
 
-        <Button
+        <ru.megazlo.ledxremote.components.ColorButton
+            android:id="@+id/btClOne"
             android:layout_width="60dip"
             android:layout_height="60dip"
-            android:layout_margin="2dip"
-            android:background="#ff0000" />
+            android:layout_margin="2dip" />
 
-        <Button
+        <ru.megazlo.ledxremote.components.ColorButton
+            android:id="@+id/btClTwo"
             android:layout_width="60dip"
             android:layout_height="60dip"
-            android:layout_margin="2dip"
-            android:background="#91d050" />
+            android:layout_margin="2dip" />
 
-        <Button
+        <ru.megazlo.ledxremote.components.ColorButton
+            android:id="@+id/btClThree"
             android:layout_width="60dip"
             android:layout_height="60dip"
-            android:layout_margin="2dip"
-            android:background="#285ea6" />
+            android:layout_margin="2dip" />
 
-        <Button
+        <ru.megazlo.ledxremote.components.ColorButton
+            android:id="@+id/btClFour"
             android:layout_width="60dip"
             android:layout_height="60dip"
-            android:layout_margin="2dip"
-            android:background="#ffff00" />
+            android:layout_margin="2dip" />
 
-        <Button
-            android:id="@+id/btCustomColor"
+        <ru.megazlo.ledxremote.components.ColorButton
+            android:id="@+id/btClFive"
             android:layout_width="60dip"
             android:layout_height="60dip"
-            android:layout_margin="2dip"
-            android:background="#fcca04" />
+            android:layout_margin="2dip" />
     </LinearLayout>
 
     <TextView
@@ -161,11 +166,12 @@
         android:textSize="20dip" />
 
     <SeekBar
+        android:id="@+id/sb_brigh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="4"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip"
+        android:paddingLeft="17dip"
+        android:paddingRight="17dip"
         android:progress="4" />
 
 </LinearLayout>
