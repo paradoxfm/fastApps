@@ -1,6 +1,7 @@
 package ru.megazlo.ledxremote.components;
 
 import ru.megazlo.ledxremote.R;
+import ru.megazlo.ledxremote.util.Util;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -8,9 +9,11 @@ import android.widget.ImageButton;
 
 public class PlayTrack extends ImageButton {
 	public static final int INACTIVE = 0;
-	public static final int PLAY = 1;
-	public static final int PAUSE = 2;
+	public static final int ACTIVE = 1;
+	// public static final int PLAY = 1;
+	// public static final int PAUSE = 2;
 
+	private boolean is_viewed = false;
 	private int state = INACTIVE;
 	private Drawable def;
 
@@ -27,28 +30,42 @@ public class PlayTrack extends ImageButton {
 
 	@Override
 	public boolean performClick() {
-		setStatePlay();
-		setImageState();
+		if (Util.checkErrors())
+			return false;
+		if (state == PlayTrack.INACTIVE) {
+			setStatePlay();
+			setImageState();
+		}
 		return super.performClick();
 	}
 
 	private void setStatePlay() {
 		switch (state) {
-		case PlayTrack.PLAY:
-			state = PlayTrack.PAUSE;
+		case PlayTrack.ACTIVE:
+			state = PlayTrack.INACTIVE;
 			break;
-		case PlayTrack.PAUSE:
-			state = PlayTrack.PLAY;
+		case PlayTrack.INACTIVE:
+			state = PlayTrack.ACTIVE;
 			break;
 		default:
-			state = PlayTrack.PLAY;
+			state = PlayTrack.INACTIVE;
 			break;
 		}
 	}
 
 	public void setStatePlay(int stt) {
+		if (stt == PlayTrack.INACTIVE)
+			is_viewed = false;
 		state = stt;
 		setImageState();
+	}
+
+	public boolean isViewed() {
+		return is_viewed;
+	}
+
+	public void setViewed(boolean val) {
+		is_viewed = val;
 	}
 
 	public int getStatePlay() {
@@ -57,11 +74,11 @@ public class PlayTrack extends ImageButton {
 
 	private void setImageState() {
 		switch (state) {
-		case PlayTrack.PLAY:
-			setImageResource(R.drawable.pause);
+		case PlayTrack.INACTIVE:
+			setImageDrawable(def);
 			break;
-		case PlayTrack.PAUSE:
-			setImageResource(R.drawable.play);
+		case PlayTrack.ACTIVE:
+			setImageResource(R.drawable.pl_ps);
 			break;
 		default:
 			setImageDrawable(def);

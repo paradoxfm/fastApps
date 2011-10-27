@@ -13,6 +13,7 @@ public abstract class Sets {
 	public static boolean BY_IP;
 	public static int PORT;
 	public static InetAddress IP_ADR;
+	public static String CONTROL;
 
 	public static void load(SharedPreferences prf) {
 		CL_1 = prf.getInt("CL_1", -58624);
@@ -27,6 +28,7 @@ public abstract class Sets {
 			IP_ADR = InetAddress.getByAddress(Util.parceIP(nm));
 		} catch (Exception e) {
 		}
+		CONTROL = prf.getString("CONTROL", "Бар,Стойка,Кафе,Танцпол");
 	}
 
 	public static void save(SharedPreferences prf) {
@@ -41,6 +43,7 @@ public abstract class Sets {
 		edt.putInt("PORT", PORT);
 		String str = IP_ADR.toString();
 		edt.putString("IP_ADR", str);
+		edt.putString("CONTROL", CONTROL);
 
 		edt.commit();
 	}

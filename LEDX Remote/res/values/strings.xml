@@ -2,16 +2,9 @@
 <resources>
     <string name="hello">Hello World, Main!</string>
     <string name="app_name">LEDX Remote</string>
-    <string-array name="loc">
-        <item>Кухня</item>
-        <item>Спальня</item>
-        <item>Гостиная</item>
-        <item>Туалет</item>
-        <item>Прихожая</item>
-    </string-array>
     <string name="settings">Настройки</string>
     <string name="quit">Выход</string>
-    <string name="tutor">Справка</string>
+    <string name="tutor">Советы</string>
     <string name="br_cast">По IP адресу</string>
     <string name="br_cast_smr">Переключает между широковещательной передачей и одим IP адресом</string>
     <string name="ip_adr">IP адрес</string>
@@ -23,4 +16,16 @@
     <string name="mainset">Основные</string>
     <string name="pref_sys">Программа</string>
     <string name="about_txt">Автор: Гуркин Иван\nCopyright © 2011 <a href="http://led66.ru/">led66.ru</a>\nВсе права принадлежат led66.ru\nEmail: <a href="mailto:zakaz@led66.ru">zakaz@led66.ru</a></string>
+    <string name="conttrollers">Контроллеры</string>
+    <string name="OK">ОК</string>
+    <string name="cans">Отмена</string>
+    <string name="help_text_cont">Вседите по порядку, через запятую, названия контроллеров</string>
+    <string name="cont_list_hint">Бар,Танцпол и т.д.</string>
+    <string name="err_wifi">Не подключен WiFi.\nВключите и попробуйте еще раз.</string>
+    <string name="hnt_2">Скорость анимации по умолчаню по середине, что соотвествует нормальному воспроизведению.</string>
+    <string name="hnt_1">Спомощью кнопок программ анимации можно переключаться между разными программами.</string>
+    <string name="hnt_3">Спомощью палитры выбора цвета можно заставить светиться одним цветом.</string>
+    <string name="hnt_4">Яркость по умолчанию находится в крайне правом положении, что соответствует максимальной яркости.</string>
+    <string name="hnt_5">При долгом нажатии на список контроллеров появится диалог в котором можно изменить список контроллеров.</string>
+    <string name="hnt_6">При долгом нажатии на один из элементов цветов появится диалог в котором можно задать свой цвет.</string>
 </resources>
