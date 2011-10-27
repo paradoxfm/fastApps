@@ -9,7 +9,7 @@
     </style>
 
     <style name="TitlebarBackgroundStyle">
-        <item name="android:background">@color/titlBack</item>
+        <item name="android:background">@drawable/title_bar_background</item>
     </style>
 
     <style name="MySeekBar">
@@ -23,7 +23,6 @@
         <item name="android:focusable">true</item>
     </style>
 
-    <color name="titlBack">#0e0e0e</color>
     <color name="widgetBorder">#e6eff2</color>
     <color name="gradientWidgetStartColor">#818181</color>
     <color name="gradientWidgetEndColor">#aeaeae</color>
