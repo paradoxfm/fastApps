@@ -93,6 +93,7 @@ public class Main extends Activity {
 		spn = (Spinner) findViewById(R.id.spn_loc);
 		spn.setOnLongClickListener(EvnBox.dropLong);
 		spn.setOnItemSelectedListener(EvnBox.selEvn);
+		findViewById(R.id.imgEnable).setOnClickListener(EvnBox.clickEnable);
 	}
 
 	public void showContDial() {
