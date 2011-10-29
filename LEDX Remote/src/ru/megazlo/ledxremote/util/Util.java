@@ -16,7 +16,6 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.DhcpInfo;
 import android.net.wifi.WifiManager;
-import android.widget.Toast;
 
 /** Вспомогательные утилиты */
 public abstract class Util {
@@ -62,13 +61,12 @@ public abstract class Util {
 	}
 
 	public static boolean checkErrors() {
-		if (CONTROLLER == 0) {
+		if (CONTROLLER == 0)
 			return true;
-		}
 		ConnectivityManager manager = (ConnectivityManager) Main.getInst().getSystemService(Main.CONNECTIVITY_SERVICE);
 		Boolean isWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting();
 		if (!isWifi) {
-			Toast.makeText(Main.getInst(), R.string.err_wifi, Toast.LENGTH_SHORT).show();
+			Main.getInst().showAlert(R.string.err_wifi);
 			return true;
 		}
 

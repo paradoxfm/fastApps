@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class Main extends Activity {
 	private PlayTrack[] p_btns = new PlayTrack[Sets.SIZE];
@@ -122,5 +123,14 @@ public class Main extends Activity {
 				Sets.CONTROL.split(","));
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spn.setAdapter(adapter);
+	}
+
+	public void showAlert(int errWifi) {
+		LayoutInflater factory = LayoutInflater.from(this);
+		final View alr = factory.inflate(R.layout.alert, null);
+		TextView txt = (TextView) alr.findViewById(R.id.text_alert);
+		txt.setText(errWifi);
+		new AlertDialog.Builder(this).setTitle(R.string.conttrollers).setIcon(R.drawable.logo).setView(alr)
+				.setPositiveButton(R.string.enb_wifi, EvnBox.EnableWiFi).setNegativeButton(R.string.cans, null).create().show();
 	}
 }

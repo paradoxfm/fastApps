@@ -3,7 +3,10 @@ package ru.megazlo.ledxremote.util;
 import ru.megazlo.ledxremote.Main;
 import ru.megazlo.ledxremote.R;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -20,6 +23,16 @@ public abstract class EvnBox {
 				Sets.CONTROL = tmp;
 			Main.getInst().setControllers();
 			Main.getInst().saveSets();
+		}
+	};
+
+	public static DialogInterface.OnClickListener EnableWiFi = new DialogInterface.OnClickListener() {
+		@Override
+		public void onClick(DialogInterface arg0, int arg1) {
+			AlertDialog alr = (AlertDialog) arg0;
+			WifiManager wifi = (WifiManager) alr.getContext().getSystemService(Context.WIFI_SERVICE);
+			wifi.setWifiEnabled(true);
+			alr.getContext().startActivity(new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
 		}
 	};
 
