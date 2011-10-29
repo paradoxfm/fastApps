@@ -63,4 +63,11 @@ public abstract class EvnBox {
 	};
 
 	public static SeekEvent seekEvn = new SeekEvent();
+
+	public static View.OnClickListener clickEnable = new View.OnClickListener() {
+		@Override
+		public void onClick(View arg0) {
+			Util.swapEnable();
+		}
+	};
 }
