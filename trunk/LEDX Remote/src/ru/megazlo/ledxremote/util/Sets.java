@@ -24,7 +24,7 @@ public abstract class Sets {
 			IP_ADR = InetAddress.getByAddress(Util.parceIP(nm));
 		} catch (Exception e) {
 		}
-		CONTROL = prf.getString("CONTROL", "Бар,Стойка,Кафе,Танцпол");
+		CONTROL = prf.getString("CONTROL", "");
 	}
 
 	public static void save(SharedPreferences prf) {
