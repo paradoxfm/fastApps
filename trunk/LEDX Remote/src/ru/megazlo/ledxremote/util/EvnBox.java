@@ -2,6 +2,7 @@ package ru.megazlo.ledxremote.util;
 
 import ru.megazlo.ledxremote.Main;
 import ru.megazlo.ledxremote.R;
+import ru.megazlo.ledxremote.components.ColorButton;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
+import android.widget.SeekBar;
 
 public abstract class EvnBox {
 	public static DialogInterface.OnClickListener dialEvn = new DialogInterface.OnClickListener() {
@@ -62,12 +64,48 @@ public abstract class EvnBox {
 		}
 	};
 
-	public static SeekEvent seekEvn = new SeekEvent();
-
 	public static View.OnClickListener clickEnable = new View.OnClickListener() {
 		@Override
 		public void onClick(View arg0) {
-			Util.swapEnable();
+			if (!Util.isErr())
+				Util.swapEnable();
+		}
+	};
+
+	public static View.OnClickListener clsn = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			Main.getInst().swapPlayBtn();
+			Util.sendColor(((ColorButton) v).getCurrentColor());
+		}
+	};
+
+	public static SeekBar.OnSeekBarChangeListener seekEvn = new SeekBar.OnSeekBarChangeListener() {
+		private int originalProgress;
+		private boolean isErr = false;
+
+		@Override
+		public void onStopTrackingTouch(SeekBar seekBar) {
+			if (isErr)
+				seekBar.setProgress(originalProgress);
+			isErr = false;
+		}
+
+		@Override
+		public void onStartTrackingTouch(SeekBar seekBar) {
+			originalProgress = seekBar.getProgress();
+			isErr = Util.isErr();
+		}
+
+		@Override
+		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+			if (isErr)
+				return;
+			int id = seekBar.getId();
+			if (id == R.id.sb_speed)
+				Util.sendSpeed(progress);
+			else if (id == R.id.sb_brigh)
+				Util.sendBrightness(progress);
 		}
 	};
 }

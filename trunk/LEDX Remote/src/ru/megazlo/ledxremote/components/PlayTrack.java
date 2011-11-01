@@ -30,7 +30,7 @@ public class PlayTrack extends ImageButton {
 
 	@Override
 	public boolean performClick() {
-		if (Util.checkErrors())
+		if (Util.isErr())
 			return false;
 		if (state == PlayTrack.INACTIVE) {
 			setStatePlay();

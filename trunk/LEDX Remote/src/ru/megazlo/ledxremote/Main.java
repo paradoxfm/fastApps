@@ -24,18 +24,6 @@ public class Main extends Activity {
 	private PlayTrack[] p_btns = new PlayTrack[Sets.SIZE];
 	private ColorButton[] c_btns = new ColorButton[Sets.SIZE];
 	private static Main inst_;
-	private Spinner spn;
-
-	View.OnClickListener clsn = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			for (int i = 0; i < p_btns.length; i++)
-				p_btns[i].setStatePlay(PlayTrack.INACTIVE);
-			ColorButton bt = (ColorButton) v;
-			int cl = bt.getCurrentColor();
-			Util.sendColor(cl);
-		}
-	};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +32,7 @@ public class Main extends Activity {
 		setContentView(R.layout.main);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
 		inst_ = this;
-		Sets.load(getPreferences(0));
+		Sets.load(getPreferences(0)); // UDP порт: 5378 IP адрес 192.168.1.2
 		initChild();
 		initEvents();
 		setControllers();
@@ -87,10 +75,10 @@ public class Main extends Activity {
 		for (int i = 0; i < Sets.SIZE; i++)
 			p_btns[i].setOnClickListener(EvnBox.prglsn);
 		for (int i = 0; i < Sets.SIZE; i++)
-			c_btns[i].setOnClickListener(clsn);
+			c_btns[i].setOnClickListener(EvnBox.clsn);
 		((SeekBar) findViewById(R.id.sb_brigh)).setOnSeekBarChangeListener(EvnBox.seekEvn);
 		((SeekBar) findViewById(R.id.sb_speed)).setOnSeekBarChangeListener(EvnBox.seekEvn);
-		spn = (Spinner) findViewById(R.id.spn_loc);
+		Spinner spn = (Spinner) findViewById(R.id.spn_loc);
 		spn.setOnLongClickListener(EvnBox.dropLong);
 		spn.setOnItemSelectedListener(EvnBox.selEvn);
 		findViewById(R.id.imgEnable).setOnClickListener(EvnBox.clickEnable);
@@ -119,11 +107,10 @@ public class Main extends Activity {
 	}
 
 	public void setControllers() {
-		@SuppressWarnings({ "unchecked", "rawtypes" })
-		ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
 				Sets.CONTROL.split(","));
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spn.setAdapter(adapter);
+		((Spinner) findViewById(R.id.spn_loc)).setAdapter(adapter);
 	}
 
 	public void showAlert(int errWifi) {
@@ -133,5 +120,10 @@ public class Main extends Activity {
 		txt.setText(errWifi);
 		new AlertDialog.Builder(this).setTitle(R.string.conttrollers).setIcon(R.drawable.logo).setView(alr)
 				.setPositiveButton(R.string.enb_wifi, EvnBox.EnableWiFi).setNegativeButton(R.string.cans, null).create().show();
+	}
+
+	public void swapPlayBtn() {
+		for (int i = 0; i < p_btns.length; i++)
+			p_btns[i].setStatePlay(PlayTrack.INACTIVE);
 	}
 }
