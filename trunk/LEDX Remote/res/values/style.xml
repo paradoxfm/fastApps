@@ -3,9 +3,19 @@
 
     <style name="app_theme" parent="android:Theme">
         <item name="android:windowBackground">@drawable/app_background</item>
+        <item name="android:listViewStyle">@style/TransparentListView</item>
+        <item name="android:expandableListViewStyle">@style/TransparentExpandableListView</item>
         <item name="android:windowTitleBackgroundStyle">@style/TitlebarBackgroundStyle</item>
         <item name="android:windowTitleSize">35dip</item>
         <item name="android:seekBarStyle">@style/MySeekBar</item>
+    </style>
+
+    <style name="TransparentListView" parent="@android:style/Widget.ListView">
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+    </style>
+
+    <style name="TransparentExpandableListView" parent="@android:style/Widget.ExpandableListView">
+        <item name="android:cacheColorHint">@android:color/transparent</item>
     </style>
 
     <style name="TitlebarBackgroundStyle">
