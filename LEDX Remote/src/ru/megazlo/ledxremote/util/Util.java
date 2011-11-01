@@ -41,26 +41,19 @@ public abstract class Util {
 	}
 
 	public static void sendPackage(byte[] data) {
-		// UDP порт: 5378 IP адрес 192.168.1.2
-		if (checkErrors())
-			return;
-		int PORT = 5378;
-		InetAddress adr;
 		try {
-			if (Sets.BY_IP)
-				adr = InetAddress.getByAddress(new byte[] { (byte) 192, (byte) 168, 1, 2 });
-			else
-				adr = getBroadcastAddress(Main.getInst());
-			DatagramSocket socket = new DatagramSocket(PORT);
+			InetAddress adr = Sets.BY_IP ? Sets.IP_ADR : getBroadcastAddress(Main.getInst());
+			DatagramSocket socket = new DatagramSocket(Sets.PORT);
 			socket.setBroadcast(true);
-			DatagramPacket packet = new DatagramPacket(data, data.length, adr, PORT);
+			DatagramPacket packet = new DatagramPacket(data, data.length, adr, Sets.PORT);
 			socket.send(packet);
 			socket.close();
 		} catch (IOException e) {
 		}
 	}
 
-	public static boolean checkErrors() {
+	/** Проверка условий передачи данных */
+	public static boolean isErr() {
 		if (CONTROLLER == 0)
 			return true;
 		ConnectivityManager manager = (ConnectivityManager) Main.getInst().getSystemService(Main.CONNECTIVITY_SERVICE);
@@ -69,7 +62,6 @@ public abstract class Util {
 			Main.getInst().showAlert(R.string.err_wifi);
 			return true;
 		}
-
 		return false;
 	}
 
