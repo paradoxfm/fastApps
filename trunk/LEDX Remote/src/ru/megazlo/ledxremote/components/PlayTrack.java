@@ -14,6 +14,7 @@ public class PlayTrack extends ImageButton {
 	// public static final int PAUSE = 2;
 
 	private boolean is_viewed = false;
+	private int speed_ = 2;
 	private int state = INACTIVE;
 	private Drawable def;
 
@@ -84,5 +85,14 @@ public class PlayTrack extends ImageButton {
 			setImageDrawable(def);
 			break;
 		}
+	}
+
+	public int getSpeed() {
+		return speed_;
+	}
+	
+
+	public void setSpeed(int speed_) {
+		this.speed_ = speed_;
 	}
 }
