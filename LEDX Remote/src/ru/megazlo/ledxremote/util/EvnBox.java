@@ -102,9 +102,10 @@ public abstract class EvnBox {
 			if (isErr)
 				return;
 			int id = seekBar.getId();
-			if (id == R.id.sb_speed)
+			if (id == R.id.sb_speed) {
+				Main.getInst().setPlayedSpeed(progress);
 				Util.sendSpeed(progress);
-			else if (id == R.id.sb_brigh)
+			} else if (id == R.id.sb_brigh)
 				Util.sendBrightness(progress);
 		}
 	};

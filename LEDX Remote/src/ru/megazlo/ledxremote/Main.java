@@ -23,6 +23,8 @@ import android.widget.TextView;
 public class Main extends Activity {
 	private PlayTrack[] p_btns = new PlayTrack[Sets.SIZE];
 	private ColorButton[] c_btns = new ColorButton[Sets.SIZE];
+	private PlayTrack played;
+	private SeekBar spd;
 	private static Main inst_;
 
 	@Override
@@ -61,9 +63,12 @@ public class Main extends Activity {
 	}
 
 	private void initChild() {
+		spd = (SeekBar) findViewById(R.id.sb_speed);
 		int[] id = new int[] { R.id.btProgOne, R.id.btProgTwo, R.id.btProgThree, R.id.btProgFour, R.id.btProgFive };
-		for (int i = 0; i < Sets.SIZE; i++)
+		for (int i = 0; i < Sets.SIZE; i++) {
 			p_btns[i] = (PlayTrack) findViewById(id[i]);
+			p_btns[i].setSpeed(spd.getProgress());
+		}
 		id = new int[] { R.id.btClOne, R.id.btClTwo, R.id.btClThree, R.id.btClFour, R.id.btClFive };
 		for (int i = 0; i < Sets.SIZE; i++)
 			c_btns[i] = (ColorButton) findViewById(id[i]);
@@ -77,7 +82,7 @@ public class Main extends Activity {
 		for (int i = 0; i < Sets.SIZE; i++)
 			c_btns[i].setOnClickListener(EvnBox.clsn);
 		((SeekBar) findViewById(R.id.sb_brigh)).setOnSeekBarChangeListener(EvnBox.seekEvn);
-		((SeekBar) findViewById(R.id.sb_speed)).setOnSeekBarChangeListener(EvnBox.seekEvn);
+		spd.setOnSeekBarChangeListener(EvnBox.seekEvn);
 		Spinner spn = (Spinner) findViewById(R.id.spn_loc);
 		spn.setOnLongClickListener(EvnBox.dropLong);
 		spn.setOnItemSelectedListener(EvnBox.selEvn);
@@ -100,10 +105,16 @@ public class Main extends Activity {
 				p_btns[i].setStatePlay(PlayTrack.INACTIVE);
 		byte prg = Byte.parseByte(tr.getTag().toString());
 		if (!tr.isViewed()) {
+			setPlayed(tr);
 			Util.sendProgram(prg);
 			tr.setViewed(true);
 		} else
 			Util.swapPlayPause();
+	}
+
+	public void setPlayedSpeed(int speed) {
+		if (played != null)
+			played.setSpeed(speed);
 	}
 
 	public void setControllers() {
@@ -125,5 +136,10 @@ public class Main extends Activity {
 	public void swapPlayBtn() {
 		for (int i = 0; i < p_btns.length; i++)
 			p_btns[i].setStatePlay(PlayTrack.INACTIVE);
+	}
+
+	private void setPlayed(PlayTrack pl) {
+		played = pl;
+		spd.setProgress(pl.getSpeed());
 	}
 }
