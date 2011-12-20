@@ -9,7 +9,7 @@
     <string name="read_only">Can`t read</string>
     <string name="serach">Search</string>
     <string name="delete">Delete</string>
-    <string name="deleting">Delete...</string>
+    <string name="deleting">Delete…</string>
     <string name="file_n_exist">The file does not exist</string>
     <string name="app_n_found">The program is not found</string>
     <string name="browse">Browse</string>
@@ -96,4 +96,5 @@
     <string name="set_back_smr">Set as the background color fills</string>
     <string name="bckcolrsmr">Fill the background with a solid color</string>
     <string name="bckcolr">Solid color</string>
+    <string name="cdes"> </string>
 </resources>

@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/custom_title_1" xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent" android:layout_height="match_parent" android:padding="0dip">
-	<ImageView android:id="@+id/protocol" android:src="@drawable/folder" android:layout_width="35dip"
-		android:layout_height="35dip" android:layout_centerVertical="true" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/custom_title_1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dip" >
 
-	<ImageView android:id="@+id/close_tab" android:src="@drawable/close_box_red" android:layout_width="35dip"
-		android:layout_height="35dip" android:layout_alignParentRight="true" android:layout_centerVertical="true"
-		android:padding="3dip" />
+    <ImageView
+        android:id="@+id/protocol"
+        android:layout_width="35dip"
+        android:layout_height="35dip"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/cdes"
+        android:src="@drawable/folder" />
 
-	<TextView android:id="@+id/title" android:layout_width="match_parent" android:layout_height="wrap_content"
-		android:textSize="16dip" android:paddingRight="5dip" android:textStyle="bold" android:textColor="#ffffffff"
-		android:layout_toRightOf="@id/protocol" android:layout_centerVertical="true" android:singleLine="true"
-		android:layout_toLeftOf="@id/close_tab" />
+    <ImageView
+        android:id="@+id/close_tab"
+        android:layout_width="35dip"
+        android:layout_height="35dip"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/cdes"
+        android:padding="3dip"
+        android:src="@drawable/close_box_red" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/close_tab"
+        android:layout_toRightOf="@id/protocol"
+        android:paddingRight="5dip"
+        android:singleLine="true"
+        android:textColor="#ffffffff"
+        android:textSize="16dip"
+        android:textStyle="bold" />
+
 </RelativeLayout>

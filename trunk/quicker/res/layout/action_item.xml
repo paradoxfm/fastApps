@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal"
-	android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingLeft="10dip"
-	android:paddingRight="10dip" android:gravity="center" android:clickable="true" android:background="@drawable/quickcontact_slider_btn">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/quickcontact_slider_btn"
+    android:clickable="true"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip" >
 
-	<ImageView android:id="@+id/icon" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/cdes" />
 
-	<TextView android:id="@+id/title" android:layout_width="match_parent" android:layout_height="match_parent"
-		android:gravity="center_vertical" android:paddingLeft="5dip" android:paddingRight="10dip" android:textSize="11sp"
-		android:textColor="#666" />
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dip"
+        android:paddingRight="10dip"
+        android:textColor="#666"
+        android:textSize="11sp" />
+
 </LinearLayout>

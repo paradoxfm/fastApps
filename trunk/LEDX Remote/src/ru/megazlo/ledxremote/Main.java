@@ -94,7 +94,7 @@ public class Main extends Activity {
 		final View formcon = factory.inflate(R.layout.cont_list, null);
 		EditText edt = (EditText) formcon.findViewById(R.id.cont_list_ed);
 		edt.setText(Sets.CONTROL);
-		new AlertDialog.Builder(this).setTitle(R.string.conttrollers).setIcon(R.drawable.logo).setView(formcon)
+		new AlertDialog.Builder(this).setTitle(R.string.control).setIcon(R.drawable.logo).setView(formcon)
 				.setPositiveButton(R.string.OK, EvnBox.dialEvn).setNegativeButton(R.string.cans, null).create().show();
 	}
 
@@ -129,7 +129,7 @@ public class Main extends Activity {
 		final View alr = factory.inflate(R.layout.alert, null);
 		TextView txt = (TextView) alr.findViewById(R.id.text_alert);
 		txt.setText(errWifi);
-		new AlertDialog.Builder(this).setTitle(R.string.conttrollers).setIcon(R.drawable.logo).setView(alr)
+		new AlertDialog.Builder(this).setTitle(R.string.varn).setIcon(R.drawable.logo).setView(alr)
 				.setPositiveButton(R.string.enb_wifi, EvnBox.EnableWiFi).setNegativeButton(R.string.cans, null).create().show();
 	}
 
