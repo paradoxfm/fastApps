@@ -16,7 +16,6 @@
     <string name="mainset">Основные</string>
     <string name="pref_sys">Программа</string>
     <string name="about_txt">Автор: Гуркин Иван\nCopyright © 2011 <a href="http://ledx.ru/">ledx.ru</a>\nВсе права принадлежат ledx.ru\nEmail: <a href="mailto:support@ledx.ru">support@ledx.ru</a></string>
-    <string name="conttrollers">Контроллеры</string>
     <string name="OK">ОК</string>
     <string name="cans">Отмена</string>
     <string name="help_text_cont">Вседите по порядку, через запятую, названия контроллеров</string>
@@ -30,4 +29,6 @@
     <string name="hnt_6">При долгом нажатии на один из элементов цветов появится диалог в котором можно задать свой цвет.</string>
     <string name="enb_wifi">Включить</string>
     <string name="cl_ch">Выбор цвета</string>
+    <string name="varn">Внимание</string>
+    <string name="control">Контроллеры</string>
 </resources>
