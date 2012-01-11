@@ -86,7 +86,7 @@
     <string name="rooted">Root</string>
     <string name="setviewicon">Иконки</string>
     <string name="setviewother">Разное</string>
-    <string name="ftp_host">Домен:Хост</string>
+    <string name="ftp_host">Домен:Хост:Порт</string>
     <string name="ftp_anonym">Анонимно</string>
     <string name="ftp_user">Пользователь</string>
     <string name="ftp_pwd">Пароль</string>

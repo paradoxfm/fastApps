@@ -4,6 +4,8 @@ import java.io.File;
 
 import ru.megazlo.fastfile.util.Sets;
 import android.app.AlertDialog;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.drawable.BitmapDrawable;
@@ -89,9 +91,16 @@ public class fmSettings extends PreferenceActivity implements Preference.OnPrefe
 	}
 
 	private void showAbout() {
+		String version = "";
+		try {
+			PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+			version = pInfo.versionName;
+		} catch (NameNotFoundException e) {
+		}
+		String title = getResources().getString(R.string.app_name) + " v" + version;
 		LayoutInflater factory = LayoutInflater.from(this);
-		final View formcon = factory.inflate(R.layout.about, null);
-		new AlertDialog.Builder(this).setTitle(R.string.about).setIcon(R.drawable.folder).setView(formcon).create().show();
+		final View abtf = factory.inflate(R.layout.about, null);
+		new AlertDialog.Builder(this).setTitle(title).setIcon(R.drawable.folder).setView(abtf).create().show();
 	}
 
 }

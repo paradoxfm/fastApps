@@ -32,6 +32,8 @@ public class FileList extends ListView {
 			public void onFinish() {
 				itla.setListItems(FileList.this.getEngine().getDat().dir);
 				itla.notifyDataSetChanged();
+				if (eng.scrollPoz > 0)
+					FileList.this.setSelectionFromTop(eng.scrollPoz, FileList.this.getChildAt(0).getHeight() / 2);
 				if (Sets.ANIMATE) {
 					if (FileList.this.getLayoutAnimation() == null)
 						FileList.this.setLayoutAnimation(Sets.LIST_ANIM);
@@ -55,6 +57,7 @@ public class FileList extends ListView {
 	@Override
 	public boolean performItemClick(View view, int position, long id) {
 		ItemClicker.click(eng, position);
+		setSelection(0);
 		return super.performItemClick(view, position, id);
 	}
 
