@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 public class EngineSDC extends BaseEngine {
 
+	private String from;
+
 	public EngineSDC(RowData data, FileList list) {
 		super(list);
 		isPreview = isAllowSearsh = true;
@@ -24,16 +26,14 @@ public class EngineSDC extends BaseEngine {
 	@Override
 	public boolean browseUp() {
 		File fil = getDat().PATH.getParentFile();
-		String from = getDat().PATH.getName();
+		from = getDat().PATH.getName();
 		if (this.isSearsh) {
 			browseCatalog(getDat().PATH);
 			this.isSearsh = false;
 			return true;
 		} else if (fil != null) {
 			browseCatalog(fil);
-			for (int i = 0; i < dat.dir.size(); i++)
-				if (from.equals(((File) dat.dir.get(i).getFile()).getName()))
-					return true;
+			return true;
 		}
 		return false;
 	}
@@ -117,6 +117,18 @@ public class EngineSDC extends BaseEngine {
 	@Override
 	public Object exec(int cmd) {
 		return null;
+	}
+
+	@Override
+	public void setOffset() {
+		if (from == null)
+			return;
+		scrollPoz = 0;
+		for (int i = 0; i < dat.dir.size(); i++)
+			if (from.equals(((File) dat.dir.get(i).getFile()).getName())) {
+				scrollPoz = i;
+				break;
+			}
 	}
 
 }

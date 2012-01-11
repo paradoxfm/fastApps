@@ -3,8 +3,6 @@ package ru.megazlo.fastfile.components.filerow;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.megazlo.fastfile.util.Sets;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +43,6 @@ public class FileRowAdapter extends BaseAdapter {
 	}
 
 	private BaseCellRow newItem(Context c, int pos) {
-		return Sets.ISGRID ? new FileGridCell(c, m_Items.get(pos)) : new FileRow(c, m_Items.get(pos));
+		return /* Sets.ISGRID ? new FileGridCell(c, m_Items.get(pos)) : */new FileRow(c, m_Items.get(pos));
 	}
 }

@@ -184,21 +184,18 @@ public class QuickAction extends CustomPopupWindow {
 		ImageView img = (ImageView) container.findViewById(R.id.icon);
 		TextView text = (TextView) container.findViewById(R.id.title);
 
-		if (icon != null) {
+		if (icon != null)
 			img.setImageDrawable(icon);
-		} else {
+		else
 			img.setVisibility(View.GONE);
-		}
 
-		if (title != null) {
+		if (title != null)
 			text.setText(title);
-		} else {
+		else
 			text.setVisibility(View.GONE);
-		}
 
-		if (listener != null) {
+		if (listener != null)
 			container.setOnClickListener(listener);
-		}
 
 		return container;
 	}

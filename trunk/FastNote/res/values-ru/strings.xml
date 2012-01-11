@@ -50,4 +50,5 @@
     <string name="t_save_file_sd">Сохранить отредактированный файл</string>
     <string name="t_new_note">Добавить новую заметку</string>
     <string name="db_broken">База не доступна</string>
+    <string name="cdesc"> </string>
 </resources>

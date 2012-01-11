@@ -37,6 +37,8 @@ public abstract class BaseEngine implements IEngine {
 
 	public static final int CMD_CON = 100;
 
+	public int scrollPoz = 0;
+
 	protected boolean isSearsh = false;
 	protected boolean isAllowSearsh = false;
 	protected boolean isPreview = false;
@@ -201,8 +203,13 @@ public abstract class BaseEngine implements IEngine {
 		Collections.sort(dat.dir);
 		Collections.sort(dat.fil);
 		dat.dir.addAll(dat.fil);
+		setOffset();
 		if (finisher != null)
 			finisher.onFinish();
+	}
+
+	public void setOffset() {
+		return;
 	}
 
 	@Override

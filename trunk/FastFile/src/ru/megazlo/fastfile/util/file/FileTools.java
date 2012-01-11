@@ -3,9 +3,6 @@ package ru.megazlo.fastfile.util.file;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-
 import ru.megazlo.fastfile.R;
 import ru.megazlo.fastfile.fmMain;
 import ru.megazlo.fastfile.fmNotes;
@@ -39,9 +36,6 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.adarshr.raroscope.RAREntry;
-import com.adarshr.raroscope.RARFile;
 
 public class FileTools {
 	public static int OPERATION;
@@ -173,20 +167,7 @@ public class FileTools {
 	public static void openFileThis(Context c, File file) {
 		String path = file.getPath().toLowerCase();
 		final int tp = BaseEngine.getType(path.toLowerCase());
-		if (path.toLowerCase().endsWith(".rar")) {
-			RARFile fl = null;
-			try {
-				fl = new RARFile(file);
-			} catch (IOException e) {
-			}
-			Enumeration<RAREntry> ent = fl.entries();
-			ArrayList<String> lst = new ArrayList<String>();
-			while (ent.hasMoreElements()) {
-				RAREntry rarEntry = (RAREntry) ent.nextElement();
-				lst.add(rarEntry.getName());
-			}
-			lst.toArray();
-		} else if (tp == FileRowData.TP_MUSIC)
+		if (tp == FileRowData.TP_MUSIC)
 			playMusic(c, file);
 		else if (tp == FileRowData.TP_BITMAP)
 			veiwImage(c, file);

@@ -6,6 +6,8 @@ import ru.megazlo.colorpicker.OnColorChangedListener;
 import ru.megazlo.fastnote.util.Sets;
 import ru.megazlo.fastnote.R;
 import android.app.AlertDialog;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -166,8 +168,15 @@ public class fmSettings extends PreferenceActivity implements Preference.OnPrefe
 	}
 
 	private void showAbout() {
+		String version = "";
+		try {
+			PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+			version = pInfo.versionName;
+		} catch (NameNotFoundException e) {
+		}
+		String title = getResources().getString(R.string.app_name) + " v" + version;
 		LayoutInflater factory = LayoutInflater.from(this);
 		final View formcon = factory.inflate(R.layout.about, null);
-		new AlertDialog.Builder(this).setTitle(R.string.about).setIcon(R.drawable.notepad).setView(formcon).create().show();
+		new AlertDialog.Builder(this).setTitle(title).setIcon(R.drawable.notepad).setView(formcon).create().show();
 	}
 }
