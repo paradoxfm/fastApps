@@ -227,7 +227,7 @@ public abstract class BaseEngine implements IEngine {
 		final CheckBox anom = (CheckBox) formcon.findViewById(R.id.ed_ftp_anm);
 		final EditText user = (EditText) formcon.findViewById(R.id.ed_ftp_usr);
 		final View usrinf = formcon.findViewById(R.id.ed_ftp_userinf);
-		AlertDialog alr = new AlertDialog.Builder(c).setTitle(R.string.conng).setIcon(R.drawable.ic_menu_globe)
+		AlertDialog alr = new AlertDialog.Builder(c).setTitle(R.string.conng).setIcon(R.drawable.prot_ftp)
 				.setView(formcon).setNegativeButton(R.string.cansel, cansl).setPositiveButton(R.string.ok, editdom)
 				.setOnCancelListener(back).create();
 		anom.setOnClickListener(new OnClickListener() {

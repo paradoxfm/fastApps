@@ -97,4 +97,5 @@
     <string name="bckcolrsmr">Залить фон сплошным цветом</string>
     <string name="bckcolr">Сплошной цвет</string>
     <string name="cdes"> </string>
+    <string name="mn_close">Закрыть</string>
 </resources>

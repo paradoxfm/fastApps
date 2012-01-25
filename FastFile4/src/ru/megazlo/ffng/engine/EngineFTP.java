@@ -1,6 +1,5 @@
 package ru.megazlo.ffng.engine;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import ru.megazlo.ffng.components.RowData;
@@ -9,6 +8,7 @@ import ru.megazlo.ffng.components.filerow.FileList;
 import ru.megazlo.ffng.components.filerow.FileRowData;
 import ru.megazlo.ffng.util.Sets;
 import ru.megazlo.ffng.util.net.BrowseNet;
+import ru.megazlo.ftplib.ftp.FTPClient;
 import ru.megazlo.ftplib.ftp.FTPFile;
 import android.widget.Toast;
 
@@ -83,10 +83,8 @@ public class EngineFTP extends BaseEngine {
 		dat.dir.clear();
 		dat.fil.clear();
 		FTPFile[] files = (FTPFile[]) filar;
-		try {
-			mTitle = '/' + getDat().FTP_CLIENT.getRemoteAddress().getHostName() + getDat().FTP_CLIENT.printWorkingDirectory();
-		} catch (IOException e) {
-		}
+		FTPClient cln = getDat().FTP_CLIENT;
+		mTitle = cln.getRemoteAddress().getHostName();
 		for (int i = 0; i < files.length; i++) {
 			if (files[i].isDirectory())
 				dat.dir.add(new FileRowData(files[i], Sets.I_FOLD));

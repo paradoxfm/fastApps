@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_search"
+        android:actionViewClass="android.widget.SearchView"
+        android:icon="@android:drawable/ic_menu_search"
+        android:showAsAction="always"
+        android:title="@string/serach"/>
+
+    <!-- "device" submenu -->
+    <item
+        android:id="@+id/devsmn"
+        android:icon="@android:drawable/ic_menu_add"
+        android:showAsAction="always|collapseActionView">
+        <menu>
+            <item
+                android:id="@+id/sdcard"
+                android:icon="@drawable/prot_pda"
+                android:showAsAction="always|collapseActionView|withText"
+                android:title="@string/sdcard"/>
+            <item
+                android:id="@+id/ftp"
+                android:icon="@drawable/prot_ftp"
+                android:showAsAction="always|collapseActionView|withText"
+                android:title="@string/ftp"/>
+            <item
+                android:id="@+id/samba"
+                android:icon="@drawable/prot_smb"
+                android:showAsAction="always|collapseActionView|withText"
+                android:title="@string/samba"/>
+            <item
+                android:id="@+id/closetab"
+                android:icon="@drawable/close_box_red"
+                android:showAsAction="always|collapseActionView|withText"
+                android:title="@string/mn_close"/>
+        </menu>
+    </item>
+
+</menu>

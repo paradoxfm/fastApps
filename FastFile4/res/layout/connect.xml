@@ -26,8 +26,8 @@
 
             <ImageView
                 android:id="@+id/ed_ftp_del"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
                 android:layout_gravity="right"
                 android:layout_weight="1"
                 android:contentDescription="@string/cdes"

@@ -9,9 +9,9 @@ import ru.megazlo.ffng.util.Sets;
 import ru.megazlo.ffng.util.file.FileTools;
 import ru.megazlo.scrollerview.OnScrollFinish;
 import ru.megazlo.scrollerview.ScrollerView;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -21,7 +21,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MenuItem.OnActionExpandListener;
 import android.widget.SearchView;
 
 public class fmMain extends Activity {
@@ -35,8 +34,7 @@ public class fmMain extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(scrv = new ScrollerView(this));
-		ActionBar actionBar = getActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		initChild();
 		Sets.load(getPreferences(0), this);
 		if (Sets.IS_COLORED) {
@@ -132,10 +130,10 @@ public class fmMain extends Activity {
 	// ------------------------------------------------------ Вызов меню
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.srh_menu, menu);
-		//SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
-		getMenuInflater().inflate(R.menu.top, menu);
-
+		getMenuInflater().inflate(R.menu.actionbar, menu);
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
@@ -156,16 +154,9 @@ public class fmMain extends Activity {
 
 	// ------------------------------------------------------ Поисковые
 	@Override
-	public boolean onSearchRequested() {
-		if (getCurEng().isAllowSearsh())
-			return super.onSearchRequested();
-		return false;
-	}
-
-	@Override
 	public void onNewIntent(final Intent newIntent) {
 		super.onNewIntent(newIntent);
-		if (Intent.ACTION_SEARCH.equals(newIntent.getAction()))
+		if (Intent.ACTION_SEARCH.equals(newIntent.getAction()) && getCurEng().isAllowSearsh())
 			doSearchQuery(newIntent, newIntent.getStringExtra(SearchManager.QUERY));
 	}
 

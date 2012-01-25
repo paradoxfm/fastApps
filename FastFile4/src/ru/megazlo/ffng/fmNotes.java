@@ -26,12 +26,8 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class fmNotes extends Activity {
@@ -72,30 +68,19 @@ public class fmNotes extends Activity {
 			Drawable drw = new BitmapDrawable(bmp);
 			getWindow().setBackgroundDrawable(drw);
 		}
-		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.note_editor);
-		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
-
-		ImageView close = (ImageView) findViewById(R.id.close_tab);
-		close.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				fmNotes.this.finish();
-			}
-		});
-
-		ImageView icon = (ImageView) findViewById(R.id.protocol);
-		icon.setImageResource(R.drawable.file_doc);
-
+		getActionBar().setIcon(R.drawable.file_doc);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		String name = getIntent().getExtras().getString(FileTools.KEY);
 		file = new File(name);
 
-		TextView title = (TextView) findViewById(R.id.title);
-		title.setText(R.string.tl_edit);
-		title.setText(title.getText() + file.getName());
+		// TextView title = (TextView) findViewById(R.id.title);
+		// title.setText(R.string.tl_edit);
+		// title.setText(title.getText() + file.getName());
 
 		mText = (EditText) findViewById(R.id.note);
 		mText.setTextSize(16);
+		mText.setTextColor(Color.BLACK);
 		mText.setFocusable(false); // не показываем клавиатуру
 		mText.setBackgroundColor(Color.WHITE);
 		try {
@@ -118,6 +103,9 @@ public class fmNotes extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+		case android.R.id.home:
+			this.finish();
+			break;
 		case R.id.edit_text:
 			mText.setFocusable(true);
 			mText.setFocusableInTouchMode(true);
