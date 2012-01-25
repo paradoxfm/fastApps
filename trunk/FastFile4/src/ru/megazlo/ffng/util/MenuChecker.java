@@ -55,7 +55,9 @@ public class MenuChecker {
 			} else
 				Toast.makeText(act, R.string.n_act_con, Toast.LENGTH_SHORT).show();
 			return true;
-
+		case R.id.closetab:
+			remList(act.getCurEng().getList());
+			return true;
 		default:
 			return false;
 		}
