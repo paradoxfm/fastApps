@@ -77,6 +77,7 @@ public class fmNotes extends Activity {
 		// TextView title = (TextView) findViewById(R.id.title);
 		// title.setText(R.string.tl_edit);
 		// title.setText(title.getText() + file.getName());
+		getActionBar().setTitle(file.getName());
 
 		mText = (EditText) findViewById(R.id.note);
 		mText.setTextSize(16);
