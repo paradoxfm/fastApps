@@ -12,6 +12,7 @@
         android:layout_height="200dip"
         android:contentDescription="@string/cdes"
         android:gravity="center_horizontal"
+        android:padding="5dip"
         android:src="@drawable/juk" />
 
     <SeekBar

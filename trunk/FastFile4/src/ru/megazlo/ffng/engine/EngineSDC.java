@@ -31,7 +31,8 @@ public class EngineSDC extends BaseEngine {
 			browseCatalog(getDat().PATH);
 			this.isSearsh = false;
 			return true;
-		} else if (fil != null) {
+		}
+		if (fil != null) {
 			browseCatalog(fil);
 			return true;
 		}
@@ -46,7 +47,7 @@ public class EngineSDC extends BaseEngine {
 			return;
 		}
 		getDat().PATH = dir;
-		mTitle = getDat().PATH.getAbsolutePath();
+		mTitle = getDat().PATH.getName();
 		this.fill(getDat().PATH.listFiles());
 	}
 
