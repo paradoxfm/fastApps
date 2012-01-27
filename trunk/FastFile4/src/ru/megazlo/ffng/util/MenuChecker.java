@@ -66,7 +66,7 @@ public class MenuChecker {
 	public static void showHelp() {
 		LayoutInflater factory = LayoutInflater.from(fmMain.CONTEXT);
 		final View v = factory.inflate(R.layout.help, null);
-		new AlertDialog.Builder(fmMain.CONTEXT).setTitle(R.string.mn_tutor).setIcon(R.drawable.ic_menu_light).setView(v)
+		new AlertDialog.Builder(fmMain.CONTEXT).setTitle(R.string.mn_tutor).setIcon(android.R.drawable.ic_menu_help).setView(v)
 				.create().show();
 	}
 

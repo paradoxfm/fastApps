@@ -3,11 +3,10 @@
 
     <style name="app_theme" parent="@android:style/Theme.Holo">
         <item name="android:windowBackground">@drawable/app_background</item>
-         <!-- <item name="android:actionBarStyle">@style/TitlebarBackgroundStyle</item>-->
+        <!-- <item name="android:actionBarStyle">@style/TitlebarBackgroundStyle</item> -->
         <item name="android:listViewStyle">@style/TransparentListView</item>
         <item name="android:expandableListViewStyle">@style/TransparentExpandableListView</item>
         <item name="android:seekBarStyle">@style/MySeekBar</item>
-        <item name="android:alertDialogStyle">@style/dialogAlertTheme</item>
     </style>
 
     <style name="TitlebarBackgroundStyle">
@@ -38,21 +37,5 @@
     <color name="widgetBorder">#e6eff2</color>
     <color name="gradientWidgetStartColor">#3798c8</color>
     <color name="gradientWidgetEndColor">#2861a2</color>
-
-    <style name="dialogAlertTheme" parent="@android:style/Theme.Dialog">
-        <item name="android:textColorPrimary">@android:color/primary_text_light</item>
-        <item name="android:bottomDark">@drawable/box2_bottom_</item>
-        <!-- <item name="android:bottomBright">@drawable/box2_bottom_</item> -->
-        <item name="android:bottomMedium">@drawable/box2_bottom_</item>
-        <item name="android:centerDark">@drawable/box2_center_</item>
-        <item name="android:centerBright">@drawable/box2_center_w</item>
-        <!-- <item name="android:centerMedium">@drawable/box2_center_</item> -->
-
-        <item name="android:fullDark">@drawable/box2_1_full_b</item>
-        <item name="android:fullBright">@drawable/box2_1_full_w</item>
-        <item name="android:topDark">@drawable/box2_top_</item>
-        <!-- <item name="android:topBright">@drawable/box2_top_</item> -->
-
-    </style>
 
 </resources>

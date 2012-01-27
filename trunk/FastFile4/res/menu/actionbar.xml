@@ -14,26 +14,44 @@
         android:icon="@android:drawable/ic_menu_add"
         android:showAsAction="always|collapseActionView">
         <menu>
-            <item
-                android:id="@+id/sdcard"
-                android:icon="@drawable/prot_pda"
-                android:showAsAction="always|collapseActionView|withText"
-                android:title="@string/sdcard"/>
-            <item
-                android:id="@+id/ftp"
-                android:icon="@drawable/prot_ftp"
-                android:showAsAction="always|collapseActionView|withText"
-                android:title="@string/ftp"/>
-            <item
-                android:id="@+id/samba"
-                android:icon="@drawable/prot_smb"
-                android:showAsAction="always|collapseActionView|withText"
-                android:title="@string/samba"/>
-            <item
-                android:id="@+id/closetab"
-                android:icon="@drawable/close_box_red"
-                android:showAsAction="always|collapseActionView|withText"
-                android:title="@string/mn_close"/>
+            <group>
+                <item
+                    android:id="@+id/sdcard"
+                    android:icon="@drawable/prot_pda"
+                    android:showAsAction="always|collapseActionView|withText"
+                    android:title="@string/sdcard"/>
+                <item
+                    android:id="@+id/ftp"
+                    android:icon="@drawable/prot_ftp"
+                    android:showAsAction="always|collapseActionView|withText"
+                    android:title="@string/ftp"/>
+                <item
+                    android:id="@+id/samba"
+                    android:icon="@drawable/prot_smb"
+                    android:showAsAction="always|collapseActionView|withText"
+                    android:title="@string/samba"/>
+            </group>
+            <group>
+                <item
+                    android:id="@+id/closetab"
+                    android:icon="@android:drawable/ic_delete"
+                    android:showAsAction="always|collapseActionView|withText"
+                    android:title="@string/mn_close"/>
+            </group>
+            <group>
+                <item
+                    android:id="@+id/appsett"
+                    android:icon="@android:drawable/ic_menu_preferences"
+                    android:title="@string/settings"/>
+                <item
+                    android:id="@+id/quit"
+                    android:icon="@android:drawable/ic_menu_close_clear_cancel"
+                    android:title="@string/quit"/>
+                <item
+                    android:id="@+id/tutor"
+                    android:icon="@android:drawable/ic_menu_help"
+                    android:title="@string/mn_tutor"/>
+            </group>
         </menu>
     </item>
 
