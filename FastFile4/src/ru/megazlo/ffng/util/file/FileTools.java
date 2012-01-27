@@ -203,6 +203,7 @@ public class FileTools {
 			options.inJustDecodeBounds = false;
 			ImageView img = new ImageView(cont);
 			img.setImageBitmap(BitmapFactory.decodeFile(path, options));
+			img.setPadding(10, 10, 10, 10);
 			new AlertDialog.Builder(cont).setTitle(R.string.mus_preview).setIcon(R.drawable.file_img).setView(img).create()
 					.show();
 		}

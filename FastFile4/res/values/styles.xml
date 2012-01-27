@@ -3,14 +3,15 @@
 
     <style name="app_theme" parent="@android:style/Theme.Holo">
         <item name="android:windowBackground">@drawable/app_background</item>
-        <!-- <item name="android:actionBarStyle">@style/TitlebarBackgroundStyle</item> -->
+        <item name="android:actionBarStyle">@style/TitlebarBackgroundStyle</item>
         <item name="android:listViewStyle">@style/TransparentListView</item>
         <item name="android:expandableListViewStyle">@style/TransparentExpandableListView</item>
         <item name="android:seekBarStyle">@style/MySeekBar</item>
     </style>
 
-    <style name="TitlebarBackgroundStyle">
-        <item name="android:background">@drawable/title_bar_background</item>
+    <style name="TitlebarBackgroundStyle" parent="@android:style/Widget.Holo.ActionBar">
+        <item name="android:minHeight">37dip</item>
+        <item name="android:maxHeight">37dip</item>
     </style>
 
     <style name="TransparentListView" parent="@android:style/Widget.ListView">
@@ -28,8 +29,8 @@
         <item name="android:progressDrawable">@drawable/progress_horizontal</item>
         <item name="android:indeterminateDrawable">@drawable/progress_horizontal</item>
         <item name="android:thumb">@drawable/seek_thumb</item>
-        <item name="android:minHeight">10dip</item>
-        <item name="android:maxHeight">10dip</item>
+        <item name="android:minHeight">5dip</item>
+        <item name="android:maxHeight">5dip</item>
         <item name="android:thumbOffset">8px</item>
         <item name="android:focusable">true</item>
     </style>
@@ -37,5 +38,7 @@
     <color name="widgetBorder">#e6eff2</color>
     <color name="gradientWidgetStartColor">#3798c8</color>
     <color name="gradientWidgetEndColor">#2861a2</color>
+    <color name="radiusWidgetColor">#3333dd</color>
+    <color name="widgetEndColor">#442861a2</color>
 
 </resources>

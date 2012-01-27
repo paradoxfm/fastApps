@@ -23,9 +23,11 @@ public class MenuChecker {
 
 	public static boolean itemClick(fmMain act, int id) {
 		switch (id) {
+		case R.id.appsett2:
 		case R.id.appsett:
 			startAct(act, INT_PRF, fmSettings.class);
 			return true;
+		case R.id.tutor2:
 		case R.id.tutor:
 			showHelp();
 			return true;
@@ -38,15 +40,10 @@ public class MenuChecker {
 		case R.id.sdcard:
 			insertList(act, new RowDataSD());
 			return true;
+		case R.id.quit2:
 		case R.id.quit:
 			exitApp(act);
 			return true;
-			// case R.id.getroot:
-			// try {
-			// Runtime.getRuntime().exec("su");
-			// } catch (IOException e) {
-			// }
-			// return true;
 		case R.id.samba:
 			// Toast.makeText(act, R.string.future, Toast.LENGTH_SHORT).show();
 			if (NetChecker.isOnline(act)) {
@@ -66,8 +63,8 @@ public class MenuChecker {
 	public static void showHelp() {
 		LayoutInflater factory = LayoutInflater.from(fmMain.CONTEXT);
 		final View v = factory.inflate(R.layout.help, null);
-		new AlertDialog.Builder(fmMain.CONTEXT).setTitle(R.string.mn_tutor).setIcon(android.R.drawable.ic_menu_help).setView(v)
-				.create().show();
+		new AlertDialog.Builder(fmMain.CONTEXT).setTitle(R.string.mn_tutor).setIcon(android.R.drawable.ic_menu_help)
+				.setView(v).create().show();
 	}
 
 	private static void exitApp(fmMain act) {
