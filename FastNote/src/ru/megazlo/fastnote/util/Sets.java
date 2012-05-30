@@ -93,6 +93,7 @@ public final class Sets {
 		act.setRequestedOrientation(Sets.ORIENT_TYPE);
 	}
 
+	@SuppressWarnings("resource")
 	public static void backup(Activity ac) {
 		try {
 			SqlBase.insertSets();
@@ -118,6 +119,7 @@ public final class Sets {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	public static void restore(Activity act) {
 		try {
 			File sd = Environment.getExternalStorageDirectory();
