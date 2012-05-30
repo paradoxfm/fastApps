@@ -43,6 +43,7 @@ public class FileUtil {
 		return buf.toString();
 	}
 
+	@SuppressWarnings("resource")
 	private static String detectEncode(File file) throws IOException {
 		byte[] buf = new byte[4096];
 		FileInputStream fis = new FileInputStream(file);

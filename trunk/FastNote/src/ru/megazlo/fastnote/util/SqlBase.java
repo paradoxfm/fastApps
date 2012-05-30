@@ -33,11 +33,15 @@ public class SqlBase {
 	private static ArrayList<NoteData> cursorReader(Cursor c) {
 		ArrayList<NoteData> rez = new ArrayList<NoteData>();
 		c.moveToFirst();
-		while (c.isAfterLast() == false) {
+		while (!c.isAfterLast()) {
 			int id = c.getInt(0);
 			int order = c.getInt(1);
 			int wcnt = c.getInt(2);
-			Date date = new Date(Date.parse(c.getString(3)));
+			Date date = new Date();
+			try {
+				date = new Date(Date.parse(c.getString(3)));
+			} catch (Exception e) {
+			}
 			String title = c.getString(4);
 			NoteData dat = new NoteData(id, order, wcnt, date, title);
 			rez.add(dat);
