@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="ru.megazlo.fastnote"
-	android:versionCode="6" android:versionName="1.0rc2">
+	android:versionCode="7" android:versionName="1.0rc3">
 	<uses-sdk android:minSdkVersion="8" />
 	<application android:icon="@drawable/appicon" android:label="@string/app_name" android:theme="@style/app_theme">
-		<activity android:name=".fmMain" android:label="@string/app_name" android:launchMode="singleTask">
+		<activity android:name=".Mfm" android:label="@string/app_name" android:launchMode="singleTask"
+			android:configChanges="keyboard|keyboardHidden">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />

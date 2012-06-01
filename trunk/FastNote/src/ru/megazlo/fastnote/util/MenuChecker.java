@@ -1,6 +1,6 @@
 package ru.megazlo.fastnote.util;
 
-import ru.megazlo.fastnote.fmMain;
+import ru.megazlo.fastnote.Mfm;
 import ru.megazlo.fastnote.fmSettings;
 import ru.megazlo.fastnote.R;
 import android.app.Activity;
@@ -13,7 +13,7 @@ public class MenuChecker {
 
 	private static Intent INT_PRF;
 
-	public static boolean itemClick(fmMain act, int id) {
+	public static boolean itemClick(Mfm act, int id) {
 		switch (id) {
 		case R.id.appsett:
 			startAct(act, INT_PRF, fmSettings.class);
@@ -29,7 +29,7 @@ public class MenuChecker {
 		}
 	}
 
-	private static void exitApp(fmMain act) {
+	private static void exitApp(Mfm act) {
 		System.exit(0);
 	}
 
@@ -43,9 +43,9 @@ public class MenuChecker {
 	}
 
 	public static void showHelp() {
-		LayoutInflater factory = LayoutInflater.from(fmMain.CONTEXT);
+		LayoutInflater factory = LayoutInflater.from(Mfm.I);
 		final View v = factory.inflate(R.layout.help, null);
-		new AlertDialog.Builder(fmMain.CONTEXT).setTitle(R.string.tutor).setIcon(R.drawable.ic_menu_light).setView(v)
+		new AlertDialog.Builder(Mfm.I).setTitle(R.string.tutor).setIcon(R.drawable.ic_menu_light).setView(v)
 				.create().show();
 	}
 }

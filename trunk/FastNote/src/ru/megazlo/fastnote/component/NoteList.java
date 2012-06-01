@@ -2,7 +2,7 @@ package ru.megazlo.fastnote.component;
 
 import java.io.File;
 
-import ru.megazlo.fastnote.fmMain;
+import ru.megazlo.fastnote.Mfm;
 import ru.megazlo.fastnote.util.NotesLoader;
 import ru.megazlo.fastnote.util.Sets;
 import android.content.Context;
@@ -35,7 +35,7 @@ public class NoteList extends ListView {
 	@Override
 	public boolean performItemClick(View view, int position, long id) {
 		edited = (NoteRow) view;
-		fmMain frm = (fmMain) this.getContext();
+		Mfm frm = (Mfm) this.getContext();
 		unsheckAll();
 		edited.setChecked(true);
 		frm.setEditorText(edited.getData());

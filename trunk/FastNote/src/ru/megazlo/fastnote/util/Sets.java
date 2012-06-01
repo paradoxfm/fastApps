@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
-import ru.megazlo.fastnote.fmMain;
+import ru.megazlo.fastnote.Mfm;
 import ru.megazlo.fastnote.component.NoteData;
 import ru.megazlo.fastnote.R;
 import android.app.Activity;
@@ -33,15 +33,14 @@ public final class Sets {
 
 	// ----------------------- Стастическая хрень -----------------------
 	public static double DIP_CONV = 0;
-	public static Drawable I_NOTE, I_RIGTH, I_RIGTH_MARK;
-	public static Drawable I_LOCK, I_ULOCK, I_PLUS;
+	public static Drawable I_NOTE, I_RIGTH, I_RIGTH_MARK, I_PLUS;
 
 	public static java.text.DateFormat F_TIME;
 	public static java.text.DateFormat F_DATE;
 	// ----------------------------------------------------------------------
 	public static ArrayList<NoteData> DAT;
 
-	public static void load(SharedPreferences prf, fmMain frm) {
+	public static void load(SharedPreferences prf, Mfm frm) {
 		if (DAT != null) {
 			applySets(frm);
 			return;
@@ -75,13 +74,11 @@ public final class Sets {
 		edit.commit();
 	}
 
-	private static void loadRes(fmMain frm) {
+	private static void loadRes(Mfm frm) {
 		Resources res = frm.getResources();
 		I_NOTE = res.getDrawable(R.drawable.inote);
 		I_RIGTH = res.getDrawable(R.drawable.rigth);
 		I_RIGTH_MARK = res.getDrawable(R.drawable.rigth_mark);
-		I_LOCK = res.getDrawable(R.drawable.lock);
-		I_ULOCK = res.getDrawable(R.drawable.unlock);
 		I_PLUS = res.getDrawable(R.drawable.plus_64);
 	}
 
@@ -93,7 +90,6 @@ public final class Sets {
 		act.setRequestedOrientation(Sets.ORIENT_TYPE);
 	}
 
-	@SuppressWarnings("resource")
 	public static void backup(Activity ac) {
 		try {
 			SqlBase.insertSets();
@@ -119,7 +115,6 @@ public final class Sets {
 		}
 	}
 
-	@SuppressWarnings("resource")
 	public static void restore(Activity act) {
 		try {
 			File sd = Environment.getExternalStorageDirectory();

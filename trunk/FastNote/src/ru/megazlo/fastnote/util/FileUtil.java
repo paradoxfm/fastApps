@@ -34,24 +34,22 @@ public class FileUtil {
 		BufferedReader rd = new BufferedReader(isr);
 		String s = new String();
 		StringBuffer buf = new StringBuffer();
-		while ((s = rd.readLine()) != null) {
+		while ((s = rd.readLine()) != null)
 			buf.append(s + "\r\n");
-		}
 		rd.close();
 		isr.close();
 		fis.close();
 		return buf.toString();
 	}
 
-	@SuppressWarnings("resource")
 	private static String detectEncode(File file) throws IOException {
 		byte[] buf = new byte[4096];
 		FileInputStream fis = new FileInputStream(file);
 		UniversalDetector detector = new UniversalDetector(null);
 		int nread;
-		while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
+		while ((nread = fis.read(buf)) > 0 && !detector.isDone())
 			detector.handleData(buf, 0, nread);
-		}
+		fis.close();
 		detector.dataEnd();
 		String encoding = detector.getDetectedCharset();
 		detector.reset();

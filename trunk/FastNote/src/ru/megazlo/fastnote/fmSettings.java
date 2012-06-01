@@ -72,17 +72,17 @@ public class fmSettings extends PreferenceActivity implements Preference.OnPrefe
 			Sets.FULL_SCR = (Boolean) val;
 			int flg = WindowManager.LayoutParams.FLAG_FULLSCREEN;
 			if (Sets.FULL_SCR) {
-				fmMain.CONTEXT.getWindow().setFlags(flg, flg);
+				Mfm.I.getWindow().setFlags(flg, flg);
 				this.getWindow().setFlags(flg, flg);
 			} else {
-				fmMain.CONTEXT.getWindow().clearFlags(flg);
+				Mfm.I.getWindow().clearFlags(flg);
 				this.getWindow().clearFlags(flg);
 			}
 		}
 		if (key.equals("orientype")) {
 			Sets.ORIENT_TYPE = Integer.parseInt((String) val);
 			setRequestedOrientation(Sets.ORIENT_TYPE);
-			fmMain.CONTEXT.setRequestedOrientation(Sets.ORIENT_TYPE);
+			Mfm.I.setRequestedOrientation(Sets.ORIENT_TYPE);
 		}
 		return true;
 	}
@@ -91,7 +91,7 @@ public class fmSettings extends PreferenceActivity implements Preference.OnPrefe
 	public boolean onPreferenceClick(Preference preference) {
 		String key = clickedKey = preference.getKey();
 		if (key.equals("bakup")) {
-			Sets.backup(fmMain.CONTEXT);
+			Sets.backup(Mfm.I);
 			return true;
 		}
 		if (key.equals("about")) {
@@ -162,8 +162,8 @@ public class fmSettings extends PreferenceActivity implements Preference.OnPrefe
 
 	@Override
 	public void onBackPressed() {
-		fmMain.CONTEXT.applyEditorSet();
-		Sets.save(fmMain.CONTEXT.getPreferences(0));
+		Mfm.I.applyEditorSet();
+		Sets.save(Mfm.I.getPreferences(0));
 		super.onBackPressed();
 	}
 

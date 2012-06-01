@@ -1,6 +1,6 @@
 package ru.megazlo.fastnote.util;
 
-import ru.megazlo.fastnote.fmMain;
+import ru.megazlo.fastnote.Mfm;
 import ru.megazlo.fastnote.component.NoteData;
 import ru.megazlo.fastnote.R;
 import ru.megazlo.quicker.ActionItem;
@@ -26,7 +26,7 @@ public class ActionFactory {
 		action.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				fmMain frm = (fmMain) v.getContext();
+				Mfm frm = (Mfm) v.getContext();
 				frm.deleteNote(note);
 				action.dismiss();
 			}
