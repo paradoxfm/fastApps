@@ -186,68 +186,6 @@
                 android:text="@string/t_save_file_sd"
                 android:textSize="16dip" />
         </LinearLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:contentDescription="@string/cdesc"
-            android:paddingBottom="5dip"
-            android:paddingTop="5dip"
-            android:scaleType="fitXY"
-            android:src="@drawable/divider" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <ImageView
-                android:layout_width="40dip"
-                android:layout_height="40dip"
-                android:contentDescription="@string/cdesc"
-                android:src="@drawable/lock" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dip"
-                android:text="@string/t_unlock_edit"
-                android:textSize="16dip" />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:contentDescription="@string/cdesc"
-            android:paddingBottom="5dip"
-            android:paddingTop="5dip"
-            android:scaleType="fitXY"
-            android:src="@drawable/divider" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <ImageView
-                android:layout_width="40dip"
-                android:layout_height="40dip"
-                android:contentDescription="@string/cdesc"
-                android:src="@drawable/unlock" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dip"
-                android:text="@string/t_lock_edit"
-                android:textSize="16dip" />
-        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

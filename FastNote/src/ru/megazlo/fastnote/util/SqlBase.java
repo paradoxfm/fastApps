@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import ru.megazlo.fastnote.R;
-import ru.megazlo.fastnote.fmMain;
+import ru.megazlo.fastnote.Mfm;
 import ru.megazlo.fastnote.component.NoteData;
 import android.app.Activity;
 import android.content.ContentValues;
@@ -26,7 +26,7 @@ public class SqlBase {
 					null);
 			return cursorReader(cur);
 		}
-		Toast.makeText(fmMain.CONTEXT, R.string.db_broken, Toast.LENGTH_SHORT).show();	
+		Toast.makeText(Mfm.I, R.string.db_broken, Toast.LENGTH_SHORT).show();	
 		return new ArrayList<NoteData>();
 	}
 
@@ -81,7 +81,7 @@ public class SqlBase {
 			SQLITE.insert(table, "", val);
 			dat.setID(selectID());
 		} else
-			Toast.makeText(fmMain.CONTEXT, R.string.db_broken, Toast.LENGTH_SHORT).show();		
+			Toast.makeText(Mfm.I, R.string.db_broken, Toast.LENGTH_SHORT).show();		
 	}
 
 	private static int selectID() {

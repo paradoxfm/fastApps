@@ -29,7 +29,6 @@ public class NotesLoader extends Thread {
 				msg.sendToTarget();
 			}
 		} catch (Exception e) {
-			e.toString();
 		}
 	}
 

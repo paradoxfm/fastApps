@@ -26,10 +26,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class fmMain extends Activity {
+public class Mfm extends Activity {
 	private static boolean fromFile = false;
 	private static boolean isSearch = false;
-	public static fmMain CONTEXT;
+	public static Mfm I;
 	private TextView title;
 	private ImageView newnote, logo;
 	public ScrollerView scrv;
@@ -38,40 +38,24 @@ public class fmMain extends Activity {
 	private NoteData noteDel;
 	private File dirDB;
 
-	private View.OnClickListener lockNote = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			fmMain.this.lockNote();
-		}
-	};
-	private View.OnClickListener unlockNote = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			fmMain.this.unlockNote();
-		}
-	};
 	private View.OnClickListener saveFile = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			fmMain.this.saveFile();
+			Mfm.this.saveFile();
 		}
 	};
-	private View.OnClickListener unlockFile = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			fmMain.this.unlockFile();
-		}
-	};
+
 	private View.OnClickListener saveFileBase = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			fmMain.this.saveFileBase();
+			Mfm.this.saveFileBase();
 		}
 	};
+
 	private View.OnClickListener newNote = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			fmMain.this.newNote();
+			Mfm.this.newNote();
 		}
 	};
 
@@ -85,7 +69,7 @@ public class fmMain extends Activity {
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
 		dirDB = getExternalFilesDir(null);
 		initChild();
-		CONTEXT = this;
+		I = this;
 		if (!(fromFile || FileUtil.openText(getIntent()))) {
 			insertList();
 			NoteData dt = nlist.getCheckedItem();
@@ -102,11 +86,16 @@ public class fmMain extends Activity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		// Save a note for an incoming call
 		if (fromFile)
 			saveFile();
-		else
-			lockNote();
+		else if (nedit.isFromBase()) {
+			nedit.setLocked(true);
+			if (nedit.isEdited()) {
+				nedit.saveText();
+				NoteAdapter adp = (NoteAdapter) nlist.getAdapter();
+				adp.notifyDataSetChanged();
+			}
+		}
 	}
 
 	@Override
@@ -131,9 +120,9 @@ public class fmMain extends Activity {
 			isSearch = true;
 		} else if (nedit == v) {
 			if (fromFile)
-				unlockFile();
+				saveFile();
 			else
-				unlockNote();
+				nedit.setLocked(false);
 			nedit.search(stringExtra.toLowerCase());
 		}
 	}
@@ -178,60 +167,34 @@ public class fmMain extends Activity {
 				NoteAdapter adp = (NoteAdapter) nlist.getAdapter();
 				adp.notifyDataSetChanged();
 			}
-			// --------------- значки события заголовок
 			logo.setImageResource(R.drawable.notepad);
-			newnote.setImageResource(R.drawable.plus_64);
 			logo.setOnClickListener(null);
+			newnote.setImageResource(R.drawable.plus_64);
+			newnote.setVisibility(View.VISIBLE);
 			newnote.setOnClickListener(newNote);
 			title.setText(R.string.app_name);
-			// --------------- значки события заголовок
 		} else if (vc == nedit) {
-			if (nedit.isFromBase()) {
-				logo.setImageResource(R.drawable.notepad);
-				logo.setOnClickListener(null);
-				newnote.setImageResource(nedit.isLocked() ? R.drawable.lock : R.drawable.unlock);
-				newnote.setOnClickListener(nedit.isLocked() ? unlockNote : lockNote);
-			} else {
-				logo.setImageResource(nedit.isLocked() ? R.drawable.notepad : R.drawable.db_add);
-				logo.setOnClickListener(nedit.isLocked() ? null : saveFileBase);
-				newnote.setImageResource(nedit.isLocked() ? R.drawable.lock : R.drawable.save);
-				newnote.setOnClickListener(nedit.isLocked() ? unlockFile : saveFile);
+			Boolean flg = nedit.isFromBase();
+			newnote.setVisibility(flg ? View.GONE : View.VISIBLE);
+			if (!flg) {
+				newnote.setImageResource(R.drawable.save);
+				newnote.setOnClickListener(saveFile);
 			}
+			logo.setImageResource(flg ? R.drawable.notepad : R.drawable.db_add);
+			logo.setOnClickListener(flg ? null : saveFileBase);
 			title.setText(nedit.getTitle());
 		}
-	}
-
-	private void lockNote() {
-		nedit.setLocked(true);
-		newnote.setImageResource(R.drawable.lock);
-		newnote.setOnClickListener(unlockNote);
-	}
-
-	private void unlockNote() {
-		nedit.setLocked(false);
-		newnote.setImageResource(R.drawable.unlock);
-		newnote.setOnClickListener(lockNote);
 	}
 
 	private void saveFile() {
 		logo.setImageResource(R.drawable.notepad);
 		logo.setOnClickListener(null);
-		newnote.setImageResource(R.drawable.lock);
-		newnote.setOnClickListener(unlockFile);
 		int msg = nedit.isEdited() ? R.string.f_svd : R.string.fdc;
 		if (nedit.isEdited()) {
 			FileUtil.saveToFile(nedit.getText());
 			nedit.saveText();
 		}
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-	}
-
-	private void unlockFile() {
-		logo.setImageResource(R.drawable.db_add);
-		newnote.setImageResource(R.drawable.save);
-		logo.setOnClickListener(saveFileBase);
-		newnote.setOnClickListener(saveFile);
-		nedit.setLocked(false);
 	}
 
 	private void saveFileBase() {
@@ -245,15 +208,10 @@ public class fmMain extends Activity {
 		fromFile = false;
 		setEditorText(dat);
 		insertList();
-		// NoteAdapter adp = (NoteAdapter) nlist.getAdapter();
-		// adp.add(dat);
-		// adp.notifyDataSetChanged();
 		nlist.checkByID(dat.getID());
 		nedit.setLocked(true);
 		logo.setImageResource(R.drawable.notepad);
 		logo.setOnClickListener(null);
-		newnote.setImageResource(R.drawable.lock);
-		newnote.setOnClickListener(unlockNote);
 		Toast.makeText(this, R.string.save_base, Toast.LENGTH_SHORT).show();
 	}
 
@@ -263,7 +221,6 @@ public class fmMain extends Activity {
 		SqlBase.insertNote(dat);
 		NoteAdapter adp = (NoteAdapter) nlist.getAdapter();
 		adp.add(dat);
-		// adp.notifyDataSetChanged();
 		setEditorText(dat);
 	}
 
@@ -286,7 +243,6 @@ public class fmMain extends Activity {
 
 	private void insertEditor() {
 		scrv.addView(nedit);
-		// nedit.setVisibility(View.VISIBLE);
 		scrv.scrollToScreen(scrv.getChildCount() - 1);
 	}
 
@@ -318,7 +274,7 @@ public class fmMain extends Activity {
 
 	public void deleteNote(NoteData note) {
 		noteDel = note;
-		new AlertDialog.Builder(fmMain.CONTEXT).setNegativeButton(R.string.cansel, null).setMessage(R.string.del_q)
+		new AlertDialog.Builder(Mfm.I).setNegativeButton(R.string.cansel, null).setMessage(R.string.del_q)
 				.setPositiveButton(R.string.ok, delnote).setIcon(R.drawable.qa_delete).setTitle(R.string.del_ing).show();
 	}
 
@@ -330,7 +286,7 @@ public class fmMain extends Activity {
 			adp.remove(noteDel);
 			noteDel = null;
 			adp.notifyDataSetChanged();
-			Toast.makeText(fmMain.this, R.string.del_ok, Toast.LENGTH_SHORT).show();
+			Toast.makeText(Mfm.this, R.string.del_ok, Toast.LENGTH_SHORT).show();
 		}
 	};
 
@@ -338,7 +294,7 @@ public class fmMain extends Activity {
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
 			nedit.saveTextFile();
-			Toast.makeText(fmMain.this, R.string.saved, Toast.LENGTH_SHORT).show();
+			Toast.makeText(Mfm.this, R.string.saved, Toast.LENGTH_SHORT).show();
 		}
 	};
 }

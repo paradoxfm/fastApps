@@ -10,13 +10,11 @@ import android.content.Context;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 public class NoteEditor extends LinearLayout {
-	private boolean mLocked = true;
 	private boolean mEdited = false;
 	private NoteEdit nedit;
 	private TextWatcher wach;
@@ -89,18 +87,12 @@ public class NoteEditor extends LinearLayout {
 
 	/** Текстовый редактор заблокирован */
 	public boolean isLocked() {
-		return mLocked;
+		return nedit.isEdit();
 	}
 
 	public void setLocked(boolean locked) {
-		mLocked = locked;
-		nedit.setFocusable(!locked);
-		nedit.setFocusableInTouchMode(!locked);
-		InputMethodManager inMan = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 		if (locked)
-			inMan.hideSoftInputFromWindow(nedit.getWindowToken(), 0);
-		else
-			inMan.toggleSoftInput(0, 0);
+			nedit.disableEdit();
 	}
 
 	public String getText() {
