@@ -11,6 +11,7 @@ import ru.megazlo.scrollerview.OnScrollFinish;
 import ru.megazlo.scrollerview.ScrollerView;
 import android.app.Activity;
 import android.app.SearchManager;
+import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -25,10 +26,11 @@ import android.widget.SearchView;
 
 public class fmMain extends Activity {
 
-	public static fmMain CONTEXT;
+	public static fmMain I;
 	public FileList lsdc;
 	public ScrollerView scrv;
 	private boolean isToRoot = false;
+	public int widgetID = -1;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,30 @@ public class fmMain extends Activity {
 			Sets.restoreLists(this);
 		else
 			MenuChecker.insertList(this, new RowDataSD());
-		CONTEXT = this;
+		I = this;
+		checkWidget(getIntent());
+	}
+
+	private void checkWidget(final Intent newIntent) {
+		Bundle extras = newIntent.getExtras();
+		if (extras != null) {
+			widgetID = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+			setResult(RESULT_CANCELED);
+			invalidateOptionsMenu();
+		}
+		if (widgetID == AppWidgetManager.INVALID_APPWIDGET_ID)
+			finish();
+	}
+
+	public void configWidget() {
+		final Context context = fmMain.this;
+		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+		Widget.updateAppWidget(context, appWidgetManager, widgetID, getCurrentDir());
+		Intent resultValue = new Intent();
+		resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
+		setResult(RESULT_OK, resultValue);
+		finish();
+		MenuChecker.exitApp(this);
 	}
 
 	@Override
@@ -130,11 +155,15 @@ public class fmMain extends Activity {
 	// ------------------------------------------------------ Вызов меню
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.actionbar, menu);
-		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-		SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
-		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-		getMenuInflater().inflate(R.menu.main_down, menu);
+		if (widgetID == -1) {
+			getMenuInflater().inflate(R.menu.actionbar, menu);
+			SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+			SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+			searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+			getMenuInflater().inflate(R.menu.main_down, menu);
+		} else {
+			getMenuInflater().inflate(R.menu.actionbarw, menu);
+		}
 		return true;
 	}
 
@@ -156,6 +185,7 @@ public class fmMain extends Activity {
 	@Override
 	public void onNewIntent(final Intent newIntent) {
 		super.onNewIntent(newIntent);
+		checkWidget(newIntent);
 		if (Intent.ACTION_SEARCH.equals(newIntent.getAction()) && getCurEng().isAllowSearsh())
 			doSearchQuery(newIntent, newIntent.getStringExtra(SearchManager.QUERY));
 	}

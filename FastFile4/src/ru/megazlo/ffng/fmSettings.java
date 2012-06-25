@@ -73,7 +73,7 @@ public class fmSettings extends PreferenceActivity implements Preference.OnPrefe
 
 	@Override
 	public void onBackPressed() {
-		Sets.save(fmMain.CONTEXT.getPreferences(0));
+		Sets.save(fmMain.I.getPreferences(0));
 		super.onBackPressed();
 	}
 

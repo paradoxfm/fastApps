@@ -11,10 +11,12 @@ import ru.megazlo.ffng.components.filerow.FileList;
 import ru.megazlo.ffng.engine.BaseEngine;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 public class MenuChecker {
@@ -55,23 +57,26 @@ public class MenuChecker {
 		case R.id.closetab:
 			remList(act.getCurEng().getList());
 			return true;
+		case R.id.menu_set_widget_path:
+			fmMain.I.configWidget();
+			return true;
 		default:
 			return false;
 		}
 	}
 
 	public static void showHelp() {
-		LayoutInflater factory = LayoutInflater.from(fmMain.CONTEXT);
+		LayoutInflater factory = LayoutInflater.from(fmMain.I);
 		final View v = factory.inflate(R.layout.help, null);
-		new AlertDialog.Builder(fmMain.CONTEXT).setTitle(R.string.mn_tutor).setIcon(android.R.drawable.ic_menu_help)
-				.setView(v).create().show();
+		new AlertDialog.Builder(fmMain.I).setTitle(R.string.mn_tutor).setIcon(android.R.drawable.ic_menu_help).setView(v)
+				.create().show();
 	}
 
-	private static void exitApp(fmMain act) {
+	public static void exitApp(fmMain act) {
 		INT_PRF = null;
 		Sets.dat.clear();
 		act.finish();
-		fmMain.CONTEXT = act = null;
+		fmMain.I = act = null;
 		System.exit(0);
 	}
 
@@ -88,10 +93,10 @@ public class MenuChecker {
 	}
 
 	public static void remList(FileList lst) {
-		if (fmMain.CONTEXT.scrv.getChildCount() == 1)
-			exitApp(fmMain.CONTEXT);
+		if (fmMain.I.scrv.getChildCount() == 1)
+			exitApp(fmMain.I);
 		Sets.dat.remove(lst.getEngine().getDat());
-		removeList(fmMain.CONTEXT, lst);
+		removeList(fmMain.I, lst);
 	}
 
 	private static void removeList(fmMain act, FileList lst) {

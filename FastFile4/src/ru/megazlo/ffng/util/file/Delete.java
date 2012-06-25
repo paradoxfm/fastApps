@@ -15,8 +15,8 @@ public class Delete extends AsyncTask<Object, Void, Void> {
 	private final ProgressDialog dialog;
 
 	public Delete() {
-		dialog = new ProgressDialog(fmMain.CONTEXT);
-		dialog.setMessage(fmMain.CONTEXT.getResources().getString(R.string.deleting));
+		dialog = new ProgressDialog(fmMain.I);
+		dialog.setMessage(fmMain.I.getResources().getString(R.string.deleting));
 		dialog.setOnCancelListener(new OnCancelListener() {
 			@Override
 			public void onCancel(DialogInterface dialog) {
@@ -42,7 +42,7 @@ public class Delete extends AsyncTask<Object, Void, Void> {
 
 	@Override
 	protected void onPostExecute(Void rez) {
-		fmMain.CONTEXT.update();
+		fmMain.I.update();
 		this.dialog.dismiss();
 	}
 

@@ -102,7 +102,7 @@ public class FileRow extends BaseCellRow {
 		this.m_check.setOnLongClickListener(new OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View v) {
-				fmMain.CONTEXT.getCurEng().selectAll();
+				fmMain.I.getCurEng().selectAll();
 				return true;
 			}
 		});

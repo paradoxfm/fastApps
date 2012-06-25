@@ -28,7 +28,7 @@ public class ActionFactory {
 
 	public static QuickAction create(View v, Object... file) {
 		QuickAction qa = new QuickAction(v);
-		BaseEngine eng = fmMain.CONTEXT.getCurEng();
+		BaseEngine eng = fmMain.I.getCurEng();
 		Object[] obj = eng.getFiles();
 		FTPClient clnt = eng.getType() == BaseEngine.FTP ? ((RowDataFTP) eng.getDat()).FTP_CLIENT : null;
 		if (obj.length > 0)
@@ -71,7 +71,7 @@ public class ActionFactory {
 
 	private static void createFtp(Context cont, QuickAction qq, FTPClient clnt, Object fil) {
 		FTPFile fl = (FTPFile) fil;
-		if (fl == fmMain.CONTEXT.getCurEng().getCurrentDir()) {
+		if (fl == fmMain.I.getCurEng().getCurrentDir()) {
 			qq.addAction(newDirectory(cont, clnt, fil));// создать папку
 			if (FileTools.FROM != null)
 				qq.addAction(paste(cont, clnt, fil));
@@ -160,7 +160,7 @@ public class ActionFactory {
 			@Override
 			public void onClick(View v) {
 				FileTools.FROM = fil.length == 1 ? new File[] { (File) fil[0] } : fil;
-				fmMain.CONTEXT.onSearchRequested();
+				fmMain.I.onSearchRequested();
 				search.dismiss();
 			}
 		});

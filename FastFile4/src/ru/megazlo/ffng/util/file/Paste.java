@@ -20,7 +20,7 @@ public class Paste extends AsyncTask<Object, Void, Void> {
 	private final ProgressDialog dialog;
 
 	public Paste() {
-		dialog = new ProgressDialog(fmMain.CONTEXT);
+		dialog = new ProgressDialog(fmMain.I);
 		dialog.setMessage("Вставка");
 		dialog.setOnCancelListener(new OnCancelListener() {
 			@Override
@@ -72,7 +72,7 @@ public class Paste extends AsyncTask<Object, Void, Void> {
 	}
 
 	private void copy(File from, FTPFile to, FTPClient ftp) {
-		String nm = to != fmMain.CONTEXT.getCurEng().getCurrentDir() ? to.getName() + '/' + from.getName() : from.getName();
+		String nm = to != fmMain.I.getCurEng().getCurrentDir() ? to.getName() + '/' + from.getName() : from.getName();
 		if (from.isDirectory()) {
 			try {
 				ftp.makeDirectory(nm);
@@ -119,7 +119,7 @@ public class Paste extends AsyncTask<Object, Void, Void> {
 
 	@Override
 	protected void onPostExecute(Void rez) {
-		fmMain.CONTEXT.update();
+		fmMain.I.update();
 		this.dialog.dismiss();
 	}
 

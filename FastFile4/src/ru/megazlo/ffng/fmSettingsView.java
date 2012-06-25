@@ -79,7 +79,7 @@ public class fmSettingsView extends PreferenceActivity implements Preference.OnP
 
 	@Override
 	public void onBackPressed() {
-		Sets.save(fmMain.CONTEXT.getPreferences(0));
+		Sets.save(fmMain.I.getPreferences(0));
 		super.onBackPressed();
 	}
 
@@ -100,11 +100,11 @@ public class fmSettingsView extends PreferenceActivity implements Preference.OnP
 				Bitmap bmp = Bitmap.createBitmap(new int[] { Sets.BACK_COLOR }, 1, 1, Config.ARGB_8888);
 				Drawable drw = new BitmapDrawable(bmp);
 				this.getWindow().setBackgroundDrawable(drw);
-				fmMain.CONTEXT.getWindow().setBackgroundDrawable(drw);
+				fmMain.I.getWindow().setBackgroundDrawable(drw);
 				fmSettings.CONTEXT.getWindow().setBackgroundDrawable(drw);
 			} else {
 				this.getWindow().setBackgroundDrawableResource(R.drawable.app_background);
-				fmMain.CONTEXT.getWindow().setBackgroundDrawableResource(R.drawable.app_background);
+				fmMain.I.getWindow().setBackgroundDrawableResource(R.drawable.app_background);
 				fmSettings.CONTEXT.getWindow().setBackgroundDrawableResource(R.drawable.app_background);
 			}
 		}
@@ -112,10 +112,10 @@ public class fmSettingsView extends PreferenceActivity implements Preference.OnP
 			Sets.FULL_SCR = (Boolean) nval;
 			int flg = WindowManager.LayoutParams.FLAG_FULLSCREEN;
 			if (Sets.FULL_SCR) {
-				fmMain.CONTEXT.getWindow().setFlags(flg, flg);
+				fmMain.I.getWindow().setFlags(flg, flg);
 				this.getWindow().setFlags(flg, flg);
 			} else {
-				fmMain.CONTEXT.getWindow().clearFlags(flg);
+				fmMain.I.getWindow().clearFlags(flg);
 				this.getWindow().clearFlags(flg);
 			}
 		}
@@ -124,7 +124,7 @@ public class fmSettingsView extends PreferenceActivity implements Preference.OnP
 		if (key.equals("orientype")) {
 			Sets.ORIENT_TYPE = Integer.parseInt((String) nval);
 			setRequestedOrientation(Sets.ORIENT_TYPE);
-			fmMain.CONTEXT.setRequestedOrientation(Sets.ORIENT_TYPE);
+			fmMain.I.setRequestedOrientation(Sets.ORIENT_TYPE);
 		}
 		return true;
 	}
@@ -161,7 +161,7 @@ public class fmSettingsView extends PreferenceActivity implements Preference.OnP
 			Bitmap bmp = Bitmap.createBitmap(new int[] { Sets.BACK_COLOR }, 1, 1, Config.ARGB_8888);
 			Drawable drw = new BitmapDrawable(bmp);
 			this.getWindow().setBackgroundDrawable(drw);
-			fmMain.CONTEXT.getWindow().setBackgroundDrawable(drw);
+			fmMain.I.getWindow().setBackgroundDrawable(drw);
 			fmSettings.CONTEXT.getWindow().setBackgroundDrawable(drw);
 		}
 		dial.dismiss();
