@@ -17,8 +17,8 @@ public class Search extends AsyncTask<File, Void, File[]> {
 
 	public Search(String srhe) {
 		srh = srhe.toLowerCase();
-		dialog = new ProgressDialog(fmMain.CONTEXT);
-		dialog.setMessage(fmMain.CONTEXT.getString(R.string.serach) + ": " + srhe);
+		dialog = new ProgressDialog(fmMain.I);
+		dialog.setMessage(fmMain.I.getString(R.string.serach) + ": " + srhe);
 		dialog.setOnCancelListener(new OnCancelListener() {
 			@Override
 			public void onCancel(DialogInterface dialog) {
@@ -60,7 +60,7 @@ public class Search extends AsyncTask<File, Void, File[]> {
 	@Override
 	protected void onPostExecute(File[] rez) {
 		super.onPostExecute(rez);
-		fmMain.CONTEXT.getCurEng().fill(rez);
+		fmMain.I.getCurEng().fill(rez);
 		this.dialog.dismiss();
 	}
 

@@ -43,7 +43,7 @@ public class EngineSDC extends BaseEngine {
 	public void browseCatalog(Object cat) {
 		File dir = (File) cat;
 		if (!dir.canRead()) {
-			Toast.makeText(fmMain.CONTEXT, R.string.read_only, Toast.LENGTH_SHORT).show();
+			Toast.makeText(fmMain.I, R.string.read_only, Toast.LENGTH_SHORT).show();
 			return;
 		}
 		getDat().PATH = dir;
@@ -63,8 +63,10 @@ public class EngineSDC extends BaseEngine {
 		for (int i = 0; i < files.length; i++) {
 			if (!Sets.SHOW_HIDDEN && files[i].isHidden())
 				continue;
-			if (files[i].isDirectory())
-				dat.dir.add(new FileRowData(files[i], Sets.I_FOLD));
+			if (files[i].isDirectory()) {
+				FileRowData dt = new FileRowData(files[i], Sets.I_FOLD); 
+				dat.dir.add(dt);
+			}
 			else
 				dat.fil.add(new FileRowData(files[i], getIconByFile(files[i].getName())));
 		}

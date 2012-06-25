@@ -20,7 +20,7 @@ public class ConnectNet extends AsyncTask<Object, Void, BaseEngine> {
 
 	private static final String USER = "anonymous";
 
-	private final ProgressDialog dlg = new ProgressDialog(fmMain.CONTEXT);
+	private final ProgressDialog dlg = new ProgressDialog(fmMain.I);
 
 	@Override
 	protected BaseEngine doInBackground(Object... params) {
@@ -48,7 +48,7 @@ public class ConnectNet extends AsyncTask<Object, Void, BaseEngine> {
 			}
 			eng.getDat().FTP_CLIENT = ftp;
 		} catch (Exception e) {
-			Toast.makeText(fmMain.CONTEXT, R.string.err_conn, Toast.LENGTH_SHORT).show();
+			Toast.makeText(fmMain.I, R.string.err_conn, Toast.LENGTH_SHORT).show();
 		}
 		return eng;
 	}

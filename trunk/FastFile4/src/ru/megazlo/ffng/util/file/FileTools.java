@@ -50,7 +50,7 @@ public class FileTools {
 	public static String CURRENT_PLAY = "";
 	private static MimeTypes TYPE = new MimeTypes();
 
-	private static EditText EDIT = new EditText(fmMain.CONTEXT);
+	private static EditText EDIT = new EditText(fmMain.I);
 
 	private static OnCancelListener cans = new OnCancelListener() {
 		@Override
@@ -69,7 +69,7 @@ public class FileTools {
 				newdir.mkdir();
 			}
 			if (TO.getClass() == FTPFile.class) {
-				BaseEngine eng = fmMain.CONTEXT.getCurEng();
+				BaseEngine eng = fmMain.I.getCurEng();
 				FTPClient clnt = eng.getType() == BaseEngine.FTP ? ((RowDataFTP) eng.getDat()).FTP_CLIENT : null;
 				try {
 					String nm = TO != eng.getCurrentDir() ? ((FTPFile) TO).getName() + '/' + EDIT.getText().toString() : EDIT
@@ -78,7 +78,7 @@ public class FileTools {
 				} catch (IOException e) {
 				}
 			}
-			fmMain.CONTEXT.update();
+			fmMain.I.update();
 		}
 	};
 
@@ -99,7 +99,7 @@ public class FileTools {
 				String path = fl.getPath().substring(0, fl.getPath().lastIndexOf('/') + 1) + EDIT.getText();
 				fl.renameTo(new File(path));
 			}
-			fmMain.CONTEXT.update();
+			fmMain.I.update();
 		}
 	};
 
@@ -114,7 +114,7 @@ public class FileTools {
 			File newfile = new File((File) TO, name);
 			try {
 				newfile.createNewFile();
-				fmMain.CONTEXT.update();
+				fmMain.I.update();
 			} catch (IOException e) {
 			}
 		}
@@ -177,7 +177,7 @@ public class FileTools {
 				return;
 			}
 			Intent intn = new Intent();
-			intn.setClass(fmMain.CONTEXT, fmNotes.class);
+			intn.setClass(fmMain.I, fmNotes.class);
 			intn.putExtra(KEY, file.getPath());
 			c.startActivity(intn);
 		} else
@@ -186,7 +186,7 @@ public class FileTools {
 
 	private static void veiwImage(Context cont, File file) {
 		DisplayMetrics dm = new DisplayMetrics();
-		fmMain.CONTEXT.getWindowManager().getDefaultDisplay().getMetrics(dm);
+		fmMain.I.getWindowManager().getDefaultDisplay().getMetrics(dm);
 		final int minrez = Math.min(dm.widthPixels, dm.heightPixels);
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inJustDecodeBounds = true;
@@ -218,7 +218,7 @@ public class FileTools {
 		M_PLAYER = MediaPlayer.create(cont, Uri.fromFile(file));
 		CURRENT_PLAY = file.getPath();
 
-		String whereclause = fmMain.CONTEXT.getResources().getString(R.string.where_cau);
+		String whereclause = fmMain.I.getResources().getString(R.string.where_cau);
 		whereclause = String.format(whereclause, MediaStore.Audio.Media.DATA, file.getAbsolutePath());
 		Cursor cursor = cont.getContentResolver().query(
 				MediaStore.Audio.Media.getContentUri("external"),
@@ -233,7 +233,7 @@ public class FileTools {
 			albumId = Integer.parseInt(cursor.getString(3));
 		}
 		cursor.close();
-		LayoutInflater factory = LayoutInflater.from(fmMain.CONTEXT);
+		LayoutInflater factory = LayoutInflater.from(fmMain.I);
 		final View formcon = factory.inflate(R.layout.plmusic, null);
 		TextView tx = (TextView) formcon.findViewById(R.id.mp3info);
 		ImageView img = (ImageView) formcon.findViewById(R.id.mp3cover);
@@ -258,12 +258,12 @@ public class FileTools {
 			}
 		});
 
-		Bitmap cov = getArtworkQuick(fmMain.CONTEXT, albumId, 200, 200);
+		Bitmap cov = getArtworkQuick(fmMain.I, albumId, 200, 200);
 		if (cov != null)
 			img.setImageBitmap(cov);
-		String med = fmMain.CONTEXT.getResources().getString(R.string.media_info);
+		String med = fmMain.I.getResources().getString(R.string.media_info);
 		tx.setText(String.format(med, artist, title, album));
-		new AlertDialog.Builder(fmMain.CONTEXT).setOnCancelListener(cans).setTitle(R.string.mus_preview)
+		new AlertDialog.Builder(fmMain.I).setOnCancelListener(cans).setTitle(R.string.mus_preview)
 				.setIcon(R.drawable.file_mus).setView(formcon).create().show();
 
 		Runnable qww = new Runnable() {
@@ -350,15 +350,15 @@ public class FileTools {
 	}
 
 	public static void showDialog(OnClickListener lis, int msgid, int titleid, Object fil, Boolean showEdit, int ico) {
-		EDIT = new EditText(fmMain.CONTEXT);
+		EDIT = new EditText(fmMain.I);
 		EDIT.setPadding(15, 15, 15, 15);
-		String msg = fmMain.CONTEXT.getString(msgid);
-		String title = fmMain.CONTEXT.getString(titleid);
+		String msg = fmMain.I.getString(msgid);
+		String title = fmMain.I.getString(titleid);
 		if (showEdit)
-			new AlertDialog.Builder(fmMain.CONTEXT).setNegativeButton(R.string.cansel, null).setMessage(msg)
+			new AlertDialog.Builder(fmMain.I).setNegativeButton(R.string.cansel, null).setMessage(msg)
 					.setPositiveButton(R.string.ok, lis).setIcon(ico).setTitle(title).setView(EDIT).show();
 		else
-			new AlertDialog.Builder(fmMain.CONTEXT).setNegativeButton(R.string.cansel, null).setMessage(msg)
+			new AlertDialog.Builder(fmMain.I).setNegativeButton(R.string.cansel, null).setMessage(msg)
 					.setPositiveButton(R.string.ok, lis).setIcon(ico).setTitle(title).show();
 	}
 

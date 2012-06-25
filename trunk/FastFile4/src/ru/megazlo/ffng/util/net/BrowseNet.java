@@ -15,7 +15,7 @@ import android.os.AsyncTask;
 
 public class BrowseNet extends AsyncTask<Object, Void, Object[]> {
 
-	private final ProgressDialog dialog = new ProgressDialog(fmMain.CONTEXT);
+	private final ProgressDialog dialog = new ProgressDialog(fmMain.I);
 
 	@Override
 	protected Object[] doInBackground(Object... params) {

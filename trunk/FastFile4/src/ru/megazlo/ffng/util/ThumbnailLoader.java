@@ -77,14 +77,14 @@ public class ThumbnailLoader extends Thread {
 	}
 
 	private Drawable extractMp3(String path) {
-		String whereclause = fmMain.CONTEXT.getResources().getString(R.string.where_cau);
+		String whereclause = fmMain.I.getResources().getString(R.string.where_cau);
 		whereclause = String.format(whereclause, MediaStore.Audio.Media.DATA, path);
 		Cursor cursor = context.getContentResolver().query(MediaStore.Audio.Media.getContentUri("external"),
 				new String[] { MediaStore.Audio.Media.ALBUM_ID }, whereclause, null, null);
 		int albumId = -1;
 		if (cursor != null && cursor.moveToFirst())
 			albumId = Integer.parseInt(cursor.getString(0));
-		Bitmap cov = getArtworkQuick(fmMain.CONTEXT, albumId, 200, 200);
+		Bitmap cov = getArtworkQuick(fmMain.I, albumId, 200, 200);
 		return cov != null ? new BitmapDrawable(context.getResources(), cov) : null;
 	}
 

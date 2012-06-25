@@ -21,7 +21,7 @@ public class ColorButton extends Button implements OnColorChangedListener {
 	private static final int clr1 = 0xFFFFFFFF, clr2 = 0xFF000000;
 	private ColorCircle mColorCircle;
 	private ColorSlider mSaturation, mValue;
-	private TextView txcl;
+	//private TextView txcl;
 	public static AlertDialog dial;
 
 	private static View.OnLongClickListener lclick = new View.OnLongClickListener() {
@@ -73,8 +73,8 @@ public class ColorButton extends Button implements OnColorChangedListener {
 		mValue = (ColorSlider) v.findViewById(R.id.value);
 		mValue.setOnColorChangedListener(this);
 		mValue.setColors(Color.WHITE, color);
-		txcl = (TextView) v.findViewById(R.id.tx_col);
-		txcl.setText(String.format(frm, color));
+		//txcl = (TextView) v.findViewById(R.id.tx_col);
+		//txcl.setText(String.format(frm, color));
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public class ColorButton extends Button implements OnColorChangedListener {
 		default:
 			break;
 		}
-		txcl.setText(String.format(frm, newColor));
+		//txcl.setText(String.format(frm, newColor));
 	}
 
 	@Override
