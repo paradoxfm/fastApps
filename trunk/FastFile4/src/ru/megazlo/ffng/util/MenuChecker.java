@@ -11,12 +11,10 @@ import ru.megazlo.ffng.components.filerow.FileList;
 import ru.megazlo.ffng.engine.BaseEngine;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.RemoteViews;
 import android.widget.Toast;
 
 public class MenuChecker {

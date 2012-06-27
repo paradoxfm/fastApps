@@ -19,7 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Folder"
-        android:textSize="12dip" />
+        android:textColor="@android:color/white"
+        android:textSize="13dip" />
     <!-- @string/app_name -->
 
 </LinearLayout>

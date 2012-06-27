@@ -1,8 +1,11 @@
 package ru.megazlo.ffng;
 
+import java.io.File;
+
 import ru.megazlo.ffng.R;
 import ru.megazlo.ffng.components.RowDataSD;
 import ru.megazlo.ffng.components.filerow.FileList;
+import ru.megazlo.ffng.components.filerow.FilePagerAdapter;
 import ru.megazlo.ffng.engine.BaseEngine;
 import ru.megazlo.ffng.util.MenuChecker;
 import ru.megazlo.ffng.util.Sets;
@@ -19,10 +22,12 @@ import android.graphics.Bitmap.Config;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 public class fmMain extends Activity {
 
@@ -31,10 +36,25 @@ public class fmMain extends Activity {
 	public ScrollerView scrv;
 	private boolean isToRoot = false;
 	public int widgetID = -1;
+	private File startFile = null;
+
+	ViewPager mViewPager;
+	FilePagerAdapter mAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		//mViewPager = new ViewPager(this);
+		//setContentView(mViewPager);
+		// final ActionBar bar = getActionBar();
+		// bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		// bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+
+		// mAdapter = new FilePagerAdapter(getFragmentManager());
+		// mViewPager.setAdapter(mAdapter);
+
+		// scrv = new ScrollerView(this);
 		setContentView(scrv = new ScrollerView(this));
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		initChild();
@@ -44,29 +64,44 @@ public class fmMain extends Activity {
 			Drawable drw = new BitmapDrawable(bmp);
 			getWindow().setBackgroundDrawable(drw);
 		}
-		if (Sets.dat != null && Sets.dat.size() > 0)
-			Sets.restoreLists(this);
-		else
-			MenuChecker.insertList(this, new RowDataSD());
+		if (Sets.dat != null && Sets.dat.size() > 0) {
+			checkIntentParametrs(getIntent().getExtras());
+			if (widgetID != -1)
+				MenuChecker.insertList(this, new RowDataSD());
+			else
+				Sets.restoreLists(this);
+		} else {
+			RowDataSD dt = new RowDataSD();
+			checkIntentParametrs(getIntent().getExtras());
+			if (startFile != null) {
+				dt.PATH = startFile;
+				startFile = null;
+			}
+			MenuChecker.insertList(this, dt);
+		}
 		I = this;
-		checkWidget(getIntent());
 	}
 
-	private void checkWidget(final Intent newIntent) {
-		Bundle extras = newIntent.getExtras();
+	private void checkIntentParametrs(Bundle extras) {
 		if (extras != null) {
-			widgetID = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
-			setResult(RESULT_CANCELED);
-			invalidateOptionsMenu();
+			if (extras.containsKey(Widget.PREF_NAME)) {
+				String path = extras.get(Widget.PREF_NAME).toString();
+				Toast.makeText(this, path, Toast.LENGTH_LONG).show();
+				startFile = new File(path);
+			} else if (extras.containsKey(AppWidgetManager.EXTRA_APPWIDGET_ID)) {
+				widgetID = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+				setResult(RESULT_CANCELED);
+				invalidateOptionsMenu();
+				if (widgetID == AppWidgetManager.INVALID_APPWIDGET_ID)
+					finish();
+			}
 		}
-		if (widgetID == AppWidgetManager.INVALID_APPWIDGET_ID)
-			finish();
 	}
 
 	public void configWidget() {
 		final Context context = fmMain.this;
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-		Widget.updateAppWidget(context, appWidgetManager, widgetID, getCurrentDir());
+		Widget.updateAppWidget(context, appWidgetManager, widgetID, getCurrentDir(), true);
 		Intent resultValue = new Intent();
 		resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
 		setResult(RESULT_OK, resultValue);
@@ -185,7 +220,13 @@ public class fmMain extends Activity {
 	@Override
 	public void onNewIntent(final Intent newIntent) {
 		super.onNewIntent(newIntent);
-		checkWidget(newIntent);
+		checkIntentParametrs(newIntent.getExtras());
+		if (startFile != null) {
+			RowDataSD dt = new RowDataSD();
+			dt.PATH = startFile;
+			MenuChecker.insertList(this, dt);
+			startFile = null;
+		}
 		if (Intent.ACTION_SEARCH.equals(newIntent.getAction()) && getCurEng().isAllowSearsh())
 			doSearchQuery(newIntent, newIntent.getStringExtra(SearchManager.QUERY));
 	}

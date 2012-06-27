@@ -286,7 +286,6 @@ public class Sets {
 		save(act.getPreferences(0));
 	}
 
-	@SuppressWarnings("resource")
 	public static void backUpFTP(Activity ac) {
 		try {
 			insSets();
@@ -312,7 +311,6 @@ public class Sets {
 		}
 	}
 
-	@SuppressWarnings("resource")
 	public static void restoreBackUpFTP(Activity ac) {
 		try {
 			File sd = Environment.getExternalStorageDirectory();
