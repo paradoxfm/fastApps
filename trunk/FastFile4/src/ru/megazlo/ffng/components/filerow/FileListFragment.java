@@ -1,15 +1,7 @@
 package ru.megazlo.ffng.components.filerow;
 
-import ru.megazlo.ffng.components.RowData;
-import ru.megazlo.ffng.components.RowDataFTP;
-import ru.megazlo.ffng.components.RowDataLAN;
 import ru.megazlo.ffng.components.RowDataSD;
-import ru.megazlo.ffng.engine.BaseEngine;
-import ru.megazlo.ffng.engine.EngineFTP;
-import ru.megazlo.ffng.engine.EngineLAN;
-import ru.megazlo.ffng.engine.EngineSDC;
 import android.app.ListFragment;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 public class Widget extends AppWidgetProvider {
 

@@ -54,8 +54,8 @@ public class fmMain extends Activity {
 		// mAdapter = new FilePagerAdapter(getFragmentManager());
 		// mViewPager.setAdapter(mAdapter);
 
-		// scrv = new ScrollerView(this);
-		setContentView(scrv = new ScrollerView(this));
+		scrv = new ScrollerView(this);
+		setContentView(scrv);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		initChild();
 		Sets.load(getPreferences(0), this);
