@@ -1,14 +1,11 @@
 package ru.zlo.ff;
 
+import ru.zlo.ff.engine.EngPool;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-/**
- * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one
- * of the primary sections of the app.
- */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 	public SectionsPagerAdapter(FragmentManager fm) {
@@ -19,19 +16,19 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 	public Fragment getItem(int i) {
 		Fragment fragment = new FileSectionFragment();
 		Bundle args = new Bundle();
-		args.putInt(FileSectionFragment.ARG_SECTION_NUMBER, i + 1);
+		args.putInt(FileSectionFragment.ENG_NUM, i);
 		fragment.setArguments(args);
 		return fragment;
 	}
-
+	
 	@Override
 	public int getCount() {
-		return 3;
+		return EngPool.Inst().count();
 	}
 
 	@Override
 	public CharSequence getPageTitle(int position) {
-		return "Title " + position;
+		return "\\" + EngPool.Inst().getEngine(position).getTitle();
 	}
 
 }
