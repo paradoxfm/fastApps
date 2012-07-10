@@ -5,7 +5,6 @@ import java.io.File;
 import ru.megazlo.ffng.R;
 import ru.megazlo.ffng.components.RowDataSD;
 import ru.megazlo.ffng.components.filerow.FileList;
-import ru.megazlo.ffng.components.filerow.FilePagerAdapter;
 import ru.megazlo.ffng.engine.BaseEngine;
 import ru.megazlo.ffng.util.MenuChecker;
 import ru.megazlo.ffng.util.Sets;
@@ -22,7 +21,6 @@ import android.graphics.Bitmap.Config;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,21 +36,9 @@ public class fmMain extends Activity {
 	public int widgetID = -1;
 	private File startFile = null;
 
-	ViewPager mViewPager;
-	FilePagerAdapter mAdapter;
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		//mViewPager = new ViewPager(this);
-		//setContentView(mViewPager);
-		// final ActionBar bar = getActionBar();
-		// bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		// bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-
-		// mAdapter = new FilePagerAdapter(getFragmentManager());
-		// mViewPager.setAdapter(mAdapter);
 
 		scrv = new ScrollerView(this);
 		setContentView(scrv);
