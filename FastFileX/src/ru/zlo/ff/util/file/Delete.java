@@ -1,11 +1,9 @@
 package ru.zlo.ff.util.file;
 
 import java.io.File;
-import java.io.IOException;
 
 import ru.zlo.ff.R;
 import ru.zlo.ff.MAct;
-import ru.megazlo.ftplib.ftp.FTPFile;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
@@ -34,8 +32,6 @@ public class Delete extends AsyncTask<Object, Void, Void> {
 		for (Object obj : FileTools.FROM) {
 			if (obj.getClass() == File.class)
 				delete((File) obj);
-			if (obj.getClass() == FTPFile.class)
-				delete((FTPFile) obj);
 		}
 		return null;
 	}
@@ -49,18 +45,6 @@ public class Delete extends AsyncTask<Object, Void, Void> {
 	@Override
 	protected void onPreExecute() {
 		this.dialog.show();
-	}
-
-	public static void delete(FTPFile fil) {
-		try {
-			if (fil.isDirectory())
-				FileTools.CLIENT_FROM.removeDirectory(fil.getName());
-			else if (fil.isFile())
-				FileTools.CLIENT_FROM.deleteFile(fil.getName());
-			else
-				return;
-		} catch (IOException e) {
-		}
 	}
 
 	public static void delete(File fil) {

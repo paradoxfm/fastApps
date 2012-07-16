@@ -4,8 +4,6 @@ import ru.zlo.ff.R;
 import ru.zlo.ff.MAct;
 import ru.zlo.ff.SetAct;
 import ru.zlo.ff.components.RowData;
-import ru.zlo.ff.components.RowDataFTP;
-import ru.zlo.ff.components.RowDataLAN;
 import ru.zlo.ff.components.RowDataSD;
 import ru.zlo.ff.components.filerow.FileList;
 import ru.zlo.ff.engine.BaseEngine;
@@ -15,7 +13,6 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
 
 public class MenuChecker {
 
@@ -31,26 +28,12 @@ public class MenuChecker {
 		case R.id.tutor:
 			showHelp();
 			return true;
-		case R.id.ftp:
-			if (NetChecker.isOnline(act))
-				insertList(new RowDataFTP());
-			else
-				Toast.makeText(act, R.string.n_act_con, Toast.LENGTH_SHORT).show();
-			return true;
 		case R.id.sdcard:
 			insertList(new RowDataSD());
 			return true;
 		case R.id.quit2:
 		case R.id.quit:
 			exitApp(act);
-			return true;
-		case R.id.samba:
-			// Toast.makeText(act, R.string.future, Toast.LENGTH_SHORT).show();
-			if (NetChecker.isOnline(act)) {
-				insertList(new RowDataLAN());
-				Toast.makeText(act, R.string.a_opt, Toast.LENGTH_SHORT).show();
-			} else
-				Toast.makeText(act, R.string.n_act_con, Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.closetab:
 			remList(act.getCurEng().getList());

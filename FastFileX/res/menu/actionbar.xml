@@ -20,16 +20,6 @@
                     android:icon="@drawable/prot_pda"
                     android:showAsAction="always|collapseActionView|withText"
                     android:title="@string/sdcard"/>
-                <item
-                    android:id="@+id/ftp"
-                    android:icon="@drawable/prot_ftp"
-                    android:showAsAction="always|collapseActionView|withText"
-                    android:title="@string/ftp"/>
-                <item
-                    android:id="@+id/samba"
-                    android:icon="@drawable/prot_smb"
-                    android:showAsAction="always|collapseActionView|withText"
-                    android:title="@string/samba"/>
             </group>
             <group>
                 <item

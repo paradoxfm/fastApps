@@ -7,9 +7,6 @@ import java.io.IOException;
 import ru.zlo.ff.NAct;
 import ru.zlo.ff.R;
 import ru.zlo.ff.MAct;
-import ru.megazlo.ftplib.ftp.FTPClient;
-import ru.megazlo.ftplib.ftp.FTPFile;
-import ru.zlo.ff.components.RowDataFTP;
 import ru.zlo.ff.components.filerow.FileRowData;
 import ru.zlo.ff.engine.BaseEngine;
 import android.app.AlertDialog;
@@ -44,7 +41,6 @@ public class FileTools {
 	public static Object[] FROM;
 	public static Object TO;
 	public static String SEARCH;
-	public static FTPClient CLIENT_FROM, CLIENT_TO;
 	public static MediaPlayer M_PLAYER = new MediaPlayer();
 	private static final Uri sArtworkUri = Uri.parse("content://media/external/audio/albumart");
 	private static final BitmapFactory.Options sBitmapOptionsCache = new BitmapFactory.Options();
@@ -69,16 +65,6 @@ public class FileTools {
 				File newdir = new File((File) TO, EDIT.getText().toString());
 				newdir.mkdir();
 			}
-			if (TO.getClass() == FTPFile.class) {
-				BaseEngine eng = MAct.I.getCurEng();
-				FTPClient clnt = eng.getType() == BaseEngine.FTP ? ((RowDataFTP) eng.getDat()).FTP_CLIENT : null;
-				try {
-					String nm = TO != eng.getCurrentDir() ? ((FTPFile) TO).getName() + '/' + EDIT.getText().toString() : EDIT
-							.getText().toString();
-					clnt.makeDirectory(nm);
-				} catch (IOException e) {
-				}
-			}
 			MAct.I.update();
 		}
 	};
@@ -88,13 +74,6 @@ public class FileTools {
 		public void onClick(DialogInterface dialog, int which) {
 			if (EDIT.getText().length() == 0)
 				return;
-			if (TO.getClass() == FTPFile.class) {
-				FTPFile fl = (FTPFile) TO;
-				try {
-					CLIENT_TO.rename(fl.getName(), EDIT.getText().toString());
-				} catch (IOException e) {
-				}
-			}
 			if (TO.getClass() == File.class) {
 				File fl = (File) TO;
 				String path = fl.getPath().substring(0, fl.getPath().lastIndexOf('/') + 1) + EDIT.getText();
@@ -136,13 +115,6 @@ public class FileTools {
 		showDialog(renm, R.string.name, R.string.rename, null, true, R.drawable.qa_rename);
 		if (TO.getClass() == File.class)
 			EDIT.setText(((File) TO).getName());
-		if (TO.getClass() == FTPFile.class)
-			EDIT.setText(((FTPFile) TO).getName());
-	}
-
-	public static void rename(FTPFile fil) {
-		showDialog(renm, R.string.name, R.string.rename, fil, true, R.drawable.qa_rename);
-		EDIT.setText(fil.getName());
 	}
 
 	public static void newFile() {

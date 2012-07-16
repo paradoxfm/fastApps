@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.zlo.ff.components.RowData;
-import ru.zlo.ff.components.RowDataFTP;
-import ru.zlo.ff.components.RowDataLAN;
 
 public class EngPool {
 
@@ -36,10 +34,6 @@ public class EngPool {
 	}
 
 	private BaseEngine choiceEngine(RowData dat) {
-		if (dat.getClass() == RowDataFTP.class)
-			return new EngineFTP(dat, null);
-		else if (dat.getClass() == RowDataLAN.class)
-			return new EngineLAN(dat, null);
 		return new EngineSDC(dat, null);
 	}
 

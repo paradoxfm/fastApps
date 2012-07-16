@@ -4,11 +4,8 @@ import java.io.File;
 
 import ru.zlo.ff.R;
 import ru.zlo.ff.MAct;
-import ru.megazlo.ftplib.ftp.FTPClient;
-import ru.megazlo.ftplib.ftp.FTPFile;
 import ru.megazlo.quicker.ActionItem;
 import ru.megazlo.quicker.QuickAction;
-import ru.zlo.ff.components.RowDataFTP;
 import ru.zlo.ff.engine.BaseEngine;
 import ru.zlo.ff.util.file.FileTools;
 import ru.zlo.ff.util.file.MimeTypes;
@@ -30,38 +27,33 @@ public class ActionFactory {
 		QuickAction qa = new QuickAction(v);
 		BaseEngine eng = MAct.I.getCurEng();
 		Object[] obj = eng.getFiles();
-		FTPClient clnt = eng.getType() == BaseEngine.FTP ? ((RowDataFTP) eng.getDat()).FTP_CLIENT : null;
 		if (obj.length > 0)
-			createMulti(v.getContext(), qa, clnt, obj);
+			createMulti(v.getContext(), qa, obj);
 		else if (file[0].getClass() == File.class)
-			createLocal(v.getContext(), qa, null, file[0]);
-		else if (file[0].getClass() == FTPFile.class)
-			createFtp(v.getContext(), qa, clnt, file[0]);
-		// else
-		// createFtp(file[0], v.getContext(), qa, clnt);
+			createLocal(v.getContext(), qa, file[0]);
 		return qa;
 	}
 
-	private static void createMulti(Context cont, QuickAction qq, FTPClient clnt, Object... fil) {
-		qq.addAction(copy_move(cont, clnt, false, fil));// копировать
-		qq.addAction(copy_move(cont, clnt, true, fil));// переместить
-		qq.addAction(delete(cont, clnt, fil));// удалить
+	private static void createMulti(Context cont, QuickAction qq, Object... fil) {
+		qq.addAction(copy_move(cont, false, fil));// копировать
+		qq.addAction(copy_move(cont, true, fil));// переместить
+		qq.addAction(delete(cont, fil));// удалить
 		if (fil.getClass() == File[].class)
 			qq.addAction(searchInFilder(cont, fil));// поиск
 	}
 
-	private static void createLocal(Context cont, QuickAction qq, FTPClient clnt, Object fil) {
+	private static void createLocal(Context cont, QuickAction qq, Object fil) {
 		File fl = (File) fil;
 		if ((fl.isFile() && fl.getParentFile().canWrite()) || (fl.isDirectory() && fl.canWrite())) {
 			qq.addAction(newFile(cont, fl));// создать
-			qq.addAction(copy_move(cont, clnt, false, fil));// копировать
-			qq.addAction(copy_move(cont, clnt, true, fil));// переместить
+			qq.addAction(copy_move(cont, false, fil));// копировать
+			qq.addAction(copy_move(cont, true, fil));// переместить
 			if (FileTools.FROM != null && fl.isDirectory())
-				qq.addAction(paste(cont, clnt, fil));// вставить
+				qq.addAction(paste(cont, fil));// вставить
 			if (fl.isDirectory())
-				qq.addAction(newDirectory(cont, clnt, fil));// создать папку
-			qq.addAction(delete(cont, clnt, fil));// удалить
-			qq.addAction(reaname(cont, clnt, fil));// переименовать
+				qq.addAction(newDirectory(cont, fil));// создать папку
+			qq.addAction(delete(cont, fil));// удалить
+			qq.addAction(reaname(cont, fil));// переименовать
 		}
 		if (fl.isDirectory() && fl.canRead())
 			qq.addAction(searchInFilder(cont, fil));// поиск
@@ -69,36 +61,13 @@ public class ActionFactory {
 			qq.addAction(bluetooth(cont, fl));// отправка
 	}
 
-	private static void createFtp(Context cont, QuickAction qq, FTPClient clnt, Object fil) {
-		FTPFile fl = (FTPFile) fil;
-		if (fl == MAct.I.getCurEng().getCurrentDir()) {
-			qq.addAction(newDirectory(cont, clnt, fil));// создать папку
-			if (FileTools.FROM != null)
-				qq.addAction(paste(cont, clnt, fil));
-			return;
-		}
-		if (fl.isDirectory() || fl.isFile()) {
-			if (fl.isFile()) {
-				qq.addAction(copy_move(cont, clnt, false, fil));// копировать
-				qq.addAction(copy_move(cont, clnt, true, fil));// переместить
-			}
-			qq.addAction(newDirectory(cont, clnt, fil));// создать папку
-			// && fl.hasPermission(FTPFile.USER_ACCESS, FTPFile.WRITE_PERMISSION)
 
-			if (FileTools.FROM != null && fl.isDirectory())
-				qq.addAction(paste(cont, clnt, fil));
-			qq.addAction(reaname(cont, clnt, fil));// переименовать
-			qq.addAction(delete(cont, clnt, fil));// удалить
-		}
-	}
-
-	private static ActionItem copy_move(Context context, final FTPClient clnt, final Boolean isMove, final Object... fil) {
+	private static ActionItem copy_move(Context context, final Boolean isMove, final Object... fil) {
 		final ActionItem copy_move = new ActionItem();
 		copy_move.setIcon(context.getResources().getDrawable(isMove ? R.drawable.qa_cut : R.drawable.qa_copy));
 		copy_move.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				FileTools.CLIENT_FROM = clnt;
 				FileTools.FROM = fil;
 				FileTools.OPERATION = isMove ? ActionFactory.MOVE : ActionFactory.COPY;
 				Toast.makeText(v.getContext(), R.string.show_place, Toast.LENGTH_SHORT).show();
@@ -108,14 +77,13 @@ public class ActionFactory {
 		return copy_move;
 	}
 
-	private static ActionItem paste(Context context, final FTPClient clnt, final Object fil) {
+	private static ActionItem paste(Context context, final Object fil) {
 		final ActionItem paste = new ActionItem();
 		paste.setIcon(context.getResources().getDrawable(R.drawable.qa_paste));
 		paste.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				FileTools.TO = fil;
-				FileTools.CLIENT_TO = clnt;
 				new Paste().execute();
 				paste.dismiss();
 			}
@@ -123,14 +91,13 @@ public class ActionFactory {
 		return paste;
 	}
 
-	private static ActionItem delete(Context context, final FTPClient clnt, final Object... fil) {
+	private static ActionItem delete(Context context, final  Object... fil) {
 		final ActionItem delet = new ActionItem();
 		delet.setIcon(context.getResources().getDrawable(R.drawable.qa_delete));
 		delet.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				FileTools.FROM = fil;
-				FileTools.CLIENT_FROM = clnt;
 				FileTools.delete();
 				delet.dismiss();
 			}
@@ -138,14 +105,13 @@ public class ActionFactory {
 		return delet;
 	}
 
-	private static ActionItem reaname(Context context, final FTPClient clnt, final Object fil) {
+	private static ActionItem reaname(Context context, final Object fil) {
 		final ActionItem reanam = new ActionItem();
 		reanam.setIcon(context.getResources().getDrawable(R.drawable.qa_rename));
 		reanam.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				FileTools.TO = fil;
-				FileTools.CLIENT_TO = clnt;
 				FileTools.rename();
 				reanam.dismiss();
 			}
@@ -181,13 +147,12 @@ public class ActionFactory {
 		return creat;
 	}
 
-	private static ActionItem newDirectory(Context context, final FTPClient clnt, final Object fil) {
+	private static ActionItem newDirectory(Context context, final Object fil) {
 		final ActionItem creat = new ActionItem();
 		creat.setIcon(context.getResources().getDrawable(R.drawable.qa_new_folder));
 		creat.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				FileTools.CLIENT_TO = clnt;
 				FileTools.TO = fil;
 				FileTools.newFolder();
 				creat.dismiss();
