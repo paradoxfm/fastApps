@@ -3,9 +3,6 @@ package ru.zlo.ff.components.filerow;
 import java.io.File;
 import java.util.Date;
 
-import jcifs.smb.SmbException;
-import jcifs.smb.SmbFile;
-import ru.megazlo.ftplib.ftp.FTPFile;
 import ru.zlo.ff.util.Sets;
 import android.graphics.drawable.Drawable;
 
@@ -18,8 +15,6 @@ public class FileRowData implements Comparable<FileRowData> {
 	public final static byte TP_OTHER = 4;
 
 	private File m_file_sdc;
-	private FTPFile m_file_ftp;
-	private SmbFile m_file_smb;
 	private String m_itm_txt, m_dat_txt, m_dir_txt;
 	private Drawable m_icon;
 	private boolean m_Selectable = true;
@@ -27,18 +22,6 @@ public class FileRowData implements Comparable<FileRowData> {
 
 	public FileRowData(File fil, Drawable curIcon) {
 		m_file_sdc = fil;
-		m_icon = curIcon;
-		initData(fil.isDirectory(), fil.getName());
-	}
-
-	public FileRowData(FTPFile fil, Drawable curIcon) {
-		m_file_ftp = fil;
-		m_icon = curIcon;
-		initData(fil.isDirectory(), fil.getName());
-	}
-
-	public FileRowData(SmbFile fil, Drawable curIcon) throws SmbException {
-		m_file_smb = fil;
 		m_icon = curIcon;
 		initData(fil.isDirectory(), fil.getName());
 	}
@@ -56,21 +39,6 @@ public class FileRowData implements Comparable<FileRowData> {
 				return m_file_sdc.canRead() ? Integer.toString(m_file_sdc.listFiles().length) + " items" : "n/a";
 			else
 				return getSize(m_file_sdc.length());
-		} else if (m_file_ftp != null) {
-			if (m_file_ftp.isSymbolicLink())
-				return m_file_ftp.getLink();
-			else if (m_file_ftp.isFile())
-				return getSize(m_file_ftp.getSize());
-			else
-				return "dir";
-		} else if (m_file_smb != null) {
-			try {
-				if (m_file_smb.isDirectory())
-					return m_file_smb.canRead() ? Integer.toString(m_file_smb.listFiles().length) + " items" : "n/a";
-				else
-					return getSize(m_file_smb.length());
-			} catch (SmbException e) {
-			}
 		}
 		return "";
 	}
@@ -96,7 +64,7 @@ public class FileRowData implements Comparable<FileRowData> {
 
 	@Override
 	public int compareTo(FileRowData row) {
-		if (m_file_sdc != null || m_file_ftp != null/* || m_file_smb != null */)
+		if (m_file_sdc != null)
 			return this.getName().toLowerCase().compareTo(row.getName().toLowerCase());
 		else
 			throw new IllegalArgumentException();
@@ -121,10 +89,6 @@ public class FileRowData implements Comparable<FileRowData> {
 	private String setDirText() {
 		if (m_file_sdc != null)
 			return m_file_sdc.getName();
-		if (m_file_ftp != null)
-			return m_file_ftp.getName();
-		if (m_file_smb != null)
-			return m_file_smb.getName();
 		return "";
 	}
 
@@ -140,13 +104,6 @@ public class FileRowData implements Comparable<FileRowData> {
 		Date dat = null;
 		if (m_file_sdc != null)
 			dat = new Date(m_file_sdc.lastModified());
-		if (m_file_ftp != null)
-			dat = m_file_ftp.getTimestamp().getTime();
-		if (m_file_smb != null)
-			try {
-				dat = new Date(m_file_smb.lastModified());
-			} catch (SmbException e) {
-			}
 		return getDateFormat(dat);
 	}
 
@@ -157,21 +114,6 @@ public class FileRowData implements Comparable<FileRowData> {
 			rez += m_file_sdc.canRead() ? "r" : "-";
 			rez += m_file_sdc.canWrite() ? "w" : "-";
 			rez += m_file_sdc.isHidden() ? "h" : "-";
-		}
-		if (m_file_ftp != null) {
-			rez += m_file_ftp.isDirectory() ? "d" : "-";
-			rez += m_file_ftp.hasPermission(FTPFile.USER_ACCESS, FTPFile.READ_PERMISSION) ? "r" : "-";
-			rez += m_file_ftp.hasPermission(FTPFile.USER_ACCESS, FTPFile.WRITE_PERMISSION) ? "w" : "-";
-			rez += m_file_ftp.isSymbolicLink() ? "l" : "-";
-		}
-		if (m_file_smb != null) {
-			try {
-				rez += m_file_smb.isDirectory() ? "d" : "-";
-				rez += m_file_smb.canRead() ? "r" : "-";
-				rez += m_file_smb.canWrite() ? "w" : "-";
-				rez += m_file_smb.isHidden() ? "h" : "-";
-			} catch (SmbException e) {
-			}
 		}
 
 		return rez;
@@ -185,10 +127,6 @@ public class FileRowData implements Comparable<FileRowData> {
 	public <T> T getFile() {
 		if (m_file_sdc != null)
 			return (T) m_file_sdc;
-		if (m_file_ftp != null)
-			return (T) m_file_ftp;
-		if (m_file_smb != null)
-			return (T) m_file_smb;
 		return null;
 	}
 

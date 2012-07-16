@@ -3,13 +3,10 @@ package ru.zlo.ff.util.file;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 import ru.zlo.ff.MAct;
-import ru.megazlo.ftplib.ftp.FTPClient;
-import ru.megazlo.ftplib.ftp.FTPFile;
 import ru.zlo.ff.util.ActionFactory;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -36,14 +33,6 @@ public class Paste extends AsyncTask<Object, Void, Void> {
 
 	@Override
 	protected Void doInBackground(Object... params) {
-		if (FileTools.FROM[0].getClass() == FTPFile.class && FileTools.TO.getClass() == File.class)
-			for (Object obj : FileTools.FROM)
-				copy((FTPFile) obj, (File) FileTools.TO, FileTools.CLIENT_FROM);
-
-		if (FileTools.FROM[0].getClass() == File.class && FileTools.TO.getClass() == FTPFile.class)
-			for (Object obj : FileTools.FROM)
-				copy((File) obj, (FTPFile) FileTools.TO, FileTools.CLIENT_TO);
-
 		if (FileTools.FROM[0].getClass() == File.class && FileTools.TO.getClass() == File.class)
 			for (Object obj : FileTools.FROM)
 				copy((File) obj, (File) FileTools.TO);
@@ -54,40 +43,6 @@ public class Paste extends AsyncTask<Object, Void, Void> {
 		// TODO замутить между фтп
 
 		return null;
-	}
-
-	private void copy(FTPFile from, File to, FTPClient ftp) {
-		if (from.isDirectory()) {
-			File dir = new File(to, from.getName());
-			dir.mkdir();
-		} else if (from.isFile()) {
-			try {
-				OutputStream output = new FileOutputStream(new File(to, from.getName()));
-				String nam = from.getName();
-				ftp.retrieveFile(nam, output);
-				output.close();
-			} catch (IOException e) {
-			}
-		}
-	}
-
-	private void copy(File from, FTPFile to, FTPClient ftp) {
-		String nm = to != MAct.I.getCurEng().getCurrentDir() ? to.getName() + '/' + from.getName() : from.getName();
-		if (from.isDirectory()) {
-			try {
-				ftp.makeDirectory(nm);
-			} catch (IOException e) {
-			}
-		} else if (from.isFile()) {
-			try {
-				InputStream input = new FileInputStream(from);
-				ftp.storeFile(nm, input);
-				input.close();
-			} catch (IOException e) {
-			}
-		}
-		if (FileTools.OPERATION == ActionFactory.MOVE)
-			from.delete();
 	}
 
 	private void copy(File fileFrom, File fileTo) {

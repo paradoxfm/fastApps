@@ -7,6 +7,7 @@ import ru.zlo.ff.engine.BaseEngine;
 import ru.zlo.ff.engine.EngPool;
 import ru.zlo.ff.util.MenuChecker;
 import ru.zlo.ff.util.Sets;
+import android.app.SearchManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.googlecode.androidannotations.annotations.AfterViews;
@@ -32,7 +34,7 @@ public class MAct extends FragmentActivity implements OnPageChangeListener {
 	ViewPager mViewPager;
 	public static MAct I;
 	public int widgetID = -1;
-	private boolean isToRoot = false;
+	private boolean isToRoot = false; 
 	private File startFile = null;
 
 	@AfterViews
@@ -111,7 +113,15 @@ public class MAct extends FragmentActivity implements OnPageChangeListener {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main_activity, menu);
+		if (widgetID == -1) {
+			getMenuInflater().inflate(R.menu.actionbar, menu);
+			SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+			SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+			searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+			getMenuInflater().inflate(R.menu.main_down, menu);
+		} else {
+			getMenuInflater().inflate(R.menu.actionbarw, menu);
+		}
 		return true;
 	}
 

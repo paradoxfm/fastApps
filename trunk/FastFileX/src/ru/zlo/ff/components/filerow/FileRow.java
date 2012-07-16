@@ -3,7 +3,6 @@ package ru.zlo.ff.components.filerow;
 import java.io.File;
 
 import ru.zlo.ff.MAct;
-import ru.megazlo.ftplib.ftp.FTPFile;
 import ru.zlo.ff.util.ActionFactory;
 import ru.zlo.ff.util.Sets;
 import android.content.Context;
@@ -39,10 +38,6 @@ public class FileRow extends BaseCellRow {
 					File fl = (File) tst;
 					if ((fl.canWrite() && fl.isFile()) || (fl.isDirectory()))
 						ActionFactory.create(v, fl).show();
-				}
-				if (tst.getClass() == FTPFile.class) {
-					FTPFile fl = (FTPFile) tst;
-					ActionFactory.create(v, fl).show();
 				}
 			}
 		});
