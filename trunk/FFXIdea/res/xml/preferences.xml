@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:title="@string/settings">
+
+    <PreferenceCategory android:title="@string/mainset">
+        <CheckBoxPreference
+                android:key="extern"
+                android:summary="@string/open_ext_smr"
+                android:title="@string/open_ext"/>
+
+        <EditTextPreference
+                android:key="homedir"
+                android:summary="@string/hmdirsmr"
+                android:title="@string/hmdir"/>
+    </PreferenceCategory>
+
+    <PreferenceScreen
+            android:summary="@string/showngsmr"
+            android:title="@string/showng">
+        <intent
+                android:action="android.intent.action.VIEW"
+                android:targetClass="ru.zlo.ff.SetAct$DisplayPrefs"
+                android:targetPackage="ru.zlo.ff"/>
+    </PreferenceScreen>
+
+    <PreferenceCategory android:title="@string/setinfo">
+        <PreferenceScreen
+                android:key="abt"
+                android:summary="@string/about_smr"
+                android:title="@string/about"/>
+
+        <Preference
+                android:key="bak"
+                android:summary="@string/backup_smr"
+                android:title="@string/backup"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
