@@ -1,24 +1,24 @@
 package ru.zlo.ff.engine;
 
-import java.io.File;
-
-import ru.zlo.ff.R;
+import android.content.Context;
+import android.widget.Toast;
 import ru.zlo.ff.MAct;
+import ru.zlo.ff.R;
 import ru.zlo.ff.components.RowData;
 import ru.zlo.ff.components.RowDataSD;
-import ru.zlo.ff.components.filerow.FileList;
 import ru.zlo.ff.components.filerow.FileRowData;
-import ru.zlo.ff.util.Sets;
+import ru.zlo.ff.util.Options;
 import ru.zlo.ff.util.file.FileTools;
 import ru.zlo.ff.util.file.Search;
-import android.widget.Toast;
+
+import java.io.File;
 
 public class EngineSDC extends BaseEngine {
 
 	private String from;
 
-	public EngineSDC(RowData data, FileList list) {
-		super(list);
+	public EngineSDC(RowData data, Context context) {
+		super(context);
 		isPreview = isAllowSearsh = true;
 		dat = data;
 	}
@@ -60,15 +60,14 @@ public class EngineSDC extends BaseEngine {
 		dat.dir.clear();
 		dat.fil.clear();
 		File[] files = (File[]) filar;
-		for (int i = 0; i < files.length; i++) {
-			if (!Sets.SHOW_HIDDEN && files[i].isHidden())
+		for (File file : files) {
+			if (!Options.SHOW_HIDDEN && file.isHidden())
 				continue;
-			if (files[i].isDirectory()) {
-				FileRowData dt = new FileRowData(files[i], Sets.I_FOLD); 
+			if (file.isDirectory()) {
+				FileRowData dt = new FileRowData(file, Options.i_fold);
 				dat.dir.add(dt);
-			}
-			else
-				dat.fil.add(new FileRowData(files[i], getIconByFile(files[i].getName())));
+			} else
+				dat.fil.add(new FileRowData(file, getIconByFile(file.getName())));
 		}
 		super.fill(filar);
 	}
@@ -104,7 +103,7 @@ public class EngineSDC extends BaseEngine {
 		new Search(search).execute(FileTools.FROM != null ? (File[]) FileTools.FROM : new File[] { getDat().PATH });
 		isSearsh = true;
 		mTitle = "/" + search;
-		Toast.makeText(getList().getContext(), R.string.search_rez, Toast.LENGTH_LONG).show();
+		Toast.makeText(context, R.string.search_rez, Toast.LENGTH_LONG).show();
 	}
 
 	@Override

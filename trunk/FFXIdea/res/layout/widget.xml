@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/folder" />
+        android:src="@drawable/i_fold" />
 
     <TextView
         android:id="@+id/wid_text"

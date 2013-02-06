@@ -1,10 +1,11 @@
 package ru.zlo.ff.components.filerow;
 
+import android.graphics.drawable.Drawable;
+import ru.zlo.ff.util.Options;
+import ru.zlo.ff.util.Sets;
+
 import java.io.File;
 import java.util.Date;
-
-import ru.zlo.ff.util.Sets;
-import android.graphics.drawable.Drawable;
 
 public class FileRowData implements Comparable<FileRowData> {
 
@@ -108,7 +109,7 @@ public class FileRowData implements Comparable<FileRowData> {
 	}
 
 	private String getDateFormat(Date dt) {
-		String rez = Sets.F_DATE.format(dt) + " " + Sets.F_TIME.format(dt) + " | ";
+		String rez = Options.F_DATE.format(dt) + " " + Options.F_TIME.format(dt) + " | ";
 		if (m_file_sdc != null) {
 			rez += m_file_sdc.isDirectory() ? "d" : "-";
 			rez += m_file_sdc.canRead() ? "r" : "-";
@@ -139,7 +140,7 @@ public class FileRowData implements Comparable<FileRowData> {
 	}
 
 	public Drawable getIconCheck() {
-		return m_Checked ? Sets.I_CHK : Sets.I_UNCHK;
+		return m_Checked ? Options.i_chk : Options.i_unchk;
 	}
 
 }

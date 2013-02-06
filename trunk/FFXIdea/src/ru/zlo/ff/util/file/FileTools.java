@@ -1,23 +1,9 @@
 package ru.zlo.ff.util.file;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import ru.zlo.ff.NAct;
-import ru.zlo.ff.R;
-import ru.zlo.ff.MAct;
-import ru.zlo.ff.components.filerow.FileRowData;
-import ru.zlo.ff.engine.BaseEngine;
 import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
-import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.Context;
-import android.content.DialogInterface;
+import android.content.*;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -28,12 +14,17 @@ import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.SeekBar;
+import android.widget.*;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.TextView;
-import android.widget.Toast;
+import ru.zlo.ff.MAct;
+import ru.zlo.ff.NAct;
+import ru.zlo.ff.R;
+import ru.zlo.ff.components.filerow.FileRowData;
+import ru.zlo.ff.engine.BaseEngine;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class FileTools {
 	public static int OPERATION;
@@ -95,7 +86,7 @@ public class FileTools {
 			try {
 				newfile.createNewFile();
 				MAct.I.update();
-			} catch (IOException e) {
+			} catch (IOException ignored) {
 			}
 		}
 	};
@@ -108,7 +99,7 @@ public class FileTools {
 	};
 
 	public static void newFolder() {
-		showDialog(newFld, R.string.name, R.string.new_folder, TO, true, R.drawable.folder);
+		showDialog(newFld, R.string.name, R.string.new_folder, TO, true, R.drawable.i_fold);
 	}
 
 	public static void rename() {
@@ -177,7 +168,7 @@ public class FileTools {
 			ImageView img = new ImageView(cont);
 			img.setImageBitmap(BitmapFactory.decodeFile(path, options));
 			img.setPadding(10, 10, 10, 10);
-			new AlertDialog.Builder(cont).setTitle(R.string.mus_preview).setIcon(R.drawable.file_img).setView(img).create()
+			new AlertDialog.Builder(cont).setTitle(R.string.mus_preview).setIcon(R.drawable.i_file_img).setView(img).create()
 					.show();
 		}
 	}
@@ -237,7 +228,7 @@ public class FileTools {
 		String med = MAct.I.getResources().getString(R.string.media_info);
 		tx.setText(String.format(med, artist, title, album));
 		new AlertDialog.Builder(MAct.I).setOnCancelListener(cans).setTitle(R.string.mus_preview)
-				.setIcon(R.drawable.file_mus).setView(formcon).create().show();
+				.setIcon(R.drawable.i_file_mus).setView(formcon).create().show();
 
 		Runnable qww = new Runnable() {
 			@Override
@@ -306,12 +297,12 @@ public class FileTools {
 				}
 
 				return b;
-			} catch (FileNotFoundException e) {
+			} catch (FileNotFoundException ignored) {
 			} finally {
 				try {
 					if (fd != null)
 						fd.close();
-				} catch (IOException e) {
+				} catch (IOException ignored) {
 				}
 			}
 		}

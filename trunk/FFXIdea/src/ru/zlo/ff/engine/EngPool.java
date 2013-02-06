@@ -1,9 +1,9 @@
 package ru.zlo.ff.engine;
 
+import ru.zlo.ff.components.RowData;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import ru.zlo.ff.components.RowData;
 
 public class EngPool {
 

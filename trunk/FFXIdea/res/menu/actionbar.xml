@@ -11,23 +11,9 @@
     <!-- "device" submenu -->
     <item
         android:id="@+id/devsmn"
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@android:drawable/ic_menu_more"
         android:showAsAction="always|collapseActionView">
         <menu>
-            <group>
-                <item
-                    android:id="@+id/sdcard"
-                    android:icon="@drawable/prot_pda"
-                    android:showAsAction="always|collapseActionView|withText"
-                    android:title="@string/sdcard"/>
-            </group>
-            <group>
-                <item
-                    android:id="@+id/closetab"
-                    android:icon="@android:drawable/ic_delete"
-                    android:showAsAction="always|collapseActionView|withText"
-                    android:title="@string/mn_close"/>
-            </group>
             <group>
                 <item
                     android:id="@+id/appsett"

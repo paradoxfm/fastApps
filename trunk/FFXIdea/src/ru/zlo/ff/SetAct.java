@@ -3,9 +3,6 @@ package ru.zlo.ff;
 import android.app.AlertDialog;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
@@ -56,11 +53,6 @@ public class SetAct extends PreferenceActivity/* implements Preference.OnPrefere
 			addPreferencesFromResource(R.xml.preferences_view);
 			//PreferenceManager.setDefaultValues(getActivity(), R.xml.advanced_preferences, false);
 			//I = this;
-			if (Sets.IS_COLORED) {
-				Bitmap bmp = Bitmap.createBitmap(new int[]{Sets.BACK_COLOR}, 1, 1, Bitmap.Config.ARGB_8888);
-				Drawable drw = new BitmapDrawable(bmp);
-				getActivity().getWindow().setBackgroundDrawable(drw);
-			}
 		}
 	}
 
@@ -79,7 +71,7 @@ public class SetAct extends PreferenceActivity/* implements Preference.OnPrefere
 
 	@Override
 	protected void onResume() {
-		Sets.applySets(this);
+		//Sets.applySets(this);
 		super.onResume();
 	}
 
@@ -112,7 +104,7 @@ public class SetAct extends PreferenceActivity/* implements Preference.OnPrefere
 
 	@Override
 	public void onBackPressed() {
-		Sets.save(MAct.I.getPreferences(0));
+		//Sets.save(MAct.I.getPreferences(0));
 		super.onBackPressed();
 	}
 
@@ -140,7 +132,7 @@ public class SetAct extends PreferenceActivity/* implements Preference.OnPrefere
 		String title = getResources().getString(R.string.app_name) + " v" + version;
 		LayoutInflater factory = LayoutInflater.from(this);
 		final View abtf = factory.inflate(R.layout.about, null);
-		new AlertDialog.Builder(this).setTitle(title).setIcon(R.drawable.folder).setView(abtf).create().show();
+		new AlertDialog.Builder(this).setTitle(title).setIcon(R.drawable.i_fold).setView(abtf).create().show();
 	}
 
 }

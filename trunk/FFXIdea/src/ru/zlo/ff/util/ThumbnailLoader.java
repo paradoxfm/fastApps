@@ -1,14 +1,5 @@
 package ru.zlo.ff.util;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.List;
-
-import ru.zlo.ff.R;
-import ru.zlo.ff.MAct;
-import ru.zlo.ff.components.filerow.FileRowData;
-import ru.zlo.ff.util.file.MimeTypes;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
@@ -24,6 +15,15 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
+import ru.zlo.ff.MAct;
+import ru.zlo.ff.R;
+import ru.zlo.ff.components.filerow.FileRowData;
+import ru.zlo.ff.util.file.MimeTypes;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 
 public class ThumbnailLoader extends Thread {
 
@@ -58,11 +58,11 @@ public class ThumbnailLoader extends Thread {
 				continue;
 			String path = ((File) frdata.getFile()).getAbsolutePath();
 			try {
-				Drawable drw = Sets.SHOW_IMG ? extractImg(path) : null;
-				if (drw == null && Sets.SHOW_MP3
+				Drawable drw = Options.SHOW_IMG ? extractImg(path) : null;
+				if (drw == null && Options.SHOW_MP3
 						&& (path.toLowerCase().endsWith(".mp3") || path.toLowerCase().endsWith(".flac")))
 					drw = extractMp3(path);
-				if (drw == null && Sets.SHOW_APK && path.toLowerCase().endsWith(".apk"))
+				if (drw == null && Options.SHOW_APK && path.toLowerCase().endsWith(".apk"))
 					drw = extractApk(path);
 				if (drw != null) {
 					frdata.setIcon(drw);
@@ -70,7 +70,7 @@ public class ThumbnailLoader extends Thread {
 					msg.obj = frdata;
 					msg.sendToTarget();
 				}
-			} catch (Exception e) {
+			} catch (Exception ignored) {
 			}
 		}
 		listFile = null;
@@ -129,12 +129,12 @@ public class ThumbnailLoader extends Thread {
 				}
 
 				return b;
-			} catch (FileNotFoundException e) {
+			} catch (FileNotFoundException ignored) {
 			} finally {
 				try {
 					if (fd != null)
 						fd.close();
-				} catch (IOException e) {
+				} catch (IOException ignored) {
 				}
 			}
 		}

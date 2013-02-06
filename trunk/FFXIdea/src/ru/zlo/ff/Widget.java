@@ -1,7 +1,5 @@
 package ru.zlo.ff;
 
-import java.io.File;
-
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -10,6 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.RemoteViews;
+
+import java.io.File;
 
 public class Widget extends AppWidgetProvider {
 

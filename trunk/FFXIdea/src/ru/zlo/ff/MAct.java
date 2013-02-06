@@ -1,35 +1,35 @@
 package ru.zlo.ff;
 
-import java.io.File;
-
-import com.viewpagerindicator.LinePageIndicator;
-import ru.zlo.ff.components.RowDataSD;
-import ru.zlo.ff.engine.BaseEngine;
-import ru.zlo.ff.engine.EngPool;
-import ru.zlo.ff.util.MenuChecker;
-import ru.zlo.ff.util.Sets;
 import android.app.SearchManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.SearchView;
 import android.widget.Toast;
+import com.googlecode.androidannotations.annotations.*;
+import com.viewpagerindicator.LinePageIndicator;
+import ru.zlo.ff.components.RowDataSD;
+import ru.zlo.ff.engine.BaseEngine;
+import ru.zlo.ff.engine.EngPool;
+import ru.zlo.ff.fragments.SectionsPagerAdapter;
+import ru.zlo.ff.util.Commander;
+import ru.zlo.ff.util.Options;
+import ru.zlo.ff.util.Sets;
 
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.ViewById;
+import java.io.File;
 
 @EActivity(R.layout.main_activity)
-public class MAct extends FragmentActivity implements OnPageChangeListener {
+@OptionsMenu({R.menu.actionbar, R.menu.main_down})
+public class MAct extends FragmentActivity implements ViewPager.OnPageChangeListener {
 
+	@Bean
+	Options options;
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	@ViewById(R.id.pager)
 	ViewPager mViewPager;
@@ -37,34 +37,17 @@ public class MAct extends FragmentActivity implements OnPageChangeListener {
 	LinePageIndicator indicator;
 	public static MAct I;
 	public int widgetID = -1;
-	private boolean isToRoot = false; 
+	private boolean isToRoot = false;
 	private File startFile = null;
 
 	@AfterViews
 	void initOnCreate() {
 		I = this;
-		if (Build.VERSION.SDK_INT >= 11) {
-			try {
-				Object cc = this.getClass().getMethod("getActionBar").invoke(this);
-				cc.getClass().getMethod("setDisplayHomeAsUpEnabled", Boolean.TYPE).invoke(cc, true);
-			} catch (Exception ignored) {
-			}
-		}
-		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-		mViewPager.setAdapter(mSectionsPagerAdapter);
-		mViewPager.setOnPageChangeListener(this);
-
-		Sets.load(getPreferences(0), this);
-		// if (Sets.IS_COLORED) {
-		// Bitmap bmp = Bitmap.createBitmap(new int[] { Sets.BACK_COLOR }, 1, 1,
-		// Config.ARGB_8888);
-		// Drawable drw = new BitmapDrawable(bmp);
-		// getWindow().setBackgroundDrawable(drw);
-		// }
+		customiseUI();
 		if (Sets.dat != null && Sets.dat.size() > 0) {
 			checkIntentParametrs(getIntent().getExtras());
 			if (widgetID != -1)
-				MenuChecker.insertList(new RowDataSD());
+				Commander.insertList(new RowDataSD());
 			else
 				Sets.restoreLists(this);
 		} else {
@@ -74,23 +57,21 @@ public class MAct extends FragmentActivity implements OnPageChangeListener {
 				dt.PATH = startFile;
 				startFile = null;
 			}
-			MenuChecker.insertList(dt);
+			Commander.createPanes();
 		}
-		I = this;
-		//Bind the title indicator to the adapter
+	}
+
+	private void customiseUI() {
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+		mViewPager.setAdapter(mSectionsPagerAdapter);
+		mViewPager.setOnPageChangeListener(this);
 		indicator.setViewPager(mViewPager);
-	}
-
-	public void scrollToNew() {
-		mViewPager.setCurrentItem(mViewPager.getChildCount() - 1);
-	}
-
-	public void removeFragment() {
-		int i = mViewPager.getCurrentItem();
-		mViewPager.setCurrentItem(0);
-		FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
-		tr.remove(mSectionsPagerAdapter.getItem(i));
-		tr.commit();
+		if (Options.FULL_SCR) {
+			int flg = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+			getWindow().setFlags(flg, flg);
+		}
+		setRequestedOrientation(Options.ORIENT_TYPE);
 	}
 
 	private void checkIntentParametrs(Bundle extras) {
@@ -119,24 +100,30 @@ public class MAct extends FragmentActivity implements OnPageChangeListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		if (widgetID == -1) {
-			getMenuInflater().inflate(R.menu.actionbar, menu);
 			SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 			SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
 			searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-			getMenuInflater().inflate(R.menu.main_down, menu);
 		} else {
 			getMenuInflater().inflate(R.menu.actionbarw, menu);
 		}
 		return true;
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == android.R.id.home) {
-			onBackPressed();
-			return false;
-		}
-		return MenuChecker.itemClick(this, item.getItemId());
+	@OptionsItem(android.R.id.home)
+	boolean menuHome() {
+		onBackPressed();
+		return false;
+	}
+
+	@OptionsItem(R.id.menu_set_widget_path)
+	boolean menuWidget() {
+		configWidget();
+		return true;
+	}
+
+	@OptionsItem({R.id.appsett2, R.id.appsett, R.id.tutor2, R.id.tutor, R.id.quit2, R.id.quit})
+	boolean menuOther(MenuItem item) {
+		return Commander.itemClick(this, item.getItemId());
 	}
 
 	public BaseEngine getCurEng() {
@@ -145,13 +132,11 @@ public class MAct extends FragmentActivity implements OnPageChangeListener {
 
 	@Override
 	public void onPageScrollStateChanged(int arg0) {
-
 	}
 
 	@Override
 	public void onPageScrolled(int arg0, float arg1, int arg2) {
 		setTitle(getCurEng().getTitle());
-		// getActionBar().setIcon(getCurEng().getIcoProtocol());
 	}
 
 	@Override
@@ -170,7 +155,7 @@ public class MAct extends FragmentActivity implements OnPageChangeListener {
 		resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
 		setResult(RESULT_OK, resultValue);
 		finish();
-		MenuChecker.exitApp(this);
+		Commander.exitApp(this);
 	}
 
 	protected Object getCurrentDir() {

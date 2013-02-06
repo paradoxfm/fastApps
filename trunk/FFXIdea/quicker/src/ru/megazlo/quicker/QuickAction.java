@@ -1,7 +1,5 @@
 package ru.megazlo.quicker;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -17,6 +15,8 @@ import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * Popup window, shows action list as icon and text
