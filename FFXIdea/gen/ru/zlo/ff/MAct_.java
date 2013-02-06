@@ -11,12 +11,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import com.googlecode.androidannotations.api.SdkVersionHelper;
 import com.viewpagerindicator.LinePageIndicator;
-import ru.zlo.ff.R.id;
 import ru.zlo.ff.R.layout;
+import ru.zlo.ff.util.Options_;
 
 public final class MAct_
     extends MAct
@@ -31,11 +34,13 @@ public final class MAct_
     }
 
     private void init_(Bundle savedInstanceState) {
+        options = Options_.getInstance_(this);
     }
 
     private void afterSetContentView_() {
-        indicator = ((LinePageIndicator) findViewById(id.indicator));
-        mViewPager = ((ViewPager) findViewById(id.pager));
+        mViewPager = ((ViewPager) findViewById(ru.zlo.ff.R.id.pager));
+        indicator = ((LinePageIndicator) findViewById(ru.zlo.ff.R.id.indicator));
+        ((Options_) options).afterSetContentView_();
         initOnCreate();
     }
 
@@ -67,6 +72,33 @@ public final class MAct_
 
     public static MAct_.IntentBuilder_ intent(Context context) {
         return new MAct_.IntentBuilder_(context);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(ru.zlo.ff.R.menu.actionbar, menu);
+        menuInflater.inflate(ru.zlo.ff.R.menu.main_down, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        boolean handled = super.onOptionsItemSelected(item);
+        if (handled) {
+            return true;
+        }
+        int itemId_ = item.getItemId();
+        if (itemId_ == ru.zlo.ff.R.id.menu_set_widget_path) {
+            return menuWidget();
+        }
+        if ((((((itemId_ == ru.zlo.ff.R.id.appsett2)||(itemId_ == ru.zlo.ff.R.id.appsett))||(itemId_ == ru.zlo.ff.R.id.tutor2))||(itemId_ == ru.zlo.ff.R.id.tutor))||(itemId_ == ru.zlo.ff.R.id.quit2))||(itemId_ == ru.zlo.ff.R.id.quit)) {
+            return menuOther(item);
+        }
+        if (itemId_ == android.R.id.home) {
+            return menuHome();
+        }
+        return false;
     }
 
     public static class IntentBuilder_ {

@@ -1,14 +1,14 @@
 package ru.zlo.ff.util.file;
 
-import java.io.File;
-import java.util.ArrayList;
-
-import ru.zlo.ff.R;
-import ru.zlo.ff.MAct;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.AsyncTask;
+import ru.zlo.ff.MAct;
+import ru.zlo.ff.R;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class Search extends AsyncTask<File, Void, File[]> {
 

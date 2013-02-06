@@ -1,12 +1,12 @@
 package ru.zlo.ff.engine;
 
+import android.content.Context;
 import ru.zlo.ff.components.RowData;
-import ru.zlo.ff.components.filerow.FileList;
 
 public class EngineARC extends BaseEngine {
 
-	public EngineARC(FileList list) {
-		super(list);
+	public EngineARC(Context context) {
+		super(context);
 		// RARFile fl = null;
 		// try {
 		// fl = new RARFile(new File("/"));

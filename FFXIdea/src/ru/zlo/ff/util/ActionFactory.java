@@ -1,21 +1,21 @@
 package ru.zlo.ff.util;
 
-import java.io.File;
-
-import ru.zlo.ff.R;
-import ru.zlo.ff.MAct;
-import ru.megazlo.quicker.ActionItem;
-import ru.megazlo.quicker.QuickAction;
-import ru.zlo.ff.engine.BaseEngine;
-import ru.zlo.ff.util.file.FileTools;
-import ru.zlo.ff.util.file.MimeTypes;
-import ru.zlo.ff.util.file.Paste;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
+import ru.megazlo.quicker.ActionItem;
+import ru.megazlo.quicker.QuickAction;
+import ru.zlo.ff.MAct;
+import ru.zlo.ff.R;
+import ru.zlo.ff.engine.BaseEngine;
+import ru.zlo.ff.util.file.FileTools;
+import ru.zlo.ff.util.file.MimeTypes;
+import ru.zlo.ff.util.file.Paste;
+
+import java.io.File;
 
 public class ActionFactory {
 

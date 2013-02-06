@@ -1,9 +1,9 @@
 package ru.zlo.ff.components;
 
+import ru.zlo.ff.util.Options;
+
 import java.io.File;
 
-import ru.zlo.ff.util.Sets;
-
 public class RowDataSD extends RowData {
-	public File PATH = Sets.HOME_PATH;
+	public File PATH = Options.HOME_PATH;
 }

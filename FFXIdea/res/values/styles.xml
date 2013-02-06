@@ -41,6 +41,7 @@
     </style>
 
     <color name="widgetBorder">#e6eff2</color>
+    <color name="fileNameColor">#ffcbd4d7</color>
     <color name="gradientWidgetStartColor">#3798c8</color>
     <color name="gradientWidgetEndColor">#2861a2</color>
 

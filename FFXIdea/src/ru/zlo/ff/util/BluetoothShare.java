@@ -32,8 +32,8 @@
 
 package ru.zlo.ff.util;
 
-import android.provider.BaseColumns;
 import android.net.Uri;
+import android.provider.BaseColumns;
 
 /**
  * Exposes constants used to interact with the Bluetooth Share manager's content

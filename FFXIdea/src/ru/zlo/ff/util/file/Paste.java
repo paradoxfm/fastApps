@@ -1,17 +1,13 @@
 package ru.zlo.ff.util.file;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-import ru.zlo.ff.MAct;
-import ru.zlo.ff.util.ActionFactory;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.AsyncTask;
+import ru.zlo.ff.MAct;
+import ru.zlo.ff.util.ActionFactory;
+
+import java.io.*;
 
 public class Paste extends AsyncTask<Object, Void, Void> {
 	private final ProgressDialog dialog;
