@@ -1,12 +1,8 @@
 package ru.zlo.ff.util;
 
 import android.database.sqlite.SQLiteDatabase;
-import ru.zlo.ff.MAct;
-import ru.zlo.ff.components.RowData;
-import ru.zlo.ff.engine.EngPool;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Locale;
 
 public class Sets {
@@ -14,7 +10,6 @@ public class Sets {
 	// -------------------------------------------
 	public static SQLiteDatabase SQLITE;
 	// ------------------------------------------- Модели данных
-	public static ArrayList<RowData> dat = new ArrayList<RowData>();
 
 /*	public static void load(SharedPreferences prf, Activity res) {
 		if (dat.size() != 0) {
@@ -44,10 +39,6 @@ public class Sets {
 			loadDB(fl + "/" + dbPath);
 	}*/
 
-	public static void restoreLists(MAct act) {
-		for (RowData dt : dat)
-			EngPool.Inst().addEngine(dt);
-	}
 
 	public static void loadDB(String path) {
 		Boolean test = new File(path).exists();

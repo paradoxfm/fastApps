@@ -1,29 +1,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/background"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="horizontal" >
+              android:id="@+id/background"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="horizontal">
 
     <ru.megazlo.colorpicker.ColorSlider
-        android:id="@+id/saturation"
-        android:layout_width="50sp"
-        android:layout_height="match_parent"
-        android:layout_margin="5sp" />
+            android:id="@+id/saturation"
+            android:layout_width="50sp"
+            android:layout_height="match_parent"
+            android:layout_margin="5sp"/>
 
     <ru.megazlo.colorpicker.ColorCircle
-        android:id="@+id/colorcircle"
-        android:layout_width="0dip"
-        android:layout_height="match_parent"
-        android:layout_margin="5sp"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_weight="1" />
+            android:id="@+id/colorcircle"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="5sp"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="1"/>
 
     <ru.megazlo.colorpicker.ColorSlider
-        android:id="@+id/value"
-        android:layout_width="50sp"
-        android:layout_height="match_parent"
-        android:layout_margin="5sp" />
+            android:id="@+id/value"
+            android:layout_width="50sp"
+            android:layout_height="match_parent"
+            android:layout_margin="5sp"/>
 
 </LinearLayout>

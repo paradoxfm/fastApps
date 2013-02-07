@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_set_widget_path"
-        android:icon="@drawable/i_chk"
-        android:showAsAction="always|withText"
-        android:title="@string/serach"/>
+            android:id="@+id/menu_set_widget_path"
+            android:icon="@drawable/i_chk"
+            android:showAsAction="always|withText"
+            android:title="@string/serach"/>
 
 </menu>

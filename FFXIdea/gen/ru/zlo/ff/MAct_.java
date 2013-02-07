@@ -92,7 +92,7 @@ public final class MAct_
         if (itemId_ == ru.zlo.ff.R.id.menu_set_widget_path) {
             return menuWidget();
         }
-        if ((((((itemId_ == ru.zlo.ff.R.id.appsett2)||(itemId_ == ru.zlo.ff.R.id.appsett))||(itemId_ == ru.zlo.ff.R.id.tutor2))||(itemId_ == ru.zlo.ff.R.id.tutor))||(itemId_ == ru.zlo.ff.R.id.quit2))||(itemId_ == ru.zlo.ff.R.id.quit)) {
+        if (((itemId_ == ru.zlo.ff.R.id.appsett)||(itemId_ == ru.zlo.ff.R.id.tutor))||(itemId_ == ru.zlo.ff.R.id.quit)) {
             return menuOther(item);
         }
         if (itemId_ == android.R.id.home) {

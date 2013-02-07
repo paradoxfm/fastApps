@@ -5,9 +5,7 @@ import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.view.WindowManager;
 import ru.zlo.ff.util.Options;
-import ru.zlo.ff.util.Sets;
 
 public class SetViewAct extends PreferenceActivity implements Preference.OnPreferenceChangeListener {
 
@@ -68,21 +66,21 @@ public class SetViewAct extends PreferenceActivity implements Preference.OnPrefe
 			Options.SHOW_APK = (Boolean) nval;
 		if (key.equals("fullscr")) {
 			Options.FULL_SCR = (Boolean) nval;
-			int flg = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+			/*int flg = WindowManager.LayoutParams.FLAG_FULLSCREEN;
 			if (Options.FULL_SCR) {
 				MAct.I.getWindow().setFlags(flg, flg);
 				this.getWindow().setFlags(flg, flg);
 			} else {
 				MAct.I.getWindow().clearFlags(flg);
 				this.getWindow().clearFlags(flg);
-			}
+			}*/
 		}
 		if (key.equals("animate"))
 			Options.ANIMATE = (Boolean) nval;
 		if (key.equals("orientype")) {
 			Options.ORIENT_TYPE = Integer.parseInt((String) nval);
 			setRequestedOrientation(Options.ORIENT_TYPE);
-			MAct.I.setRequestedOrientation(Options.ORIENT_TYPE);
+			//MAct.I.setRequestedOrientation(Options.ORIENT_TYPE);
 		}
 		return true;
 	}

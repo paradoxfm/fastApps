@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@+id/appsett2"
+            android:id="@+id/appsett"
             android:icon="@android:drawable/ic_menu_preferences"
             android:title="@string/settings"/>
     <item
-            android:id="@+id/quit2"
+            android:id="@+id/quit"
             android:icon="@android:drawable/ic_menu_close_clear_cancel"
             android:title="@string/quit"/>
     <item
-            android:id="@+id/tutor2"
+            android:id="@+id/tutor"
             android:icon="@android:drawable/ic_menu_help"
             android:title="@string/mn_tutor"/>
 

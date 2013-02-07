@@ -8,9 +8,9 @@ import android.view.View.OnClickListener;
 import android.widget.Toast;
 import ru.megazlo.quicker.ActionItem;
 import ru.megazlo.quicker.QuickAction;
-import ru.zlo.ff.MAct;
 import ru.zlo.ff.R;
 import ru.zlo.ff.engine.BaseEngine;
+import ru.zlo.ff.engine.EngPool;
 import ru.zlo.ff.util.file.FileTools;
 import ru.zlo.ff.util.file.MimeTypes;
 import ru.zlo.ff.util.file.Paste;
@@ -25,7 +25,7 @@ public class ActionFactory {
 
 	public static QuickAction create(View v, Object... file) {
 		QuickAction qa = new QuickAction(v);
-		BaseEngine eng = MAct.I.getCurEng();
+		BaseEngine eng = EngPool.Inst().getCurrent();
 		Object[] obj = eng.getFiles();
 		if (obj.length > 0)
 			createMulti(v.getContext(), qa, obj);
@@ -38,8 +38,6 @@ public class ActionFactory {
 		qq.addAction(copy_move(cont, false, fil));// копировать
 		qq.addAction(copy_move(cont, true, fil));// переместить
 		qq.addAction(delete(cont, fil));// удалить
-		if (fil.getClass() == File[].class)
-			qq.addAction(searchInFilder(cont, fil));// поиск
 	}
 
 	private static void createLocal(Context cont, QuickAction qq, Object fil) {
@@ -55,8 +53,6 @@ public class ActionFactory {
 			qq.addAction(delete(cont, fil));// удалить
 			qq.addAction(reaname(cont, fil));// переименовать
 		}
-		if (fl.isDirectory() && fl.canRead())
-			qq.addAction(searchInFilder(cont, fil));// поиск
 		if (fl.isFile() && fl.canRead())
 			qq.addAction(bluetooth(cont, fl));// отправка
 	}
@@ -77,84 +73,70 @@ public class ActionFactory {
 		return copy_move;
 	}
 
-	private static ActionItem paste(Context context, final Object fil) {
+	private static ActionItem paste(final Context context, final Object fil) {
 		final ActionItem paste = new ActionItem();
 		paste.setIcon(context.getResources().getDrawable(R.drawable.qa_paste));
 		paste.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				FileTools.TO = fil;
-				new Paste().execute();
+				new Paste(context).execute();
 				paste.dismiss();
 			}
 		});
 		return paste;
 	}
 
-	private static ActionItem delete(Context context, final  Object... fil) {
+	private static ActionItem delete(final Context context, final Object... fil) {
 		final ActionItem delet = new ActionItem();
 		delet.setIcon(context.getResources().getDrawable(R.drawable.qa_delete));
 		delet.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				FileTools.FROM = fil;
-				FileTools.delete();
+				FileTools.delete(context);
 				delet.dismiss();
 			}
 		});
 		return delet;
 	}
 
-	private static ActionItem reaname(Context context, final Object fil) {
+	private static ActionItem reaname(final Context context, final Object fil) {
 		final ActionItem reanam = new ActionItem();
 		reanam.setIcon(context.getResources().getDrawable(R.drawable.qa_rename));
 		reanam.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				FileTools.TO = fil;
-				FileTools.rename();
+				FileTools.rename(context);
 				reanam.dismiss();
 			}
 		});
 		return reanam;
 	}
 
-	private static ActionItem searchInFilder(Context context, final Object... fil) {
-		final ActionItem search = new ActionItem();
-		search.setIcon(context.getResources().getDrawable(R.drawable.qa_searsh));
-		search.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				FileTools.FROM = fil.length == 1 ? new File[] { (File) fil[0] } : fil;
-				MAct.I.onSearchRequested();
-				search.dismiss();
-			}
-		});
-		return search;
-	}
-
-	private static ActionItem newFile(Context context, final File fil) {
+	private static ActionItem newFile(final Context context, final File fil) {
 		final ActionItem creat = new ActionItem();
 		creat.setIcon(context.getResources().getDrawable(R.drawable.qa_new_file));
 		creat.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				FileTools.TO = fil.isFile() ? fil.getParentFile() : fil;
-				FileTools.newFile();
+				FileTools.newFile(context);
 				creat.dismiss();
 			}
 		});
 		return creat;
 	}
 
-	private static ActionItem newDirectory(Context context, final Object fil) {
+	private static ActionItem newDirectory(final Context context, final Object fil) {
 		final ActionItem creat = new ActionItem();
 		creat.setIcon(context.getResources().getDrawable(R.drawable.qa_new_folder));
 		creat.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				FileTools.TO = fil;
-				FileTools.newFolder();
+				FileTools.newFolder(context);
 				creat.dismiss();
 			}
 		});
@@ -177,5 +159,4 @@ public class ActionFactory {
 		});
 		return blt;
 	}
-
 }

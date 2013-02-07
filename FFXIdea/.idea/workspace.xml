@@ -23,6 +23,9 @@
         <option name="visible" value="false" />
       </GlobalState>
     </option>
+    <device-configurations>
+      <entry key="file://$PROJECT_DIR$/res/layout-large-land/main_activity_l.xml" value="Portrait" />
+    </device-configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="289361c4-7b9a-4516-b14d-975519d4095d" name="Default" comment="" />
@@ -36,7 +39,7 @@
     <file path="$PROJECT_DIR$/../../soi-ur/server/core/src/main/java/ru/alteropower/soi/ur/core/services/CalendarTimeService.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360043426912" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/soiur-war/pom.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360043426912" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/soiur-war/src/main/java/ru/alteropower/soi/ur/controllers/adapters/EssUploadAdapterImpl.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360043426912" ignored="false" />
-    <file path="$PROJECT_DIR$/../../soi-ur/server/db/src/main/resources/mapping.hbm.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062470635" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/db/src/main/resources/mapping.hbm.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219295129" ignored="false" />
     <file path="/mapping.hbm.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062467474" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/db/src/main/java/ru/alteropower/dao/DocsDaoImpl.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360044487662" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/News.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463417" ignored="false" />
@@ -49,14 +52,14 @@
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/surefire-reports/TEST-ru.alteropower.soi.ur.types.UserSettingsTest.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360044574676" ignored="false" />
     <file path="/a.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360045958165" ignored="false" />
     <file path="/main.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360045687599" ignored="false" />
-    <file path="/a.dummy" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360151313304" ignored="false" />
-    <file path="/SetAct.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360140180842" ignored="false" />
+    <file path="/a.dummy" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360216504633" ignored="false" />
+    <file path="/SetAct.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360226122756" ignored="false" />
     <file path="/widget.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360139656080" ignored="false" />
     <file path="/preferences.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062142968" ignored="false" />
-    <file path="/fragment.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360140287651" ignored="false" />
+    <file path="/fragment.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360229745271" ignored="false" />
     <file path="$PROJECT_DIR$/quicker/res/layout/main.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360048928549" ignored="false" />
-    <file path="/Paste.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360050176595" ignored="false" />
-    <file path="/preference_headers.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360063948358" ignored="false" />
+    <file path="/Paste.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360223241576" ignored="false" />
+    <file path="/preference_headers.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360225049025" ignored="false" />
     <file path="/styles.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360128031822" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/src/main/resources/schemas/SOI UR/Info/FileDoc.xsd" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360056365381" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/src/main/resources/schemas/SOI UR/Info/BinData.xsd" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360057656122" ignored="false" />
@@ -96,7 +99,7 @@
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/ECSOOfferList.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463150" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/ECSOOfferRequest.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463150" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/ENNewECNotification.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463150" ignored="false" />
-    <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/MarketParticipantProfilePickList.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463417" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/MarketParticipantProfilePickList.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219419131" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/InformRequest.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463150" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/NewsList.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463417" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/InternalUsersRequest.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463150" ignored="false" />
@@ -126,7 +129,7 @@
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/GTPShortInfo.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463150" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/FaultResponse.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463150" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/InternalUserID.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463150" ignored="false" />
-    <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/MarketParticipantProfile.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463417" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/MarketParticipantProfile.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219419131" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/MonitoringRequest.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463417" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/UserConfigurationRequest.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463417" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/ServerStatus.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463417" ignored="false" />
@@ -144,39 +147,75 @@
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/SecurityEventList.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062463417" ignored="false" />
     <file path="$PROJECT_DIR$/../../soi-ur/server/dto/src/main/resources/schemas/SOI UR/Info/info-schema.xsd" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062455220" ignored="false" />
     <file path="/info-schema.xsd" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360062453358" ignored="false" />
-    <file path="/main_activity.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360133751737" ignored="false" />
+    <file path="/main_activity.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360232412182" ignored="false" />
     <file path="/PageIndicator.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360065536076" ignored="false" />
     <file path="$PROJECT_DIR$/ViewPagerIndicator/res/layout/main.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360065709205" ignored="false" />
-    <file path="/MAct.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360145152371" ignored="false" />
+    <file path="/MAct.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360233316241" ignored="false" />
     <file path="/TestAdapter.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360066345336" ignored="false" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360153009790" ignored="false" />
+    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360235697780" ignored="false" />
     <file path="/FileSectionFragment.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360123368801" ignored="false" />
-    <file path="$PROJECT_DIR$/ViewPagerIndicator/src/com/viewpagerindicator/TitlePageIndicator.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360124461448" ignored="false" />
-    <file path="$PROJECT_DIR$/quicker/src/ru/megazlo/quicker/CustomPopupWindow.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360124461449" ignored="false" />
-    <file path="$PROJECT_DIR$/quicker/src/ru/megazlo/quicker/ActionItem.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360124461449" ignored="false" />
-    <file path="$PROJECT_DIR$/quicker/src/ru/megazlo/quicker/QuickAction.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360124461449" ignored="false" />
     <file path="$PROJECT_DIR$/quicker/gen/ru/megazlo/quicker/BuildConfig.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360124589009" ignored="false" />
-    <file path="/Dummy.txt" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360125160792" ignored="false" />
-    <file path="/FileRow.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360130119871" ignored="false" />
+    <file path="/Dummy.txt" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360232153388" ignored="false" />
+    <file path="/FileRow.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360220187379" ignored="false" />
     <file path="/filerow.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360130974248" ignored="false" />
     <file path="/FileRowAdapter.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360129953969" ignored="false" />
     <file path="/actionbar.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360133588875" ignored="false" />
-    <file path="/FileListFragment.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360153000736" ignored="false" />
-    <file path="/Options.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360141040977" ignored="false" />
+    <file path="/FileListFragment.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360227625043" ignored="false" />
+    <file path="/Options.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360228539323" ignored="false" />
     <file path="/ZloApplication.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360136727426" ignored="false" />
     <file path="/actionbarw.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360139742121" ignored="false" />
-    <file path="/FileTools.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360140246118" ignored="false" />
+    <file path="/FileTools.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360223102226" ignored="false" />
     <file path="/NAct.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360143745229" ignored="false" />
     <file path="/BaseEngine.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360150437808" ignored="false" />
     <file path="/FileList.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360147227891" ignored="false" />
-    <file path="/EngineSDC.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360150477973" ignored="false" />
+    <file path="/EngineSDC.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360233147997" ignored="false" />
     <file path="/FileRowData.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360141233609" ignored="false" />
     <file path="/MenuChecker.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360141831070" ignored="false" />
     <file path="/note_editor.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360142806311" ignored="false" />
-    <file path="/Commander.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360147922438" ignored="false" />
-    <file path="/SectionsPagerAdapter.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360148152505" ignored="false" />
+    <file path="/Commander.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360223290102" ignored="false" />
+    <file path="/SectionsPagerAdapter.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360231414208" ignored="false" />
     <file path="/EngineARC.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360150517516" ignored="false" />
     <file path="/ItemClicker.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360150680114" ignored="false" />
+    <file path="$PROJECT_DIR$/qcontrols/res/layout/main.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360211569414" ignored="false" />
+    <file path="$PROJECT_DIR$/.idea/compiler.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360211575949" ignored="false" />
+    <file path="/FramentMenu.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360212444006" ignored="false" />
+    <file path="/string.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360214271157" ignored="false" />
+    <file path="/CustomPopupWindow.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360214518179" ignored="false" />
+    <file path="/QuickAction.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360215109350" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/web-core/src/main/resources/ru/alteropower/compoundContext.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219258287" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/web-core/src/main/resources/ru/alteropower/soiur/js/users.js" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219258287" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/web-core/src/main/java/ru/alteropower/soi/web/controllers/InternalUserSearchController.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219258588" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/db/src/test/java/ru/alteropower/soi/ur/dao/UserDaoTest.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219258588" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/soiur-war/src/main/java/ru/alteropower/soi/ur/controllers/adapters/MonitoringServiceAdaptorImpl.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219258588" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/web-core/src/main/resources/ru/alteropower/soiur/js/admin.js" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219258588" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/services/src/main/resources/ru/alteropower/soi/ur/services/daoContext.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219258588" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/db/src/test/java/ru/alteropower/soi/ur/BaseSpringTest.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219258588" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/web-core/src/main/java/ru/alteropower/soi/web/controllers/NotificationController.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219258588" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/web-core/src/main/java/ru/alteropower/soi/web/services/LdapServiceImpl.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219258588" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/soiur-war/src/main/java/ru/alteropower/soi/ur/controllers/adapters/ExternalUsersSearchAdaptorImpl.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219258588" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/web-core/src/main/resources/ru/alteropower/soiur/js/jquery-ui.table-ajax.js" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219258588" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/web-core/src/main/java/ru/alteropower/soi/web/controllers/ExternalUsersSearchController.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219258588" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/descriptors/MarketParticipantProfilePickListDescriptor.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219419131" ignored="false" />
+    <file path="$PROJECT_DIR$/../../soi-ur/server/dto/target/generated-sources/castor/ru/alteropower/soi/ur/types/descriptors/MarketParticipantProfileDescriptor.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360219419131" ignored="false" />
+    <file path="/ActionFactory.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360223197973" ignored="false" />
+    <file path="/EngPool.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360233226910" ignored="false" />
+    <file path="/IEngine.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360222232273" ignored="false" />
+    <file path="/Search.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360222138915" ignored="false" />
+    <file path="/ThumbnailLoader.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360222569006" ignored="false" />
+    <file path="/Delete.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360222595934" ignored="false" />
+    <file path="$PROJECT_DIR$/res/drawable/progress_horizontal.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360223829307" ignored="false" />
+    <file path="$PROJECT_DIR$/res/drawable/seek_thumb.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360223829307" ignored="false" />
+    <file path="$PROJECT_DIR$/res/values-ru/strings.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360223829307" ignored="false" />
+    <file path="$PROJECT_DIR$/res/drawable/title_bar_background.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360223829307" ignored="false" />
+    <file path="$PROJECT_DIR$/res/drawable/app_background.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360223829307" ignored="false" />
+    <file path="$PROJECT_DIR$/res/drawable/divider.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360223829307" ignored="false" />
+    <file path="$PROJECT_DIR$/res/drawable-hdpi/note_top.xml" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360223831340" ignored="false" />
+    <file path="/ViewSettingsFragment.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360226393895" ignored="false" />
+    <file path="/MainSettingsFragment.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360226342237" ignored="false" />
+    <file path="$PROJECT_DIR$/gen/ru/zlo/ff/NAct_.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360233916179" ignored="false" />
+    <file path="$PROJECT_DIR$/gen/ru/zlo/ff/MAct_.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360233416044" ignored="false" />
+    <file path="$PROJECT_DIR$/gen/ru/zlo/ff/components/filerow/FileRow_.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360229554854" ignored="false" />
+    <file path="$PROJECT_DIR$/gen/ru/zlo/ff/fragments/FileListFragment_.java" changelist="289361c4-7b9a-4516-b14d-975519d4095d" time="1360233916179" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,57 +278,7 @@
       <file leaf-file-name="MAct.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/MAct.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="15" selection-start="1284" selection-end="1284" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NAct.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/NAct.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="684" selection-end="684" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="class#LinedEditText#0;class#NAct#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SectionsPagerAdapter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/fragments/SectionsPagerAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileListFragment.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/fragments/FileListFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="37" selection-start="1470" selection-end="1470" vertical-scroll-proportion="0.43353474">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EngineARC.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/engine/EngineARC.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="23" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileTools.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/util/file/FileTools.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="24" selection-start="880" selection-end="880" vertical-scroll-proportion="0.0">
+            <state line="21" column="34" selection-start="716" selection-end="716" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -298,10 +287,17 @@
       <file leaf-file-name="EngineSDC.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/engine/EngineSDC.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="8" selection-start="391" selection-end="391" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="18" column="17" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EngPool.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/engine/EngPool.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="43" selection-start="633" selection-end="633" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -309,7 +305,45 @@
       <file leaf-file-name="Commander.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/util/Commander.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="23" selection-start="1254" selection-end="1267" vertical-scroll-proportion="0.0">
+            <state line="45" column="23" selection-start="1061" selection-end="1061" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseEngine.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/engine/BaseEngine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="48" column="13" selection-start="1219" selection-end="1219" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SectionsPagerAdapter.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/fragments/SectionsPagerAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="30" selection-start="769" selection-end="769" vertical-scroll-proportion="0.47583082">
+              <folding>
+                <element signature="e#407#417#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileListFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/fragments/FileListFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="65" column="11" selection-start="1965" selection-end="1965" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Options.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/util/Options.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="31" selection-start="1831" selection-end="1831" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -322,25 +356,30 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="D:\Projects\Idea\android\key.key" />
+    <option name="KEY_ALIAS" value="paradoxfm" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/ru/zlo/ff/util/ThumbnailLoader.java" />
-        <option value="$PROJECT_DIR$/src/ru/zlo/ff/components/filerow/FileRow.java" />
+        <option value="$PROJECT_DIR$/src/ru/zlo/ff/SetViewAct.java" />
+        <option value="$PROJECT_DIR$/res/xml/preference_headers.xml" />
+        <option value="$PROJECT_DIR$/res/xml/preferences.xml" />
+        <option value="$PROJECT_DIR$/src/ru/zlo/ff/fragments/MainSettingsFragment.java" />
+        <option value="$PROJECT_DIR$/src/ru/zlo/ff/SetAct.java" />
+        <option value="$PROJECT_DIR$/src/ru/zlo/ff/fragments/ViewSettingsFragment.java" />
+        <option value="$PROJECT_DIR$/src/ru/zlo/ff/util/Options.java" />
+        <option value="$PROJECT_DIR$/res/layout-large-land/main_activity.xml" />
+        <option value="$PROJECT_DIR$/res/layout/main_activity.xml" />
+        <option value="$PROJECT_DIR$/src/ru/zlo/ff/engine/EngineSDC.java" />
+        <option value="$PROJECT_DIR$/src/ru/zlo/ff/engine/EngPool.java" />
         <option value="$PROJECT_DIR$/src/ru/zlo/ff/util/Commander.java" />
         <option value="$PROJECT_DIR$/src/ru/zlo/ff/MAct.java" />
-        <option value="$PROJECT_DIR$/src/ru/zlo/ff/fragments/FileSectionFragment.java" />
-        <option value="$PROJECT_DIR$/src/ru/zlo/ff/fragments/SectionsPagerAdapter.java" />
-        <option value="$PROJECT_DIR$/src/ru/zlo/ff/engine/EngineSDC.java" />
-        <option value="$PROJECT_DIR$/src/ru/zlo/ff/engine/BaseEngine.java" />
-        <option value="$PROJECT_DIR$/src/ru/zlo/ff/engine/EngineARC.java" />
-        <option value="$PROJECT_DIR$/src/ru/zlo/ff/util/file/FileTools.java" />
-        <option value="$PROJECT_DIR$/src/ru/zlo/ff/components/filerow/ItemClicker.java" />
-        <option value="$PROJECT_DIR$/src/ru/zlo/ff/components/filerow/FileList.java" />
-        <option value="$PROJECT_DIR$/gen/ru/zlo/ff/NAct_.java" />
-        <option value="$PROJECT_DIR$/src/ru/zlo/ff/NAct.java" />
+        <option value="$PROJECT_DIR$/res/layout-large-land/main_activity_l.xml" />
         <option value="$PROJECT_DIR$/src/ru/zlo/ff/fragments/FileListFragment.java" />
+        <option value="$PROJECT_DIR$/src/ru/zlo/ff/fragments/SectionsPagerAdapter.java" />
       </list>
     </option>
   </component>
@@ -401,7 +440,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -530,31 +568,83 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FastFile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FastFile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xml" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FastFile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FastFile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FastFile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FastFile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="ExportedApkPath" value="D:\Projects\Idea\android\FastFile\FastFile.apk" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="reference.projectsettings.compiler.annotationProcessors" />
     <property name="recentsLimit" value="5" />
+    <property name="ExportedModule" value="FastFile" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/quicker" />
-    <property name="AndroidLayoutSelectedEditor" value="text-editor" />
-    <property name="project.structure.side.proportion" value="0.2" />
     <property name="GoToClass.includeJavaFiles" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="restartRequiresConfirmation" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="AndroidIncludeSystemProguardFile" value="true" />
+    <property name="AndroidProguardConfigPath" value="D:\Projects\Idea\android\FastFile\proguard-project.txt" />
+    <property name="options.lastSelected" value="reference.projectsettings.compiler.annotationProcessors" />
+    <property name="AndroidLayoutSelectedEditor" value="text-editor" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="AndroidRunProguardForReleaseBuild" value="true" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
@@ -569,7 +659,7 @@
       <recent name="ru.zlo.ff" />
     </key>
   </component>
-  <component name="RunManager" selected="Android Application.FastFile emul">
+  <component name="RunManager" selected="Android Application.FastFile dev">
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -727,7 +817,7 @@
       <option name="MODE" value="default_activity" />
       <option name="DEPLOY" value="true" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="PREFERRED_AVD" value="pl" />
+      <option name="PREFERRED_AVD" value="tablet" />
       <option name="COMMAND_LINE" value="" />
       <option name="WIPE_USER_DATA" value="false" />
       <option name="DISABLE_BOOT_ANIMATION" value="false" />
@@ -778,7 +868,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1874" height="1096" extended-state="7" />
+    <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -788,19 +878,19 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3991684" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2848233" sideWeight="0.5027594" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24948025" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23700623" sideWeight="0.49779248" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952183" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952183" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18101545" sideWeight="0.7151767" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2848233" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17384106" sideWeight="0.7151767" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2848233" sideWeight="0.49337748" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294702" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.67047817" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294702" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -868,121 +958,133 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/util/ActionFactory.java">
+    <entry file="file://$PROJECT_DIR$/res/xml/preferences_view.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="5" selection-start="976" selection-end="976" vertical-scroll-proportion="0.4305136">
-          <folding>
-            <element signature="e#4149#4356#0" expanded="true" />
-            <element signature="e#4351#4352#0" expanded="true" />
-          </folding>
+        <state line="10" column="0" selection-start="399" selection-end="399" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/components/filerow/FileRow.java">
+    <entry file="file://$PROJECT_DIR$/res/layout/filerow.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="17" selection-start="696" selection-end="696" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/fragments/ViewSettingsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="49" selection-start="777" selection-end="777" vertical-scroll-proportion="0.2326284">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/util/Commander.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/fragments/MainSettingsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="23" selection-start="1254" selection-end="1267" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="37" column="9" selection-start="1108" selection-end="1108" vertical-scroll-proportion="0.36555892">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1572#1733#0" expanded="true" />
+            <element signature="e#1728#1729#0" expanded="true" />
+            <element signature="e#1807#2078#0" expanded="true" />
+            <element signature="e#2073#2074#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/fragments/SectionsPagerAdapter.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/SetViewAct.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0">
+        <state line="23" column="23" selection-start="728" selection-end="728" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/util/Options.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="6" selection-start="665" selection-end="665" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/engine/IEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="17" selection-start="82" selection-end="82" vertical-scroll-proportion="0.09063444">
+        <state line="51" column="31" selection-start="1831" selection-end="1831" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/util/ThumbnailLoader.java">
+    <entry file="jar://$PROJECT_DIR$/libs/android-support-v13.jar!/android/support/v4/view/ViewPager.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="71" selection-start="1198" selection-end="1198" vertical-scroll-proportion="0.30172414">
+        <state line="113" column="16" selection-start="5255" selection-end="5255" vertical-scroll-proportion="2.6373627">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/engine/BaseEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="30" selection-start="1206" selection-end="1206" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/engine/EngineARC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="23" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
+        <state line="48" column="13" selection-start="1219" selection-end="1219" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/engine/EngineSDC.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="8" selection-start="391" selection-end="391" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="18" column="17" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/util/file/FileTools.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/engine/EngPool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="24" selection-start="880" selection-end="880" vertical-scroll-proportion="0.0">
+        <state line="33" column="43" selection-start="633" selection-end="633" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/util/Commander.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="23" selection-start="1061" selection-end="1061" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/MAct.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="15" selection-start="1284" selection-end="1284" vertical-scroll-proportion="0.0">
+        <state line="21" column="34" selection-start="716" selection-end="716" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gen/ru/zlo/ff/NAct_.java">
+    <entry file="file://$PROJECT_DIR$/res/layout-large-land/main_activity_l.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="7" selection-start="2193" selection-end="2193" vertical-scroll-proportion="0.0">
+        <state line="26" column="42" selection-start="1209" selection-end="1209" vertical-scroll-proportion="0.6122449">
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/NAct.java">
+    <entry file="file://$PROJECT_DIR$/res/layout/main_activity.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="684" selection-end="684" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#LinedEditText#0;class#NAct#0" expanded="false" />
-          </folding>
+        <state line="18" column="14" selection-start="722" selection-end="722" vertical-scroll-proportion="0.42386186">
+          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/fragments/FileListFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="37" selection-start="1470" selection-end="1470" vertical-scroll-proportion="0.43353474">
+        <state line="65" column="11" selection-start="1965" selection-end="1965" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/zlo/ff/fragments/SectionsPagerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="30" selection-start="769" selection-end="769" vertical-scroll-proportion="0.47583082">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#407#417#0" expanded="true" />
           </folding>
         </state>
       </provider>
