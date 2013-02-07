@@ -38,7 +38,6 @@ import android.provider.BaseColumns;
 /**
  * Exposes constants used to interact with the Bluetooth Share manager's content
  * provider.
- * 
  * @hide
  */
 
@@ -46,14 +45,10 @@ public final class BluetoothShare implements BaseColumns {
 	private BluetoothShare() {
 	}
 
-	/**
-	 * The permission to access the Bluetooth Share Manager
-	 */
+	/** The permission to access the Bluetooth Share Manager */
 	public static final String PERMISSION_ACCESS = "android.permission.ACCESS_BLUETOOTH_SHARE";
 
-	/**
-	 * The content:// URI for the data table in the provider
-	 */
+	/** The content:// URI for the data table in the provider */
 	public static final Uri CONTENT_URI = Uri.parse("content://com.android.bluetooth.opp/btopp");
 
 	/**
@@ -77,10 +72,10 @@ public final class BluetoothShare implements BaseColumns {
 
 	/**
 	 * The name of the column containing the URI of the file being sent/received.
-	 * <P>
+	 * <p/>
 	 * Type: TEXT
 	 * </P>
-	 * <P>
+	 * <p/>
 	 * Owner can Init/Read
 	 * </P>
 	 */
@@ -90,10 +85,10 @@ public final class BluetoothShare implements BaseColumns {
 	 * The name of the column containing the filename that the incoming file
 	 * request recommends. When possible, the Bluetooth Share manager will attempt
 	 * to use this filename, or a variation, as the actual name for the file.
-	 * <P>
+	 * <p/>
 	 * Type: TEXT
 	 * </P>
-	 * <P>
+	 * <p/>
 	 * Owner can Init/Read
 	 * </P>
 	 */
@@ -102,10 +97,10 @@ public final class BluetoothShare implements BaseColumns {
 	/**
 	 * The name of the column containing the filename where the shared file was
 	 * actually stored.
-	 * <P>
+	 * <p/>
 	 * Type: TEXT
 	 * </P>
-	 * <P>
+	 * <p/>
 	 * Owner can Read
 	 * </P>
 	 */
@@ -113,10 +108,10 @@ public final class BluetoothShare implements BaseColumns {
 
 	/**
 	 * The name of the column containing the MIME type of the shared file.
-	 * <P>
+	 * <p/>
 	 * Type: TEXT
 	 * </P>
-	 * <P>
+	 * <p/>
 	 * Owner can Init/Read
 	 * </P>
 	 */
@@ -125,10 +120,10 @@ public final class BluetoothShare implements BaseColumns {
 	/**
 	 * The name of the column containing the direction (Inbound/Outbound) of the
 	 * transfer. See the DIRECTION_* constants for a list of legal values.
-	 * <P>
+	 * <p/>
 	 * Type: INTEGER
 	 * </P>
-	 * <P>
+	 * <p/>
 	 * Owner can Init/Read
 	 * </P>
 	 */
@@ -137,10 +132,10 @@ public final class BluetoothShare implements BaseColumns {
 	/**
 	 * The name of the column containing Bluetooth Device Address that the
 	 * transfer is associated with.
-	 * <P>
+	 * <p/>
 	 * Type: TEXT
 	 * </P>
-	 * <P>
+	 * <p/>
 	 * Owner can Init/Read
 	 * </P>
 	 */
@@ -150,10 +145,10 @@ public final class BluetoothShare implements BaseColumns {
 	 * The name of the column containing the flags that controls whether the
 	 * transfer is displayed by the UI. See the VISIBILITY_* constants for a list
 	 * of legal values.
-	 * <P>
+	 * <p/>
 	 * Type: INTEGER
 	 * </P>
-	 * <P>
+	 * <p/>
 	 * Owner can Init/Read/Write
 	 * </P>
 	 */
@@ -163,10 +158,10 @@ public final class BluetoothShare implements BaseColumns {
 	 * The name of the column containing the current user confirmation state of
 	 * the transfer. Applications can write to this to confirm the transfer. the
 	 * USER_CONFIRMATION_* constants for a list of legal values.
-	 * <P>
+	 * <p/>
 	 * Type: INTEGER
 	 * </P>
-	 * <P>
+	 * <p/>
 	 * Owner can Init/Read/Write
 	 * </P>
 	 */
@@ -176,10 +171,10 @@ public final class BluetoothShare implements BaseColumns {
 	 * The name of the column containing the current status of the transfer.
 	 * Applications can read this to follow the progress of each download. See the
 	 * STATUS_* constants for a list of legal values.
-	 * <P>
+	 * <p/>
 	 * Type: INTEGER
 	 * </P>
-	 * <P>
+	 * <p/>
 	 * Owner can Read
 	 * </P>
 	 */
@@ -188,10 +183,10 @@ public final class BluetoothShare implements BaseColumns {
 	/**
 	 * The name of the column containing the total size of the file being
 	 * transferred.
-	 * <P>
+	 * <p/>
 	 * Type: INTEGER
 	 * </P>
-	 * <P>
+	 * <p/>
 	 * Owner can Read
 	 * </P>
 	 */
@@ -200,10 +195,10 @@ public final class BluetoothShare implements BaseColumns {
 	/**
 	 * The name of the column containing the size of the part of the file that has
 	 * been transferred so far.
-	 * <P>
+	 * <p/>
 	 * Type: INTEGER
 	 * </P>
-	 * <P>
+	 * <p/>
 	 * Owner can Read
 	 * </P>
 	 */
@@ -212,48 +207,34 @@ public final class BluetoothShare implements BaseColumns {
 	/**
 	 * The name of the column containing the timestamp when the transfer is
 	 * initialized.
-	 * <P>
+	 * <p/>
 	 * Type: INTEGER
 	 * </P>
-	 * <P>
+	 * <p/>
 	 * Owner can Read
 	 * </P>
 	 */
 	public static final String TIMESTAMP = "timestamp";
 
-	/**
-	 * This transfer is outbound, e.g. share file to other device.
-	 */
+	/** This transfer is outbound, e.g. share file to other device. */
 	public static final int DIRECTION_OUTBOUND = 0;
 
-	/**
-	 * This transfer is inbound, e.g. receive file from other device.
-	 */
+	/** This transfer is inbound, e.g. receive file from other device. */
 	public static final int DIRECTION_INBOUND = 1;
 
-	/**
-	 * This transfer is waiting for user confirmation.
-	 */
+	/** This transfer is waiting for user confirmation. */
 	public static final int USER_CONFIRMATION_PENDING = 0;
 
-	/**
-	 * This transfer is confirmed by user.
-	 */
+	/** This transfer is confirmed by user. */
 	public static final int USER_CONFIRMATION_CONFIRMED = 1;
 
-	/**
-	 * This transfer is auto-confirmed per previous user confirmation.
-	 */
+	/** This transfer is auto-confirmed per previous user confirmation. */
 	public static final int USER_CONFIRMATION_AUTO_CONFIRMED = 2;
 
-	/**
-	 * This transfer is denied by user.
-	 */
+	/** This transfer is denied by user. */
 	public static final int USER_CONFIRMATION_DENIED = 3;
 
-	/**
-	 * This transfer is timeout before user action.
-	 */
+	/** This transfer is timeout before user action. */
 	public static final int USER_CONFIRMATION_TIMEOUT = 4;
 
 	/**
@@ -262,14 +243,10 @@ public final class BluetoothShare implements BaseColumns {
 	 */
 	public static final int VISIBILITY_VISIBLE = 0;
 
-	/**
-	 * This transfer doesn't show in the notifications.
-	 */
+	/** This transfer doesn't show in the notifications. */
 	public static final int VISIBILITY_HIDDEN = 1;
 
-	/**
-	 * Returns whether the status is informational (i.e. 1xx).
-	 */
+	/** Returns whether the status is informational (i.e. 1xx). */
 	public static boolean isStatusInformational(int status) {
 		return (status >= 100 && status < 200);
 	}
@@ -282,49 +259,35 @@ public final class BluetoothShare implements BaseColumns {
 		return (status == STATUS_PENDING);
 	}
 
-	/**
-	 * Returns whether the status is a success (i.e. 2xx).
-	 */
+	/** Returns whether the status is a success (i.e. 2xx). */
 	public static boolean isStatusSuccess(int status) {
 		return (status >= 200 && status < 300);
 	}
 
-	/**
-	 * Returns whether the status is an error (i.e. 4xx or 5xx).
-	 */
+	/** Returns whether the status is an error (i.e. 4xx or 5xx). */
 	public static boolean isStatusError(int status) {
 		return (status >= 400 && status < 600);
 	}
 
-	/**
-	 * Returns whether the status is a client error (i.e. 4xx).
-	 */
+	/** Returns whether the status is a client error (i.e. 4xx). */
 	public static boolean isStatusClientError(int status) {
 		return (status >= 400 && status < 500);
 	}
 
-	/**
-	 * Returns whether the status is a server error (i.e. 5xx).
-	 */
+	/** Returns whether the status is a server error (i.e. 5xx). */
 	public static boolean isStatusServerError(int status) {
 		return (status >= 500 && status < 600);
 	}
 
-	/**
-	 * Returns whether the transfer has completed (either with success or error).
-	 */
+	/** Returns whether the transfer has completed (either with success or error). */
 	public static boolean isStatusCompleted(int status) {
 		return (status >= 200 && status < 300) || (status >= 400 && status < 600);
 	}
 
-	/**
-	 * This transfer hasn't stated yet
-	 */
+	/** This transfer hasn't stated yet */
 	public static final int STATUS_PENDING = 190;
 
-	/**
-	 * This transfer has started
-	 */
+	/** This transfer has started */
 	public static final int STATUS_RUNNING = 192;
 
 	/**
@@ -340,14 +303,10 @@ public final class BluetoothShare implements BaseColumns {
 	 */
 	public static final int STATUS_BAD_REQUEST = 400;
 
-	/**
-	 * This transfer is forbidden by target device.
-	 */
+	/** This transfer is forbidden by target device. */
 	public static final int STATUS_FORBIDDEN = 403;
 
-	/**
-	 * This transfer can't be performed because the content cannot be handled.
-	 */
+	/** This transfer can't be performed because the content cannot be handled. */
 	public static final int STATUS_NOT_ACCEPTABLE = 406;
 
 	/**
@@ -367,9 +326,7 @@ public final class BluetoothShare implements BaseColumns {
 	 */
 	public static final int STATUS_PRECONDITION_FAILED = 412;
 
-	/**
-	 * This transfer was canceled
-	 */
+	/** This transfer was canceled */
 	public static final int STATUS_CANCELED = 490;
 
 	/**
@@ -385,14 +342,10 @@ public final class BluetoothShare implements BaseColumns {
 	 */
 	public static final int STATUS_FILE_ERROR = 492;
 
-	/**
-	 * This transfer couldn't be completed because of no sdcard.
-	 */
+	/** This transfer couldn't be completed because of no sdcard. */
 	public static final int STATUS_ERROR_NO_SDCARD = 493;
 
-	/**
-	 * This transfer couldn't be completed because of sdcard full.
-	 */
+	/** This transfer couldn't be completed because of sdcard full. */
 	public static final int STATUS_ERROR_SDCARD_FULL = 494;
 
 	/**

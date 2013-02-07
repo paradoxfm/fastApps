@@ -16,11 +16,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.*;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import ru.zlo.ff.MAct;
 import ru.zlo.ff.NAct;
 import ru.zlo.ff.R;
 import ru.zlo.ff.components.filerow.FileRowData;
 import ru.zlo.ff.engine.BaseEngine;
+import ru.zlo.ff.engine.EngPool;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,7 +38,7 @@ public class FileTools {
 	public static String CURRENT_PLAY = "";
 	private static MimeTypes TYPE = new MimeTypes();
 
-	private static EditText EDIT = new EditText(MAct.I);
+	private static EditText EDIT;
 
 	private static OnCancelListener cans = new OnCancelListener() {
 		@Override
@@ -56,7 +56,7 @@ public class FileTools {
 				File newdir = new File((File) TO, EDIT.getText().toString());
 				newdir.mkdir();
 			}
-			MAct.I.update();
+			EngPool.Inst().getCurrent().update();
 		}
 	};
 
@@ -70,7 +70,7 @@ public class FileTools {
 				String path = fl.getPath().substring(0, fl.getPath().lastIndexOf('/') + 1) + EDIT.getText();
 				fl.renameTo(new File(path));
 			}
-			MAct.I.update();
+			EngPool.Inst().getCurrent().update();
 		}
 	};
 
@@ -85,7 +85,7 @@ public class FileTools {
 			File newfile = new File((File) TO, name);
 			try {
 				newfile.createNewFile();
-				MAct.I.update();
+				EngPool.Inst().getCurrent().update();
 			} catch (IOException ignored) {
 			}
 		}
@@ -94,22 +94,23 @@ public class FileTools {
 	private static OnClickListener delet = new OnClickListener() {
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
-			new Delete().execute();
+			Context c = ((AlertDialog) dialog).getContext();
+			new Delete(c).execute();
 		}
 	};
 
-	public static void newFolder() {
-		showDialog(newFld, R.string.name, R.string.new_folder, TO, true, R.drawable.i_fold);
+	public static void newFolder(Context context) {
+		showDialog(context, newFld, R.string.name, R.string.new_folder, TO, true, R.drawable.i_fold);
 	}
 
-	public static void rename() {
-		showDialog(renm, R.string.name, R.string.rename, null, true, R.drawable.qa_rename);
+	public static void rename(Context context) {
+		showDialog(context, renm, R.string.name, R.string.rename, null, true, R.drawable.qa_rename);
 		if (TO.getClass() == File.class)
 			EDIT.setText(((File) TO).getName());
 	}
 
-	public static void newFile() {
-		showDialog(newFile, R.string.name, R.string.new_file, null, true, R.drawable.qa_new_file);
+	public static void newFile(Context context) {
+		showDialog(context, newFile, R.string.name, R.string.new_file, null, true, R.drawable.qa_new_file);
 	}
 
 	public static void openFileExt(Context c, File file) {
@@ -141,7 +142,7 @@ public class FileTools {
 				return;
 			}
 			Intent intn = new Intent();
-			intn.setClass(MAct.I, NAct.class);
+			intn.setClass(c, NAct.class);
 			intn.putExtra(KEY, file.getPath());
 			c.startActivity(intn);
 		} else
@@ -149,8 +150,7 @@ public class FileTools {
 	}
 
 	private static void veiwImage(Context cont, File file) {
-		DisplayMetrics dm = new DisplayMetrics();
-		MAct.I.getWindowManager().getDefaultDisplay().getMetrics(dm);
+		DisplayMetrics dm = cont.getResources().getDisplayMetrics();
 		final int minrez = Math.min(dm.widthPixels, dm.heightPixels);
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inJustDecodeBounds = true;
@@ -182,12 +182,12 @@ public class FileTools {
 		M_PLAYER = MediaPlayer.create(cont, Uri.fromFile(file));
 		CURRENT_PLAY = file.getPath();
 
-		String whereclause = MAct.I.getResources().getString(R.string.where_cau);
+		String whereclause = cont.getString(R.string.where_cau);
 		whereclause = String.format(whereclause, MediaStore.Audio.Media.DATA, file.getAbsolutePath());
 		Cursor cursor = cont.getContentResolver().query(
 				MediaStore.Audio.Media.getContentUri("external"),
-				new String[] { MediaStore.Audio.Media.TITLE, MediaStore.Audio.Media.ALBUM, MediaStore.Audio.Media.ARTIST,
-						MediaStore.Audio.Media.ALBUM_ID }, whereclause, null, null);
+				new String[]{MediaStore.Audio.Media.TITLE, MediaStore.Audio.Media.ALBUM, MediaStore.Audio.Media.ARTIST,
+						MediaStore.Audio.Media.ALBUM_ID}, whereclause, null, null);
 		String title = "", album = "", artist = "";
 		int albumId = -1;
 		if (cursor != null && cursor.moveToFirst()) {
@@ -197,7 +197,7 @@ public class FileTools {
 			albumId = Integer.parseInt(cursor.getString(3));
 		}
 		cursor.close();
-		LayoutInflater factory = LayoutInflater.from(MAct.I);
+		LayoutInflater factory = LayoutInflater.from(cont);
 		final View formcon = factory.inflate(R.layout.plmusic, null);
 		TextView tx = (TextView) formcon.findViewById(R.id.mp3info);
 		ImageView img = (ImageView) formcon.findViewById(R.id.mp3cover);
@@ -222,12 +222,12 @@ public class FileTools {
 			}
 		});
 
-		Bitmap cov = getArtworkQuick(MAct.I, albumId, 200, 200);
+		Bitmap cov = getArtworkQuick(cont, albumId, 200, 200);
 		if (cov != null)
 			img.setImageBitmap(cov);
-		String med = MAct.I.getResources().getString(R.string.media_info);
+		String med = cont.getString(R.string.media_info);
 		tx.setText(String.format(med, artist, title, album));
-		new AlertDialog.Builder(MAct.I).setOnCancelListener(cans).setTitle(R.string.mus_preview)
+		new AlertDialog.Builder(cont).setOnCancelListener(cans).setTitle(R.string.mus_preview)
 				.setIcon(R.drawable.i_file_mus).setView(formcon).create().show();
 
 		Runnable qww = new Runnable() {
@@ -309,21 +309,21 @@ public class FileTools {
 		return null;
 	}
 
-	public static void delete() {
-		showDialog(delet, R.string.aredelete, R.string.delete, null, false, R.drawable.qa_delete);
+	public static void delete(Context context) {
+		showDialog(context, delet, R.string.aredelete, R.string.delete, null, false, R.drawable.qa_delete);
 	}
 
-	public static void showDialog(OnClickListener lis, int msgid, int titleid, Object fil, Boolean showEdit, int ico) {
-		EDIT = new EditText(MAct.I);
+	public static void showDialog(Context context, OnClickListener lis, int msgid, int titleid, Object fil, Boolean showEdit, int ico) {
+		EDIT = new EditText(context);
 		EDIT.setPadding(15, 15, 15, 15);
-		String msg = MAct.I.getString(msgid);
-		String title = MAct.I.getString(titleid);
+		String msg = context.getString(msgid);
+		String title = context.getString(titleid);
 		if (showEdit)
-			new AlertDialog.Builder(MAct.I).setNegativeButton(R.string.cansel, null).setMessage(msg)
-					.setPositiveButton(R.string.ok, lis).setIcon(ico).setTitle(title).setView(EDIT).show();
+			new AlertDialog.Builder(context).setPositiveButton(R.string.ok, lis).setNegativeButton(R.string.cansel, null)
+					.setMessage(msg).setIcon(ico).setTitle(title).setView(EDIT).show();
 		else
-			new AlertDialog.Builder(MAct.I).setNegativeButton(R.string.cansel, null).setMessage(msg)
-					.setPositiveButton(R.string.ok, lis).setIcon(ico).setTitle(title).show();
+			new AlertDialog.Builder(context).setPositiveButton(R.string.ok, lis).setNegativeButton(R.string.cansel, null)
+					.setMessage(msg).setIcon(ico).setTitle(title).show();
 	}
 
 	static void rename(File fileFrom, String fileTo) {

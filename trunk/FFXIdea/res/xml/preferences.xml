@@ -14,15 +14,6 @@
                 android:title="@string/hmdir"/>
     </PreferenceCategory>
 
-    <PreferenceScreen
-            android:summary="@string/showngsmr"
-            android:title="@string/showng">
-        <intent
-                android:action="android.intent.action.VIEW"
-                android:targetClass="ru.zlo.ff.SetAct$DisplayPrefs"
-                android:targetPackage="ru.zlo.ff"/>
-    </PreferenceScreen>
-
     <PreferenceCategory android:title="@string/setinfo">
         <PreferenceScreen
                 android:key="abt"

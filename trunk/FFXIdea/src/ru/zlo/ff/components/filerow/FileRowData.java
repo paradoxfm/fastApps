@@ -2,7 +2,6 @@ package ru.zlo.ff.components.filerow;
 
 import android.graphics.drawable.Drawable;
 import ru.zlo.ff.util.Options;
-import ru.zlo.ff.util.Sets;
 
 import java.io.File;
 import java.util.Date;

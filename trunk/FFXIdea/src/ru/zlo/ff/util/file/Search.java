@@ -1,11 +1,12 @@
 package ru.zlo.ff.util.file;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.AsyncTask;
-import ru.zlo.ff.MAct;
 import ru.zlo.ff.R;
+import ru.zlo.ff.engine.EngPool;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,10 +16,10 @@ public class Search extends AsyncTask<File, Void, File[]> {
 	private final ProgressDialog dialog;
 	private String srh;
 
-	public Search(String srhe) {
+	public Search(Context context, String srhe) {
 		srh = srhe.toLowerCase();
-		dialog = new ProgressDialog(MAct.I);
-		dialog.setMessage(MAct.I.getString(R.string.serach) + ": " + srhe);
+		dialog = new ProgressDialog(context);
+		dialog.setMessage(context.getString(R.string.serach) + ": " + srhe);
 		dialog.setOnCancelListener(new OnCancelListener() {
 			@Override
 			public void onCancel(DialogInterface dialog) {
@@ -60,7 +61,7 @@ public class Search extends AsyncTask<File, Void, File[]> {
 	@Override
 	protected void onPostExecute(File[] rez) {
 		super.onPostExecute(rez);
-		MAct.I.getCurEng().fill(rez);
+		EngPool.Inst().getCurrent().fill(rez);
 		this.dialog.dismiss();
 	}
 
@@ -68,5 +69,4 @@ public class Search extends AsyncTask<File, Void, File[]> {
 	protected void onPreExecute() {
 		this.dialog.show();
 	}
-
 }

@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string-array name="orient_val">
-		<item>4</item>
-		<item>1</item>
-		<item>0</item>
-	</string-array>
+    <string-array name="orient_val">
+        <item>4</item>
+        <item>1</item>
+        <item>0</item>
+    </string-array>
 
-	<string-array name="imgs">
-		<item>jpg</item>
-		<item>jpeg</item>
-		<item>png</item>
-	</string-array>
+    <string-array name="imgs">
+        <item>jpg</item>
+        <item>jpeg</item>
+        <item>png</item>
+    </string-array>
 
-	<string-array name="bin">
-		<item>apk</item>
-		<item>zip</item>
-	</string-array>
+    <string-array name="bin">
+        <item>apk</item>
+        <item>zip</item>
+    </string-array>
 
-	<string-array name="muss">
-		<item>mp3</item>
-		<item>flac</item>
-	</string-array>
+    <string-array name="muss">
+        <item>mp3</item>
+        <item>flac</item>
+    </string-array>
 
-	<string-array name="vids">
-		<item>avi</item>
-		<item>3gp</item>
-		<item>mp4</item>
-	</string-array>
+    <string-array name="vids">
+        <item>avi</item>
+        <item>3gp</item>
+        <item>mp4</item>
+    </string-array>
 
-	<string-array name="docs">
-		<item>txt</item>
-		<item>log</item>
-	</string-array>
+    <string-array name="docs">
+        <item>txt</item>
+        <item>log</item>
+    </string-array>
 </resources>

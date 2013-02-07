@@ -31,7 +31,7 @@ public class Widget extends AppWidgetProvider {
 	}
 
 	public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int widgetID, Object file,
-			Boolean init) {
+	                                   Boolean init) {
 		File fl = new File(file.toString());
 		if (!file.toString().equals(PREF_EMP_NAME)) {
 			if (init) {

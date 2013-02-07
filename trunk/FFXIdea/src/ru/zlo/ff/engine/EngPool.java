@@ -1,5 +1,6 @@
 package ru.zlo.ff.engine;
 
+import android.content.Context;
 import ru.zlo.ff.components.RowData;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public class EngPool {
 	private List<BaseEngine> mEngs = new ArrayList<BaseEngine>();
 
 	private static EngPool mRef;
+	private int currentPosition = 0;
 
 	public static EngPool Inst() {
 		if (mRef == null)
@@ -18,7 +20,6 @@ public class EngPool {
 	}
 
 	private EngPool() {
-
 	}
 
 	public int count() {
@@ -29,12 +30,12 @@ public class EngPool {
 		mEngs.add(engine);
 	}
 
-	public void addEngine(RowData dat) {
-		mEngs.add(choiceEngine(dat));
+	public void addEngine(RowData dat, Context context) {
+		mEngs.add(choiceEngine(dat, context));
 	}
 
-	private BaseEngine choiceEngine(RowData dat) {
-		return new EngineSDC(dat, null);
+	private BaseEngine choiceEngine(RowData dat, Context context) {
+		return new EngineSDC(dat, context);
 	}
 
 	public BaseEngine getEngine(int position) {
@@ -49,4 +50,11 @@ public class EngPool {
 		mEngs.remove(eng);
 	}
 
+	public void setCurrentPosition(int pos) {
+		currentPosition = pos;
+	}
+
+	public BaseEngine getCurrent() {
+		return mEngs.get(currentPosition);
+	}
 }

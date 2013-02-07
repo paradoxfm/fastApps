@@ -6,8 +6,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.googlecode.androidannotations.annotations.*;
-import ru.zlo.ff.MAct;
 import ru.zlo.ff.R;
+import ru.zlo.ff.engine.EngPool;
 import ru.zlo.ff.util.ActionFactory;
 
 import java.io.File;
@@ -52,7 +52,7 @@ public class FileRow extends RelativeLayout {
 
 	@LongClick(R.id.m_check)
 	protected boolean checkLongClick() {
-		MAct.I.getCurEng().selectAll();
+		EngPool.Inst().getCurrent().selectAll();
 		return true;
 	}
 

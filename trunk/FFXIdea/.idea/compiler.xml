@@ -6,6 +6,7 @@
       <directory url="file://$PROJECT_DIR$/gen" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/quicker/gen" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/ViewPagerIndicator/gen" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/qcontrols/gen" includeSubdirectories="true" />
     </excludeFromCompile>
     <resourceExtensions />
     <wildcardResourcePatterns>

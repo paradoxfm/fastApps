@@ -1,20 +1,21 @@
 package ru.zlo.ff.util.file;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.AsyncTask;
-import ru.zlo.ff.MAct;
 import ru.zlo.ff.R;
+import ru.zlo.ff.engine.EngPool;
 
 import java.io.File;
 
 public class Delete extends AsyncTask<Object, Void, Void> {
 	private final ProgressDialog dialog;
 
-	public Delete() {
-		dialog = new ProgressDialog(MAct.I);
-		dialog.setMessage(MAct.I.getResources().getString(R.string.deleting));
+	public Delete(Context context) {
+		dialog = new ProgressDialog(context);
+		dialog.setMessage(context.getString(R.string.deleting));
 		dialog.setOnCancelListener(new OnCancelListener() {
 			@Override
 			public void onCancel(DialogInterface dialog) {
@@ -38,7 +39,7 @@ public class Delete extends AsyncTask<Object, Void, Void> {
 
 	@Override
 	protected void onPostExecute(Void rez) {
-		MAct.I.update();
+		EngPool.Inst().getCurrent().update();
 		this.dialog.dismiss();
 	}
 

@@ -14,15 +14,10 @@ import android.widget.SearchView;
 import android.widget.Toast;
 import com.googlecode.androidannotations.annotations.*;
 import com.viewpagerindicator.LinePageIndicator;
-import ru.zlo.ff.components.RowDataSD;
-import ru.zlo.ff.engine.BaseEngine;
 import ru.zlo.ff.engine.EngPool;
 import ru.zlo.ff.fragments.SectionsPagerAdapter;
 import ru.zlo.ff.util.Commander;
 import ru.zlo.ff.util.Options;
-import ru.zlo.ff.util.Sets;
-
-import java.io.File;
 
 @EActivity(R.layout.main_activity)
 @OptionsMenu({R.menu.actionbar, R.menu.main_down})
@@ -30,48 +25,49 @@ public class MAct extends FragmentActivity implements ViewPager.OnPageChangeList
 
 	@Bean
 	Options options;
-	SectionsPagerAdapter mSectionsPagerAdapter;
+	SectionsPagerAdapter pAdapter;
 	@ViewById(R.id.pager)
 	ViewPager mViewPager;
 	@ViewById(R.id.indicator)
 	LinePageIndicator indicator;
-	public static MAct I;
 	public int widgetID = -1;
 	private boolean isToRoot = false;
-	private File startFile = null;
+	private String startFile = null;
 
 	@AfterViews
 	void initOnCreate() {
-		I = this;
 		customiseUI();
-		if (Sets.dat != null && Sets.dat.size() > 0) {
+		/*if (Sets.dat != null && Sets.dat.size() > 0) {
 			checkIntentParametrs(getIntent().getExtras());
 			if (widgetID != -1)
 				Commander.insertList(new RowDataSD());
 			else
 				Sets.restoreLists(this);
-		} else {
-			RowDataSD dt = new RowDataSD();
+		} else */
+		if (pAdapter.getCount() == 0) {
 			checkIntentParametrs(getIntent().getExtras());
-			if (startFile != null) {
-				dt.PATH = startFile;
-				startFile = null;
-			}
-			Commander.createPanes();
+			Commander.createPanes(this, startFile);
+			startFile = null;
 		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		int flg = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+		if (Options.FULL_SCR)
+			getWindow().setFlags(flg, flg);
+		else
+			getWindow().clearFlags(flg);
+		setRequestedOrientation(Options.ORIENT_TYPE);
 	}
 
 	private void customiseUI() {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
-		mViewPager.setAdapter(mSectionsPagerAdapter);
-		mViewPager.setOnPageChangeListener(this);
+		pAdapter = new SectionsPagerAdapter(getFragmentManager());
+		mViewPager.setAdapter(pAdapter);
 		indicator.setViewPager(mViewPager);
-		if (Options.FULL_SCR) {
-			int flg = WindowManager.LayoutParams.FLAG_FULLSCREEN;
-			getWindow().setFlags(flg, flg);
-		}
-		setRequestedOrientation(Options.ORIENT_TYPE);
+		mViewPager.setOnPageChangeListener(this);
 	}
 
 	private void checkIntentParametrs(Bundle extras) {
@@ -79,7 +75,7 @@ public class MAct extends FragmentActivity implements ViewPager.OnPageChangeList
 			if (extras.containsKey(Widget.PREF_NAME)) {
 				String path = extras.get(Widget.PREF_NAME).toString();
 				Toast.makeText(this, path, Toast.LENGTH_LONG).show();
-				startFile = new File(path);
+				startFile = path;
 			} else if (extras.containsKey(AppWidgetManager.EXTRA_APPWIDGET_ID)) {
 				widgetID = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
 				setResult(RESULT_CANCELED);
@@ -92,7 +88,7 @@ public class MAct extends FragmentActivity implements ViewPager.OnPageChangeList
 
 	@Override
 	public void onBackPressed() {
-		if (!isToRoot && !getCurEng().browseUp())
+		if (!isToRoot && !EngPool.Inst().getCurrent().browseUp())
 			super.onBackPressed();
 		isToRoot = false;
 	}
@@ -121,13 +117,9 @@ public class MAct extends FragmentActivity implements ViewPager.OnPageChangeList
 		return true;
 	}
 
-	@OptionsItem({R.id.appsett2, R.id.appsett, R.id.tutor2, R.id.tutor, R.id.quit2, R.id.quit})
+	@OptionsItem({R.id.appsett, R.id.tutor, R.id.quit})
 	boolean menuOther(MenuItem item) {
 		return Commander.itemClick(this, item.getItemId());
-	}
-
-	public BaseEngine getCurEng() {
-		return EngPool.Inst().getEngine(mViewPager.getCurrentItem());
 	}
 
 	@Override
@@ -136,29 +128,22 @@ public class MAct extends FragmentActivity implements ViewPager.OnPageChangeList
 
 	@Override
 	public void onPageScrolled(int arg0, float arg1, int arg2) {
-		setTitle(getCurEng().getTitle());
 	}
 
 	@Override
 	public void onPageSelected(int arg0) {
-	}
-
-	public void update() {
-		getCurEng().update();
+		indicator.setCurrentItem(arg0);
+		EngPool.Inst().setCurrentPosition(arg0);
+		setTitle(pAdapter.getPageTitle(arg0));
 	}
 
 	public void configWidget() {
-		final Context context = MAct.this;
-		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-		Widget.updateAppWidget(context, appWidgetManager, widgetID, getCurrentDir(), true);
+		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+		Widget.updateAppWidget(this, appWidgetManager, widgetID, EngPool.Inst().getCurrent().getCurrentDir(), true);
 		Intent resultValue = new Intent();
 		resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
 		setResult(RESULT_OK, resultValue);
 		finish();
-		Commander.exitApp(this);
-	}
-
-	protected Object getCurrentDir() {
-		return getCurEng().getCurrentDir();
+		Commander.exitApp();
 	}
 }

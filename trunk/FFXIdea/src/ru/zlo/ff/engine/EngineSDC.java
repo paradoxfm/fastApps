@@ -2,7 +2,6 @@ package ru.zlo.ff.engine;
 
 import android.content.Context;
 import android.widget.Toast;
-import ru.zlo.ff.MAct;
 import ru.zlo.ff.R;
 import ru.zlo.ff.components.RowData;
 import ru.zlo.ff.components.RowDataSD;
@@ -43,7 +42,7 @@ public class EngineSDC extends BaseEngine {
 	public void browseCatalog(Object cat) {
 		File dir = (File) cat;
 		if (!dir.canRead()) {
-			Toast.makeText(MAct.I, R.string.read_only, Toast.LENGTH_SHORT).show();
+			Toast.makeText(context, R.string.read_only, Toast.LENGTH_SHORT).show();
 			return;
 		}
 		getDat().PATH = dir;
@@ -100,7 +99,7 @@ public class EngineSDC extends BaseEngine {
 
 	@Override
 	public void search(String search) {
-		new Search(search).execute(FileTools.FROM != null ? (File[]) FileTools.FROM : new File[] { getDat().PATH });
+		new Search(context, search).execute(FileTools.FROM != null ? (File[]) FileTools.FROM : new File[]{getDat().PATH});
 		isSearsh = true;
 		mTitle = "/" + search;
 		Toast.makeText(context, R.string.search_rez, Toast.LENGTH_LONG).show();

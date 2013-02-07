@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/showng" >
+                  android:title="@string/showng">
 
-    <PreferenceCategory android:title="@string/setviewicon" >
-
-        <CheckBoxPreference
-            android:key="imgpreview"
-            android:summary="@string/imgpewsmr"
-            android:title="@string/imgpew" />
+    <PreferenceCategory android:title="@string/setviewicon">
 
         <CheckBoxPreference
-            android:key="apkpreview"
-            android:summary="@string/apkpewsmr"
-            android:title="@string/apkpew" />
+                android:key="imgpreview"
+                android:summary="@string/imgpewsmr"
+                android:title="@string/imgpew"/>
 
         <CheckBoxPreference
-            android:key="mp3preview"
-            android:summary="@string/mp3pewsmr"
-            android:title="@string/mp3pew" />
+                android:key="apkpreview"
+                android:summary="@string/apkpewsmr"
+                android:title="@string/apkpew"/>
+
+        <CheckBoxPreference
+                android:key="mp3preview"
+                android:summary="@string/mp3pewsmr"
+                android:title="@string/mp3pew"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/setviewother" >
+    <PreferenceCategory android:title="@string/setviewother">
 
         <CheckBoxPreference
-            android:key="fullscr"
-            android:summary="@string/fulscrsmr"
-            android:title="@string/fulscr" />
+                android:key="fullscr"
+                android:summary="@string/fulscrsmr"
+                android:title="@string/fulscr"/>
 
         <CheckBoxPreference
-            android:key="hidden"
-            android:summary="@string/hiddensmr"
-            android:title="@string/hidden" />
+                android:key="hidden"
+                android:summary="@string/hiddensmr"
+                android:title="@string/hidden"/>
 
         <CheckBoxPreference
-            android:key="animate"
-            android:summary="@string/animsmr"
-            android:title="@string/anim" />
+                android:key="animate"
+                android:summary="@string/animsmr"
+                android:title="@string/anim"/>
 
         <ListPreference
-            android:defaultValue="4"
-            android:dialogTitle="@string/orien"
-            android:entries="@array/orient"
-            android:entryValues="@array/orient_val"
-            android:key="orientype"
-            android:summary="@string/oriensmr"
-            android:title="@string/orien" />
+                android:defaultValue="4"
+                android:dialogTitle="@string/orien"
+                android:entries="@array/orient"
+                android:entryValues="@array/orient_val"
+                android:key="orientype"
+                android:summary="@string/oriensmr"
+                android:title="@string/orien"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

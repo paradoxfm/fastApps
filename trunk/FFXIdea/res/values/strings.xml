@@ -16,7 +16,7 @@
     <string name="err_conn">Connection error</string>
     <string name="conng">Connection</string>
     <string name="n_act_con">There are no active network connections</string>
-    <string name="tl_edit">Editing: </string>
+    <string name="tl_edit">Editing:</string>
     <string name="saved">Save</string>
     <string name="where_cau">%1$s = \"/mnt%2$s\"</string>
     <string name="media_info">Artist:\t\t%1$s\nTitle:\t\t%2$s\nAlbum:\t%3$s</string>
@@ -34,7 +34,9 @@
     <string name="err_run">There is no associated program</string>
     <string name="about">About</string>
     <string name="about_smr">About the program FastFile</string>
-    <string name="about_txt">Autor: Gurkin Ivan aka paradoxfm\nCopyright © 2011 megazlonet\nEmail:<a href="mailto:megazlonet@gmail.com">megazlonet@gmail.com</a></string>
+    <string name="about_txt">Autor: Gurkin Ivan aka paradoxfm\nCopyright © 2011 megazlonet\nEmail:
+        <a href="mailto:megazlonet@gmail.com">megazlonet@gmail.com</a>
+    </string>
     <string name="future">Coming soon ;)</string>
     <string name="search_rez">Search results</string>
     <string name="mn_tutor">Help</string>
@@ -96,6 +98,6 @@
     <string name="set_back_smr">Set as the background color fills</string>
     <string name="bckcolrsmr">Fill the background with a solid color</string>
     <string name="bckcolr">Solid color</string>
-    <string name="cdes"> </string>
+    <string name="cdes"></string>
     <string name="mn_close">Close tab</string>
 </resources>

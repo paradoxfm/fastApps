@@ -1,10 +1,11 @@
 package ru.zlo.ff.util.file;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.AsyncTask;
-import ru.zlo.ff.MAct;
+import ru.zlo.ff.engine.EngPool;
 import ru.zlo.ff.util.ActionFactory;
 
 import java.io.*;
@@ -12,8 +13,8 @@ import java.io.*;
 public class Paste extends AsyncTask<Object, Void, Void> {
 	private final ProgressDialog dialog;
 
-	public Paste() {
-		dialog = new ProgressDialog(MAct.I);
+	public Paste(Context context) {
+		dialog = new ProgressDialog(context);
 		dialog.setMessage("Вставка");
 		dialog.setOnCancelListener(new OnCancelListener() {
 			@Override
@@ -70,7 +71,7 @@ public class Paste extends AsyncTask<Object, Void, Void> {
 
 	@Override
 	protected void onPostExecute(Void rez) {
-		MAct.I.update();
+		EngPool.Inst().getCurrent().update();
 		this.dialog.dismiss();
 	}
 

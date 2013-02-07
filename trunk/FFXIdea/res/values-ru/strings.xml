@@ -16,7 +16,7 @@
     <string name="err_conn">Ошибка подключения</string>
     <string name="conng">Подключение</string>
     <string name="n_act_con">Нет активных сетевых соединений</string>
-    <string name="tl_edit">Редактирование: </string>
+    <string name="tl_edit">Редактирование:</string>
     <string name="saved">Сохранено</string>
     <string name="where_cau">%1$s = \"/mnt%2$s\"</string>
     <string name="media_info">Artist:\t\t%1$s\nTitle:\t\t%2$s\nAlbum:\t%3$s</string>
@@ -34,7 +34,9 @@
     <string name="err_run">Нет ассоциированного приложения</string>
     <string name="about">О программе</string>
     <string name="about_smr">О программе FastFile</string>
-    <string name="about_txt">Автор: Гуркин Иван aka paradoxfm\nCopyright © 2011 <a href="http://code.google.com/p/fastapps/">megazlonet</a>\nEmail: <a href="mailto:megazlonet@gmail.com">megazlonet@gmail.com</a></string>
+    <string name="about_txt">Автор: Гуркин Иван aka paradoxfm\nCopyright © 2011<a href="http://code.google.com/p/fastapps/">megazlonet</a>\nEmail:
+        <a href="mailto:megazlonet@gmail.com">megazlonet@gmail.com</a>
+    </string>
     <string name="future">Скоро ожидается ;)</string>
     <string name="search_rez">Результаты поиска</string>
     <string name="mn_tutor">Справка</string>
@@ -96,6 +98,6 @@
     <string name="set_back_smr">Установить в качестве фона цветную заливку</string>
     <string name="bckcolrsmr">Залить фон сплошным цветом</string>
     <string name="bckcolr">Сплошной цвет</string>
-    <string name="cdes"> </string>
+    <string name="cdes"></string>
     <string name="mn_close">Закрыть</string>
 </resources>
