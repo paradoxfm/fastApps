@@ -208,17 +208,19 @@ com.viewpagerindicator.R$drawable: int t_ico_cont
 com.viewpagerindicator.R$drawable: int t_title_cont
 com.viewpagerindicator.R$drawable: int title_bar_background
 com.viewpagerindicator.R$id: int appsett
-com.viewpagerindicator.R$id: int appsett2
 com.viewpagerindicator.R$id: int arrow_down
 com.viewpagerindicator.R$id: int arrow_up
 com.viewpagerindicator.R$id: int background
 com.viewpagerindicator.R$id: int colorcircle
+com.viewpagerindicator.R$id: int container
 com.viewpagerindicator.R$id: int devsmn
 com.viewpagerindicator.R$id: int edit_text
 com.viewpagerindicator.R$id: int footer
 com.viewpagerindicator.R$id: int header2
 com.viewpagerindicator.R$id: int icon
 com.viewpagerindicator.R$id: int indicator
+com.viewpagerindicator.R$id: int list_frag_left
+com.viewpagerindicator.R$id: int list_frag_right
 com.viewpagerindicator.R$id: int mSeek
 com.viewpagerindicator.R$id: int m_check
 com.viewpagerindicator.R$id: int m_icon
@@ -232,14 +234,12 @@ com.viewpagerindicator.R$id: int mp3info
 com.viewpagerindicator.R$id: int note
 com.viewpagerindicator.R$id: int pager
 com.viewpagerindicator.R$id: int quit
-com.viewpagerindicator.R$id: int quit2
 com.viewpagerindicator.R$id: int saturation
 com.viewpagerindicator.R$id: int save_text
 com.viewpagerindicator.R$id: int scroll
 com.viewpagerindicator.R$id: int title
 com.viewpagerindicator.R$id: int tracks
 com.viewpagerindicator.R$id: int tutor
-com.viewpagerindicator.R$id: int tutor2
 com.viewpagerindicator.R$id: int value
 com.viewpagerindicator.R$id: int wid_icon
 com.viewpagerindicator.R$id: int wid_text
@@ -254,6 +254,7 @@ com.viewpagerindicator.R$layout: int color_dial
 com.viewpagerindicator.R$layout: int filerow
 com.viewpagerindicator.R$layout: int help
 com.viewpagerindicator.R$layout: int main_activity
+com.viewpagerindicator.R$layout: int main_activity_l
 com.viewpagerindicator.R$layout: int note_editor
 com.viewpagerindicator.R$layout: int plmusic
 com.viewpagerindicator.R$layout: int quickaction
@@ -522,17 +523,19 @@ ru.megazlo.quicker.R$drawable: int t_ico_cont
 ru.megazlo.quicker.R$drawable: int t_title_cont
 ru.megazlo.quicker.R$drawable: int title_bar_background
 ru.megazlo.quicker.R$id: int appsett
-ru.megazlo.quicker.R$id: int appsett2
 ru.megazlo.quicker.R$id: int arrow_down
 ru.megazlo.quicker.R$id: int arrow_up
 ru.megazlo.quicker.R$id: int background
 ru.megazlo.quicker.R$id: int colorcircle
+ru.megazlo.quicker.R$id: int container
 ru.megazlo.quicker.R$id: int devsmn
 ru.megazlo.quicker.R$id: int edit_text
 ru.megazlo.quicker.R$id: int footer
 ru.megazlo.quicker.R$id: int header2
 ru.megazlo.quicker.R$id: int icon
 ru.megazlo.quicker.R$id: int indicator
+ru.megazlo.quicker.R$id: int list_frag_left
+ru.megazlo.quicker.R$id: int list_frag_right
 ru.megazlo.quicker.R$id: int mSeek
 ru.megazlo.quicker.R$id: int m_check
 ru.megazlo.quicker.R$id: int m_icon
@@ -546,14 +549,12 @@ ru.megazlo.quicker.R$id: int mp3info
 ru.megazlo.quicker.R$id: int note
 ru.megazlo.quicker.R$id: int pager
 ru.megazlo.quicker.R$id: int quit
-ru.megazlo.quicker.R$id: int quit2
 ru.megazlo.quicker.R$id: int saturation
 ru.megazlo.quicker.R$id: int save_text
 ru.megazlo.quicker.R$id: int scroll
 ru.megazlo.quicker.R$id: int title
 ru.megazlo.quicker.R$id: int tracks
 ru.megazlo.quicker.R$id: int tutor
-ru.megazlo.quicker.R$id: int tutor2
 ru.megazlo.quicker.R$id: int value
 ru.megazlo.quicker.R$id: int wid_icon
 ru.megazlo.quicker.R$id: int wid_text
@@ -568,6 +569,7 @@ ru.megazlo.quicker.R$layout: int color_dial
 ru.megazlo.quicker.R$layout: int filerow
 ru.megazlo.quicker.R$layout: int help
 ru.megazlo.quicker.R$layout: int main_activity
+ru.megazlo.quicker.R$layout: int main_activity_l
 ru.megazlo.quicker.R$layout: int note_editor
 ru.megazlo.quicker.R$layout: int plmusic
 ru.megazlo.quicker.R$layout: int quickaction
@@ -846,17 +848,19 @@ ru.zlo.ff.R$drawable: int t_ico_cont
 ru.zlo.ff.R$drawable: int t_title_cont
 ru.zlo.ff.R$drawable: int title_bar_background
 ru.zlo.ff.R$id: int appsett
-ru.zlo.ff.R$id: int appsett2
 ru.zlo.ff.R$id: int arrow_down
 ru.zlo.ff.R$id: int arrow_up
 ru.zlo.ff.R$id: int background
 ru.zlo.ff.R$id: int colorcircle
+ru.zlo.ff.R$id: int container
 ru.zlo.ff.R$id: int devsmn
 ru.zlo.ff.R$id: int edit_text
 ru.zlo.ff.R$id: int footer
 ru.zlo.ff.R$id: int header2
 ru.zlo.ff.R$id: int icon
 ru.zlo.ff.R$id: int indicator
+ru.zlo.ff.R$id: int list_frag_left
+ru.zlo.ff.R$id: int list_frag_right
 ru.zlo.ff.R$id: int mSeek
 ru.zlo.ff.R$id: int m_check
 ru.zlo.ff.R$id: int m_icon
@@ -870,14 +874,12 @@ ru.zlo.ff.R$id: int mp3info
 ru.zlo.ff.R$id: int note
 ru.zlo.ff.R$id: int pager
 ru.zlo.ff.R$id: int quit
-ru.zlo.ff.R$id: int quit2
 ru.zlo.ff.R$id: int saturation
 ru.zlo.ff.R$id: int save_text
 ru.zlo.ff.R$id: int scroll
 ru.zlo.ff.R$id: int title
 ru.zlo.ff.R$id: int tracks
 ru.zlo.ff.R$id: int tutor
-ru.zlo.ff.R$id: int tutor2
 ru.zlo.ff.R$id: int value
 ru.zlo.ff.R$id: int wid_icon
 ru.zlo.ff.R$id: int wid_text
@@ -892,6 +894,7 @@ ru.zlo.ff.R$layout: int color_dial
 ru.zlo.ff.R$layout: int filerow
 ru.zlo.ff.R$layout: int help
 ru.zlo.ff.R$layout: int main_activity
+ru.zlo.ff.R$layout: int main_activity_l
 ru.zlo.ff.R$layout: int note_editor
 ru.zlo.ff.R$layout: int plmusic
 ru.zlo.ff.R$layout: int quickaction
@@ -1034,3 +1037,6 @@ ru.zlo.ff.Widget
 ru.zlo.ff.Widget: Widget()
 ru.zlo.ff.components.filerow.FileRow: void setData(ru.zlo.ff.components.filerow.FileRowData)
 ru.zlo.ff.components.filerow.FileRow: java.io.File getFile()
+ru.zlo.ff.fragments.FileListFragment: FileListFragment()
+ru.zlo.ff.fragments.FileListFragment_
+ru.zlo.ff.fragments.FileListFragment_: FileListFragment_()

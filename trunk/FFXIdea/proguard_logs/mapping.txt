@@ -795,7 +795,8 @@ android.support.v4.view.PagerAdapter -> android.support.v4.view.x:
     int getItemPosition(java.lang.Object) -> a
     void registerDataSetObserver(android.database.DataSetObserver) -> a
     void unregisterDataSetObserver(android.database.DataSetObserver) -> b
-    float getPageWidth(int) -> c
+    java.lang.CharSequence getPageTitle(int) -> c
+    float getPageWidth(int) -> d
 android.support.v4.view.VelocityTrackerCompat -> android.support.v4.view.y:
     android.support.v4.view.VelocityTrackerCompat$VelocityTrackerVersionImpl IMPL -> a
     float getXVelocity(android.view.VelocityTracker,int) -> a
@@ -1357,17 +1358,19 @@ ru.megazlo.quicker.R$anim -> ru.a.a.g:
     int shrink_from_topright_to_bottomleft -> shrink_from_topright_to_bottomleft
 ru.megazlo.quicker.R$id -> ru.a.a.h:
     int appsett -> appsett
-    int appsett2 -> appsett2
     int arrow_down -> arrow_down
     int arrow_up -> arrow_up
     int background -> background
     int colorcircle -> colorcircle
+    int container -> container
     int devsmn -> devsmn
     int edit_text -> edit_text
     int footer -> footer
     int header2 -> header2
     int icon -> icon
     int indicator -> indicator
+    int list_frag_left -> list_frag_left
+    int list_frag_right -> list_frag_right
     int mSeek -> mSeek
     int m_check -> m_check
     int m_icon -> m_icon
@@ -1381,14 +1384,12 @@ ru.megazlo.quicker.R$id -> ru.a.a.h:
     int note -> note
     int pager -> pager
     int quit -> quit
-    int quit2 -> quit2
     int saturation -> saturation
     int save_text -> save_text
     int scroll -> scroll
     int title -> title
     int tracks -> tracks
     int tutor -> tutor
-    int tutor2 -> tutor2
     int value -> value
     int wid_icon -> wid_icon
     int wid_text -> wid_text
@@ -1399,6 +1400,7 @@ ru.megazlo.quicker.R$layout -> ru.a.a.i:
     int filerow -> filerow
     int help -> help
     int main_activity -> main_activity
+    int main_activity_l -> main_activity_l
     int note_editor -> note_editor
     int plmusic -> plmusic
     int quickaction -> quickaction
@@ -1422,32 +1424,29 @@ ru.megazlo.quicker.R$style -> ru.a.a.j:
     int dialogAlertTheme -> dialogAlertTheme
 ru.zlo.ff.MAct -> ru.zlo.ff.a:
     ru.zlo.ff.util.Options options -> n
-    ru.zlo.ff.fragments.SectionsPagerAdapter mSectionsPagerAdapter -> o
+    ru.zlo.ff.fragments.SectionsPagerAdapter pAdapter -> o
     android.support.v4.view.ViewPager mViewPager -> p
     com.viewpagerindicator.LinePageIndicator indicator -> q
-    ru.zlo.ff.MAct I -> r
-    int widgetID -> s
-    boolean isToRoot -> t
-    java.io.File startFile -> u
+    int widgetID -> r
+    boolean isToRoot -> s
+    java.lang.String startFile -> t
     void initOnCreate() -> e
-    void customiseUI() -> l
+    void onResume() -> onResume
+    void customiseUI() -> i
     void checkIntentParametrs(android.os.Bundle) -> a
     void onBackPressed() -> onBackPressed
     boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
     boolean menuHome() -> f
     boolean menuWidget() -> g
     boolean menuOther(android.view.MenuItem) -> a
-    ru.zlo.ff.engine.BaseEngine getCurEng() -> h
     void onPageScrollStateChanged(int) -> b
     void onPageScrolled(int,float,int) -> a
     void onPageSelected(int) -> a
-    void update() -> i
-    void configWidget() -> j
-    java.lang.Object getCurrentDir() -> k
+    void configWidget() -> h
 ru.zlo.ff.MAct_ -> ru.zlo.ff.MAct_:
     void onCreate(android.os.Bundle) -> onCreate
     void init_(android.os.Bundle) -> a
-    void afterSetContentView_() -> l
+    void afterSetContentView_() -> i
     void setContentView(int) -> setContentView
     void setContentView(android.view.View,android.view.ViewGroup$LayoutParams) -> setContentView
     void setContentView(android.view.View) -> setContentView
@@ -1482,8 +1481,8 @@ ru.zlo.ff.NAct_ -> ru.zlo.ff.NAct_:
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
 ru.zlo.ff.SetAct -> ru.zlo.ff.SetAct:
     void onCreate(android.os.Bundle) -> onCreate
-    void onBuildHeaders(java.util.List) -> onBuildHeaders
     void onResume() -> onResume
+    void onBuildHeaders(java.util.List) -> onBuildHeaders
     void onBackPressed() -> onBackPressed
 ru.zlo.ff.Widget -> ru.zlo.ff.Widget:
     void onUpdate(android.content.Context,android.appwidget.AppWidgetManager,int[]) -> onUpdate
@@ -1589,11 +1588,14 @@ ru.zlo.ff.engine.BaseEngine$OnLoadFinish -> ru.zlo.ff.b.d:
 ru.zlo.ff.engine.EngPool -> ru.zlo.ff.b.e:
     java.util.List mEngs -> a
     ru.zlo.ff.engine.EngPool mRef -> b
+    int currentPosition -> c
     ru.zlo.ff.engine.EngPool Inst() -> a
     int count() -> b
-    void addEngine(ru.zlo.ff.components.RowData) -> a
-    ru.zlo.ff.engine.BaseEngine choiceEngine(ru.zlo.ff.components.RowData) -> b
+    void addEngine(ru.zlo.ff.components.RowData,android.content.Context) -> a
+    ru.zlo.ff.engine.BaseEngine choiceEngine(ru.zlo.ff.components.RowData,android.content.Context) -> b
     ru.zlo.ff.engine.BaseEngine getEngine(int) -> a
+    void setCurrentPosition(int) -> b
+    ru.zlo.ff.engine.BaseEngine getCurrent() -> c
 ru.zlo.ff.engine.EngineSDC -> ru.zlo.ff.b.f:
     java.lang.String from -> l
     boolean browseUp() -> e
@@ -1603,7 +1605,6 @@ ru.zlo.ff.engine.EngineSDC -> ru.zlo.ff.b.f:
     void update() -> g
     ru.zlo.ff.components.RowDataSD getDat() -> h
     java.lang.Object getCurrentDir() -> i
-    java.lang.Object exec(int) -> a
     void setOffset() -> d
     ru.zlo.ff.components.RowData getDat() -> j
 ru.zlo.ff.engine.IEngine -> ru.zlo.ff.b.g:
@@ -1613,33 +1614,33 @@ ru.zlo.ff.engine.IEngine -> ru.zlo.ff.b.g:
     void update() -> g
     ru.zlo.ff.components.RowData getDat() -> j
     java.lang.Object getCurrentDir() -> i
-    java.lang.Object exec(int) -> a
-ru.zlo.ff.fragments.FileListFragment -> ru.zlo.ff.c.a:
+ru.zlo.ff.fragments.FileListFragment -> ru.zlo.ff.fragments.a:
     ru.zlo.ff.engine.BaseEngine engine -> a
     ru.zlo.ff.components.filerow.FileRowAdapter adapter -> b
     void initData() -> c
     void onViewCreated(android.view.View,android.os.Bundle) -> onViewCreated
     void onListItemClick(android.widget.ListView,android.view.View,int,long) -> onListItemClick
-    ru.zlo.ff.engine.BaseEngine getEngine() -> d
     void onChange() -> a
     void onFinish() -> b
     void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
     boolean onContextItemSelected(android.view.MenuItem) -> onContextItemSelected
-ru.zlo.ff.fragments.FileListFragment_ -> ru.zlo.ff.c.b:
+ru.zlo.ff.fragments.FileListFragment_ -> ru.zlo.ff.fragments.FileListFragment_:
     android.view.View contentView_ -> a
     void init_(android.os.Bundle) -> a
     void onCreate(android.os.Bundle) -> onCreate
-    void afterSetContentView_() -> f
+    void afterSetContentView_() -> e
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
-    ru.zlo.ff.fragments.FileListFragment_$FragmentBuilder_ builder() -> e
-ru.zlo.ff.fragments.FileListFragment_$1 -> ru.zlo.ff.c.c:
-ru.zlo.ff.fragments.FileListFragment_$FragmentBuilder_ -> ru.zlo.ff.c.d:
+    ru.zlo.ff.fragments.FileListFragment_$FragmentBuilder_ builder() -> d
+ru.zlo.ff.fragments.FileListFragment_$1 -> ru.zlo.ff.fragments.b:
+ru.zlo.ff.fragments.FileListFragment_$FragmentBuilder_ -> ru.zlo.ff.fragments.c:
     android.os.Bundle args_ -> a
     ru.zlo.ff.fragments.FileListFragment build() -> a
-ru.zlo.ff.fragments.SectionsPagerAdapter -> ru.zlo.ff.c.e:
+ru.zlo.ff.fragments.SectionsPagerAdapter -> ru.zlo.ff.fragments.d:
+    java.util.List arr -> a
     android.app.Fragment getItem(int) -> a
     int getCount() -> b
-ru.zlo.ff.util.ActionFactory -> ru.zlo.ff.d.a:
+    java.lang.CharSequence getPageTitle(int) -> c
+ru.zlo.ff.util.ActionFactory -> ru.zlo.ff.c.a:
     ru.megazlo.quicker.QuickAction create(android.view.View,java.lang.Object[]) -> a
     void createMulti(android.content.Context,ru.megazlo.quicker.QuickAction,java.lang.Object[]) -> a
     void createLocal(android.content.Context,ru.megazlo.quicker.QuickAction,java.lang.Object) -> a
@@ -1647,52 +1648,50 @@ ru.zlo.ff.util.ActionFactory -> ru.zlo.ff.d.a:
     ru.megazlo.quicker.ActionItem paste(android.content.Context,java.lang.Object) -> a
     ru.megazlo.quicker.ActionItem delete(android.content.Context,java.lang.Object[]) -> a
     ru.megazlo.quicker.ActionItem reaname(android.content.Context,java.lang.Object) -> b
-    ru.megazlo.quicker.ActionItem searchInFilder(android.content.Context,java.lang.Object[]) -> b
     ru.megazlo.quicker.ActionItem newFile(android.content.Context,java.io.File) -> a
     ru.megazlo.quicker.ActionItem newDirectory(android.content.Context,java.lang.Object) -> c
     ru.megazlo.quicker.ActionItem bluetooth(android.content.Context,java.io.File) -> b
-ru.zlo.ff.util.ActionFactory$1 -> ru.zlo.ff.d.b:
+ru.zlo.ff.util.ActionFactory$1 -> ru.zlo.ff.c.b:
     java.lang.Object[] val$fil -> a
     java.lang.Boolean val$isMove -> b
     ru.megazlo.quicker.ActionItem val$copy_move -> c
     void onClick(android.view.View) -> onClick
-ru.zlo.ff.util.ActionFactory$2 -> ru.zlo.ff.d.c:
+ru.zlo.ff.util.ActionFactory$2 -> ru.zlo.ff.c.c:
     java.lang.Object val$fil -> a
-    ru.megazlo.quicker.ActionItem val$paste -> b
+    android.content.Context val$context -> b
+    ru.megazlo.quicker.ActionItem val$paste -> c
     void onClick(android.view.View) -> onClick
-ru.zlo.ff.util.ActionFactory$3 -> ru.zlo.ff.d.d:
+ru.zlo.ff.util.ActionFactory$3 -> ru.zlo.ff.c.d:
     java.lang.Object[] val$fil -> a
-    ru.megazlo.quicker.ActionItem val$delet -> b
+    android.content.Context val$context -> b
+    ru.megazlo.quicker.ActionItem val$delet -> c
     void onClick(android.view.View) -> onClick
-ru.zlo.ff.util.ActionFactory$4 -> ru.zlo.ff.d.e:
+ru.zlo.ff.util.ActionFactory$4 -> ru.zlo.ff.c.e:
     java.lang.Object val$fil -> a
-    ru.megazlo.quicker.ActionItem val$reanam -> b
+    android.content.Context val$context -> b
+    ru.megazlo.quicker.ActionItem val$reanam -> c
     void onClick(android.view.View) -> onClick
-ru.zlo.ff.util.ActionFactory$5 -> ru.zlo.ff.d.f:
-    java.lang.Object[] val$fil -> a
-    ru.megazlo.quicker.ActionItem val$search -> b
-    void onClick(android.view.View) -> onClick
-ru.zlo.ff.util.ActionFactory$6 -> ru.zlo.ff.d.g:
+ru.zlo.ff.util.ActionFactory$5 -> ru.zlo.ff.c.f:
     java.io.File val$fil -> a
-    ru.megazlo.quicker.ActionItem val$creat -> b
+    android.content.Context val$context -> b
+    ru.megazlo.quicker.ActionItem val$creat -> c
     void onClick(android.view.View) -> onClick
-ru.zlo.ff.util.ActionFactory$7 -> ru.zlo.ff.d.h:
+ru.zlo.ff.util.ActionFactory$6 -> ru.zlo.ff.c.g:
     java.lang.Object val$fil -> a
-    ru.megazlo.quicker.ActionItem val$creat -> b
+    android.content.Context val$context -> b
+    ru.megazlo.quicker.ActionItem val$creat -> c
     void onClick(android.view.View) -> onClick
-ru.zlo.ff.util.ActionFactory$8 -> ru.zlo.ff.d.i:
+ru.zlo.ff.util.ActionFactory$7 -> ru.zlo.ff.c.h:
     java.io.File val$fl -> a
     ru.megazlo.quicker.ActionItem val$blt -> b
     void onClick(android.view.View) -> onClick
-ru.zlo.ff.util.Commander -> ru.zlo.ff.d.j:
-    android.content.Intent INT_PRF -> a
+ru.zlo.ff.util.Commander -> ru.zlo.ff.c.i:
     boolean itemClick(ru.zlo.ff.MAct,int) -> a
-    void showHelp() -> a
-    void exitApp(ru.zlo.ff.MAct) -> a
-    void createPanes() -> b
-    void insertList(ru.zlo.ff.components.RowData) -> a
-    boolean startAct(android.app.Activity,android.content.Intent,java.lang.Class) -> a
-ru.zlo.ff.util.Options -> ru.zlo.ff.d.k:
+    void showHelp(android.content.Context) -> a
+    void exitApp() -> a
+    void createPanes(android.content.Context,java.lang.String) -> a
+    void startAct(android.app.Activity,java.lang.Class) -> a
+ru.zlo.ff.util.Options -> ru.zlo.ff.c.j:
     android.content.Context context -> a
     java.lang.Boolean ISGRID -> b
     java.lang.Boolean OPEN_THIS -> c
@@ -1724,16 +1723,14 @@ ru.zlo.ff.util.Options -> ru.zlo.ff.d.k:
     java.text.DateFormat F_DATE -> C
     void loadOptions() -> a
     void processRes() -> b
+    void save(android.content.Context) -> a
     android.view.animation.LayoutAnimationController createAnim() -> c
-ru.zlo.ff.util.Options_ -> ru.zlo.ff.d.l:
+ru.zlo.ff.util.Options_ -> ru.zlo.ff.c.k:
     android.content.Context context_ -> D
     void afterSetContentView_() -> b
     void init_() -> c
-    ru.zlo.ff.util.Options_ getInstance_(android.content.Context) -> a
-ru.zlo.ff.util.Sets -> ru.zlo.ff.d.m:
-    java.util.ArrayList dat -> a
-    void restoreLists(ru.zlo.ff.MAct) -> a
-ru.zlo.ff.util.ThumbnailLoader -> ru.zlo.ff.d.n:
+    ru.zlo.ff.util.Options_ getInstance_(android.content.Context) -> b
+ru.zlo.ff.util.ThumbnailLoader -> ru.zlo.ff.c.l:
     boolean cancel -> a
     java.util.List listFile -> b
     android.os.Handler handler -> c
@@ -1747,7 +1744,7 @@ ru.zlo.ff.util.ThumbnailLoader -> ru.zlo.ff.d.n:
     android.graphics.Bitmap getArtworkQuick(android.content.Context,long,int,int) -> a
     android.graphics.drawable.Drawable extractApk(java.lang.String) -> b
     android.graphics.drawable.Drawable extractImg(java.lang.String) -> c
-ru.zlo.ff.util.file.Delete -> ru.zlo.ff.d.a.a:
+ru.zlo.ff.util.file.Delete -> ru.zlo.ff.c.a.a:
     android.app.ProgressDialog dialog -> a
     java.lang.Void doInBackground(java.lang.Object[]) -> a
     void onPostExecute(java.lang.Void) -> a
@@ -1756,10 +1753,10 @@ ru.zlo.ff.util.file.Delete -> ru.zlo.ff.d.a.a:
     void onPostExecute(java.lang.Object) -> onPostExecute
     java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
     void access$000(ru.zlo.ff.util.file.Delete) -> a
-ru.zlo.ff.util.file.Delete$1 -> ru.zlo.ff.d.a.b:
+ru.zlo.ff.util.file.Delete$1 -> ru.zlo.ff.c.a.b:
     ru.zlo.ff.util.file.Delete this$0 -> a
     void onCancel(android.content.DialogInterface) -> onCancel
-ru.zlo.ff.util.file.FileTools -> ru.zlo.ff.d.a.c:
+ru.zlo.ff.util.file.FileTools -> ru.zlo.ff.c.a.c:
     int OPERATION -> a
     java.lang.String KEY -> b
     java.lang.Object[] FROM -> c
@@ -1775,39 +1772,39 @@ ru.zlo.ff.util.file.FileTools -> ru.zlo.ff.d.a.c:
     android.content.DialogInterface$OnClickListener renm -> m
     android.content.DialogInterface$OnClickListener newFile -> n
     android.content.DialogInterface$OnClickListener delet -> o
-    void newFolder() -> a
-    void rename() -> b
-    void newFile() -> c
+    void newFolder(android.content.Context) -> a
+    void rename(android.content.Context) -> b
+    void newFile(android.content.Context) -> c
     void openFileExt(android.content.Context,java.io.File) -> a
     void openFileThis(android.content.Context,java.io.File) -> b
     void veiwImage(android.content.Context,java.io.File) -> c
     void playMusic(android.content.Context,java.io.File) -> d
     android.graphics.Bitmap getArtworkQuick(android.content.Context,long,int,int) -> a
-    void delete() -> d
-    void showDialog(android.content.DialogInterface$OnClickListener,int,int,java.lang.Object,java.lang.Boolean,int) -> a
-    android.widget.EditText access$000() -> e
-ru.zlo.ff.util.file.FileTools$1 -> ru.zlo.ff.d.a.d:
+    void delete(android.content.Context) -> d
+    void showDialog(android.content.Context,android.content.DialogInterface$OnClickListener,int,int,java.lang.Object,java.lang.Boolean,int) -> a
+    android.widget.EditText access$000() -> a
+ru.zlo.ff.util.file.FileTools$1 -> ru.zlo.ff.c.a.d:
     void onCancel(android.content.DialogInterface) -> onCancel
-ru.zlo.ff.util.file.FileTools$2 -> ru.zlo.ff.d.a.e:
+ru.zlo.ff.util.file.FileTools$2 -> ru.zlo.ff.c.a.e:
     void onClick(android.content.DialogInterface,int) -> onClick
-ru.zlo.ff.util.file.FileTools$3 -> ru.zlo.ff.d.a.f:
+ru.zlo.ff.util.file.FileTools$3 -> ru.zlo.ff.c.a.f:
     void onClick(android.content.DialogInterface,int) -> onClick
-ru.zlo.ff.util.file.FileTools$4 -> ru.zlo.ff.d.a.g:
+ru.zlo.ff.util.file.FileTools$4 -> ru.zlo.ff.c.a.g:
     void onClick(android.content.DialogInterface,int) -> onClick
-ru.zlo.ff.util.file.FileTools$5 -> ru.zlo.ff.d.a.h:
+ru.zlo.ff.util.file.FileTools$5 -> ru.zlo.ff.c.a.h:
     void onClick(android.content.DialogInterface,int) -> onClick
-ru.zlo.ff.util.file.FileTools$6 -> ru.zlo.ff.d.a.i:
+ru.zlo.ff.util.file.FileTools$6 -> ru.zlo.ff.c.a.i:
     void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
     void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
     void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
-ru.zlo.ff.util.file.FileTools$7 -> ru.zlo.ff.d.a.j:
+ru.zlo.ff.util.file.FileTools$7 -> ru.zlo.ff.c.a.j:
     android.widget.SeekBar val$bar -> a
     void run() -> run
-ru.zlo.ff.util.file.MimeTypes -> ru.zlo.ff.d.a.k:
+ru.zlo.ff.util.file.MimeTypes -> ru.zlo.ff.c.a.k:
     java.util.Map mMimeTypes -> a
     java.lang.String getMimeType(java.lang.String) -> a
     java.lang.String getExtension(java.lang.String) -> b
-ru.zlo.ff.util.file.Paste -> ru.zlo.ff.d.a.l:
+ru.zlo.ff.util.file.Paste -> ru.zlo.ff.c.a.l:
     android.app.ProgressDialog dialog -> a
     java.lang.Void doInBackground(java.lang.Object[]) -> a
     void copy(java.io.File,java.io.File) -> a
@@ -1816,6 +1813,6 @@ ru.zlo.ff.util.file.Paste -> ru.zlo.ff.d.a.l:
     void onPostExecute(java.lang.Object) -> onPostExecute
     java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
     void access$000(ru.zlo.ff.util.file.Paste) -> a
-ru.zlo.ff.util.file.Paste$1 -> ru.zlo.ff.d.a.m:
+ru.zlo.ff.util.file.Paste$1 -> ru.zlo.ff.c.a.m:
     ru.zlo.ff.util.file.Paste this$0 -> a
     void onCancel(android.content.DialogInterface) -> onCancel

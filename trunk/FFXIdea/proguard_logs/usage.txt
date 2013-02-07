@@ -419,7 +419,6 @@ android.support.v4.view.PagerAdapter:
     public static final int POSITION_UNCHANGED
     public static final int POSITION_NONE
     276:277:public void notifyDataSetChanged()
-    297:297:public java.lang.CharSequence getPageTitle(int)
 android.support.v4.view.PagerTabStrip
 android.support.v4.view.PagerTabStrip$1
 android.support.v4.view.PagerTabStrip$2
@@ -1049,7 +1048,7 @@ com.viewpagerindicator.PageIndicator:
     public abstract void setOnPageChangeListener(android.support.v4.view.ViewPager$OnPageChangeListener)
     public abstract void notifyDataSetChanged()
 com.viewpagerindicator.R:
-    10:426:public R()
+    10:427:public R()
 com.viewpagerindicator.R$anim
 com.viewpagerindicator.R$array
 com.viewpagerindicator.R$attr:
@@ -1068,7 +1067,7 @@ com.viewpagerindicator.R$menu
 com.viewpagerindicator.R$string
 com.viewpagerindicator.R$style
 com.viewpagerindicator.R$styleable:
-    426:426:public R$styleable()
+    427:427:public R$styleable()
 com.viewpagerindicator.R$xml
 ru.megazlo.quicker.ActionItem:
     21:23:public ActionItem(android.graphics.drawable.Drawable)
@@ -1085,7 +1084,7 @@ ru.megazlo.quicker.CustomPopupWindow:
 ru.megazlo.quicker.QuickAction:
     67:68:public void animateTrack(boolean)
 ru.megazlo.quicker.R:
-    10:426:public R()
+    10:427:public R()
 ru.megazlo.quicker.R$anim:
     11:11:public R$anim()
 ru.megazlo.quicker.R$array
@@ -1102,7 +1101,7 @@ ru.megazlo.quicker.R$layout:
 ru.megazlo.quicker.R$menu
 ru.megazlo.quicker.R$string
 ru.megazlo.quicker.R$style:
-    395:395:public R$style()
+    396:396:public R$style()
 ru.megazlo.quicker.R$styleable
 ru.megazlo.quicker.R$xml
 ru.zlo.ff.BuildConfig
@@ -1130,9 +1129,6 @@ ru.zlo.ff.R$styleable
 ru.zlo.ff.R$xml
 ru.zlo.ff.SetAct:
     public static ru.zlo.ff.SetAct I
-    126:136:private void showAbout()
-ru.zlo.ff.SetAct$DisplayPrefs
-ru.zlo.ff.SetAct$MainPrefs
 ru.zlo.ff.SetViewAct
 ru.zlo.ff.Widget:
     private static final java.lang.String PREF_SUFFIX
@@ -1144,8 +1140,8 @@ ru.zlo.ff.components.filerow.FileRowData:
     public static final byte TP_VIDEO
     public static final byte TP_TEXT
     public static final byte TP_OTHER
-    79:79:public boolean isSelectable()
-    83:84:public void setSelectable(boolean)
+    78:78:public boolean isSelectable()
+    82:83:public void setSelectable(boolean)
 ru.zlo.ff.engine.BaseEngine:
     public static final int SDC
     public static final int CMD_CON
@@ -1154,13 +1150,14 @@ ru.zlo.ff.engine.BaseEngine:
     142:142:public boolean isAllowSearsh()
     160:164:public void stopThreads()
 ru.zlo.ff.engine.EngPool:
-    29:30:public void addEngine(ru.zlo.ff.engine.BaseEngine)
-    45:46:public void removeCurrent(int)
-    49:50:public void removeCurrent(ru.zlo.ff.engine.BaseEngine)
+    30:31:public void addEngine(ru.zlo.ff.engine.BaseEngine)
+    46:47:public void removeCurrent(int)
+    50:51:public void removeCurrent(ru.zlo.ff.engine.BaseEngine)
 ru.zlo.ff.engine.EngineARC
 ru.zlo.ff.engine.EngineSDC:
-    98:99:public void browseRoot()
-    103:107:public void search(java.lang.String)
+    97:98:public void browseRoot()
+    102:106:public void search(java.lang.String)
+    120:120:public java.lang.Object exec(int)
 ru.zlo.ff.engine.IEngine:
     public abstract void browseRoot()
     public abstract void search(java.lang.String)
@@ -1168,21 +1165,24 @@ ru.zlo.ff.engine.IEngine:
     public abstract void fill(java.lang.Object)
     public abstract void startLoadImage()
     public abstract java.lang.String getTitle()
+    public abstract java.lang.Object exec(int)
     public abstract void selectAll()
     public abstract void stopThreads()
 ru.zlo.ff.fragments.FileListFragment:
     public static final java.lang.String ENG_NUM
 ru.zlo.ff.fragments.FileListFragment_:
     40:43:public android.view.View findViewById(int)
-ru.zlo.ff.fragments.SectionsPagerAdapter:
-    31:31:public java.lang.CharSequence getPageTitle(int)
+ru.zlo.ff.fragments.MainSettingsFragment
+ru.zlo.ff.fragments.MainSettingsFragment$1
+ru.zlo.ff.fragments.MainSettingsFragment$2
+ru.zlo.ff.fragments.ViewSettingsFragment
 ru.zlo.ff.util.ActionFactory:
     public static final int MOVE
     public static final int COPY
     20:20:public ActionFactory()
 ru.zlo.ff.util.BluetoothShare
 ru.zlo.ff.util.Commander:
-    16:16:public Commander()
+    17:17:public Commander()
 ru.zlo.ff.util.CompFileDate
 ru.zlo.ff.util.CompFileName
 ru.zlo.ff.util.CompFileSize
@@ -1191,17 +1191,13 @@ ru.zlo.ff.util.Options:
     private static final java.lang.String name
     public static final java.lang.String dbPath
     public android.database.sqlite.SQLiteDatabase SQLITE
-    101:114:public void save()
 ru.zlo.ff.util.Options_:
     37:38:public android.view.View findViewById(int)
     70:72:public void rebind(android.content.Context)
-ru.zlo.ff.util.Sets:
-    public static android.database.sqlite.SQLiteDatabase SQLITE
-    12:12:public Sets()
-    53:60:public static void loadDB(java.lang.String)
+ru.zlo.ff.util.Sets
 ru.zlo.ff.util.Sorter
 ru.zlo.ff.util.ThumbnailLoader:
-    47:49:public static void setThumbnailHeight(int)
+    46:48:public static void setThumbnailHeight(int)
 ru.zlo.ff.util.file.FileTools:
     public static java.lang.String SEARCH
     29:29:public FileTools()
