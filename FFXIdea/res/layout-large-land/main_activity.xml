@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal">
+
+    <fragment class="ru.zlo.ff.fragments.FileListFragment_"
+              android:id="@+id/list_frag_left"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:layout_weight="50"/>
+
+    <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_bright"/>
+
+    <fragment class="ru.zlo.ff.fragments.FileListFragment_"
+              android:id="@+id/list_frag_right"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:layout_weight="50"/>
+
+</LinearLayout>

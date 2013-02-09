@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class FileRowAdapter extends BaseAdapter {
 
 	private List<FileRowData> mItems = new ArrayList<FileRowData>();

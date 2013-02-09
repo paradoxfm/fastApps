@@ -4,36 +4,35 @@ import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.*;
-import com.googlecode.androidannotations.annotations.AfterViews;
+import android.widget.ListView;
+import com.googlecode.androidannotations.annotations.Bean;
 import com.googlecode.androidannotations.annotations.EFragment;
 import ru.zlo.ff.R;
 import ru.zlo.ff.components.filerow.FileRowAdapter;
+import ru.zlo.ff.components.filerow.FileRowData;
 import ru.zlo.ff.engine.BaseEngine;
 import ru.zlo.ff.engine.EngPool;
 import ru.zlo.ff.util.Options;
 import ru.zlo.ff.util.file.FileTools;
 
 import java.io.File;
+import java.util.List;
 
 @EFragment
 public class FileListFragment extends ListFragment implements BaseEngine.OnLoadFinish, BaseEngine.OnDataChanged {
 	public static final String ENG_NUM = "ENG_NUM";
+	private static int current = -1;
 
+	@Bean
+	protected EngPool engines;
 	private BaseEngine engine;
 	private FileRowAdapter adapter = new FileRowAdapter();
+	private OnEngineActivator engineActivator;
 
-	@AfterViews
-	protected void initData() {
-		setListAdapter(adapter);
-		int num = getArguments().getInt(ENG_NUM);
-		engine = EngPool.Inst().getEngine(num);
-		engine.setOnScrollFinish(this);
-		engine.setOnDataChanger(this);
-		engine.update();
-		adapter.setListItems(engine.getDat().dir);
-		adapter.notifyDataSetChanged();
+	public interface OnEngineActivator {
+		void activateEngine(BaseEngine engine);
 	}
 
 	@Override
@@ -41,6 +40,26 @@ public class FileListFragment extends ListFragment implements BaseEngine.OnLoadF
 		super.onViewCreated(view, savedInstanceState);
 		registerForContextMenu(getListView());
 		getListView().setLayoutAnimation(Options.LIST_ANIM);
+		if (current == 1)
+			current = -1;
+		current++;
+		engine = engines.getEngine(current);
+		setListAdapter(adapter);
+		engine.setOnLoadFinish(this);
+		engine.setOnDataChanger(this);
+		engine.update();
+		getListView().setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if (engineActivator != null)
+					engineActivator.activateEngine(engine);
+				return false;
+			}
+		});
+	}
+
+	public void setOnEngineActivator(OnEngineActivator engineActivator) {
+		this.engineActivator = engineActivator;
 	}
 
 	@Override
@@ -62,14 +81,14 @@ public class FileListFragment extends ListFragment implements BaseEngine.OnLoadF
 	}
 
 	@Override
-	public void onFinish() {
-		adapter.setListItems(engine.getDat().dir);
-		adapter.notifyDataSetChanged();
+	public void onLoadFinish(List<FileRowData> dataRows) {
+		adapter.setListItems(dataRows);
 		if (engine.scrollPoz > 0 && getListView().getChildCount() > 0)
 			getListView().setSelectionFromTop(engine.scrollPoz, getListView().getChildAt(0).getHeight() / 2);
 		if (Options.ANIMATE)
 			getListView().startLayoutAnimation();
-		engine.startLoadImage();
+		if (engineActivator != null)
+			engineActivator.activateEngine(engine);
 	}
 
 	@Override
@@ -80,8 +99,8 @@ public class FileListFragment extends ListFragment implements BaseEngine.OnLoadF
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-		/*switch (item.getItemId()) {
+		/*AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+		switch (item.getItemId()) {
 			case R.id.edit:
 				editNote(info.id);
 				return true;

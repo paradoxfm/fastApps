@@ -1,25 +1,40 @@
 package ru.zlo.ff.engine;
 
 import android.content.Context;
+import com.googlecode.androidannotations.annotations.EBean;
+import com.googlecode.androidannotations.annotations.RootContext;
+import com.googlecode.androidannotations.api.Scope;
 import ru.zlo.ff.components.RowData;
+import ru.zlo.ff.components.RowDataSD;
+import ru.zlo.ff.util.Options;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@EBean(scope = Scope.Singleton)
 public class EngPool {
+
+	@RootContext
+	Context context;
 
 	private List<BaseEngine> mEngs = new ArrayList<BaseEngine>();
 
-	private static EngPool mRef;
+	protected static EngPool mRef;
 	private int currentPosition = 0;
 
 	public static EngPool Inst() {
-		if (mRef == null)
-			mRef = new EngPool();
 		return mRef;
 	}
 
-	private EngPool() {
+	protected EngPool() {
+		if (mRef == null) {
+			mRef = this;
+			addEngine(new RowDataSD(Options.HOME_PATH), context);
+			addEngine(new RowDataSD(Options.HOME_PATH), context);
+		} else {
+			for (BaseEngine eng : mEngs)
+				this.addEngine(eng);
+		}
 	}
 
 	public int count() {
@@ -27,11 +42,12 @@ public class EngPool {
 	}
 
 	public void addEngine(BaseEngine engine) {
-		mEngs.add(engine);
+		if (mEngs.size() < 2)
+			mEngs.add(engine);
 	}
 
 	public void addEngine(RowData dat, Context context) {
-		mEngs.add(choiceEngine(dat, context));
+		addEngine(choiceEngine(dat, context));
 	}
 
 	private BaseEngine choiceEngine(RowData dat, Context context) {
@@ -56,5 +72,9 @@ public class EngPool {
 
 	public BaseEngine getCurrent() {
 		return mEngs.get(currentPosition);
+	}
+
+	public void setCurrentEngine(BaseEngine engine) {
+		currentPosition = mEngs.indexOf(engine);
 	}
 }

@@ -85,12 +85,12 @@ public class QuickAction extends CustomPopupWindow {
 				+ anchor.getHeight());
 		root.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		root.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		int rootWidth = root.getMeasuredWidth();
+		//int rootWidth = root.getMeasuredWidth();
 		int rootHeight = root.getMeasuredHeight();
 		int screenWidth = windowManager.getDefaultDisplay().getWidth();
 		// int screenHeight = windowManager.getDefaultDisplay().getHeight();
 
-		int xPos = (screenWidth - rootWidth) / 2;
+		//int xPos = (screenWidth - rootWidth) / 2;
 		int yPos = anchorRect.top - rootHeight;
 		boolean onTop = true;
 		// display on bottom
@@ -101,7 +101,7 @@ public class QuickAction extends CustomPopupWindow {
 		showArrow(((onTop) ? R.id.arrow_down : R.id.arrow_up), anchorRect.centerX());
 		setAnimationStyle(screenWidth, anchorRect.centerX(), onTop);
 		createActionList();
-		window.showAtLocation(this.anchor, Gravity.NO_GRAVITY, xPos, yPos);
+		window.showAtLocation(this.anchor, Gravity.NO_GRAVITY, anchorRect.left, yPos);
 		if (animateTrack)
 			mTrack.startAnimation(mTrackAnim);
 	}
@@ -177,7 +177,7 @@ public class QuickAction extends CustomPopupWindow {
 		final int arrowWidth = mArrowUp.getMeasuredWidth();
 		showArrow.setVisibility(View.VISIBLE);
 		ViewGroup.MarginLayoutParams param = (ViewGroup.MarginLayoutParams) showArrow.getLayoutParams();
-		param.leftMargin = requestedX - arrowWidth / 2;
+		param.leftMargin = /*requestedX - */arrowWidth / 2; /*requestedX - arrowWidth / 2;*/
 		hideArrow.setVisibility(View.INVISIBLE);
 	}
 }
