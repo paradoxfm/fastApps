@@ -12,6 +12,7 @@ import ru.zlo.ff.util.ThumbnailLoader;
 import ru.zlo.ff.util.file.MimeTypes;
 
 import java.util.Collections;
+import java.util.List;
 
 public abstract class BaseEngine implements IEngine {
 
@@ -34,7 +35,7 @@ public abstract class BaseEngine implements IEngine {
 	protected Context context;
 
 	public interface OnLoadFinish {
-		void onFinish();
+		void onLoadFinish(List<FileRowData> dataRows);
 	}
 
 	public interface OnDataChanged {
@@ -65,10 +66,12 @@ public abstract class BaseEngine implements IEngine {
 		}
 	}
 
+	@SuppressWarnings("StringEquality")
 	protected Drawable getIconByFile(String fil) {
-		String tmp = getExtension(fil).toLowerCase().intern();
+		String tmp = getExtension(fil);
 		if (tmp == null)
 			return Options.i_file_non;
+		tmp = tmp.toLowerCase().intern();
 		short i;
 		for (i = 0; i < Options.docs.length; i++)
 			if (tmp == Options.docs[i])
@@ -88,6 +91,7 @@ public abstract class BaseEngine implements IEngine {
 		return Options.i_file_non;
 	}
 
+	@SuppressWarnings("StringEquality")
 	public static int getType(String lowerCase) {
 		String tmp = getExtension(lowerCase).toLowerCase().intern();
 		short i;
@@ -109,11 +113,11 @@ public abstract class BaseEngine implements IEngine {
 
 	@Override
 	public String getTitle() {
-		return mTitle;
+		return "\\" + mTitle;
 	}
 
-	public void setOnScrollFinish(OnLoadFinish onScrollFinish) {
-		finisher = onScrollFinish;
+	public void setOnLoadFinish(OnLoadFinish onLoadFinish) {
+		finisher = onLoadFinish;
 	}
 
 	public void setOnDataChanger(OnDataChanged onDataChanged) {
@@ -148,8 +152,10 @@ public abstract class BaseEngine implements IEngine {
 		Collections.sort(dat.fil);
 		dat.dir.addAll(dat.fil);
 		setOffset();
-		if (finisher != null)
-			finisher.onFinish();
+		if (finisher != null) {
+			finisher.onLoadFinish(dat.dir);
+			startLoadImage();
+		}
 	}
 
 	public void setOffset() {

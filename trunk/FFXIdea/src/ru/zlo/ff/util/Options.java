@@ -12,10 +12,11 @@ import com.googlecode.androidannotations.annotations.EBean;
 import com.googlecode.androidannotations.annotations.RootContext;
 import com.googlecode.androidannotations.annotations.res.DrawableRes;
 import com.googlecode.androidannotations.annotations.res.StringArrayRes;
+import com.googlecode.androidannotations.api.Scope;
 
 import java.io.File;
 
-@EBean
+@EBean(scope = Scope.Singleton)
 public class Options {
 	private final static String name = "fastfile";
 	public static final String dbPath = "dbase.db";

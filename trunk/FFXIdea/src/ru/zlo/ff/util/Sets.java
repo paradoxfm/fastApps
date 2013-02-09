@@ -5,39 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import java.io.File;
 import java.util.Locale;
 
-public class Sets {
+/*public class Sets {
 
 	// -------------------------------------------
 	public static SQLiteDatabase SQLITE;
 	// ------------------------------------------- Модели данных
-
-/*	public static void load(SharedPreferences prf, Activity res) {
-		if (dat.size() != 0) {
-			applySets(res);
-			return;
-		}
-		ISGRID = prf.getBoolean("ISGRID", false);
-		OPEN_THIS = prf.getBoolean("OPEN_THIS", false);
-		HOME_PATH = new File(prf.getString("HOME_PATH", "/"));
-		if (!HOME_PATH.exists() || !HOME_PATH.canRead())
-			HOME_PATH = new File("/");
-
-		SHOW_HIDDEN = prf.getBoolean("SHOW_HIDDEN", false);
-		SHOW_IMG = prf.getBoolean("SHOW_IMG", true);
-		SHOW_MP3 = prf.getBoolean("SHOW_MP3", true);
-		SHOW_APK = prf.getBoolean("SHOW_APK", true);
-
-		FULL_SCR = prf.getBoolean("FULL_SCR", false);
-		ANIMATE = prf.getBoolean("ANIMATE", false);
-		ORIENT_TYPE = prf.getInt("ORIENT_TYPE", ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-		applySets(res);
-		File fl = res.getExternalFilesDir(null);
-		File barFl = new File(fl, dbPath);
-		if (!barFl.exists())
-			applySets(res);
-		if (fl != null)
-			loadDB(fl + "/" + dbPath);
-	}*/
 
 
 	public static void loadDB(String path) {
@@ -50,7 +22,7 @@ public class Sets {
 			SQLITE.execSQL("create table bksets (setnam TEXT, setval TEXT);");
 	}
 
-	/*private static void insSets() {
+	*//*private static void insSets() {
 		SQLITE.delete("bksets", null, null);
 		ContentValues val = new ContentValues();
 		val.put("setnam", "OPEN_THIS");
@@ -76,9 +48,9 @@ public class Sets {
 		val.put("setnam", "ORIENT_TYPE");
 		val.put("setval", Integer.toString(ORIENT_TYPE));
 		SQLITE.insert("bksets", "", val);
-	}*/
+	}*//*
 
-	/*private static void selSets(String path, Activity act) {
+	*//*private static void selSets(String path, Activity act) {
 		SQLiteDatabase rest = SQLiteDatabase.openOrCreateDatabase(path, null);
 		Cursor cur = rest.query("bksets", null, null, null, null, null, null);
 		cur.moveToFirst();
@@ -104,5 +76,5 @@ public class Sets {
 		cur.close();
 		rest.close();
 		//save(act.getPreferences(0));
-	}*/
-}
+	}*//*
+}*/

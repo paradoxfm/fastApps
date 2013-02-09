@@ -1,11 +1,11 @@
 package ru.zlo.ff;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,22 +14,28 @@ import android.widget.SearchView;
 import android.widget.Toast;
 import com.googlecode.androidannotations.annotations.*;
 import com.viewpagerindicator.LinePageIndicator;
+import ru.zlo.ff.engine.BaseEngine;
 import ru.zlo.ff.engine.EngPool;
+import ru.zlo.ff.fragments.FileListFragment;
 import ru.zlo.ff.fragments.SectionsPagerAdapter;
 import ru.zlo.ff.util.Commander;
 import ru.zlo.ff.util.Options;
 
 @EActivity(R.layout.main_activity)
-@OptionsMenu({R.menu.actionbar, R.menu.main_down})
-public class MAct extends FragmentActivity implements ViewPager.OnPageChangeListener {
+@OptionsMenu({R.menu.actionbar})
+public class MAct extends Activity implements ViewPager.OnPageChangeListener, FileListFragment.OnEngineActivator {
 
 	@Bean
 	Options options;
 	SectionsPagerAdapter pAdapter;
 	@ViewById(R.id.pager)
-	ViewPager mViewPager;
+	ViewPager viewPager;
 	@ViewById(R.id.indicator)
 	LinePageIndicator indicator;
+	@FragmentById(R.id.list_frag_left)
+	FileListFragment fragLeft;
+	@FragmentById(R.id.list_frag_right)
+	FileListFragment fragRight;
 	public int widgetID = -1;
 	private boolean isToRoot = false;
 	private String startFile = null;
@@ -44,10 +50,21 @@ public class MAct extends FragmentActivity implements ViewPager.OnPageChangeList
 			else
 				Sets.restoreLists(this);
 		} else */
-		if (pAdapter.getCount() == 0) {
-			checkIntentParametrs(getIntent().getExtras());
-			Commander.createPanes(this, startFile);
-			startFile = null;
+		checkIntentParametrs(getIntent().getExtras());
+		//Commander.createPanes(this, startFile, left, right);
+		startFile = null;
+	}
+
+	private void customiseUI() {
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		if (viewPager != null) {
+			pAdapter = new SectionsPagerAdapter(getFragmentManager());
+			viewPager.setAdapter(pAdapter);
+			indicator.setViewPager(viewPager);
+			viewPager.setOnPageChangeListener(this);
+		} else {
+			fragLeft.setOnEngineActivator(this);
+			fragRight.setOnEngineActivator(this);
 		}
 	}
 
@@ -60,14 +77,6 @@ public class MAct extends FragmentActivity implements ViewPager.OnPageChangeList
 		else
 			getWindow().clearFlags(flg);
 		setRequestedOrientation(Options.ORIENT_TYPE);
-	}
-
-	private void customiseUI() {
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		pAdapter = new SectionsPagerAdapter(getFragmentManager());
-		mViewPager.setAdapter(pAdapter);
-		indicator.setViewPager(mViewPager);
-		mViewPager.setOnPageChangeListener(this);
 	}
 
 	private void checkIntentParametrs(Bundle extras) {
@@ -145,5 +154,13 @@ public class MAct extends FragmentActivity implements ViewPager.OnPageChangeList
 		setResult(RESULT_OK, resultValue);
 		finish();
 		Commander.exitApp();
+	}
+
+	@Override
+	public void activateEngine(BaseEngine engine) {
+		if (engine == null)
+			return;
+		setTitle(engine.getTitle());
+		EngPool.Inst().setCurrentEngine(engine);
 	}
 }

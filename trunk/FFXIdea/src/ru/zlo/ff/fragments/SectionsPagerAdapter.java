@@ -2,8 +2,9 @@ package ru.zlo.ff.fragments;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
+import com.googlecode.androidannotations.annotations.Bean;
+import com.googlecode.androidannotations.annotations.EBean;
 import ru.zlo.ff.engine.EngPool;
 
 import java.util.ArrayList;
@@ -19,13 +20,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public Fragment getItem(int i) {
-		if (i + 1 > arr.size()) {
-			Fragment fragment = FileListFragment_.builder().build();
-			Bundle args = new Bundle();
-			args.putInt(FileListFragment.ENG_NUM, i);
-			fragment.setArguments(args);
-			arr.add(fragment);
-		}
+		if (i + 1 > arr.size())
+			arr.add(FileListFragment_.builder().build());
 		return arr.get(i);
 	}
 
@@ -36,6 +32,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public CharSequence getPageTitle(int position) {
-		return "\\" + EngPool.Inst().getEngine(position).getTitle();
+		return EngPool.Inst().getEngine(position).getTitle();
 	}
 }

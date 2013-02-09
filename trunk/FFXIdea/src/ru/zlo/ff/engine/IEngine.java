@@ -4,33 +4,33 @@ import ru.zlo.ff.components.RowData;
 
 public interface IEngine {
 
-	public boolean browseUp();
+	boolean browseUp();
 
-	public void browseCatalog(Object cat);
+	void browseCatalog(Object cat);
 
-	public Object[] getFiles();
+	Object[] getFiles();
 
-	public void update();
+	void update();
 
-	public void browseRoot();
+	void browseRoot();
 
-	public void search(String search);
+	void search(String search);
 
-	public RowData getDat();
+	RowData getDat();
 
-	public Object getCurrentDir();
+	Object getCurrentDir();
 
-	public boolean isAllowSearsh();
+	boolean isAllowSearsh();
 
 	void fill(Object filar);
 
-	public void startLoadImage();
+	void startLoadImage();
 
-	public String getTitle();
+	String getTitle();
 
-	public Object exec(int cmd);
+	Object exec(int cmd);
 
-	public void selectAll();
+	void selectAll();
 
-	public void stopThreads();
+	void stopThreads();
 }
