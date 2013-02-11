@@ -38,7 +38,7 @@ public class FileListFragment extends ListFragment implements BaseEngine.OnLoadF
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		registerForContextMenu(getListView());
+		//registerForContextMenu(getListView());
 		getListView().setLayoutAnimation(Options.LIST_ANIM);
 		if (current == 1)
 			current = -1;
@@ -94,6 +94,12 @@ public class FileListFragment extends ListFragment implements BaseEngine.OnLoadF
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
+		/*Object tst = FileRow.this.dat.getFile();
+		if (tst.getClass() == File.class) {
+			File fl = (File) tst;
+			if ((fl.canWrite() && fl.isFile()) || (fl.isDirectory()))
+				ActionFactory.create(v, fl).show();
+		}*/
 		/*AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 		switch (item.getItemId()) {
 			case R.id.edit:

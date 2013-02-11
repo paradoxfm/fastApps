@@ -1,16 +1,11 @@
 package ru.zlo.ff;
 
 import android.app.Activity;
-import android.app.SearchManager;
-import android.appwidget.AppWidgetManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
-import android.widget.SearchView;
 import android.widget.Toast;
 import com.googlecode.androidannotations.annotations.*;
 import com.viewpagerindicator.LinePageIndicator;
@@ -21,12 +16,16 @@ import ru.zlo.ff.fragments.SectionsPagerAdapter;
 import ru.zlo.ff.util.Commander;
 import ru.zlo.ff.util.Options;
 
+import java.io.File;
+
 @EActivity(R.layout.main_activity)
 @OptionsMenu({R.menu.main_down})
 public class MAct extends Activity implements ViewPager.OnPageChangeListener, FileListFragment.OnEngineActivator {
 
 	@Bean
 	Options options;
+	@Bean
+	EngPool pool;
 	SectionsPagerAdapter pAdapter;
 	@ViewById(R.id.pager)
 	ViewPager viewPager;
@@ -36,26 +35,13 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 	FileListFragment fragLeft;
 	@FragmentById(R.id.list_frag_right)
 	FileListFragment fragRight;
-	public int widgetID = -1;
+
+	public final static String ACTION_WIDGET_RECEIVER = "ActionReceiverWidget";
+	public final static String WIDGET_FILE_PATH = "WidgetFilePath";
 	private boolean isToRoot = false;
-	private String startFile = null;
 
 	@AfterViews
 	void initOnCreate() {
-		customiseUI();
-		/*if (Sets.dat != null && Sets.dat.size() > 0) {
-			checkIntentParametrs(getIntent().getExtras());
-			if (widgetID != -1)
-				Commander.insertList(new RowDataSD());
-			else
-				Sets.restoreLists(this);
-		} else */
-		checkIntentParametrs(getIntent().getExtras());
-		//Commander.createPanes(this, startFile, left, right);
-		startFile = null;
-	}
-
-	private void customiseUI() {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		if (viewPager != null) {
 			pAdapter = new SectionsPagerAdapter(getFragmentManager());
@@ -71,6 +57,7 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 	@Override
 	protected void onResume() {
 		super.onResume();
+		checkIntentParametrs(getIntent().getExtras());
 		int flg = WindowManager.LayoutParams.FLAG_FULLSCREEN;
 		if (Options.FULL_SCR)
 			getWindow().setFlags(flg, flg);
@@ -80,50 +67,27 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 	}
 
 	private void checkIntentParametrs(Bundle extras) {
-		if (extras != null) {
-			if (extras.containsKey(Widget.PREF_NAME)) {
-				String path = extras.get(Widget.PREF_NAME).toString();
-				Toast.makeText(this, path, Toast.LENGTH_LONG).show();
-				startFile = path;
-			} else if (extras.containsKey(AppWidgetManager.EXTRA_APPWIDGET_ID)) {
-				widgetID = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
-				setResult(RESULT_CANCELED);
-				invalidateOptionsMenu();
-				if (widgetID == AppWidgetManager.INVALID_APPWIDGET_ID)
-					finish();
+		if (extras != null && extras.containsKey(Widget.PREF_NAME)) {
+			String path = extras.getString(Widget.PREF_NAME);
+			if (pool != null && pool.getCurrent() != null) {
+				pool.getCurrent().browseCatalog(new File(path));
+				Toast.makeText(this, path, Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
 
 	@Override
-	public void onBackPressed() {
-		if (!isToRoot && !EngPool.Inst().getCurrent().browseUp())
-			super.onBackPressed();
-		isToRoot = false;
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		checkIntentParametrs(intent.getExtras());
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		if (widgetID == -1) {
-			SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-			SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
-			searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-		} else {
-			getMenuInflater().inflate(R.menu.actionbarw, menu);
-		}
-		return true;
-	}
-
 	@OptionsItem(android.R.id.home)
-	boolean menuHome() {
-		onBackPressed();
-		return false;
-	}
-
-	@OptionsItem(R.id.menu_set_widget_path)
-	boolean menuWidget() {
-		configWidget();
-		return true;
+	public void onBackPressed() {
+		if (!isToRoot && !pool.getCurrent().browseUp())
+			super.onBackPressed();
+		isToRoot = false;
 	}
 
 	@OptionsItem({R.id.appsett, R.id.tutor, R.id.quit})
@@ -142,18 +106,8 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 	@Override
 	public void onPageSelected(int arg0) {
 		indicator.setCurrentItem(arg0);
-		EngPool.Inst().setCurrentPosition(arg0);
+		pool.setCurrentPosition(arg0);
 		setTitle(pAdapter.getPageTitle(arg0));
-	}
-
-	public void configWidget() {
-		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-		Widget.updateAppWidget(this, appWidgetManager, widgetID, EngPool.Inst().getCurrent().getCurrentDir(), true);
-		Intent resultValue = new Intent();
-		resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
-		setResult(RESULT_OK, resultValue);
-		finish();
-		Commander.exitApp();
 	}
 
 	@Override
@@ -161,6 +115,6 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 		if (engine == null)
 			return;
 		setTitle(engine.getTitle());
-		EngPool.Inst().setCurrentEngine(engine);
+		pool.setCurrentEngine(engine);
 	}
 }

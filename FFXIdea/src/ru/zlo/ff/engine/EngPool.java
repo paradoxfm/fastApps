@@ -1,6 +1,7 @@
 package ru.zlo.ff.engine;
 
 import android.content.Context;
+import com.googlecode.androidannotations.annotations.Bean;
 import com.googlecode.androidannotations.annotations.EBean;
 import com.googlecode.androidannotations.annotations.RootContext;
 import com.googlecode.androidannotations.api.Scope;
@@ -14,6 +15,8 @@ import java.util.List;
 @EBean(scope = Scope.Singleton)
 public class EngPool {
 
+	@Bean
+	Options options;
 	@RootContext
 	Context context;
 
