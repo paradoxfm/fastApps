@@ -74,13 +74,6 @@ public class Options {
 		ORIENT_TYPE = p.getInt("ORIENT_TYPE", ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 		TXT_CLR = p.getInt("TXT_CLR", -4276546);
 		processRes();
-		/*applySets(res);
-		File fl = res.getExternalFilesDir(null);
-		File barFl = new File(fl, dbPath);
-		if (!barFl.exists())
-			applySets(res);
-		if (fl != null)
-			loadDB(fl + "/" + dbPath);*/
 	}
 
 	private void processRes() {

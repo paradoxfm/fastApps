@@ -98,6 +98,9 @@
     <string name="set_back_smr">Set as the background color fills</string>
     <string name="bckcolrsmr">Fill the background with a solid color</string>
     <string name="bckcolr">Solid color</string>
-    <string name="cdes"></string>
+    <string name="cdes"> </string>
     <string name="mn_close">Close tab</string>
+
+    <string name="set_widget_path">Set widget path</string>
+    <string name="widget_title">Folder</string>
 </resources>

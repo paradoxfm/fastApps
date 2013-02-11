@@ -111,7 +111,7 @@ public class EngineSDC extends BaseEngine {
 	}
 
 	@Override
-	public Object getCurrentDir() {
+	public File getCurrentDir() {
 		return getDat().PATH;
 	}
 

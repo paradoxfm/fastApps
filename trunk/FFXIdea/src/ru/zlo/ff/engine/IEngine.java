@@ -2,6 +2,8 @@ package ru.zlo.ff.engine;
 
 import ru.zlo.ff.components.RowData;
 
+import java.io.File;
+
 public interface IEngine {
 
 	boolean browseUp();
@@ -18,7 +20,7 @@ public interface IEngine {
 
 	RowData getDat();
 
-	Object getCurrentDir();
+	File getCurrentDir();
 
 	boolean isAllowSearsh();
 

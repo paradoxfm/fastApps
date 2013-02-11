@@ -4,7 +4,7 @@
     <item
             android:id="@+id/menu_set_widget_path"
             android:icon="@drawable/i_chk"
-            android:showAsAction="always|withText"
-            android:title="@string/serach"/>
+            android:showAsAction="collapseActionView"
+            android:title="@string/set_widget_path"/>
 
 </menu>
