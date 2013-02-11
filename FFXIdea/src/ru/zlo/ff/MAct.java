@@ -22,7 +22,7 @@ import ru.zlo.ff.util.Commander;
 import ru.zlo.ff.util.Options;
 
 @EActivity(R.layout.main_activity)
-@OptionsMenu({R.menu.actionbar})
+@OptionsMenu({R.menu.main_down})
 public class MAct extends Activity implements ViewPager.OnPageChangeListener, FileListFragment.OnEngineActivator {
 
 	@Bean
