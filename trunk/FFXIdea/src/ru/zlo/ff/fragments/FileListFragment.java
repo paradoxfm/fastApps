@@ -21,7 +21,7 @@ import java.io.File;
 import java.util.List;
 
 @EFragment
-public class FileListFragment extends ListFragment implements BaseEngine.OnLoadFinish, BaseEngine.OnDataChanged {
+public class FileListFragment extends ListFragment implements BaseEngine.OnLoadFinish {
 	public static final String ENG_NUM = "ENG_NUM";
 	private static int current = -1;
 
@@ -46,7 +46,6 @@ public class FileListFragment extends ListFragment implements BaseEngine.OnLoadF
 		engine = engines.getEngine(current);
 		setListAdapter(adapter);
 		engine.setOnLoadFinish(this);
-		engine.setOnDataChanger(this);
 		engine.update();
 		getListView().setOnTouchListener(new View.OnTouchListener() {
 			@Override
@@ -76,13 +75,9 @@ public class FileListFragment extends ListFragment implements BaseEngine.OnLoadF
 	}
 
 	@Override
-	public void onChange() {
-		adapter.notifyDataSetChanged();
-	}
-
-	@Override
 	public void onLoadFinish(List<FileRowData> dataRows) {
 		adapter.setListItems(dataRows);
+		adapter.notifyDataSetChanged();
 		if (engine.scrollPoz > 0 && getListView().getChildCount() > 0)
 			getListView().setSelectionFromTop(engine.scrollPoz, getListView().getChildAt(0).getHeight() / 2);
 		if (Options.ANIMATE)
