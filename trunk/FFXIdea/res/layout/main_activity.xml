@@ -7,18 +7,7 @@
 
     <android.support.v4.view.ViewPager
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/pager" android:layout_width="match_parent"
-            android:layout_height="match_parent" tools:context=".MAct">
-
-        <fragment class="ru.zlo.ff.fragments.FileListFragment_"
-                  android:id="@+id/list_frag_left"
-                  android:layout_width="wrap_content"
-                  android:layout_height="match_parent"/>
-
-        <fragment class="ru.zlo.ff.fragments.FileListFragment_"
-                  android:id="@+id/list_frag_right"
-                  android:layout_width="wrap_content"
-                  android:layout_height="match_parent"/>
-
+            android:layout_height="match_parent" tools:context=".MAct_">
     </android.support.v4.view.ViewPager>
 
     <com.viewpagerindicator.LinePageIndicator

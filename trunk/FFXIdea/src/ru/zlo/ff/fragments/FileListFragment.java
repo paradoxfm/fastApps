@@ -28,10 +28,15 @@ public class FileListFragment extends ListFragment implements BaseEngine.OnLoadF
 	protected BaseEngine engine;
 	protected FileRowAdapter adapter = new FileRowAdapter();
 	protected OnEngineActivator engineActivator;
+	OnEngineBrowse onEngineBrowse;
 	private static int current = -1;
 
 	public interface OnEngineActivator {
 		void activateEngine(BaseEngine engine);
+	}
+
+	public interface OnEngineBrowse {
+		void engineBrowse(BaseEngine engine);
 	}
 
 	@Override
@@ -62,6 +67,10 @@ public class FileListFragment extends ListFragment implements BaseEngine.OnLoadF
 		this.engineActivator = engineActivator;
 	}
 
+	public void setOnEngineBrowse(OnEngineBrowse onEngineBrowse) {
+		this.onEngineBrowse = onEngineBrowse;
+	}
+
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
@@ -88,8 +97,8 @@ public class FileListFragment extends ListFragment implements BaseEngine.OnLoadF
 			getListView().setSelectionFromTop(engine.scrollPoz, getListView().getChildAt(0).getHeight() / 2);
 		if (Options.ANIMATE)
 			getListView().startLayoutAnimation();
-		if (engineActivator != null)
-			engineActivator.activateEngine(engine);
+		if (onEngineBrowse != null)
+			onEngineBrowse.engineBrowse(engine);
 	}
 
 	@Override
