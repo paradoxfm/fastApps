@@ -1,6 +1,5 @@
 package ru.zlo.ff.engine;
 
-import android.content.Context;
 import android.widget.Toast;
 import ru.zlo.ff.R;
 import ru.zlo.ff.components.RowData;
@@ -16,8 +15,8 @@ public class EngineSDC extends BaseEngine {
 
 	private String from;
 
-	public EngineSDC(RowData data, Context context) {
-		super(context);
+	public EngineSDC(RowData data) {
+		super();
 		isPreview = isAllowSearsh = true;
 		dat = data;
 	}
@@ -102,7 +101,7 @@ public class EngineSDC extends BaseEngine {
 		new Search(context, search).execute(FileTools.FROM != null ? (File[]) FileTools.FROM : new File[]{getDat().PATH});
 		isSearsh = true;
 		mTitle = "/" + search;
-		Toast.makeText(context, R.string.search_rez, Toast.LENGTH_LONG).show();
+		Toast.makeText(context, R.string.search_rez, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
@@ -116,11 +115,6 @@ public class EngineSDC extends BaseEngine {
 	}
 
 	@Override
-	public Object exec(int cmd) {
-		return null;
-	}
-
-	@Override
 	public void setOffset() {
 		if (from == null)
 			return;
@@ -131,5 +125,4 @@ public class EngineSDC extends BaseEngine {
 				break;
 			}
 	}
-
 }

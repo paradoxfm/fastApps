@@ -37,7 +37,7 @@ public class Widget extends AppWidgetProvider {
 
 		Intent openFile = new Intent(context, MAct_.class);
 		openFile.putExtra(PREF_NAME, fl.getPath());
-		PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, openFile, PendingIntent.FLAG_UPDATE_CURRENT);
+		PendingIntent pendingIntent = PendingIntent.getActivity(context, widgetID, openFile, PendingIntent.PARCELABLE_WRITE_RETURN_VALUE);
 
 		RemoteViews updateViews = new RemoteViews(context.getPackageName(), R.layout.widget);
 		updateViews.setTextViewText(R.id.wid_btn, fl.getName());

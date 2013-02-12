@@ -21,15 +21,14 @@ import java.io.File;
 import java.util.List;
 
 @EFragment
-public class FileListFragment extends ListFragment implements BaseEngine.OnLoadFinish {
-	public static final String ENG_NUM = "ENG_NUM";
-	private static int current = -1;
+public class FileListFragment extends ListFragment implements BaseEngine.OnLoadFinish, BaseEngine.OnDataChanged {
 
 	@Bean
 	protected EngPool engines;
-	private BaseEngine engine;
-	private FileRowAdapter adapter = new FileRowAdapter();
-	private OnEngineActivator engineActivator;
+	protected BaseEngine engine;
+	protected FileRowAdapter adapter = new FileRowAdapter();
+	protected OnEngineActivator engineActivator;
+	private static int current = -1;
 
 	public interface OnEngineActivator {
 		void activateEngine(BaseEngine engine);
@@ -44,8 +43,10 @@ public class FileListFragment extends ListFragment implements BaseEngine.OnLoadF
 			current = -1;
 		current++;
 		engine = engines.getEngine(current);
+		engine.setContext(getListView().getContext());
 		setListAdapter(adapter);
 		engine.setOnLoadFinish(this);
+		engine.setOnDataChanger(this);
 		engine.update();
 		getListView().setOnTouchListener(new View.OnTouchListener() {
 			@Override
@@ -72,6 +73,11 @@ public class FileListFragment extends ListFragment implements BaseEngine.OnLoadF
 		else if (!Options.OPEN_THIS)
 			FileTools.openFileExt(getListView().getContext(), curFile);
 		l.setSelection(0);
+	}
+
+	@Override
+	public void onChange() {
+		adapter.notifyDataSetChanged();
 	}
 
 	@Override

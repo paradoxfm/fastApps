@@ -38,10 +38,10 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 
 	public final static String ACTION_WIDGET_RECEIVER = "ActionReceiverWidget";
 	public final static String WIDGET_FILE_PATH = "WidgetFilePath";
-	private boolean isToRoot = false;
 
 	@AfterViews
 	void initOnCreate() {
+		checkIntentParametrs(getIntent().getExtras());
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		if (viewPager != null) {
 			pAdapter = new SectionsPagerAdapter(getFragmentManager());
@@ -56,14 +56,13 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 
 	@Override
 	protected void onResume() {
-		super.onResume();
-		checkIntentParametrs(getIntent().getExtras());
 		int flg = WindowManager.LayoutParams.FLAG_FULLSCREEN;
 		if (Options.FULL_SCR)
 			getWindow().setFlags(flg, flg);
 		else
 			getWindow().clearFlags(flg);
 		setRequestedOrientation(Options.ORIENT_TYPE);
+		super.onResume();
 	}
 
 	private void checkIntentParametrs(Bundle extras) {
@@ -85,9 +84,10 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 	@Override
 	@OptionsItem(android.R.id.home)
 	public void onBackPressed() {
-		if (!isToRoot && !pool.getCurrent().browseUp())
+		if (!pool.getCurrent().browseUp()) {
+			System.exit(0);
 			super.onBackPressed();
-		isToRoot = false;
+		}
 	}
 
 	@OptionsItem({R.id.appsett, R.id.tutor, R.id.quit})

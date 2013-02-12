@@ -45,6 +45,7 @@
     <string name="editor_edit">Редактировать</string>
     <!-- Настроечные параметры -->
     <string name="mainset">Основные</string>
+    <string name="mainset_smr">Основные настройки программы</string>
     <string name="open_ext">Открывать здесь</string>
     <string name="open_ext_smr">Открывать файлы внутренним просмотрщиком</string>
     <string name="hmdir">Домашний каталог</string>
@@ -52,6 +53,7 @@
     <string name="hidden">Скрытые</string>
     <string name="hiddensmr">Показывать скрытые файлы и папки</string>
     <string name="showng">Отображение</string>
+    <string name="showng_smr">Настройи отображения</string>
     <string name="fulscr">Полный экран</string>
     <string name="fulscrsmr">Скрывать статусную строку и часы</string>
     <string name="anim">Показывать анимацию</string>

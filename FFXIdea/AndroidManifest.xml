@@ -21,11 +21,11 @@
             <meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
         </activity>
 
-        <activity android:name=".SetAct" android:theme="@style/PreferenceStyle"/>
+        <activity android:name=".SAct_" android:theme="@style/PreferenceStyle"/>
 
         <activity android:name=".NAct_" android:launchMode="singleTask"/>
 
-        <activity android:name=".WAct_">
+        <activity android:name=".WAct_" android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
             </intent-filter>

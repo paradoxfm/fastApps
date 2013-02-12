@@ -3,20 +3,14 @@
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
     <header android:fragment="ru.zlo.ff.fragments.MainSettingsFragment"
             android:icon="@android:drawable/ic_menu_preferences"
-            android:title="Основные"
-            android:summary="An example of some preferences.">
+            android:title="@string/mainset"
+            android:summary="@string/mainset_smr">
     </header>
 
     <header android:fragment="ru.zlo.ff.fragments.ViewSettingsFragment"
             android:icon="@android:drawable/ic_menu_view"
-            android:title="Отображение"
-            android:summary="An example of some preferences.">
-    </header>
-
-    <header android:fragment="ru.zlo.ff.fragments.ViewSettingsFragment"
-            android:icon="@android:drawable/ic_menu_preferences"
-            android:title="О программе"
-            android:summary="An example of some preferences.">
+            android:title="@string/showng"
+            android:summary="@string/showng_smr">
     </header>
 
 </preference-headers>
