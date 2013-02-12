@@ -3,7 +3,6 @@ package ru.zlo.ff.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.text.format.DateFormat;
 import android.view.animation.*;
@@ -45,17 +44,12 @@ public class Options {
 	public static Drawable i_file_doc, i_file_img, i_file_mov, i_file_mus, i_file_non, i_file_bin;
 	@StringArrayRes
 	public static String[] docs, imgs, vids, muss, bin;
-	public SQLiteDatabase SQLITE;
 	public static java.text.DateFormat F_TIME;
 	public static java.text.DateFormat F_DATE;
 
 	@AfterInject
 	public void loadOptions() {
 		SharedPreferences p = context.getSharedPreferences(name, Context.MODE_PRIVATE);
-		/*if (dat.size() != 0) {
-			applySets(res);
-			return;
-		}*/
 		F_DATE = DateFormat.getDateFormat(context);
 		F_TIME = DateFormat.getTimeFormat(context);
 		ISGRID = p.getBoolean("ISGRID", false);
