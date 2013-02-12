@@ -19,11 +19,6 @@
                 android:key="abt"
                 android:summary="@string/about_smr"
                 android:title="@string/about"/>
-
-        <Preference
-                android:key="bak"
-                android:summary="@string/backup_smr"
-                android:title="@string/backup"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

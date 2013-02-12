@@ -26,11 +26,7 @@ public interface IEngine {
 
 	void fill(Object filar);
 
-	void startLoadImage();
-
 	String getTitle();
-
-	Object exec(int cmd);
 
 	void selectAll();
 

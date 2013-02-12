@@ -55,15 +55,6 @@ public class MainSettingsFragment extends PreferenceFragment implements Preferen
 				return true;
 			}
 		});
-		// -------
-		this.findPreference("bak").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-			@Override
-			public boolean onPreferenceClick(Preference preference) {
-				//Options.backUpFTP(Options.this);
-				Toast.makeText(getView().getContext(), R.string.backet, Toast.LENGTH_SHORT).show();
-				return true;
-			}
-		});
 	}
 
 	private void showAbout() {

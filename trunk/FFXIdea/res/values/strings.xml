@@ -45,6 +45,7 @@
     <string name="editor_edit">Edit</string>
     <!-- Настроечные параметры -->
     <string name="mainset">Main</string>
+    <string name="mainset_smr">Main settings</string>
     <string name="open_ext">Open internal</string>
     <string name="open_ext_smr">To open files an internal viewer</string>
     <string name="hmdir">Home directory</string>
@@ -52,6 +53,7 @@
     <string name="hidden">Hidden</string>
     <string name="hiddensmr">Show the hidden files and folders</string>
     <string name="showng">Display</string>
+    <string name="showng_smr">Display settings</string>
     <string name="fulscr">Full screen</string>
     <string name="fulscrsmr">Hide status bar and clocks</string>
     <string name="anim">Show animation</string>

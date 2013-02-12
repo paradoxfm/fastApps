@@ -46,8 +46,7 @@ public abstract class BaseEngine implements IEngine {
 		return engType;
 	}
 
-	public BaseEngine(Context context) {
-		this.context = context;
+	public BaseEngine() {
 		if (currentHandler == null)
 			currentHandler = new Handler() {
 				public void handleMessage(Message msg) {
@@ -57,13 +56,8 @@ public abstract class BaseEngine implements IEngine {
 			};
 	}
 
-	public void startLoadImage() {
-		if (!isPreview)
-			return;
-		if (Options.SHOW_APK || Options.SHOW_IMG || Options.SHOW_MP3) {
-			tmbl = new ThumbnailLoader(dat.dir, currentHandler, context, mimetypes);
-			tmbl.start();
-		}
+	public void setContext(Context context) {
+		this.context = context;
 	}
 
 	@SuppressWarnings("StringEquality")
@@ -132,13 +126,8 @@ public abstract class BaseEngine implements IEngine {
 			changer.onChange();
 	}
 
-	public Integer getIcoProtocol() {
-		switch (engType) {
-			case SDC:
-				return R.drawable.prot_pda;
-			default:
-				return R.drawable.prot_pda;
-		}
+	public int getIcoProtocol() {
+		return R.drawable.prot_pda;
 	}
 
 	@Override
@@ -151,10 +140,17 @@ public abstract class BaseEngine implements IEngine {
 		Collections.sort(dat.dir);
 		Collections.sort(dat.fil);
 		dat.dir.addAll(dat.fil);
-		setOffset();
-		if (finisher != null) {
+		if (finisher != null)
 			finisher.onLoadFinish(dat.dir);
-			startLoadImage();
+		startLoadImage();
+	}
+
+	protected void startLoadImage() {
+		if (!isPreview)
+			return;
+		if (Options.SHOW_APK || Options.SHOW_IMG || Options.SHOW_MP3) {
+			tmbl = new ThumbnailLoader(dat.dir, currentHandler, context, mimetypes);
+			tmbl.start();
 		}
 	}
 
@@ -168,5 +164,4 @@ public abstract class BaseEngine implements IEngine {
 			tmbl = null;
 		}
 	}
-
 }

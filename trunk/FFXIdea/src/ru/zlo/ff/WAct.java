@@ -14,10 +14,13 @@ public class WAct extends Activity {
 
 	@Bean
 	Options options;
+	@Bean
+	EngPool pool;
 	public int widgetID = AppWidgetManager.INVALID_APPWIDGET_ID;
 
 	@AfterViews
 	void initOnCreate() {
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		checkIntentParametrs(getIntent().getExtras());
 	}
 
@@ -29,6 +32,16 @@ public class WAct extends Activity {
 		resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
 		setResult(RESULT_OK, resultValue);
 		finish();
+		System.exit(0);
+	}
+
+	@Override
+	@OptionsItem(android.R.id.home)
+	public void onBackPressed() {
+		if (!pool.getCurrent().browseUp()) {
+			System.exit(0);
+			super.onBackPressed();
+		}
 	}
 
 	private void checkIntentParametrs(Bundle extras) {
