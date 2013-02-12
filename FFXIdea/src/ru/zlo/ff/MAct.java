@@ -12,6 +12,7 @@ import com.viewpagerindicator.LinePageIndicator;
 import ru.zlo.ff.engine.BaseEngine;
 import ru.zlo.ff.engine.EngPool;
 import ru.zlo.ff.fragments.FileListFragment;
+import ru.zlo.ff.fragments.FileListFragment_;
 import ru.zlo.ff.fragments.SectionsPagerAdapter;
 import ru.zlo.ff.util.Commander;
 import ru.zlo.ff.util.Options;
@@ -20,7 +21,7 @@ import java.io.File;
 
 @EActivity(R.layout.main_activity)
 @OptionsMenu({R.menu.main_down})
-public class MAct extends Activity implements ViewPager.OnPageChangeListener, FileListFragment.OnEngineActivator {
+public class MAct extends Activity implements ViewPager.OnPageChangeListener, FileListFragment.OnEngineActivator, FileListFragment.OnEngineBrowse {
 
 	@Bean
 	Options options;
@@ -36,15 +37,14 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 	@FragmentById(R.id.list_frag_right)
 	FileListFragment fragRight;
 
-	public final static String ACTION_WIDGET_RECEIVER = "ActionReceiverWidget";
-	public final static String WIDGET_FILE_PATH = "WidgetFilePath";
-
 	@AfterViews
 	void initOnCreate() {
 		checkIntentParametrs(getIntent().getExtras());
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		if (viewPager != null) {
-			pAdapter = new SectionsPagerAdapter(getFragmentManager());
+			fragLeft = FileListFragment_.builder().build();
+			fragRight = FileListFragment_.builder().build();
+			pAdapter = new SectionsPagerAdapter(getFragmentManager(), fragLeft, fragRight);
 			viewPager.setAdapter(pAdapter);
 			indicator.setViewPager(viewPager);
 			viewPager.setOnPageChangeListener(this);
@@ -52,6 +52,8 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 			fragLeft.setOnEngineActivator(this);
 			fragRight.setOnEngineActivator(this);
 		}
+		fragLeft.setOnEngineBrowse(this);
+		fragRight.setOnEngineBrowse(this);
 	}
 
 	@Override
@@ -84,10 +86,8 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 	@Override
 	@OptionsItem(android.R.id.home)
 	public void onBackPressed() {
-		if (!pool.getCurrent().browseUp()) {
+		if (!pool.getCurrent().browseUp())
 			System.exit(0);
-			super.onBackPressed();
-		}
 	}
 
 	@OptionsItem({R.id.appsett, R.id.tutor, R.id.quit})
@@ -116,5 +116,11 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 			return;
 		setTitle(engine.getTitle());
 		pool.setCurrentEngine(engine);
+	}
+
+	@Override
+	public void engineBrowse(BaseEngine engine) {
+		if (engine != null)
+			setTitle(engine.getTitle());
 	}
 }
