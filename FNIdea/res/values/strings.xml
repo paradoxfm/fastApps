@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="app_name">FastNote2</string>
+    <string name="cansel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="settings">Settings</string>
+    <string name="quit">Exit</string>
+    <string name="tutor">Help</string>
+    <!-- настройки -->
+    <string name="mainset">Main</string>
+    <string name="full_scr">Full screen</string>
+    <string name="full_scr_smr">Hide statusbar</string>
+    <string name="orien">Orientation</string>
+    <string name="orien_smr">Screen orientation(Don`t save, Portrait, Lanscape)</string>
+    <string name="pref_edit">Editor</string>
+    <string name="edit_color_text">Text color</string>
+    <string name="color_text_smr">Text color in editor/viewer</string>
+    <string name="edit_size_text">Text size</string>
+    <string name="size_text_smr">Text size in editor/viewer</string>
+    <string name="line_color">Line color</string>
+    <string name="line_color_smr">Color of horizontal lines in the editor</string>
+    <string name="pref_sys">System</string>
+    <string-array name="orient">
+        <item>Don`t save</item>
+        <item>Portrait</item>
+        <item>Lanscape</item>
+    </string-array>
+    <string name="text_size">Text size: </string>
+    <string name="set_back">Backup</string>
+    <string name="search">Search</string>
+    <string name="set_back_smr">Save backup notes to sd card</string>
+    <string name="about_smr">About programm Fast Notes</string>
+    <string name="about">About</string>
+    <string name="about_txt">Autor: Gurkin Ivan aka paradoxfm\nCopyright © 2011 megazlonet\nEmail:<a href="mailto:megazlonet@gmail.com">megazlonet@gmail.com</a></string>
+    <string name="saved">Saved</string>
+    <string name="del_q">Delete?</string>
+    <string name="del_ing">Delete</string>
+    <string name="del_ok">Complete</string>
+    <string name="save_base">File saved in base</string>
+    <string name="com_son">Coming soon</string>
+    <string name="fdc">The file did not change</string>
+    <string name="f_svd">The file is saved</string>
+    <string name="ischng">In a file there are changes!\nYou want it to save?</string>
+    <string name="t_del_itm">Delete note</string>
+    <string name="t_csm_itm">Send note via...</string>
+    <string name="t_sms_itm">Send note via sms</string>
+    <string name="t_filetobase">Add file to notes</string>
+    <string name="t_unlock_edit">Unlock and edit / show keyboard</string>
+    <string name="t_lock_edit">Lock text note / hide keyboard</string>
+    <string name="t_save_file_sd">Save edited file</string>
+    <string name="t_new_note">Add new note</string>
+    <string name="db_broken">Base not accessible</string>
+    <string name="cdesc"> </string>
+</resources>
