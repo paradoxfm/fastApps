@@ -7,4 +7,5 @@
         android:drawableTop="@drawable/ic_launcher"
         android:background="@null"
         android:textColor="@android:color/primary_text_dark"
-        android:text="@string/widget_title"/>
+        android:text="@string/widget_title"
+        android:textSize="14dip"/>
