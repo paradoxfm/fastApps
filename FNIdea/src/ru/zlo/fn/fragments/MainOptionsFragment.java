@@ -7,24 +7,34 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.EFragment;
+import android.widget.Toast;
+import com.googlecode.androidannotations.annotations.*;
 import com.googlecode.androidannotations.annotations.res.StringRes;
 import ru.zlo.fn.R;
+import ru.zlo.fn.data.Note;
+import ru.zlo.fn.data.OldNote;
 import ru.zlo.fn.data.SqlHelper;
+import ru.zlo.fn.data.SqlImport;
 import ru.zlo.fn.util.FileUtil;
+
+import java.io.File;
+import java.util.Date;
+import java.util.List;
 
 @EFragment
 public class MainOptionsFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener {
 
 	@StringRes
 	String app_name;
+	@Bean
+	SqlHelper helper;
 
 	@AfterViews
 	void afterInit() {
 		addPreferencesFromResource(R.xml.preferences);
 		findPreference("about").setOnPreferenceClickListener(this);
 		findPreference("bakup").setOnPreferenceClickListener(this);
+		findPreference("import").setOnPreferenceClickListener(this);
 	}
 
 	@Override
@@ -37,6 +47,9 @@ public class MainOptionsFragment extends PreferenceFragment implements Preferenc
 		if (key.equals("about")) {
 			showAbout();
 			return true;
+		}
+		if (key.equals("import")) {
+			inportFromOld();
 		}
 		return false;
 	}
@@ -56,5 +69,32 @@ public class MainOptionsFragment extends PreferenceFragment implements Preferenc
 	private void backup() {
 		String path = SqlHelper.getDbPath(getActivity());
 		FileUtil.backupBase(path);
+	}
+
+	@Background
+	void inportFromOld() {
+		String path = SqlImport.getDbPath(getActivity());
+		File fl = new File(path);
+		if (fl.exists()) {
+			List<OldNote> data = new SqlImport(getActivity()).getAllNoteLists();
+			for (OldNote itm : data) {
+				Note newItem = new Note();
+				newItem.setText(itm.getText());
+				Date dt = new Date();
+				try {
+					dt = new Date(itm.getDate());
+				} catch (Exception ignore) {
+				}
+				newItem.setDate(dt);
+				helper.createNote(newItem);
+			}
+			notifyLoaded(data.size());
+		}
+	}
+
+	@UiThread
+	void notifyLoaded(int count) {
+		if (count > 0)
+			Toast.makeText(getActivity(), R.string.restart_apply, Toast.LENGTH_SHORT);
 	}
 }

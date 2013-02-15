@@ -3,6 +3,7 @@ package ru.zlo.ff;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -52,15 +53,11 @@ public class NAct extends Activity {
 
 	@AfterViews
 	void initOnCreate() {
-		customiseUI();
 		file = new File(getIntent().getExtras().getString(FileTools.KEY));
-		// TextView title = (TextView) findViewById(R.id.title);
-		// title.setText(R.string.tl_edit);
-		// title.setText(title.getText() + file.getName());
-
-		//mText.setTextSize(16);
-		//mText.setTextColor(Color.BLACK);
-		//mText.setBackgroundColor(Color.WHITE);
+		setTitle(file.getName());
+		mText.setTextSize(16);
+		mText.setTextColor(Color.BLACK);
+		mText.setBackgroundColor(Color.WHITE);
 		mText.setFocusable(false); // не показываем клавиатуру
 		try {
 			mText.setText(read());
@@ -68,25 +65,23 @@ public class NAct extends Activity {
 		}
 	}
 
-	private void customiseUI() {
-		getActionBar().setIcon(R.drawable.i_file_doc);
+	@Override
+	protected void onResume() {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setTitle(file.getName());
-		if (Options.FULL_SCR) {
-			int flg = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+		getActionBar().setIcon(R.drawable.i_file_doc);
+		int flg = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+		if (Options.FULL_SCR)
 			getWindow().setFlags(flg, flg);
-		}
+		else
+			getWindow().clearFlags(flg);
 		setRequestedOrientation(Options.ORIENT_TYPE);
+		super.onResume();
 	}
 
 	@Override
+	@OptionsItem(android.R.id.home)
 	public void onBackPressed() {
 		super.onBackPressed();
-	}
-
-	@OptionsItem(android.R.id.home)
-	void menuHome() {
-		this.finish();
 	}
 
 	@OptionsItem(R.id.edit_text)

@@ -43,6 +43,11 @@ public class Note {
 		return date;
 	}
 
+	@Deprecated
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	public String getTitle() {
 		return title;
 	}

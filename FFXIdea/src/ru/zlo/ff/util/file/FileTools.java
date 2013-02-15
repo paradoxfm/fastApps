@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.*;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import ru.zlo.ff.NAct;
+import ru.zlo.ff.NAct_;
 import ru.zlo.ff.R;
 import ru.zlo.ff.components.filerow.FileRowData;
 import ru.zlo.ff.engine.BaseEngine;
@@ -142,7 +143,7 @@ public class FileTools {
 				return;
 			}
 			Intent intn = new Intent();
-			intn.setClass(c, NAct.class);
+			intn.setClass(c, NAct_.class);
 			intn.putExtra(KEY, file.getPath());
 			c.startActivity(intn);
 		} else

@@ -40,7 +40,6 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 	@AfterViews
 	void initOnCreate() {
 		checkIntentParametrs(getIntent().getExtras());
-		getActionBar().setDisplayHomeAsUpEnabled(true);
 		if (viewPager != null) {
 			fragLeft = FileListFragment_.builder().build();
 			fragRight = FileListFragment_.builder().build();
@@ -58,6 +57,7 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 
 	@Override
 	protected void onResume() {
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		int flg = WindowManager.LayoutParams.FLAG_FULLSCREEN;
 		if (Options.FULL_SCR)
 			getWindow().setFlags(flg, flg);
