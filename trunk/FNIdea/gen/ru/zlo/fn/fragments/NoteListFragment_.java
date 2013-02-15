@@ -12,10 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import com.googlecode.androidannotations.api.BackgroundExecutor;
-import ru.zlo.fn.R.layout;
 import ru.zlo.fn.component.NoteAdapter_;
 import ru.zlo.fn.data.Note;
 import ru.zlo.fn.data.SqlHelper_;
@@ -39,21 +36,6 @@ public final class NoteListFragment_
     }
 
     private void afterSetContentView_() {
-        {
-            AdapterView<?> view = ((AdapterView<?> ) findViewById(ru.zlo.fn.R.id.noteList));
-            if (view!= null) {
-                view.setOnItemClickListener(new OnItemClickListener() {
-
-
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        noteListItemClicked(position);
-                    }
-
-                }
-                );
-            }
-        }
         ((NoteAdapter_) adapter).afterSetContentView_();
         ((SqlHelper_) helper).afterSetContentView_();
         afterInit();
@@ -62,9 +44,6 @@ public final class NoteListFragment_
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         contentView_ = super.onCreateView(inflater, container, savedInstanceState);
-        if (contentView_ == null) {
-            contentView_ = inflater.inflate(layout.notes_list, container, false);
-        }
         afterSetContentView_();
         return contentView_;
     }

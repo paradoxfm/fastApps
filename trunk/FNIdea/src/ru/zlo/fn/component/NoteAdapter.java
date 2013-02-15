@@ -14,9 +14,6 @@ public class NoteAdapter extends BaseAdapter {
 
 	private ArrayList<Note> mItems = new ArrayList<Note>();
 
-	public NoteAdapter() {
-	}
-
 	@Override
 	public int getCount() {
 		return mItems.size();

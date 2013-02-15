@@ -11,10 +11,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import com.googlecode.androidannotations.api.SdkVersionHelper;
 import com.viewpagerindicator.LinePageIndicator;
 import ru.zlo.fn.R.layout;
 import ru.zlo.fn.fragments.NoteDetailFragment;
@@ -34,15 +37,14 @@ public final class MAct_
     }
 
     private void init_(Bundle savedInstanceState) {
-        options = Options_.getInstance_(this);
+        opt = new Options_(this);
     }
 
     private void afterSetContentView_() {
         indicator = ((LinePageIndicator) findViewById(ru.zlo.fn.R.id.indicator));
         viewPager = ((ViewPager) findViewById(ru.zlo.fn.R.id.pager));
-        noteList = ((NoteListFragment) findNativeFragmentById(ru.zlo.fn.R.id.list_frag_left));
         noteDet = ((NoteDetailFragment) findNativeFragmentById(ru.zlo.fn.R.id.list_frag_right));
-        ((Options_) options).afterSetContentView_();
+        noteList = ((NoteListFragment) findNativeFragmentById(ru.zlo.fn.R.id.list_frag_left));
         afterInit();
     }
 
@@ -64,6 +66,14 @@ public final class MAct_
         afterSetContentView_();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (((SdkVersionHelper.getSdkInt()< 5)&&(keyCode == KeyEvent.KEYCODE_BACK))&&(event.getRepeatCount() == 0)) {
+            onBackPressed();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
     public static MAct_.IntentBuilder_ intent(Context context) {
         return new MAct_.IntentBuilder_(context);
     }
@@ -82,6 +92,32 @@ public final class MAct_
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(ru.zlo.fn.R.menu.main_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        boolean handled = super.onOptionsItemSelected(item);
+        if (handled) {
+            return true;
+        }
+        int itemId_ = item.getItemId();
+        if (itemId_ == ru.zlo.fn.R.id.quit) {
+            exitApp();
+            return true;
+        }
+        if ((itemId_ == ru.zlo.fn.R.id.appsett)||(itemId_ == ru.zlo.fn.R.id.tutor)) {
+            otherOptions(item);
+            return true;
+        }
+        if (itemId_ == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        if (itemId_ == ru.zlo.fn.R.id.new_note) {
+            createNote();
+            return true;
+        }
+        return false;
     }
 
     public static class IntentBuilder_ {

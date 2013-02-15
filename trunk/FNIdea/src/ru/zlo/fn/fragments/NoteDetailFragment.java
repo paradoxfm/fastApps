@@ -3,14 +3,15 @@ package ru.zlo.fn.fragments;
 import android.app.Fragment;
 import android.widget.ScrollView;
 import com.googlecode.androidannotations.annotations.*;
+import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
 import ru.zlo.fn.R;
 import ru.zlo.fn.component.NoteEdit;
 import ru.zlo.fn.data.Note;
 import ru.zlo.fn.data.SqlHelper;
-import ru.zlo.fn.util.Options;
+import ru.zlo.fn.util.Options_;
 
 @EFragment(R.layout.note_details)
-public class NoteDetailFragment extends Fragment {
+public class NoteDetailFragment extends Fragment implements SqlHelper.OnDeleteItem {
 
 	private boolean mEdited = false;
 	@ViewById(R.id.scroll_detail)
@@ -19,6 +20,8 @@ public class NoteDetailFragment extends Fragment {
 	NoteEdit editor;
 	@Bean
 	SqlHelper helper;
+	@Pref
+	Options_ opt;
 	Note currentNote;
 	OnSaveChanges saveChanges;
 
@@ -26,11 +29,27 @@ public class NoteDetailFragment extends Fragment {
 		void saveChanges();
 	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		editor.setPaintColor(opt.lineColor().get());
+		editor.setTextColor(opt.fontColor().get());
+		editor.setTextSize(opt.fontSize().get());
+	}
+
 	@AfterViews
 	void afterInit() {
-		editor.setPaintColor(Options.LINE_COLOR);
-		editor.setTextColor(Options.FONT_COLOR);
-		editor.setTextSize(Options.FONT_SIZE);
+		helper.addDeleteItemListener(this);
+	}
+
+	public void setOnSaveChanges(OnSaveChanges listener) {
+		saveChanges = listener;
+	}
+
+	@Override
+	public void deleteItem(Note item) {
+		currentNote = null;
+		editor.setText("");
 	}
 
 	public void setCurrentNote(Note note) {
@@ -42,8 +61,8 @@ public class NoteDetailFragment extends Fragment {
 	}
 
 	@TextChange(R.id.text_detail)
-	void textCahnge() {
-		if (!mEdited)
+	void textCahnge(CharSequence text) {
+		if (!mEdited && text.length() > 0)
 			mEdited = true;
 	}
 
@@ -54,9 +73,10 @@ public class NoteDetailFragment extends Fragment {
 	}
 
 	public void save() {
-		if (!mEdited)
+		if (!mEdited || currentNote == null)
 			return;
 		mEdited = false;
+		currentNote.setText(editor.getText().toString());
 		helper.updateNote(currentNote);
 		if (saveChanges != null)
 			saveChanges.saveChanges();

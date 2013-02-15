@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+    <header android:fragment="ru.zlo.fn.fragments.MainOptionsFragment_"
+            android:icon="@android:drawable/ic_menu_preferences"
+            android:title="@string/mainset"
+            android:summary="@string/mainset_smr">
+    </header>
+
+    <header android:fragment="ru.zlo.fn.fragments.ViewOptionsFragment_"
+            android:icon="@android:drawable/ic_menu_view"
+            android:title="@string/showng"
+            android:summary="@string/showng_smr">
+    </header>
+
+</preference-headers>

@@ -7,13 +7,16 @@ package ru.zlo.fn.component;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import ru.zlo.fn.R.drawable;
 import ru.zlo.fn.R.id;
 import ru.zlo.fn.R.layout;
 import ru.zlo.fn.data.Note;
+import ru.zlo.fn.util.ActionFactory_;
 
 
 /**
@@ -41,13 +44,17 @@ public final class NoteRow_
         if (context_ instanceof Activity) {
             Activity activity = ((Activity) context_);
         }
+        Resources resources_ = context_.getResources();
+        i_rigth_mark = resources_.getDrawable(drawable.i_rigth_mark);
+        i_rigth = resources_.getDrawable(drawable.i_rigth);
+        factory = ActionFactory_.getInstance_(context_);
     }
 
     private void afterSetContentView_() {
         m_icon = ((ImageView) findViewById(id.m_icon));
         m_titile = ((TextView) findViewById(id.m_titile));
-        m_arrow = ((ImageView) findViewById(id.m_arrow));
         m_word_count = ((TextView) findViewById(id.m_word_count));
+        m_arrow = ((ImageView) findViewById(id.m_arrow));
         {
             View view = findViewById(id.m_icon);
             if (view!= null) {
@@ -56,13 +63,15 @@ public final class NoteRow_
 
                     @Override
                     public void onClick(View view) {
-                        NoteRow_.this.iconClick();
+                        NoteRow_.this.iconClick(view);
                     }
 
                 }
                 );
             }
         }
+        ((ActionFactory_) factory).afterSetContentView_();
+        afterInit();
     }
 
     /**

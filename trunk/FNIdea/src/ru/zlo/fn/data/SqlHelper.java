@@ -24,9 +24,18 @@ public class SqlHelper extends OrmLiteSqliteOpenHelper {
 	private static final String DATABASE_NAME = "fastnote.sqlite";
 	private static final int DATABASE_VERSION = 1;
 	private Dao<Note, Integer> noteDao = null;
+	List<OnDeleteItem> deleteItemListeners = new ArrayList<OnDeleteItem>();
+
+	public interface OnDeleteItem {
+		void deleteItem(Note item);
+	}
+
+	public static String getDbPath(Context context) {
+		return context.getExternalFilesDir(null).getPath() + '/' + DATABASE_NAME;
+	}
 
 	protected SqlHelper(Context context) {
-		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		super(context, getDbPath(context), null, DATABASE_VERSION);
 	}
 
 	@Override
@@ -48,6 +57,14 @@ public class SqlHelper extends OrmLiteSqliteOpenHelper {
 		}
 		for (String sql : allSql)
 			sqLiteDatabase.execSQL(sql);*/
+	}
+
+	public void addDeleteItemListener(OnDeleteItem listener) {
+		deleteItemListeners.add(listener);
+	}
+
+	public boolean removeDeleteItemListener(OnDeleteItem listener) {
+		return deleteItemListeners.remove(listener);
 	}
 
 	public Dao<Note, Integer> getNoteDao() {
@@ -94,6 +111,17 @@ public class SqlHelper extends OrmLiteSqliteOpenHelper {
 	public boolean updateNote(Note note) {
 		try {
 			getNoteDao().update(note);
+		} catch (SQLException e) {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean deleteNote(Note note) {
+		try {
+			getNoteDao().delete(note);
+			for (OnDeleteItem itm : deleteItemListeners)
+				itm.deleteItem(note);
 		} catch (SQLException e) {
 			return false;
 		}

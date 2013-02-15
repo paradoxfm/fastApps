@@ -16,6 +16,7 @@ import android.widget.TextView;
 import ru.zlo.fn.R.layout;
 import ru.zlo.fn.component.NoteEdit;
 import ru.zlo.fn.data.SqlHelper_;
+import ru.zlo.fn.util.Options_;
 
 public final class NoteDetailFragment_
     extends NoteDetailFragment
@@ -24,6 +25,7 @@ public final class NoteDetailFragment_
     private View contentView_;
 
     private void init_(Bundle savedInstanceState) {
+        opt = new Options_(getActivity());
         helper = SqlHelper_.getInstance_(getActivity());
     }
 
@@ -49,7 +51,7 @@ public final class NoteDetailFragment_
 
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        NoteDetailFragment_.this.textCahnge();
+                        NoteDetailFragment_.this.textCahnge(s);
                     }
 
                     @Override
