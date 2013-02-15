@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <string name="app_name">FastNote</string>
+    <string name="app_name">FastNote2</string>
     <string name="cansel">Отмена</string>
     <string name="ok">OK</string>
     <string name="settings">Настройки</string>
@@ -42,13 +42,17 @@
     <string name="f_svd">Файл сохранен</string>
     <string name="ischng">В файле есть изменения!\nВы хотите его сохранить?</string>
     <string name="t_del_itm">Удалить заметку</string>
-    <string name="t_csm_itm">Отправить заметку через...</string>
+    <string name="t_csm_itm">Отправить заметку через…</string>
     <string name="t_sms_itm">Отправить заметку по смс</string>
     <string name="t_filetobase">Добавить файл в заметки</string>
     <string name="t_unlock_edit">Разблокировать для редактирования / показать клавиатуру</string>
     <string name="t_lock_edit">Заблокировать текст / скрыть клавиатуру</string>
     <string name="t_save_file_sd">Сохранить отредактированный файл</string>
-    <string name="t_new_note">Добавить новую заметку</string>
+    <string name="t_new_note">Новая заметка</string>
     <string name="db_broken">База не доступна</string>
     <string name="cdesc"> </string>
+    <string name="serach">Поиск</string>
+    <string name="mainset_smr">Основные настройки</string>
+    <string name="showng">Отображение</string>
+    <string name="showng_smr">Настройки отображения</string>
 </resources>

@@ -1,26 +1,33 @@
 package ru.zlo.fn.util;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.text.format.DateFormat;
-import com.googlecode.androidannotations.annotations.AfterInject;
-import com.googlecode.androidannotations.annotations.EBean;
-import com.googlecode.androidannotations.annotations.RootContext;
-import com.googlecode.androidannotations.annotations.res.DrawableRes;
 import com.googlecode.androidannotations.annotations.sharedpreferences.DefaultBoolean;
 import com.googlecode.androidannotations.annotations.sharedpreferences.DefaultInt;
 import com.googlecode.androidannotations.annotations.sharedpreferences.SharedPref;
-import ru.zlo.fn.component.NoteData;
 
-import java.util.ArrayList;
+@SharedPref(value = SharedPref.Scope.UNIQUE)
+public interface Options {
+	@DefaultBoolean(false)
+	boolean fullScreen();
 
+	@DefaultInt(ActivityInfo.SCREEN_ORIENTATION_SENSOR)
+	int orientation();
+
+	@DefaultInt(22)
+	int fontSize();
+
+	@DefaultInt(Color.BLACK)
+	int fontColor();
+
+	@DefaultInt(0xFF08a2ce)
+	int lineColor();
+}
+
+/*
 @EBean
 public class Options {
 	private final static String name = "fastnote";
-	private final static String dbPath = "dbase.db";
 	private final static String dbPathBak = "fastnotes.bak";
 
 	// ----------------------- Настройки -----------------------
@@ -30,11 +37,7 @@ public class Options {
 	public static Integer FONT_COLOR;// color
 	public static Integer LINE_COLOR;// color
 	// ----------------------- Стастическая хрень -----------------------
-	@DrawableRes
-	public static Drawable /*i_note, */i_rigth, i_rigth_mark, i_plus;
-	public static java.text.DateFormat F_TIME;
-	public static java.text.DateFormat F_DATE;
-	public static ArrayList<NoteData> DAT;
+
 
 	@RootContext
 	Context context;
@@ -42,26 +45,15 @@ public class Options {
 	@AfterInject
 	void loadOptions() {
 		SharedPreferences p = context.getSharedPreferences(name, Context.MODE_PRIVATE);
-		F_DATE = DateFormat.getDateFormat(context);
-		F_TIME = DateFormat.getTimeFormat(context);
-
-		if (DAT == null)
-			DAT = new ArrayList<NoteData>();
-
 		FULL_SCR = p.getBoolean("FULL_SCR", false);
 		ORIENT_TYPE = p.getInt("ORIENT_TYPE", ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 		FONT_SIZE = p.getInt("FONT_SIZE", 22);
 		FONT_COLOR = p.getInt("FONT_COLOR", Color.BLACK);
-		LINE_COLOR = p.getInt("LINE_COLOR", 0x800000FF);
-
-		/*File fl = frm.getExternalFilesDir(null);
-		File barFl = new File(fl, dbPath);
-		if (!barFl.exists())
-			restore(frm);*/
+		LINE_COLOR = p.getInt("LINE_COLOR", 0xFF08a2ce);
 	}
 
-	public static void save(SharedPreferences prf) {
-		SharedPreferences.Editor edit = prf.edit();
+	public static void save(Context context) {
+		SharedPreferences.Editor edit = context.getSharedPreferences(name, Context.MODE_PRIVATE).edit();
 		edit.putBoolean("FULL_SCR", FULL_SCR);
 		edit.putInt("ORIENT_TYPE", ORIENT_TYPE);
 		edit.putInt("FONT_SIZE", FONT_SIZE);
@@ -70,7 +62,7 @@ public class Options {
 		edit.commit();
 	}
 
-	/*public static void backup(Activity ac) {
+	public static void backup(Activity ac) {
 		try {
 			SqlBase.insertSets();
 			File sd = Environment.getExternalStorageDirectory();
@@ -93,9 +85,9 @@ public class Options {
 			}
 		} catch (Exception ignored) {
 		}
-	}*/
+	}
 
-	/*public static void restore(Activity act) {
+	public static void restore(Activity act) {
 		try {
 			File sd = Environment.getExternalStorageDirectory();
 			File bakDir = new File(sd, "backup");
@@ -111,5 +103,6 @@ public class Options {
 			}
 		} catch (Exception ignored) {
 		}
-	}*/
+	}
 }
+*/

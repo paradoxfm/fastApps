@@ -26,9 +26,4 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 	public int getCount() {
 		return arr.size();
 	}
-
-	/*@Override
-	public CharSequence getPageTitle(int position) {
-		return EngPool.Inst().getEngine(position).getTitle();
-	}*/
 }

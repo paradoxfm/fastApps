@@ -18,6 +18,11 @@ public class FileUtil {
 		return rez;
 	}
 
+	public static boolean backupBase(String path) {
+
+		return false;
+	}
+
 	private static String read(File file) throws IOException {
 		String encoding = detectEncode(file);
 		FileInputStream fis = new FileInputStream(file);

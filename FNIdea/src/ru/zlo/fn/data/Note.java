@@ -9,14 +9,14 @@ import java.util.Date;
 public class Note {
 
 	boolean checked = false;
-	@DatabaseField(columnName = "id", id = true)
+	@DatabaseField(columnName = "id", generatedId = true)
 	private int id;
 	@DatabaseField(columnName = "word_count", canBeNull = false)
 	private int wordCount = 0;
 	@DatabaseField(columnName = "note_date", canBeNull = false)
 	private Date date = new Date();
 	@DatabaseField(columnName = "note_title", canBeNull = false)
-	private String title = "";
+	private String title = "New note";
 	@DatabaseField(columnName = "note_text", canBeNull = false)
 	private String text = "";
 
@@ -25,10 +25,6 @@ public class Note {
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public boolean isChecked() {
@@ -43,31 +39,26 @@ public class Note {
 		return wordCount;
 	}
 
-	public void setWordCount(int wordCount) {
-		this.wordCount = wordCount;
-	}
-
 	public Date getDate() {
 		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
 	}
 
 	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public String getText() {
 		return text;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setText(String textString) {
+		text = textString;
+		title = text.split("\n")[0];
+		date = new Date();
+		wordCount = getWorgCount(text);
+	}
+
+	protected int getWorgCount(String text) {
+		return text.split("\\s+").length;
 	}
 }

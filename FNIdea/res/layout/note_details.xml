@@ -12,10 +12,14 @@
 
     <ScrollView android:id="@+id/scroll_detail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent">
         <ru.zlo.fn.component.NoteEdit_ android:id="@+id/text_detail"
-                                      android:layout_width="match_parent"
-                                      android:layout_height="wrap_content"/>
+                                       android:layout_width="match_parent"
+                                       android:layout_height="wrap_content"
+                                       android:background="@android:color/transparent"
+                                       android:paddingLeft="4dip"
+                                       android:paddingRight="4dip"/>
     </ScrollView>
 
 </LinearLayout>

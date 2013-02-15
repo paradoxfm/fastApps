@@ -6,13 +6,8 @@
         <item name="android:listViewStyle">@style/TransparentListView</item>
         <item name="android:expandableListViewStyle">@style/TransparentExpandableListView</item>
         <item name="android:windowTitleSize">35dip</item>
-        <item name="android:windowTitleBackgroundStyle">@style/TitlebarBackgroundStyle</item>
         <item name="android:alertDialogStyle">@style/dialogAlertTheme</item>
         <item name="android:seekBarStyle">@style/MySeekBar</item>
-    </style>
-
-    <style name="TitlebarBackgroundStyle">
-        <item name="android:background">@drawable/title_bar_background</item>
     </style>
 
     <style name="TransparentListView" parent="@android:style/Widget.ListView">
@@ -37,7 +32,7 @@
     </style>
 
     <color name="widgetBorder">#e6eff2</color>
-    <color name="editBackground">#e6eff2</color>
+    <color name="editBackground">#fff7f7</color>
     <color name="fileNameColor">#ffcbd4d7</color>
     <color name="gradientWidgetStartColor">#3798c8</color>
     <color name="gradientWidgetEndColor">#2861a2</color>

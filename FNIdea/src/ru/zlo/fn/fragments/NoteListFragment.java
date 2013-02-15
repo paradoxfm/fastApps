@@ -1,16 +1,17 @@
 package ru.zlo.fn.fragments;
 
 import android.app.ListFragment;
+import android.view.View;
+import android.widget.ListView;
 import com.googlecode.androidannotations.annotations.*;
-import ru.zlo.fn.R;
 import ru.zlo.fn.component.NoteAdapter;
 import ru.zlo.fn.data.Note;
 import ru.zlo.fn.data.SqlHelper;
 
 import java.util.List;
 
-@EFragment(R.layout.notes_list)
-public class NoteListFragment extends ListFragment {
+@EFragment
+public class NoteListFragment extends ListFragment implements SqlHelper.OnDeleteItem {
 
 	@Bean
 	NoteAdapter adapter;
@@ -18,14 +19,21 @@ public class NoteListFragment extends ListFragment {
 	SqlHelper helper;
 	OnListItemChoice choicer;
 
+
 	public interface OnListItemChoice {
 		void onChoice(Note dat);
 	}
 
 	@AfterViews
 	void afterInit() {
-		setListAdapter(adapter);
+		helper.addDeleteItemListener(this);
 		preloadNotes();
+	}
+
+	@Override
+	public void deleteItem(Note item) {
+		adapter.remove(item);
+		adapter.notifyDataSetChanged();
 	}
 
 	@Background
@@ -37,13 +45,18 @@ public class NoteListFragment extends ListFragment {
 	@UiThread
 	void applyLoadedNotes(List<Note> notes) {
 		adapter.setListItems(notes);
-		adapter.notifyDataSetChanged();
+		setListAdapter(adapter);
 	}
 
-	@ItemClick
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+		noteListItemClicked(position);
+	}
+
 	void noteListItemClicked(int pos) {
-		Note dat = adapter.getItem(pos);
 		unsheckAll();
+		Note dat = adapter.getItem(pos);
 		dat.setChecked(true);
 		adapter.notifyDataSetChanged();
 		if (choicer != null)
@@ -61,5 +74,12 @@ public class NoteListFragment extends ListFragment {
 
 	public void refreshList() {
 		adapter.notifyDataSetChanged();
+	}
+
+	public void createNote() {
+		Note newNote = new Note();
+		helper.createNote(newNote);
+		adapter.add(newNote);
+		noteListItemClicked(adapter.getCount() - 1);
 	}
 }

@@ -1,53 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/settings" >
+                  android:title="@string/mainset_smr">
 
-    <PreferenceCategory android:title="@string/mainset" >
-
-        <CheckBoxPreference
-            android:key="fullscr"
-            android:summary="@string/full_scr_smr"
-            android:title="@string/full_scr" />
-
-        <ListPreference
-            android:defaultValue="4"
-            android:dialogTitle="@string/orien"
-            android:entries="@array/orient"
-            android:entryValues="@array/orient_val"
-            android:key="orientype"
-            android:summary="@string/orien_smr"
-            android:title="@string/orien" />
-    </PreferenceCategory>
-
-    <PreferenceCategory android:title="@string/pref_edit" >
+    <PreferenceCategory android:title="@string/pref_sys">
 
         <Preference
-            android:key="line_color"
-            android:summary="@string/line_color_smr"
-            android:title="@string/line_color" />
+                android:key="bakup"
+                android:summary="@string/set_back_smr"
+                android:title="@string/set_back"/>
 
         <Preference
-            android:key="color_text"
-            android:summary="@string/color_text_smr"
-            android:title="@string/edit_color_text" />
-
-        <Preference
-            android:key="size_text"
-            android:summary="@string/size_text_smr"
-            android:title="@string/edit_size_text" />
-    </PreferenceCategory>
-
-    <PreferenceCategory android:title="@string/pref_sys" >
-
-        <Preference
-            android:key="bakup"
-            android:summary="@string/set_back_smr"
-            android:title="@string/set_back" />
-
-        <Preference
-            android:key="about"
-            android:summary="@string/about_smr"
-            android:title="@string/about" />
+                android:key="about"
+                android:summary="@string/about_smr"
+                android:title="@string/about"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

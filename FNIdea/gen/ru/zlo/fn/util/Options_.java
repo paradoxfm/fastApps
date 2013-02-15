@@ -5,58 +5,77 @@
 
 package ru.zlo.fn.util;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
-import android.view.View;
-import ru.zlo.fn.R.drawable;
+import android.content.SharedPreferences;
+import com.googlecode.androidannotations.api.sharedpreferences.BooleanPrefEditorField;
+import com.googlecode.androidannotations.api.sharedpreferences.BooleanPrefField;
+import com.googlecode.androidannotations.api.sharedpreferences.EditorHelper;
+import com.googlecode.androidannotations.api.sharedpreferences.IntPrefEditorField;
+import com.googlecode.androidannotations.api.sharedpreferences.IntPrefField;
+import com.googlecode.androidannotations.api.sharedpreferences.SharedPreferencesHelper;
 
 public final class Options_
-    extends Options
+    extends SharedPreferencesHelper
 {
 
-    private Context context_;
 
-    private Options_(Context context) {
-        context_ = context;
-        init_();
+    public Options_(Context context) {
+        super(context.getSharedPreferences("Options", 0));
     }
 
-    public void afterSetContentView_() {
-        if (!(context_ instanceof Activity)) {
-            return ;
+    public Options_.OptionsEditor_ edit() {
+        return new Options_.OptionsEditor_(getSharedPreferences());
+    }
+
+    public BooleanPrefField fullScreen() {
+        return booleanField("fullScreen", false);
+    }
+
+    public IntPrefField orientation() {
+        return intField("orientation", 4);
+    }
+
+    public IntPrefField fontSize() {
+        return intField("fontSize", 22);
+    }
+
+    public IntPrefField fontColor() {
+        return intField("fontColor", -16777216);
+    }
+
+    public IntPrefField lineColor() {
+        return intField("lineColor", -16211250);
+    }
+
+    public final static class OptionsEditor_
+        extends EditorHelper<Options_.OptionsEditor_>
+    {
+
+
+        OptionsEditor_(SharedPreferences sharedPreferences) {
+            super(sharedPreferences);
         }
-    }
 
-    /**
-     * You should check that context is an activity before calling this method
-     * 
-     */
-    public View findViewById(int id) {
-        Activity activity_ = ((Activity) context_);
-        return activity_.findViewById(id);
-    }
-
-    @SuppressWarnings("all")
-    private void init_() {
-        if (context_ instanceof Activity) {
-            Activity activity = ((Activity) context_);
+        public BooleanPrefEditorField<Options_.OptionsEditor_> fullScreen() {
+            return booleanField("fullScreen");
         }
-        Resources resources_ = context_.getResources();
-        i_rigth_mark = resources_.getDrawable(drawable.i_rigth_mark);
-        i_rigth = resources_.getDrawable(drawable.i_rigth);
-        i_plus = resources_.getDrawable(drawable.i_plus);
-        context = context_;
-        loadOptions();
-    }
 
-    public static Options_ getInstance_(Context context) {
-        return new Options_(context);
-    }
+        public IntPrefEditorField<Options_.OptionsEditor_> orientation() {
+            return intField("orientation");
+        }
 
-    public void rebind(Context context) {
-        context_ = context;
-        init_();
+        public IntPrefEditorField<Options_.OptionsEditor_> fontSize() {
+            return intField("fontSize");
+        }
+
+        public IntPrefEditorField<Options_.OptionsEditor_> fontColor() {
+            return intField("fontColor");
+        }
+
+        public IntPrefEditorField<Options_.OptionsEditor_> lineColor() {
+            return intField("lineColor");
+        }
+
     }
 
 }
