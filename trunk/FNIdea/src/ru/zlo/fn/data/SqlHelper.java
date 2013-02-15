@@ -67,7 +67,7 @@ public class SqlHelper extends OrmLiteSqliteOpenHelper {
 		return deleteItemListeners.remove(listener);
 	}
 
-	public Dao<Note, Integer> getNoteDao() {
+	protected Dao<Note, Integer> getNoteDao() {
 		if (noteDao == null) {
 			try {
 				noteDao = getDao(Note.class);

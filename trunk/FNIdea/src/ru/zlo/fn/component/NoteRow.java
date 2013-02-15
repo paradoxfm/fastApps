@@ -51,21 +51,4 @@ public class NoteRow extends RelativeLayout {
 		m_word_count.setText("words: " + data.getWordCount() + "  /  edit: " + fdate.format(data.getDate()) + " " + ftime.format(data.getDate()));
 		m_arrow.setImageDrawable(data.isChecked() ? i_rigth_mark : i_rigth);
 	}
-
-	public Note getData() {
-		return data;
-	}
-
-	public boolean isChecked() {
-		return data.isChecked();
-	}
-
-	public void setChecked(boolean check) {
-		data.setChecked(check);
-		m_arrow.setImageDrawable(data.isChecked() ? i_rigth_mark : i_rigth);
-	}
-
-	public void setTitle(String title) {
-		m_titile.setText(title);
-	}
 }

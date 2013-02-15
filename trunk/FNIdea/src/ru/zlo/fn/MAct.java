@@ -1,6 +1,7 @@
 package ru.zlo.fn;
 
 import android.app.Activity;
+import android.os.Environment;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import android.view.View;
@@ -86,17 +87,6 @@ public class MAct extends Activity implements NoteListFragment.OnListItemChoice,
 			System.exit(0);
 		}
 	}
-
-	/*@Override
-	protected void onNewIntent(Intent intent) {
-		if (Intent.ACTION_SEARCH.equals(intent.getAction()))
-			doSearchQuery(intent, intent.getStringExtra(SearchManager.QUERY));
-		if (FileUtil.openText(intent)) {
-			setEditorText(null);
-			fromFile = true;
-		}
-		super.onNewIntent(intent);
-	}*/
 
 	/*private void doSearchQuery(Intent intent, String stringExtra) {
 		View v = scrv.getChildAt(scrv.getDisplayedChild());

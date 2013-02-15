@@ -13,6 +13,10 @@
                 android:key="about"
                 android:summary="@string/about_smr"
                 android:title="@string/about"/>
+        <Preference
+            android:key="import"
+            android:summary="@string/import_smr"
+            android:title="@string/imports"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

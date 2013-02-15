@@ -57,4 +57,7 @@
     <string name="mainset_smr">Main settings</string>
     <string name="showng">View</string>
     <string name="showng_smr">View settings</string>
+    <string name="imports">Import</string>
+    <string name="import_smr">Import from previous version</string>
+    <string name="restart_apply">Restart the application to load changes</string>
 </resources>

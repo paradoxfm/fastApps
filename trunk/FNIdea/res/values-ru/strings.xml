@@ -55,4 +55,7 @@
     <string name="mainset_smr">Основные настройки</string>
     <string name="showng">Отображение</string>
     <string name="showng_smr">Настройки отображения</string>
+    <string name="imports">Импорт</string>
+    <string name="import_smr">Импорт из предыдущей версии</string>
+    <string name="restart_apply">Перезапустите приложение чтоб загрузить изменения</string>
 </resources>

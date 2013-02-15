@@ -1,6 +1,5 @@
 package ru.zlo.ff;
 
-import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.view.WindowManager;
 import com.googlecode.androidannotations.annotations.EActivity;
@@ -13,14 +12,9 @@ import java.util.List;
 public class SAct extends PreferenceActivity {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-	}
-
-	@Override
 	protected void onResume() {
 		super.onResume();
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		int flg = WindowManager.LayoutParams.FLAG_FULLSCREEN;
 		if (Options.FULL_SCR)
 			getWindow().setFlags(flg, flg);
