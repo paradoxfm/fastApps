@@ -11,13 +11,19 @@ import ru.zlo.fn.data.SqlHelper;
 import java.util.List;
 
 @EFragment
-public class NoteListFragment extends ListFragment implements SqlHelper.OnDeleteItem {
+public class NoteListFragment extends ListFragment implements SqlHelper.OnDeleteItem, NoteDetailFragment.OnSaveChanges {
 
 	@Bean
 	NoteAdapter adapter;
 	@Bean
 	SqlHelper helper;
 	OnListItemChoice choicer;
+	boolean search = false;
+
+	@Override
+	public void saveChanges() {
+		adapter.notifyDataSetChanged();
+	}
 
 
 	public interface OnListItemChoice {
@@ -72,14 +78,19 @@ public class NoteListFragment extends ListFragment implements SqlHelper.OnDelete
 			adapter.getItem(i).setChecked(false);
 	}
 
-	public void refreshList() {
-		adapter.notifyDataSetChanged();
-	}
-
 	public void createNote() {
 		Note newNote = new Note();
 		helper.createNote(newNote);
 		adapter.add(newNote);
 		noteListItemClicked(adapter.getCount() - 1);
+	}
+
+	public void search(String text) {
+		if (text == null || text.length() < 3)
+			search = true;
+	}
+
+	public void clearSearchResult() {
+		search = false;
 	}
 }

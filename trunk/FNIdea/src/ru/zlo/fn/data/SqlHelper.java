@@ -127,4 +127,13 @@ public class SqlHelper extends OrmLiteSqliteOpenHelper {
 		}
 		return true;
 	}
+
+	public List<Note> searchByText(String text) {
+		try {
+			PreparedQuery<Note> pq = getNoteDao().queryBuilder().where().like("", text).like("", text).prepare();
+			return getNoteDao().query(pq);
+		} catch (SQLException e) {
+			return new ArrayList<Note>(0);
+		}
+	}
 }
