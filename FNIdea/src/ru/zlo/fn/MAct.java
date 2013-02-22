@@ -1,11 +1,16 @@
 package ru.zlo.fn;
 
 import android.app.Activity;
-import android.os.Environment;
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.SearchView;
 import com.googlecode.androidannotations.annotations.*;
 import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
 import com.viewpagerindicator.LinePageIndicator;
@@ -16,7 +21,7 @@ import ru.zlo.fn.util.Options_;
 
 @EActivity(R.layout.main_view)
 @OptionsMenu(R.menu.main_menu)
-public class MAct extends Activity implements NoteListFragment.OnListItemChoice, NoteDetailFragment.OnSaveChanges, ViewPager.OnPageChangeListener {
+public class MAct extends Activity implements NoteListFragment.OnListItemChoice, ViewPager.OnPageChangeListener {
 
 	@Pref
 	Options_ opt;
@@ -30,10 +35,6 @@ public class MAct extends Activity implements NoteListFragment.OnListItemChoice,
 	@FragmentById(R.id.list_frag_right)
 	NoteDetailFragment noteDet;
 
-	//private static boolean fromFile = false;
-	//private static boolean isSearch = false;
-	//public static MAct I;
-
 	@AfterViews
 	void afterInit() {
 		if (viewPager != null) {
@@ -45,7 +46,7 @@ public class MAct extends Activity implements NoteListFragment.OnListItemChoice,
 			viewPager.setOnPageChangeListener(this);
 		}
 		noteList.setOnListItemChoice(this);
-		noteDet.setOnSaveChanges(this);
+		noteDet.setOnSaveChanges(noteList);
 	}
 
 	@Override
@@ -88,23 +89,18 @@ public class MAct extends Activity implements NoteListFragment.OnListItemChoice,
 		}
 	}
 
-	/*private void doSearchQuery(Intent intent, String stringExtra) {
-		View v = scrv.getChildAt(scrv.getDisplayedChild());
-		if (nlist == v) {
-			nlist.startLoad(dirDB, stringExtra); // загрузка
-			isSearch = true;
-		} else if (nedit == v) {
-			if (fromFile)
-				saveFile();
-			else
-				nedit.setLocked(false);
-			nedit.search(stringExtra.toLowerCase());
-		}
-	}*/
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+		return true;
+	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		return MenuChecker.itemClick(this, item.getItemId());
+	protected void onNewIntent(Intent intent) {
+		if (Intent.ACTION_SEARCH.equals(intent.getAction()))
+			noteList.search(intent.getStringExtra(SearchManager.QUERY));
 	}
 
 	@Override
@@ -112,11 +108,6 @@ public class MAct extends Activity implements NoteListFragment.OnListItemChoice,
 		noteDet.setCurrentNote(dat);
 		if (viewPager != null)
 			viewPager.setCurrentItem(1);
-	}
-
-	@Override
-	public void saveChanges() {
-		noteList.refreshList();
 	}
 
 	@Override
