@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -80,6 +79,10 @@ public class MAct extends Activity implements NoteListFragment.OnListItemChoice,
 	@Override
 	@OptionsItem(android.R.id.home)
 	public void onBackPressed() {
+		if (noteList.isSearch()) {
+			noteList.clearSearchResult();
+			return;
+		}
 		if (viewPager != null && viewPager.getCurrentItem() == 1) {
 			noteDet.save();
 			viewPager.setCurrentItem(0);

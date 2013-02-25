@@ -25,7 +25,6 @@ public class NoteListFragment extends ListFragment implements SqlHelper.OnDelete
 		adapter.notifyDataSetChanged();
 	}
 
-
 	public interface OnListItemChoice {
 		void onChoice(Note dat);
 	}
@@ -61,7 +60,7 @@ public class NoteListFragment extends ListFragment implements SqlHelper.OnDelete
 	}
 
 	void noteListItemClicked(int pos) {
-		unsheckAll();
+		adapter.unsheckAll();
 		Note dat = adapter.getItem(pos);
 		dat.setChecked(true);
 		adapter.notifyDataSetChanged();
@@ -73,11 +72,6 @@ public class NoteListFragment extends ListFragment implements SqlHelper.OnDelete
 		choicer = choice;
 	}
 
-	protected void unsheckAll() {
-		for (int i = 0; i < adapter.getCount(); i++)
-			adapter.getItem(i).setChecked(false);
-	}
-
 	public void createNote() {
 		Note newNote = new Note();
 		helper.createNote(newNote);
@@ -85,12 +79,20 @@ public class NoteListFragment extends ListFragment implements SqlHelper.OnDelete
 		noteListItemClicked(adapter.getCount() - 1);
 	}
 
+	@Background
 	public void search(String text) {
 		if (text == null || text.length() < 3)
 			search = true;
+		List<Note> lst = helper.searchByText(text);
+		applyLoadedNotes(lst);
+	}
+
+	public boolean isSearch() {
+		return search;
 	}
 
 	public void clearSearchResult() {
 		search = false;
+		preloadNotes();
 	}
 }
