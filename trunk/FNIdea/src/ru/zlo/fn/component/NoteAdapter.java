@@ -50,4 +50,9 @@ public class NoteAdapter extends BaseAdapter {
 	public void remove(Note dat) {
 		mItems.remove(dat);
 	}
+
+	public void unsheckAll() {
+		for (Note mItem : mItems)
+			mItem.setChecked(false);
+	}
 }
