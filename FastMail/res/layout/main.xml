@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:deezapps="http://schemas.android.com/apk/res/ru.megazlo.pager"
-	android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
-	<ru.megazlo.pager.PagerControl android:layout_width="fill_parent"
-		android:layout_height="4dip" android:layout_margin="2dip" android:id="@+id/pageind" />
-	<ru.megazlo.pager.HorizontalPager android:id="@+id/pager"
-		android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1" />
-</LinearLayout>
