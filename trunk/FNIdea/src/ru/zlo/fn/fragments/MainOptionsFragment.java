@@ -80,10 +80,11 @@ public class MainOptionsFragment extends PreferenceFragment implements Preferenc
 			for (OldNote itm : data) {
 				Note newItem = new Note();
 				newItem.setText(itm.getText());
-				Date dt = new Date();
+				Date dt;
 				try {
 					dt = new Date(itm.getDate());
 				} catch (Exception ignore) {
+					dt = new Date();
 				}
 				newItem.setDate(dt);
 				helper.createNote(newItem);

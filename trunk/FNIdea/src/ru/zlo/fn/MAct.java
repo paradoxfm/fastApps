@@ -79,13 +79,11 @@ public class MAct extends Activity implements NoteListFragment.OnListItemChoice,
 	@Override
 	@OptionsItem(android.R.id.home)
 	public void onBackPressed() {
-		if (noteList.isSearch()) {
-			noteList.clearSearchResult();
-			return;
-		}
 		if (viewPager != null && viewPager.getCurrentItem() == 1) {
 			noteDet.save();
 			viewPager.setCurrentItem(0);
+		} else if (noteList.isSearch()) {
+			noteList.clearSearchResult();
 		} else {
 			noteDet.save();
 			System.exit(0);
