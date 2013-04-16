@@ -49,8 +49,8 @@ public class NoteListFragment extends ListFragment implements SqlHelper.OnDelete
 
 	@UiThread
 	void applyLoadedNotes(List<Note> notes) {
-		adapter.setListItems(notes);
 		setListAdapter(adapter);
+		adapter.setListItems(notes);
 	}
 
 	@Override
