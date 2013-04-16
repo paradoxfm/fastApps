@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="horizontal">
+              android:orientation="horizontal"
+              android:weightSum="100">
 
     <fragment class="ru.zlo.fn.fragments.NoteListFragment_"
               android:id="@+id/list_frag_left"
-              android:layout_width="wrap_content"
+              android:layout_width="0dp"
               android:layout_height="match_parent"
               android:layout_weight="45"/>
 
@@ -17,7 +18,7 @@
 
     <fragment class="ru.zlo.fn.fragments.NoteDetailFragment_"
               android:id="@+id/list_frag_right"
-              android:layout_width="wrap_content"
+              android:layout_width="0dp"
               android:layout_height="match_parent"
               android:layout_weight="55"/>
 
