@@ -13,9 +13,10 @@
 
     <SeekBar
         android:id="@+id/font_seek"
-        android:layout_width="300dip"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="16"
+        android:layout_gravity="center_horizontal"
         android:paddingLeft="15dip"
         android:paddingRight="15dip" />
 
