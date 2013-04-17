@@ -17,9 +17,11 @@
         <ru.zlo.fn.component.NoteEdit_ android:id="@+id/text_detail"
                                        android:layout_width="match_parent"
                                        android:layout_height="wrap_content"
-                                       android:background="@android:color/transparent"
+                                       android:background="@android:color/white"
                                        android:paddingLeft="4dip"
-                                       android:paddingRight="4dip"/>
+                                       android:paddingRight="4dip"
+                                       android:textCursorDrawable="@null"
+                                       android:focusable="false"/>
     </ScrollView>
 
 </LinearLayout>

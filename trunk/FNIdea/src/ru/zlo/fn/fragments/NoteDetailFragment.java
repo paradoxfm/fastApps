@@ -1,7 +1,9 @@
 package ru.zlo.fn.fragments;
 
 import android.app.Fragment;
+import android.view.View;
 import android.widget.ScrollView;
+import android.widget.Toast;
 import com.googlecode.androidannotations.annotations.*;
 import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
 import ru.zlo.fn.R;
@@ -11,7 +13,7 @@ import ru.zlo.fn.data.SqlHelper;
 import ru.zlo.fn.util.Options_;
 
 @EFragment(R.layout.note_details)
-public class NoteDetailFragment extends Fragment implements SqlHelper.OnDeleteItem {
+public class NoteDetailFragment extends Fragment implements SqlHelper.OnDeleteItem, View.OnFocusChangeListener {
 
 	private boolean mEdited = false;
 	@ViewById(R.id.scroll_detail)
@@ -40,6 +42,7 @@ public class NoteDetailFragment extends Fragment implements SqlHelper.OnDeleteIt
 	@AfterViews
 	void afterInit() {
 		helper.addDeleteItemListener(this);
+		editor.setOnFocusChangeListener(this);
 	}
 
 	public void setOnSaveChanges(OnSaveChanges listener) {
@@ -75,10 +78,18 @@ public class NoteDetailFragment extends Fragment implements SqlHelper.OnDeleteIt
 	public void save() {
 		if (!mEdited || currentNote == null)
 			return;
+		Toast.makeText(getActivity(), "Сохранено", Toast.LENGTH_SHORT);
 		mEdited = false;
 		currentNote.setText(editor.getText().toString());
 		helper.updateNote(currentNote);
 		if (saveChanges != null)
 			saveChanges.saveChanges();
+	}
+
+	@Override
+	public void onFocusChange(View v, boolean hasFocus) {
+		if (!hasFocus && mEdited) {
+			save();
+		}
 	}
 }
