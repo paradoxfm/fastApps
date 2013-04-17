@@ -7,7 +7,6 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import com.googlecode.androidannotations.annotations.EView;
@@ -17,7 +16,6 @@ public class NoteEdit extends EditText {
 
 	private Boolean _isMoved = false;
 	private Boolean _isEditable = false;
-
 	private final Rect mRect = new Rect();
 	private Paint mPaint = new Paint();
 
@@ -25,15 +23,6 @@ public class NoteEdit extends EditText {
 		super(context, attrs);
 		mPaint.setStyle(Paint.Style.STROKE);
 	}
-
-	/*public void disableEdit() {
-		_isEditable = false;
-		//setFocusable(false);
-		// InputMethodManager inMan = (InputMethodManager)
-		// getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-		// inMan.hideSoftInputFromWindow(getWindowToken(),
-		// InputMethodManager.HIDE_NOT_ALWAYS);
-	}*/
 
 	@Override
 	public boolean onKeyPreIme(int cod, KeyEvent e) {
@@ -43,10 +32,6 @@ public class NoteEdit extends EditText {
 		}
 		return super.onKeyPreIme(cod, e);
 	}
-
-	/*public Boolean isEdit() {
-		return _isEditable;
-	}*/
 
 	@Override
 	public boolean onTouchEvent(MotionEvent e) {
