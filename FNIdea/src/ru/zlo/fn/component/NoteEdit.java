@@ -2,12 +2,12 @@ package ru.zlo.fn.component;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import com.googlecode.androidannotations.annotations.EView;
@@ -21,28 +21,19 @@ public class NoteEdit extends EditText {
 	private final Rect mRect = new Rect();
 	private Paint mPaint = new Paint();
 
-	/*public NoteEdit(Context context) {
-		super(context);
-		mPaint.setStyle(Paint.Style.STROKE);
-		setBackgroundColor(Color.TRANSPARENT);
-		setFocusable(false);
-	}*/
-
 	public NoteEdit(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		mPaint.setStyle(Paint.Style.STROKE);
-		setBackgroundColor(Color.TRANSPARENT);
-		setFocusable(false);
 	}
 
-	public void disableEdit() {
+	/*public void disableEdit() {
 		_isEditable = false;
-		setFocusable(false);
+		//setFocusable(false);
 		// InputMethodManager inMan = (InputMethodManager)
 		// getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 		// inMan.hideSoftInputFromWindow(getWindowToken(),
 		// InputMethodManager.HIDE_NOT_ALWAYS);
-	}
+	}*/
 
 	@Override
 	public boolean onKeyPreIme(int cod, KeyEvent e) {
@@ -53,9 +44,9 @@ public class NoteEdit extends EditText {
 		return super.onKeyPreIme(cod, e);
 	}
 
-	public Boolean isEdit() {
+	/*public Boolean isEdit() {
 		return _isEditable;
-	}
+	}*/
 
 	@Override
 	public boolean onTouchEvent(MotionEvent e) {
@@ -66,8 +57,8 @@ public class NoteEdit extends EditText {
 				_isEditable = !_isEditable;
 				setFocusable(true);
 				setFocusableInTouchMode(true);
-				((InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE))
-						.showSoftInputFromInputMethod(getWindowToken(), InputMethodManager.SHOW_IMPLICIT);
+				InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.showSoftInputFromInputMethod(getWindowToken(), 0);
 			}
 			_isMoved = false;
 		}
@@ -78,8 +69,8 @@ public class NoteEdit extends EditText {
 	protected void onDraw(Canvas canvas) {
 		final int count = getLineCount();
 		for (int i = 0; i < count; i++) {
-			int baseline = getLineBounds(i, mRect);
-			canvas.drawLine(mRect.left, baseline + 1, mRect.right, baseline + 1, mPaint);
+			int baseline = getLineBounds(i, mRect) + 1;
+			canvas.drawLine(mRect.left, baseline, mRect.right, baseline, mPaint);
 		}
 		super.onDraw(canvas);
 	}
