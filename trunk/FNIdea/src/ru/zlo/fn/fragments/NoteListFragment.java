@@ -1,6 +1,7 @@
 package ru.zlo.fn.fragments;
 
 import android.app.ListFragment;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import com.googlecode.androidannotations.annotations.*;
@@ -13,12 +14,14 @@ import java.util.List;
 @EFragment
 public class NoteListFragment extends ListFragment implements SqlHelper.OnDeleteItem, NoteDetailFragment.OnSaveChanges {
 
+	boolean search = false;
+	//Integer lastPos;
 	@Bean
 	NoteAdapter adapter;
 	@Bean
 	SqlHelper helper;
 	OnListItemChoice choicer;
-	boolean search = false;
+	//private static final String SEL_POS_VALUE = "selectedPosition";
 
 	@Override
 	public void saveChanges() {
@@ -51,6 +54,8 @@ public class NoteListFragment extends ListFragment implements SqlHelper.OnDelete
 	void applyLoadedNotes(List<Note> notes) {
 		setListAdapter(adapter);
 		adapter.setListItems(notes);
+		/*if (lastPos != null)
+			noteListItemClicked(lastPos);*/
 	}
 
 	@Override
@@ -60,6 +65,7 @@ public class NoteListFragment extends ListFragment implements SqlHelper.OnDelete
 	}
 
 	void noteListItemClicked(int pos) {
+		//lastPos = pos;
 		adapter.unsheckAll();
 		Note dat = adapter.getItem(pos);
 		dat.setChecked(true);
@@ -95,4 +101,19 @@ public class NoteListFragment extends ListFragment implements SqlHelper.OnDelete
 		search = false;
 		preloadNotes();
 	}
+
+/*	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		if (savedInstanceState != null) {
+			lastPos = savedInstanceState.getInt(SEL_POS_VALUE);
+			lastPos = lastPos == -1 ? null : lastPos;
+		}
+	}
+
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putInt(SEL_POS_VALUE, lastPos == null ? -1 : lastPos);
+	}*/
 }

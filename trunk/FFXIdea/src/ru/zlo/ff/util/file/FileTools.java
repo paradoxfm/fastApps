@@ -16,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.*;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import ru.zlo.ff.NAct;
 import ru.zlo.ff.NAct_;
 import ru.zlo.ff.R;
 import ru.zlo.ff.components.filerow.FileRowData;

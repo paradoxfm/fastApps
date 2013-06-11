@@ -105,4 +105,5 @@
 
     <string name="set_widget_path">Устаовить путь виджета</string>
     <string name="widget_title">Папка</string>
+    <string name="longPress_exit">Удерживайте назад для выхода</string>
 </resources>
