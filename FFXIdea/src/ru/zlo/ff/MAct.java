@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -87,7 +88,14 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 	@OptionsItem(android.R.id.home)
 	public void onBackPressed() {
 		if (!pool.getCurrent().browseUp())
+			Toast.makeText(this, R.string.longPress_exit, Toast.LENGTH_SHORT);
+	}
+
+	@Override
+	public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK)
 			System.exit(0);
+		return super.onKeyLongPress(keyCode, event);
 	}
 
 	@OptionsItem({R.id.appsett, R.id.tutor, R.id.quit})
@@ -116,6 +124,7 @@ public class MAct extends Activity implements ViewPager.OnPageChangeListener, Fi
 			return;
 		setTitle(engine.getTitle());
 		pool.setCurrentEngine(engine);
+		getActionBar().setIcon(R.drawable.ic_launcher);
 	}
 
 	@Override

@@ -105,4 +105,5 @@
 
     <string name="set_widget_path">Set widget path</string>
     <string name="widget_title">Folder</string>
+    <string name="longPress_exit">Hold the back to exit</string>
 </resources>
